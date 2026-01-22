@@ -531,7 +531,7 @@
         <header class="page-header">
             <div class="section-tag">2.1 评估、部署与推理优化</div>
             <h1>垂域模型评估体系构建</h1>
-            <p class="desc">自动化指标与人工专家评估的有机结合</p>
+            <p class="desc">自动化指标、LLM-as-Judge 与人工专家评估的有机结合</p>
         </header>
 
         <!-- 自动化 vs 人工 -->
@@ -632,6 +632,154 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- LLM-as-Judge -->
+        <section class="section">
+            <h2 class="section-title">LLM-as-Judge：大模型评估大模型</h2>
+
+            <div class="content-card">
+                <h3>什么是 LLM-as-Judge？</h3>
+                <p>LLM-as-Judge 是一种新兴的评估方法，使用强大的大模型（如 GPT-4、Claude）作为"评委"来评估目标模型的输出质量。它结合了自动化评估的效率和人工评估的语义理解能力。</p>
+
+                <!-- 三种方法对比图 -->
+                <div class="diagram" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; margin: 20px 0;">
+                    <svg width="650" height="160" viewBox="0 0 650 160">
+                        <!-- 自动化指标 -->
+                        <rect x="20" y="30" width="180" height="100" fill="none" stroke="#06b6d4" stroke-width="2" rx="10"/>
+                        <text x="110" y="55" fill="#06b6d4" font-size="12" font-weight="600" text-anchor="middle">自动化指标</text>
+                        <text x="110" y="75" fill="#94a3b8" font-size="10" text-anchor="middle">BLEU / ROUGE / BERTScore</text>
+                        <text x="110" y="95" fill="#10b981" font-size="10" text-anchor="middle">✓ 快速、低成本</text>
+                        <text x="110" y="112" fill="#ef4444" font-size="10" text-anchor="middle">✗ 语义理解弱</text>
+
+                        <!-- LLM-as-Judge -->
+                        <rect x="235" y="30" width="180" height="100" fill="rgba(139, 92, 246, 0.1)" stroke="#8b5cf6" stroke-width="2" rx="10"/>
+                        <text x="325" y="55" fill="#8b5cf6" font-size="12" font-weight="600" text-anchor="middle">LLM-as-Judge</text>
+                        <text x="325" y="75" fill="#94a3b8" font-size="10" text-anchor="middle">GPT-4 / Claude 评分</text>
+                        <text x="325" y="95" fill="#10b981" font-size="10" text-anchor="middle">✓ 语义理解强、成本适中</text>
+                        <text x="325" y="112" fill="#f59e0b" font-size="10" text-anchor="middle">⚠ 可能有偏见</text>
+
+                        <!-- 人工评估 -->
+                        <rect x="450" y="30" width="180" height="100" fill="none" stroke="#f59e0b" stroke-width="2" rx="10"/>
+                        <text x="540" y="55" fill="#f59e0b" font-size="12" font-weight="600" text-anchor="middle">人工专家评估</text>
+                        <text x="540" y="75" fill="#94a3b8" font-size="10" text-anchor="middle">领域专家打分</text>
+                        <text x="540" y="95" fill="#10b981" font-size="10" text-anchor="middle">✓ 最准确、可信</text>
+                        <text x="540" y="112" fill="#ef4444" font-size="10" text-anchor="middle">✗ 慢、成本高</text>
+
+                        <!-- 箭头和标注 -->
+                        <path d="M 110 145 L 325 145" fill="none" stroke="#4b5563" stroke-width="1.5"/>
+                        <path d="M 325 145 L 540 145" fill="none" stroke="#4b5563" stroke-width="1.5"/>
+                        <text x="217" y="155" fill="#6b7280" font-size="9" text-anchor="middle">效率 ←</text>
+                        <text x="432" y="155" fill="#6b7280" font-size="9" text-anchor="middle">→ 准确性</text>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>常见评估模式</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>模式</th>
+                                <th>做法</th>
+                                <th>适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>单点打分</strong></td>
+                                <td>给单个回答打 1-5 分或 1-10 分</td>
+                                <td>绝对质量评估</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pairwise 对比</strong></td>
+                                <td>比较两个模型的回答，选出更优者</td>
+                                <td>模型版本对比、AB 测试</td>
+                            </tr>
+                            <tr>
+                                <td><strong>多维度评估</strong></td>
+                                <td>分别评估准确性、流畅性、相关性等</td>
+                                <td>细粒度质量分析</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reference-based</strong></td>
+                                <td>对比标准答案进行评分</td>
+                                <td>有 Ground Truth 的场景</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>Prompt 示例</h3>
+
+                <div class="code-block" style="background: var(--bg-code); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin: 16px 0;">
+                    <div class="code-header" style="padding: 10px 16px; background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border-color);">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">LLM-as-Judge Prompt</span>
+                    </div>
+                    <div style="padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary); overflow-x: auto;">
+<pre style="margin: 0;">你是一个专业的评估专家。请根据以下标准评估模型回答的质量：
+
+【评估维度】
+1. 准确性 (1-5分)：信息是否正确
+2. 完整性 (1-5分)：是否覆盖关键信息  
+3. 可读性 (1-5分)：表达是否清晰流畅
+
+【用户问题】
+{question}
+
+【模型回答】
+{answer}
+
+【参考答案】(如有)
+{reference}
+
+请给出每个维度的分数和理由，最后给出总评。
+输出格式：JSON</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>注意事项与局限性</h3>
+
+                <div class="tip-box warning" style="display: flex; gap: 14px; padding: 18px; border-radius: 8px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3);">
+                    <span style="font-size: 1.2rem;">⚠️</span>
+                    <div style="font-size: 0.95rem; color: var(--text-secondary);">
+                        <strong>潜在偏见：</strong>
+                        <ul style="margin-top: 8px; padding-left: 20px;">
+                            <li><strong>位置偏见：</strong>倾向于选择第一个或最后一个答案</li>
+                            <li><strong>长度偏见：</strong>倾向于认为更长的回答更好</li>
+                            <li><strong>自我偏见：</strong>GPT-4 可能偏好 GPT 系列的输出风格</li>
+                            <li><strong>格式偏见：</strong>倾向于格式更规整的回答</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-box info" style="display: flex; gap: 14px; padding: 18px; border-radius: 8px; margin-top: 16px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3);">
+                    <span style="font-size: 1.2rem;">💡</span>
+                    <div style="font-size: 0.95rem; color: var(--text-secondary);">
+                        <strong>缓解策略：</strong>
+                        <ul style="margin-top: 8px; padding-left: 20px;">
+                            <li>Pairwise 对比时随机交换顺序，取平均</li>
+                            <li>使用多个 Judge 模型交叉验证</li>
+                            <li>定期与人工评估结果校准</li>
+                            <li>对垂域专业问题，仍需人工复核</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reference-box">
+                <div class="title">📄 参考论文</div>
+                <div class="cite">
+                    • <em>"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"</em> (Zheng et al., 2023) - NeurIPS 2023<br>
+                    • <em>"G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment"</em> (Liu et al., 2023)
                 </div>
             </div>
         </section>
