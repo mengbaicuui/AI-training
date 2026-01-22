@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂域模型训练方法（二）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-amber: #f59e0b;
+            --border-color: #2d3a4f;
+            --gradient-1: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --gradient-2: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 背景动效 */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+            background-image: 
+                radial-gradient(ellipse at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(45, 58, 79, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(45, 58, 79, 0.3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* 顶部标签 */
+        .course-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--accent-cyan);
+            margin-bottom: 24px;
+        }
+
+        .course-tag::before {
+            content: "二";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* 标题区 */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        /* 目标卡片 */
+        .objective-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 28px;
+            margin: 0 auto 40px;
+            max-width: 700px;
+        }
+
+        .objective-card .label {
+            background: var(--accent-amber);
+            color: var(--bg-primary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .objective-card .text {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* 时长 */
+        .duration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--accent-cyan);
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+        }
+
+        .duration svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* 模块网格 */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .module-card.module-1::before {
+            background: var(--gradient-1);
+        }
+
+        .module-card.module-2::before {
+            background: var(--gradient-2);
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.1);
+        }
+
+        .module-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .module-1 .module-number {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-cyan);
+        }
+
+        .module-2 .module-number {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent-purple);
+        }
+
+        .module-card h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .module-card ul {
+            list-style: none;
+        }
+
+        .module-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .module-card li:last-child {
+            border-bottom: none;
+        }
+
+        .module-card li::before {
+            content: "▸";
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .module-2 li::before {
+            color: var(--accent-purple);
+        }
+
+        .sub-item {
+            padding-left: 20px;
+            font-size: 0.88rem !important;
+            color: var(--text-secondary);
+            opacity: 0.85;
+        }
+
+        /* 导航按钮 */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .nav-btn.primary {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .nav-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .modules {
+                grid-template-columns: 1fr;
+            }
+
+            .objective-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+        <header class="header">
+            <div class="course-tag">垂域模型训练方法</div>
+            <h1>垂域模型训练方法（二）</h1>
+            <p class="subtitle">从高效微调到生产部署的完整技术路径</p>
+
+            <div class="objective-card">
+                <span class="label">目标</span>
+                <span class="text">掌握 SFT 核心技术、模型评估体系及工程化部署路径</span>
+            </div>
+
+            <div class="duration">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                <span>90' - 120'</span>
+            </div>
+        </header>
+
+        <div class="modules">
+            <div class="module-card module-1">
+                <div class="module-number">1</div>
+                <h2>高效微调策略</h2>
+                <ul>
+                    <li>
+                        <a href="peft.html" style="color: inherit; text-decoration: none;">主流 PEFT 技术实战</a>
+                    </li>
+                    <li class="sub-item">LoRA 与 QLoRA 原理及参数配置</li>
+                    <li class="sub-item">如何避免"灾难性遗忘"</li>
+                    <li>
+                        <a href="training.html" style="color: inherit; text-decoration: none;">训练过程监控与调试</a>
+                    </li>
+                    <li class="sub-item">选择 Loss 函数</li>
+                    <li class="sub-item">小互动：解读 Loss 曲线</li>
+                </ul>
+            </div>
+
+            <div class="module-card module-2">
+                <div class="module-number">2</div>
+                <h2>评估、部署与推理优化</h2>
+                <ul>
+                    <li>
+                        <a href="evaluation.html" style="color: inherit; text-decoration: none;">垂域模型评估体系构建</a>
+                    </li>
+                    <li class="sub-item">自动化指标 vs 人工专家评估</li>
+                    <li class="sub-item">小互动：评估指标选择</li>
+                    <li>
+                        <a href="deployment.html" style="color: inherit; text-decoration: none;">推理部署工程化最佳实践</a>
+                    </li>
+                    <li class="sub-item">使用 vLLM 或 TGI 进行高并发部署</li>
+                    <li class="sub-item">监控、持续迭代</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="peft.html" class="nav-btn primary">
+                开始学习
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+
