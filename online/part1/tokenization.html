@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Tokenizer 交互式图解</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .token-block {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .token-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .highlight-merge {
+            animation: pulse-merge 1.5s infinite;
+            border: 2px solid #3b82f6;
+            background-color: #dbeafe !important;
+        }
+
+        @keyframes pulse-merge {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .special-token {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 0 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Special Token Color Schemes */
+        .st-control { background-color: #fecaca; color: #991b1b; border: 1px solid #f87171; }
+        .st-role { background-color: #bfdbfe; color: #1e40af; border: 1px solid #60a5fa; }
+        .st-code { background-color: #e9d5ff; color: #6b21a8; border: 1px solid #c084fc; }
+        .st-tool { background-color: #fde68a; color: #92400e; border: 1px solid #f59e0b; }
+        .st-think { background-color: #bbf7d0; color: #166534; border: 1px solid #4ade80; }
+        .st-image { background-color: #fed7aa; color: #9a3412; border: 1px solid #fb923c; }
+
+        .scenario-btn.active, .strat-btn.active-strat {
+            background-color: #e0f2fe;
+            border-color: #3b82f6;
+            color: #1d4ed8;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                LLM Tokenizer 交互实验室
+            </h1>
+            <div class="text-sm text-slate-500 hidden md:block">从原理到 BPE 再到特殊 Token</div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-8 w-full space-y-12">
+
+        <!-- Intro -->
+        <section class="bg-white rounded-xl p-6 shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold mb-2 text-slate-800">什么是 Tokenization?</h2>
+            <p class="text-slate-600 leading-relaxed">
+                计算机只能处理数字。Tokenization 就是把文本切分成一个个小块（Token），再转换成数字 ID 的过程。
+                <br>
+                <span class="text-sm bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded">关键问题：如果不认识这个单词，该怎么办？切多细才合适？</span>
+            </p>
+        </section>
+
+        <!-- Section 0: Strategies Evolution -->
+        <section class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+            <div class="bg-indigo-50 p-4 border-b border-indigo-100">
+                <h2 class="text-xl font-bold text-indigo-900">0. Tokenization 策略演变：从字符到子词</h2>
+                <p class="text-sm text-indigo-700 mt-1">为什么现代 LLM (GPT, Claude, DeepSeek) 最终都选择了 Subword (子词) 策略？</p>
+            </div>
+            
+            <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Sidebar / Tabs -->
+                <div class="space-y-3">
+                    <button onclick="renderStrategy('char')" id="btn-strat-char" class="strat-btn w-full text-left p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition active-strat">
+                        <div class="font-bold text-slate-800">1. 按字符切分 (Character)</div>
+                        <div class="text-xs text-slate-500 mt-1">粒度最细：a, b, c...</div>
+                    </button>
+                    <button onclick="renderStrategy('word')" id="btn-strat-word" class="strat-btn w-full text-left p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition">
+                        <div class="font-bold text-slate-800">2. 按单词切分 (Word)</div>
+                        <div class="text-xs text-slate-500 mt-1">符合直觉：apple, banana...</div>
+                    </button>
+                    <button onclick="renderStrategy('subword')" id="btn-strat-subword" class="strat-btn w-full text-left p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition">
+                        <div class="font-bold text-slate-800">3. 按子词切分 (Subword)</div>
+                        <div class="text-xs text-slate-500 mt-1">黄金平衡点：smart + est</div>
+                    </button>
+                </div>
+
+                <!-- Visual Display -->
+                <div class="md:col-span-2 space-y-5">
+                    
+                    <!-- Input Text -->
+                    <div class="bg-white border border-slate-200 p-3 rounded text-sm text-slate-500">
+                        <span class="font-bold text-slate-700">测试文本：</span> "The unhappiest AI learns fast." (最不开心的人工智能学得快)
+                    </div>
+
+                    <!-- Tokens -->
+                    <div class="bg-slate-100 p-6 rounded-xl min-h-[120px] flex items-center justify-start flex-wrap gap-2 content-center" id="strat-visual"></div>
+                    
+                    <!-- Analysis Grid -->
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                            <span class="font-bold text-green-800 flex items-center gap-2">✅ 优点 (Pros)</span>
+                            <p id="strat-pros" class="text-green-900 mt-2 leading-relaxed opacity-90">...</p>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                            <span class="font-bold text-red-800 flex items-center gap-2">❌ 缺点 (Cons)</span>
+                            <p id="strat-cons" class="text-red-900 mt-2 leading-relaxed opacity-90">...</p>
+                        </div>
+                    </div>
+                    
+                     <div class="bg-slate-50 p-3 rounded border border-slate-200 text-xs text-slate-600 flex justify-between items-center">
+                        <div>
+                            <span class="font-bold">词表大小估算 (Vocab Size)：</span> 
+                            <span id="strat-vocab-size" class="font-mono bg-slate-200 px-1 rounded">...</span>
+                        </div>
+                        <div id="strat-summary" class="font-bold text-blue-600"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Training Simulation -->
+        <section class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+            <div class="bg-slate-50 p-4 border-b border-slate-200 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-800">1. Subword 策略是如何实现的？(模拟 BPE 训练)</h2>
+                <button onclick="resetTraining()" class="text-sm text-blue-600 hover:underline">重置演示</button>
+            </div>
+            
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left: Control -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-100 text-sm">
+                        <h3 class="font-bold text-blue-800 mb-2">训练语料 (Corpus)</h3>
+                        <div class="font-mono bg-white p-2 rounded border border-blue-200 text-slate-700">
+                            "hug pug hugs pugs"
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500">BPE (Byte Pair Encoding) 的核心思想：不断合并出现频率最高的相邻字符。</p>
+
+                    <div class="space-y-2">
+                        <button id="btnStep1" onclick="countPairs()" class="w-full py-3 px-4 bg-white border-2 border-slate-200 hover:border-blue-500 text-slate-700 font-medium rounded-lg transition text-left flex justify-between items-center group">
+                            <span>第一步：统计成对频率</span>
+                            <span class="bg-slate-100 text-slate-500 px-2 py-0.5 rounded text-xs group-hover:bg-blue-100 group-hover:text-blue-600">统计</span>
+                        </button>
+                        <button id="btnStep2" onclick="mergeTopPair()" disabled class="w-full py-3 px-4 bg-white border-2 border-slate-200 text-slate-400 font-medium rounded-lg transition text-left flex justify-between items-center opacity-50 cursor-not-allowed">
+                            <span>第二步：合并最高频组合</span>
+                            <span class="bg-slate-100 px-2 py-0.5 rounded text-xs">合并</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Visualization -->
+                <div class="lg:col-span-2 flex flex-col gap-6">
+                    <div class="bg-slate-100 rounded-xl p-6 min-h-[160px] flex items-center justify-center flex-wrap content-center gap-y-4 gap-x-2" id="trainingVisual"></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="border rounded-lg p-3">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">当前词表 (Vocabulary)</h4>
+                            <div class="flex flex-wrap gap-2" id="vocabDisplay"></div>
+                        </div>
+                        <div class="border rounded-lg p-3 bg-yellow-50 border-yellow-100">
+                            <h4 class="text-xs font-bold text-yellow-700 uppercase mb-2">最高频组合 (Top Pair)</h4>
+                            <div id="topPairDisplay" class="text-sm text-slate-600 italic">等待统计...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Inference Playground (Restored & Detailed) -->
+        <section class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+             <div class="bg-slate-50 p-4 border-b border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800">2. 实战对比：OpenAI 不同时期 Tokenizer 效果</h2>
+                <p class="text-sm text-slate-500 mt-1">对比 GPT-2/3 (Legacy) 与 GPT-4 (Modern) 在中文、数字和代码上的差异。</p>
+            </div>
+
+            <div class="p-6 space-y-8">
+                <!-- Input & Controls -->
+                <div class="space-y-4">
+                    <div class="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+                         <label class="block text-sm font-medium text-slate-700">输入测试文本 (推荐测试：中文句子、一串数字、Python代码)：</label>
+                         
+                         <!-- Model Switcher -->
+                         <div class="bg-slate-100 p-1 rounded-lg flex text-sm font-medium">
+                            <button onclick="setTokenizerModel('gpt3')" id="btnGpt3" class="px-4 py-2 rounded-md shadow bg-white text-blue-600 transition-all">GPT-2/3 (Legacy)</button>
+                            <button onclick="setTokenizerModel('gpt4')" id="btnGpt4" class="px-4 py-2 rounded-md text-slate-500 hover:text-slate-700 transition-all">GPT-4 (Modern)</button>
+                         </div>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <textarea id="demoInput" rows="3"
+                            class="flex-1 p-3 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition font-mono text-sm"
+                            placeholder="输入文本...">你好世界 2024年 learning implementation</textarea>
+                        <button onclick="runTokenizer()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-medium shadow transition flex flex-col items-center justify-center min-w-[100px]">
+                            <span>Tokenize</span>
+                            <span class="text-xs opacity-80 mt-1">编码</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Presets -->
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="text-xs text-slate-500 py-1">常用测试用例：</span>
+                        <button onclick="setInput('你好世界，我是人工智能。')" class="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700">中文句子</button>
+                        <button onclick="setInput('User ID: 123456789')" class="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700">数字ID</button>
+                        <button onclick="setInput('def hello_world():\n    print(\'Hi\')')" class="text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded text-slate-700">Python代码</button>
+                    </div>
+                </div>
+
+                <!-- Info Banner -->
+                <div id="modelInfoBanner" class="bg-blue-50 text-blue-800 px-4 py-3 rounded-md text-sm border border-blue-100 flex items-start gap-2">
+                    <!-- Content injected by JS -->
+                </div>
+
+                <!-- Visual Output -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Token View -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-bold text-slate-500 uppercase">可视化 (Visual)</h3>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold" id="tokenCountBadge">0 tokens</span>
+                        </div>
+                        <div id="tokenVisualOutput" class="bg-slate-50 p-4 rounded-lg border border-slate-200 min-h-[140px] flex flex-wrap gap-1 content-start font-mono text-sm leading-relaxed">
+                            <!-- Tokens appear here -->
+                        </div>
+                    </div>
+
+                    <!-- ID View -->
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase">Token IDs</h3>
+                        <div id="idOutput" class="bg-slate-900 text-green-400 font-mono p-4 rounded-lg border border-slate-800 min-h-[140px] text-xs break-all overflow-y-auto max-h-[200px]">
+                            []
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detokenize Action -->
+                <div class="border-t pt-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <button onclick="runDetokenizer()" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium text-sm shadow transition">Detokenize (解码)</button>
+                        <span class="text-sm text-slate-500">将 IDs 还原回文本 (验证无损还原)</span>
+                    </div>
+                    <div id="detokenizeResult" class="p-3 bg-purple-50 text-purple-900 rounded border border-purple-100 min-h-[50px] flex items-center whitespace-pre-wrap font-mono text-sm"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Special Tokens Lab -->
+        <section class="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 scroll-mt-20" id="specialTokens">
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-4 border-b border-indigo-700 flex justify-between items-center text-white">
+                <div>
+                    <h2 class="text-xl font-bold flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        3. 特殊 Token 实验室 (Special Tokens)
+                    </h2>
+                    <p class="text-purple-100 text-sm mt-1 opacity-90">控制模型行为的“秘密指令”</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 min-h-[500px]">
+                <!-- Sidebar Menu -->
+                <div class="bg-slate-50 border-r border-slate-200 p-4 space-y-2 lg:col-span-1">
+                    <button onclick="loadScenario('chat')" class="scenario-btn w-full text-left px-4 py-3 rounded-lg border border-transparent hover:bg-slate-100 font-medium text-slate-700 flex items-center gap-3 transition-all active" id="btn-chat">
+                        <span class="text-xl">💬</span>
+                        <div class="flex-1"><div class="text-sm font-bold">对话控制</div><div class="text-[10px] text-slate-500">System / User</div></div>
+                    </button>
+                    <button onclick="loadScenario('reasoning')" class="scenario-btn w-full text-left px-4 py-3 rounded-lg border border-transparent hover:bg-slate-100 font-medium text-slate-700 flex items-center gap-3 transition-all" id="btn-reasoning">
+                        <span class="text-xl">🧠</span>
+                        <div class="flex-1"><div class="text-sm font-bold">深度思考 (CoT)</div><div class="text-[10px] text-slate-500">&lt;think&gt; 推理</div></div>
+                    </button>
+                    <button onclick="loadScenario('tools')" class="scenario-btn w-full text-left px-4 py-3 rounded-lg border border-transparent hover:bg-slate-100 font-medium text-slate-700 flex items-center gap-3 transition-all" id="btn-tools">
+                        <span class="text-xl">🛠️</span>
+                        <div class="flex-1"><div class="text-sm font-bold">工具调用</div><div class="text-[10px] text-slate-500">API Function Call</div></div>
+                    </button>
+                    <button onclick="loadScenario('code')" class="scenario-btn w-full text-left px-4 py-3 rounded-lg border border-transparent hover:bg-slate-100 font-medium text-slate-700 flex items-center gap-3 transition-all" id="btn-code">
+                        <span class="text-xl">💻</span>
+                        <div class="flex-1"><div class="text-sm font-bold">代码补全</div><div class="text-[10px] text-slate-500">Fill-In-Middle</div></div>
+                    </button>
+                    <button onclick="loadScenario('multimodal')" class="scenario-btn w-full text-left px-4 py-3 rounded-lg border border-transparent hover:bg-slate-100 font-medium text-slate-700 flex items-center gap-3 transition-all" id="btn-multimodal">
+                        <span class="text-xl">🖼️</span>
+                        <div class="flex-1"><div class="text-sm font-bold">多模态图片</div><div class="text-[10px] text-slate-500">Image Tokens</div></div>
+                    </button>
+                </div>
+
+                <!-- Main Display Area -->
+                <div class="lg:col-span-3 p-6 bg-white flex flex-col gap-6">
+                    <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4">
+                        <h3 class="font-bold text-indigo-900 mb-2 flex items-center gap-2" id="scenario-title">对话控制</h3>
+                        <p class="text-sm text-indigo-800 leading-relaxed" id="scenario-desc">...</p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-500 uppercase flex items-center gap-2"><span>👁️ 模型眼中的 Raw Tokens</span></label>
+                            <div class="bg-slate-900 rounded-lg p-5 font-mono text-sm leading-7 text-slate-300 shadow-inner overflow-x-auto whitespace-pre-wrap border border-slate-700 relative" id="raw-prompt-view"></div>
+                        </div>
+                        <div class="space-y-2 opacity-75 grayscale transition-all hover:grayscale-0 hover:opacity-100">
+                             <label class="text-sm font-bold text-slate-400 uppercase flex items-center gap-2"><span>👤 人类看到的界面</span></label>
+                            <div class="border border-slate-200 rounded-lg p-4 bg-white shadow-sm min-h-[100px] flex flex-col gap-3" id="human-ui-view"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-100 border-t border-slate-200 py-6 mt-8">
+        <div class="max-w-6xl mx-auto px-4 text-center text-slate-500 text-sm">
+            <p>Made for learning • LLM Tokenization Demo</p>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // SECTION 0: STRATEGIES LOGIC
+        // ==========================================
+        const strategies = {
+            'char': {
+                tokens: ["T", "h", "e", "_", "u", "n", "h", "a", "p", "p", "i", "e", "s", "t", "_", "A", "I", "_", "l", "e", "a", "r", "n", "s", "_", "f", "a", "s", "t", "."],
+                pros: "词表非常小（仅需包含字母表和符号，约 100-200 个），永远不会出现“不认识的词”（OOV 问题解决）。",
+                cons: "生成的序列太长（1 个单词变成 5-10 个 Token），导致计算量巨大，且单个字母缺乏语义信息，模型难以学习。",
+                vocabSize: "~ 256 (ASCII) - 10,000 (Unicode)",
+                colorClass: "bg-slate-200 text-slate-700"
+            },
+            'word': {
+                tokens: ["The", "unhappiest", "AI", "learns", "fast", "."],
+                pros: "Token 序列短，每个 Token 都有明确的完整语义，符合人类直觉。",
+                cons: "词表会无限膨胀（英语有几十万单词，算上变体更多）。对于未登录词（OOV）如 'unhappiest' 或新词 'ChatGPT'，模型直接无法处理。",
+                vocabSize: "1,000,000+ (极易爆炸)",
+                colorClass: "bg-blue-100 text-blue-800"
+            },
+            'subword': {
+                tokens: ["The", "un", "happ", "iest", "AI", "learn", "s", "fast", "."],
+                pros: "黄金平衡点！常用词（The, AI, fast）保持完整；复杂词（unhappiest）被拆解为有意义的词根（un-前缀, happ-词根, -iest后缀）。既控制了词表大小，又解决了 OOV 问题。",
+                cons: "实现比前两者复杂，需要专门的训练算法（如 BPE, WordPiece）。",
+                vocabSize: "50,000 - 100,000 (可控)",
+                colorClass: "bg-purple-100 text-purple-800"
+            }
+        };
+
+        function renderStrategy(type) {
+            document.querySelectorAll('.strat-btn').forEach(b => b.classList.remove('active-strat'));
+            document.getElementById(`btn-strat-${type}`).classList.add('active-strat');
+            const data = strategies[type];
+            const visual = document.getElementById('strat-visual');
+            visual.innerHTML = '';
+            data.tokens.forEach(t => {
+                const span = document.createElement('div');
+                span.className = `px-3 py-2 rounded shadow-sm text-sm border font-mono font-bold ${data.colorClass} border-opacity-20`;
+                span.innerText = t === "_" ? "␣" : t;
+                visual.appendChild(span);
+            });
+            document.getElementById('strat-pros').innerText = data.pros;
+            document.getElementById('strat-cons').innerText = data.cons;
+            document.getElementById('strat-vocab-size').innerText = data.vocabSize;
+            const summaryEl = document.getElementById('strat-summary');
+            if(type === 'subword') {
+                summaryEl.innerText = "🏆 现代 LLM 的选择";
+                summaryEl.className = "font-bold text-purple-600 px-3 py-1 bg-purple-100 rounded text-xs";
+            } else {
+                summaryEl.innerText = "";
+                summaryEl.className = "";
+            }
+        }
+
+        // ==========================================
+        // SECTION 1: TRAINING LOGIC
+        // ==========================================
+        const initialCorpus = ["h", "u", "g", " ", "p", "u", "g", " ", "h", "u", "g", "s", " ", "p", "u", "g", "s"];
+        let currentTokens = [...initialCorpus];
+        let vocab = new Set(["h", "u", "g", "p", "s", " "]);
+        let stepPhase = 0; 
+        let bestPair = null;
+
+        function renderTrainingVisual() {
+            const container = document.getElementById('trainingVisual');
+            container.innerHTML = '';
+            currentTokens.forEach((token, index) => {
+                const el = document.createElement('div');
+                el.className = 'token-block px-3 py-2 rounded-md shadow-sm border font-mono text-lg font-bold flex items-center justify-center';
+                if (token === " ") {
+                    el.classList.add('bg-slate-200', 'text-slate-400', 'w-8');
+                    el.innerText = "_";
+                } else if (token.length > 1) {
+                    el.classList.add('bg-blue-500', 'text-white', 'border-blue-600');
+                    el.innerText = token;
+                } else {
+                    el.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+                    el.innerText = token;
+                }
+                if (bestPair && stepPhase === 1) {
+                    const nextToken = currentTokens[index + 1];
+                    if (token === bestPair[0] && nextToken === bestPair[1]) el.classList.add('highlight-merge');
+                    const prevToken = currentTokens[index-1];
+                    if (token === bestPair[1] && prevToken === bestPair[0]) el.classList.add('highlight-merge');
+                }
+                container.appendChild(el);
+            });
+            const vocabDiv = document.getElementById('vocabDisplay');
+            vocabDiv.innerHTML = '';
+            Array.from(vocab).forEach(v => {
+                const span = document.createElement('span');
+                span.className = "px-2 py-1 bg-slate-200 text-slate-700 text-xs rounded font-mono";
+                span.innerText = v === " " ? "_" : v;
+                vocabDiv.appendChild(span);
+            });
+        }
+
+        function countPairs() {
+            if (stepPhase !== 0) return;
+            const pairs = {};
+            for (let i = 0; i < currentTokens.length - 1; i++) {
+                const pair = currentTokens[i] + "+" + currentTokens[i+1]; 
+                pairs[pair] = (pairs[pair] || 0) + 1;
+            }
+            let maxCount = 0;
+            let maxPairStr = null;
+            for (let p in pairs) {
+                if (pairs[p] > maxCount) {
+                    maxCount = pairs[p];
+                    maxPairStr = p;
+                }
+            }
+            if (!maxPairStr || maxCount < 2) {
+                document.getElementById('topPairDisplay').innerHTML = "训练完成！";
+                document.getElementById('btnStep1').disabled = true;
+                return;
+            }
+            bestPair = maxPairStr.split("+");
+            document.getElementById('topPairDisplay').innerHTML = `<span class="font-bold text-lg text-blue-600">"${bestPair[0]}" + "${bestPair[1]}"</span>`;
+            stepPhase = 1;
+            renderTrainingVisual();
+            toggleButtons();
+        }
+
+        function mergeTopPair() {
+            if (stepPhase !== 1 || !bestPair) return;
+            const newTokens = [];
+            let i = 0;
+            const mergedToken = bestPair[0] + bestPair[1];
+            while (i < currentTokens.length) {
+                if (i < currentTokens.length - 1 && currentTokens[i] === bestPair[0] && currentTokens[i+1] === bestPair[1]) {
+                    newTokens.push(mergedToken);
+                    i += 2;
+                } else {
+                    newTokens.push(currentTokens[i]);
+                    i++;
+                }
+            }
+            currentTokens = newTokens;
+            vocab.add(mergedToken);
+            bestPair = null;
+            stepPhase = 0;
+            document.getElementById('topPairDisplay').innerHTML = "等待统计...";
+            renderTrainingVisual();
+            toggleButtons();
+        }
+
+        function toggleButtons() {
+            const btn1 = document.getElementById('btnStep1');
+            const btn2 = document.getElementById('btnStep2');
+            if (stepPhase === 0) {
+                btn1.disabled = false;
+                btn1.classList.remove('opacity-50', 'cursor-not-allowed');
+                btn1.classList.add('border-slate-200', 'hover:border-blue-500');
+                btn2.disabled = true;
+                btn2.classList.add('opacity-50', 'cursor-not-allowed');
+                btn2.classList.remove('border-blue-500');
+            } else {
+                btn1.disabled = true;
+                btn1.classList.add('opacity-50', 'cursor-not-allowed');
+                btn2.disabled = false;
+                btn2.classList.remove('opacity-50', 'cursor-not-allowed');
+                btn2.classList.add('border-blue-500', 'hover:bg-blue-50');
+            }
+        }
+
+        function resetTraining() {
+            currentTokens = [...initialCorpus];
+            vocab = new Set(["h", "u", "g", "p", "s", " "]);
+            stepPhase = 0;
+            bestPair = null;
+            toggleButtons();
+            renderTrainingVisual();
+            document.getElementById('topPairDisplay').innerHTML = "等待统计...";
+        }
+
+        // ==========================================
+        // SECTION 2: INFERENCE LOGIC (Detailed)
+        // ==========================================
+        let currentModel = 'gpt3'; 
+        let currentIds = [];
+        let currentTokensList = [];
+
+        const vocabGPT3 = { rules: [{ regex: /\d{2,3}/g }, { regex: /\b(the|and|is|in|at|of|on|learning|implementation)\b/gi }, { regex: /(ing|ed|ly|tion|ment)\b/g }] };
+        const vocabGPT4 = { rules: [{ regex: /\d{1,8}/g }, { regex: /(你好|世界|人工智能|学习|测试|编码)/g }, { regex: /(    def|    print|import )/g }, { regex: /\b(implementation|learning|tokenization|demonstration)\b/gi }, { regex: /\b(the|and|is|in|at|of|on)\b/gi }] };
+
+        function setInput(text) {
+            document.getElementById('demoInput').value = text;
+            runTokenizer();
+        }
+
+        function setTokenizerModel(model) {
+            currentModel = model;
+            const btn3 = document.getElementById('btnGpt3');
+            const btn4 = document.getElementById('btnGpt4');
+            const banner = document.getElementById('modelInfoBanner');
+
+            if (model === 'gpt3') {
+                btn3.className = "px-4 py-2 rounded-md shadow bg-white text-blue-600 transition-all";
+                btn4.className = "px-4 py-2 rounded-md text-slate-500 hover:text-slate-700 transition-all";
+                banner.innerHTML = `
+                    <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div><span class="font-bold">GPT-2/3 (p50k_base):</span> 词表约 5万。中文大多按字或字节切分（效率低），数字常被切碎。</div>`;
+            } else {
+                btn3.className = "px-4 py-2 rounded-md text-slate-500 hover:text-slate-700 transition-all";
+                btn4.className = "px-4 py-2 rounded-md shadow bg-white text-green-600 transition-all";
+                banner.innerHTML = `
+                    <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div><span class="font-bold">GPT-4 (cl100k_base):</span> 词表约 10万。更懂中文（多字成词），数字不乱切，代码和空格处理更高效。</div>`;
+            }
+            runTokenizer();
+        }
+
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            return Math.abs(hash) % 100000;
+        }
+
+        function runTokenizer() {
+            const text = document.getElementById('demoInput').value;
+            const visualOutput = document.getElementById('tokenVisualOutput');
+            const idOutput = document.getElementById('idOutput');
+            
+            visualOutput.innerHTML = '';
+            currentIds = [];
+            currentTokensList = [];
+            let i = 0;
+            const rules = currentModel === 'gpt3' ? vocabGPT3.rules : vocabGPT4.rules;
+            
+            while (i < text.length) {
+                let matchFound = false;
+                for (let rule of rules) {
+                    const sub = text.substring(i);
+                    const match = sub.match(rule.regex);
+                    if (match && sub.indexOf(match[0]) === 0) {
+                        currentTokensList.push(match[0]);
+                        i += match[0].length;
+                        matchFound = true;
+                        break;
+                    }
+                }
+                if (!matchFound) {
+                    const char = text[i];
+                    if (currentModel === 'gpt3' && char.match(/[\u4e00-\u9fa5]/)) currentTokensList.push(char);
+                    else currentTokensList.push(char);
+                    i++;
+                }
+            }
+
+            currentTokensList.forEach(t => {
+                let id = simpleHash(t);
+                if (currentModel === 'gpt4') id += 50000;
+                currentIds.push(id);
+
+                const span = document.createElement('div');
+                span.className = "px-1.5 py-0.5 rounded text-sm border border-black/5 font-mono cursor-default relative group inline-block m-[1px]";
+                const colors = ['#bfdbfe', '#bbf7d0', '#fbcfe8', '#fed7aa', '#ddd6fe', '#e2e8f0', '#fecaca', '#a5f3fc'];
+                span.style.backgroundColor = colors[id % colors.length];
+                
+                if (t === " ") {
+                    span.innerHTML = "&nbsp;"; 
+                    span.classList.add("min-w-[8px]", "bg-slate-200/50");
+                } else if (t === "\n") {
+                    span.innerHTML = "↵";
+                    span.classList.add("text-slate-400", "w-full", "block", "bg-transparent", "border-none");
+                } else {
+                    span.innerText = t;
+                }
+                
+                // Tooltip
+                const tooltip = document.createElement('div');
+                tooltip.className = "absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-black text-white text-xs rounded opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-20 shadow-lg";
+                tooltip.innerText = `Token: "${t.replace(/\n/g, '\\n')}"\nID: ${id}`;
+                span.appendChild(tooltip);
+
+                visualOutput.appendChild(span);
+            });
+
+            idOutput.innerText = JSON.stringify(currentIds);
+
+            // Efficiency
+            const charLength = text.length;
+            const ratio = charLength > 0 ? (currentIds.length / charLength).toFixed(2) : 0;
+            let efficiencyText = "";
+            if (currentModel === 'gpt4' && currentIds.length < charLength * 0.8) efficiencyText = " (高效!)";
+            
+            const badge = document.getElementById('tokenCountBadge');
+            badge.innerText = `${currentIds.length} tokens` + efficiencyText;
+            badge.className = currentModel === 'gpt4' 
+                ? "text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold" 
+                : "text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-bold";
+            
+            document.getElementById('detokenizeResult').innerText = "";
+        }
+
+        function runDetokenizer() {
+            const text = currentTokensList.join("");
+            const resDiv = document.getElementById('detokenizeResult');
+            resDiv.innerText = text;
+            resDiv.classList.add("bg-purple-100");
+            setTimeout(() => resDiv.classList.remove("bg-purple-100"), 300);
+        }
+
+        // ==========================================
+        // SECTION 3: SPECIAL TOKEN LAB LOGIC
+        // ==========================================
+        const scenarios = {
+            'chat': {
+                title: '对话控制 (Chat Templates)',
+                desc: '为了区分“谁在说话”，模型使用特殊的 Token 作为分隔符。这使得模型能够区分系统指令（你必须遵守的规则）和用户输入（可能包含攻击指令）。',
+                rawHtml: `
+<span class="special-token st-role">&lt;|system|&gt;</span>
+You are a helpful assistant.
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>
+<span class="special-token st-role">&lt;|user|&gt;</span>
+Hello! Who are you?
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>
+<span class="special-token st-role">&lt;|assistant|&gt;</span>
+I am an AI created by OpenAI.
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>`,
+                humanHtml: `
+                    <div class="flex gap-2 bg-slate-100 p-2 rounded-lg w-fit text-xs text-slate-500 mb-2">
+                        <span class="font-bold">System:</span> You are a helpful assistant.
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div class="self-end bg-blue-500 text-white px-3 py-2 rounded-lg rounded-tr-none text-sm max-w-[80%]">
+                            Hello! Who are you?
+                        </div>
+                        <div class="self-start bg-slate-100 text-slate-800 px-3 py-2 rounded-lg rounded-tl-none text-sm max-w-[80%]">
+                            I am an AI created by OpenAI.
+                        </div>
+                    </div>
+                `
+            },
+            'reasoning': {
+                title: '深度思考 (Reasoning / CoT)',
+                desc: '推理模型（如 o1, DeepSeek-R1）在给出答案前会进行“内部思考”。这种思考过程通常被包裹在 <think> 标签中。这部分内容对用户隐藏，但模型可以通过它来修正错误。',
+                rawHtml: `
+<span class="special-token st-role">&lt;|user|&gt;</span>
+Solve: 25 * 4 + 8
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>
+<span class="special-token st-role">&lt;|assistant|&gt;</span>
+<span class="special-token st-think">&lt;think&gt;</span>
+1. Multiply 25 by 4 first.
+2. 25 * 2 = 50, 50 * 2 = 100.
+3. Now add 8 to 100.
+4. Result is 108.
+<span class="special-token st-think">&lt;/think&gt;</span>
+The answer is 108.
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>`,
+                humanHtml: `
+                    <div class="self-end bg-blue-500 text-white px-3 py-2 rounded-lg rounded-tr-none text-sm w-fit mb-2">
+                        Solve: 25 * 4 + 8
+                    </div>
+                    <div class="self-start bg-slate-100 text-slate-800 px-3 py-2 rounded-lg rounded-tl-none text-sm w-fit">
+                        <div class="text-xs text-slate-400 italic mb-1 border-l-2 border-slate-300 pl-2">
+                            Thinking Process (Hidden)...
+                        </div>
+                        The answer is 108.
+                    </div>
+                `
+            },
+            'tools': {
+                title: '工具与函数调用 (Tool Use)',
+                desc: '当想让 LLM 查询天气时，它并不是自己在“搜索”。它是生成特定的 Token 序列，告诉外部程序去执行某个函数。',
+                rawHtml: `
+<span class="special-token st-role">&lt;|user|&gt;</span>
+Weather in Beijing?
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>
+<span class="special-token st-role">&lt;|assistant|&gt;</span>
+<span class="special-token st-tool">&lt;tool_call&gt;</span>
+  <span class="special-token st-tool">&lt;func&gt;</span>get_weather<span class="special-token st-tool">&lt;/func&gt;</span>
+  <span class="special-token st-tool">&lt;arg&gt;</span>Beijing<span class="special-token st-tool">&lt;/arg&gt;</span>
+<span class="special-token st-tool">&lt;/tool_call&gt;</span>
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>
+<span class="special-token st-tool">&lt;tool_resp&gt;</span>{"temp": "25°C"}<span class="special-token st-tool">&lt;/tool_resp&gt;</span>
+<span class="special-token st-role">&lt;|assistant|&gt;</span>
+It is 25°C.`,
+                humanHtml: `
+                    <div class="self-end bg-blue-500 text-white px-3 py-2 rounded-lg rounded-tr-none text-sm w-fit mb-2">
+                        Weather in Beijing?
+                    </div>
+                    <div class="my-2 bg-yellow-50 border border-yellow-200 text-yellow-800 text-xs p-2 rounded flex items-center gap-2">
+                        <span>⚙️ Calling Function: <b>get_weather("Beijing")</b></span>
+                    </div>
+                    <div class="self-start bg-slate-100 text-slate-800 px-3 py-2 rounded-lg rounded-tl-none text-sm w-fit">
+                        It is 25°C.
+                    </div>
+                `
+            },
+            'code': {
+                title: '代码补全 (Fill-In-Middle)',
+                desc: 'GitHub Copilot 等工具使用 FIM 模式。模型接收的顺序通常被重排为：<前缀>...<后缀>...<中间>。',
+                rawHtml: `
+<span class="special-token st-code">&lt;|code_prefix|&gt;</span>
+def calc(r):
+    import math
+<span class="special-token st-code">&lt;|code_suffix|&gt;</span>
+    return area
+<span class="special-token st-code">&lt;|code_middle|&gt;</span>
+    area = math.pi * r**2
+<span class="special-token st-control">&lt;|file_sep|&gt;</span>`,
+                humanHtml: `
+                    <div class="bg-slate-800 text-slate-300 p-4 rounded-lg font-mono text-sm">
+                        <div><span class="text-purple-400">def</span> <span class="text-blue-400">calc</span>(r):</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">import</span> math</div>
+                        <div class="bg-slate-700/50 border border-slate-600 my-1 px-1 text-white">
+                            &nbsp;&nbsp;&nbsp;&nbsp;area = math.pi * r**2
+                        </div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">return</span> area</div>
+                    </div>
+                    <div class="mt-2 text-xs text-slate-500 text-center">用户光标在中间，模型先看前后文，再填空。</div>
+                `
+            },
+            'multimodal': {
+                title: '多模态 (Multimodal)',
+                desc: '图片被编码器压缩成了一串“图片向量”，然后作为特殊的占位 Token 插入到文本流中。',
+                rawHtml: `
+<span class="special-token st-role">&lt;|user|&gt;</span>
+Image content?
+<span class="special-token st-image">&lt;|img_start|&gt;</span>
+<span class="bg-orange-200 text-orange-800 text-[10px] px-1 rounded">[EMBED_1]</span>...<span class="bg-orange-200 text-orange-800 text-[10px] px-1 rounded">[EMBED_N]</span>
+<span class="special-token st-image">&lt;|img_end|&gt;</span>
+<span class="special-token st-control">&lt;|endoftext|&gt;</span>
+<span class="special-token st-role">&lt;|assistant|&gt;</span>
+A cute cat.`,
+                humanHtml: `
+                    <div class="self-end bg-blue-500 text-white px-3 py-2 rounded-lg rounded-tr-none text-sm w-fit mb-2 flex flex-col gap-2">
+                        <div>Image content?</div>
+                        <div class="bg-blue-600 p-2 rounded flex items-center justify-center h-16 w-24 border border-blue-400">🖼️ [Img]</div>
+                    </div>
+                    <div class="self-start bg-slate-100 text-slate-800 px-3 py-2 rounded-lg rounded-tl-none text-sm w-fit">
+                        A cute cat.
+                    </div>
+                `
+            }
+        };
+
+        function loadScenario(key) {
+            document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active', 'bg-blue-50', 'border-blue-500'));
+            document.getElementById(`btn-${key}`).classList.add('active');
+            const data = scenarios[key];
+            document.getElementById('scenario-title').innerText = data.title;
+            document.getElementById('scenario-desc').innerText = data.desc;
+            const rawView = document.getElementById('raw-prompt-view');
+            rawView.innerHTML = data.rawHtml;
+            rawView.classList.add('animate-pulse');
+            setTimeout(() => rawView.classList.remove('animate-pulse'), 300);
+            document.getElementById('human-ui-view').innerHTML = data.humanHtml;
+        }
+
+        renderTrainingVisual();
+        setTokenizerModel('gpt4');
+        loadScenario('chat');
+        renderStrategy('char'); // Init Section 0
+
+    </script>
+</body>
+</html>

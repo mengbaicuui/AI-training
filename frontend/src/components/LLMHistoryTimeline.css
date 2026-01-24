@@ -1,0 +1,408 @@
+/* Timeline Container */
+.timeline-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100%;
+}
+
+.timeline-header-section {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.timeline-header-section h2 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-moe));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-header-section p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Tree Structure */
+.timeline-tree {
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* Trunk (Main Vertical Line) */
+.timeline-trunk {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom,
+            rgba(99, 102, 241, 0.1),
+            var(--accent-primary),
+            var(--accent-moe),
+            rgba(244, 114, 182, 0.1));
+    transform: translateX(-50%);
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Timeline Row */
+.timeline-row {
+    position: relative;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.timeline-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Interaction Point Wrapper */
+.timeline-point-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    /* Default to column (Expanded state) */
+    align-items: center;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+/* Collapsed State: Label to the right */
+.timeline-row:not(.expanded) .timeline-point-wrapper {
+    flex-direction: row;
+    width: auto;
+    /* Allow growth */
+    left: 50%;
+    transform: translateX(-25px);
+    /* Offset by half point width to keep point centered */
+}
+
+/* The Glowing Point */
+.timeline-point {
+    width: 50px;
+    height: 50px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1), var(--shadow-md);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    /* Prevent shrinking in row mode */
+}
+
+.timeline-row:hover .timeline-point {
+    transform: scale(1.15);
+    border-color: var(--accent-moe);
+    box-shadow: 0 0 0 8px rgba(244, 114, 182, 0.2), var(--shadow-glow);
+}
+
+.timeline-row.expanded .timeline-point {
+    background: var(--accent-primary);
+    border-color: #fff;
+    transform: scale(1.1);
+}
+
+.point-icon {
+    font-size: 1.5rem;
+}
+
+/* Label next to point (Year & Title) */
+.point-label {
+    margin-top: 10px;
+    text-align: center;
+    background: rgba(15, 15, 26, 0.8);
+    padding: 4px 12px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    /* Prevent wrapping in row mode */
+}
+
+/* Adjust label for collapsed state (Row layout) */
+.timeline-row:not(.expanded) .point-label {
+    margin-top: 0;
+    margin-left: 15px;
+    text-align: left;
+    transform: translateX(0);
+}
+
+.timeline-row:hover .point-label {
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Hover effect on label - differentiate based on state */
+.timeline-row.expanded:hover .point-label {
+    transform: translateY(2px);
+}
+
+.timeline-row:not(.expanded):hover .point-label {
+    transform: translateX(5px);
+}
+
+.point-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--accent-tertiary);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+}
+
+.point-title {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Content Area (Left/Right) */
+.timeline-content-wrapper {
+    width: 42%;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    height: 0;
+    overflow: hidden;
+}
+
+/* Side specific positioning */
+.timeline-row.left .timeline-content-wrapper {
+    margin-right: auto;
+    margin-left: 2rem;
+    padding-right: 2rem;
+    text-align: right;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.timeline-row.right .timeline-content-wrapper {
+    margin-left: auto;
+    margin-right: 2rem;
+    padding-left: 2rem;
+    text-align: left;
+    display: flex;
+}
+
+/* Expanded State */
+.timeline-row.expanded .timeline-content-wrapper {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: all;
+    height: auto;
+    overflow: visible;
+}
+
+
+/* Branch Line connector */
+.timeline-branch-line {
+    position: absolute;
+    top: 25px;
+    height: 2px;
+    width: 0;
+    background: var(--accent-primary);
+    transition: width 0.4s 0.1s ease-out;
+}
+
+.timeline-row.left .timeline-branch-line {
+    right: -2rem;
+    transform-origin: right;
+}
+
+.timeline-row.right .timeline-branch-line {
+    left: -2rem;
+    transform-origin: left;
+}
+
+.timeline-row.expanded .timeline-branch-line {
+    width: 2rem;
+}
+
+/* Detail Card */
+.timeline-detail-card {
+    background: rgba(30, 30, 54, 0.95);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    backdrop-filter: blur(10px);
+    border-left: 4px solid var(--accent-primary);
+}
+
+.timeline-row.right .timeline-detail-card {
+    border-left: 4px solid var(--accent-moe);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+
+.timeline-row.left .card-header {
+    flex-direction: row-reverse;
+}
+
+.timeline-row.left .header-text {
+    text-align: right;
+}
+
+.header-icon {
+    font-size: 2rem;
+}
+
+.header-text h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+}
+
+.header-text .subtitle {
+    color: var(--accent-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.card-body {
+    text-align: left;
+}
+
+.description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.key-points h4,
+.impact-section h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.key-points ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.key-points li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.key-points li::before {
+    content: "•";
+    color: var(--accent-primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.impact-section {
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+    border-left: 3px solid var(--accent-success);
+    padding: 0.75rem 1rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.impact-section p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timeline-trunk {
+        left: 20px;
+    }
+
+    .timeline-point-wrapper {
+        left: 20px;
+        align-items: flex-start;
+        padding-left: 30px;
+        transform: none !important;
+        /* Reset transform for responsive */
+        width: auto !important;
+    }
+
+    .timeline-row:not(.expanded) .timeline-point-wrapper {
+        transform: none !important;
+        left: 20px !important;
+    }
+
+    .timeline-point {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .timeline-content-wrapper {
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 0 0 3.5rem !important;
+        text-align: left !important;
+        margin-top: 5rem !important;
+    }
+
+    .timeline-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .point-label {
+        margin-top: 5px;
+        margin-left: 20px !important;
+        text-align: left;
+    }
+
+    .timeline-detail-card {
+        border-left-width: 4px !important;
+    }
+
+    .timeline-row.left .timeline-branch-line,
+    .timeline-row.right .timeline-branch-line {
+        display: none;
+    }
+
+    .timeline-row.left .card-header {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .timeline-row.left .header-text {
+        text-align: left;
+    }
+}
