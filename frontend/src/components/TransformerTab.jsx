@@ -69,7 +69,7 @@ const TokenizationSection = () => (
     <section className="transformer-section fade-in">
         <h2 className="section-title">1. Tokenization (分词)</h2>
         <div className="content-text">
-            <p>当你给 OpenAI 发送一段话时，模型并不是直接读“字”，而是读“Token”。这就好比我们去图书馆借书，图书管理员不看书名，而是看那个复杂的<b>索书号</b>。</p>
+            <p>当你给 LLM 发送一段话时，模型并不是直接读“字”，而是读“Token”。这就好比我们去图书馆借书，图书管理员不看书名，而是看那个复杂的<b>索书号</b>。</p>
         </div>
         <div className="analogy-box">
             <strong>💡 核心概念：</strong> 计算机只认识数字，不认识文字。Tokenization 就是一本“大字典”，把文字变成计算机能懂的数字编号。
@@ -89,6 +89,42 @@ const TokenizationSection = () => (
             </div>
             <p className="visual-caption">模型眼中没有“苹果”，只有 15329。</p>
         </div>
+
+        <div className="interactive-demo-card" style={{
+            background: 'linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary))',
+            padding: '24px',
+            marginTop: '24px',
+            borderRadius: '12px',
+            border: '1px solid var(--border-accent)',
+            marginBottom: '24px',
+            textAlign: 'center'
+        }}>
+            <h3 style={{ fontSize: '1.2rem', color: 'white', marginBottom: '12px' }}>🚀 交互式深度演示</h3>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>
+                我们准备了一个独立的交互式实验室，带你体验 BPE 训练过程、Token 切分策略对比以及特殊 Token 的工作原理。
+            </p>
+            <a
+                href="/tokenization.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                    display: 'inline-block',
+                    padding: '12px 32px',
+                    background: 'var(--accent-primary)',
+                    color: 'white',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease',
+                    boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)'
+                }}
+                onMouseOver={(e) => e.target.style.transform = 'translateY(-2px)'}
+                onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
+            >
+                打开 Tokenizer 实验室 ➜
+            </a>
+        </div>
+
     </section>
 );
 
