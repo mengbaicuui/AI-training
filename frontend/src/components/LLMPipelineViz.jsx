@@ -15,7 +15,33 @@ import {
     paradigms,
     summary
 } from '../data/pipelineData';
-import { Layers, Sparkles, BookOpen, ChevronRight, Globe } from 'lucide-react';
+import { trainingSamples } from '../data/traning_datas';
+import { Layers, Sparkles, Database, BookOpen, ChevronRight, Globe } from 'lucide-react';
+
+// Modal Component for displaying data
+const DataModal = ({ isOpen, onClose, data }) => {
+    if (!isOpen || !data) return null;
+
+    return (
+        <div className="data-modal-overlay" onClick={onClose}>
+            <div className="data-modal-content" onClick={e => e.stopPropagation()}>
+                <div className="data-modal-header">
+                    <h3>
+                        <Database size={18} className="mr-2" />
+                        {data.title}
+                    </h3>
+                    <button className="data-modal-close" onClick={onClose}>×</button>
+                </div>
+                <div className="data-modal-body">
+                    <p className="data-modal-desc">{data.description}</p>
+                    <pre className="data-modal-code">
+                        {JSON.stringify(data.content, null, 2)}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const LLMPipelineViz = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState(unifiedNodes);
@@ -23,6 +49,33 @@ const LLMPipelineViz = () => {
     const [selectedStage, setSelectedStage] = useState(null);
     const [selectedParadigm, setSelectedParadigm] = useState(null); // Default: null (Panorama)
     const [selectedNode, setSelectedNode] = useState(null);
+    const [modalData, setModalData] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // Data Mapping Logic
+    const getSampleDataKey = (nodeId, paradigmId) => {
+        if (paradigmId === 'reasoning') {
+            if (nodeId === 'sft-cold' || nodeId === 'sft-special') return 'reasoning_sft';
+            if (nodeId === 'rl-reasoning' || nodeId === 'rl') return 'grpo_training_data';
+        }
+        if (paradigmId === 'distillation') {
+            if (nodeId === 'rl') return 'rl_preference';
+        }
+        if (paradigmId === 'domain') {
+            if (nodeId === 'cpt') return 'pre_training';
+        }
+        if (nodeId === 'pt' || nodeId === 'cpt') return 'pre_training';
+        if (nodeId === 'sft' || nodeId === 'sft-general' || nodeId === 'sft-specific') return 'sft';
+        if (nodeId === 'rl' || nodeId === 'rl-specific') return 'rl_preference';
+        return null;
+    };
+
+    const handleShowData = (key) => {
+        if (trainingSamples[key]) {
+            setModalData(trainingSamples[key]);
+            setIsModalOpen(true);
+        }
+    };
 
     // Update highlighting based on selection state
     useEffect(() => {
@@ -133,6 +186,7 @@ const LLMPipelineViz = () => {
             // If a paradigm is selected, show context-aware details
             if (currentParadigm && currentParadigm.nodeDetails[selectedNode]) {
                 const nodeDetails = currentParadigm.nodeDetails[selectedNode];
+                const dataKey = getSampleDataKey(selectedNode, selectedParadigm);
                 return (
                     <div className="viz-detail-content node-details">
                         <div className="paradigm-badge">{currentParadigm.name}</div>
@@ -148,6 +202,15 @@ const LLMPipelineViz = () => {
                         <div className="viz-detail-section">
                             <h4>📊 数据</h4>
                             <p>{nodeDetails.data}</p>
+                            {dataKey && trainingSamples[dataKey] && (
+                                <button
+                                    className="view-data-btn"
+                                    onClick={() => handleShowData(dataKey)}
+                                >
+                                    <Database size={16} />
+                                    查看该阶段训练数据 ({trainingSamples[dataKey].title.split(' ')[0]})
+                                </button>
+                            )}
                         </div>
                         <div className="viz-detail-section">
                             <h4>📤 输出</h4>
@@ -167,9 +230,20 @@ const LLMPipelineViz = () => {
             // Or show stage info if node belongs to a stage?
             const node = unifiedNodes.find(n => n.id === selectedNode);
             if (node) {
+                const dataKey = getSampleDataKey(node.id, null);
                 return (
                     <div className="viz-detail-content">
                         <h3 className="viz-detail-title">{node.data.label}</h3>
+                        {dataKey && trainingSamples[dataKey] && (
+                            <button
+                                className="view-data-btn"
+                                style={{ marginBottom: '1rem' }}
+                                onClick={() => handleShowData(dataKey)}
+                            >
+                                <Database size={16} />
+                                查看训练数据样本
+                            </button>
+                        )}
                         <p className="viz-detail-desc">请选择左侧的训练范式以查看该节点在特定语境下的详细信息。</p>
                     </div>
                 )
@@ -295,6 +369,7 @@ const LLMPipelineViz = () => {
 
     return (
         <div className="pipeline-viz-container">
+            <DataModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} data={modalData} />
             {/* Stage buttons */}
             <div className="stage-bar">
                 {stages.map((stage) => (
