@@ -1,0 +1,447 @@
+/* Main container */
+.pipeline-viz-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 200px);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+/* Stage bar at top */
+.stage-bar {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: 16px 24px;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    justify-content: center;
+    /* Center buttons */
+}
+
+.stage-button {
+    flex: 0 1 300px;
+    /* Fixed max width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stage-button:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--text-primary);
+}
+
+.stage-button.active {
+    /* This rule is replaced by specific active styles below */
+    /* background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: transparent;
+    color: white;
+    box-shadow: var(--shadow-glow); */
+}
+
+/* Pre-training specific style */
+.stage-button.pretraining.active {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+/* Post-training specific style */
+.stage-button.posttraining.active {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(244, 63, 94, 0.15));
+    border-color: #ec4899;
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
+}
+
+.stage-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    z-index: 1;
+}
+
+.stage-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.stage-name-en {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.active-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: currentColor;
+    /* Uses the active color */
+}
+
+/* Main content area with 3 columns */
+.main-area {
+    display: flex;
+    flex: 1;
+    /* gap: var(--spacing-md); */
+    /* Removed gap here, handled by panel borders */
+    padding: var(--spacing-md);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Left sidebar - Paradigm selector */
+.paradigm-sidebar {
+    width: 260px;
+    /* Slightly narrower */
+    background: var(--bg-tertiary);
+    /* border-radius: var(--radius-md); */
+    /* Removed, now only border-right */
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.paradigm-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.paradigm-item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all var(--transition-normal);
+    background: var(--bg-card);
+}
+
+.paradigm-item:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-primary);
+}
+
+.paradigm-item.active {
+    border-color: var(--accent-primary);
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.paradigm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.paradigm-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.paradigm-flow-badge {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+}
+
+/* Summary section */
+.summary-section {
+    margin-top: auto;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.summary-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.summary-list {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.summary-list li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+}
+
+.summary-list strong {
+    color: var(--accent-tertiary);
+}
+
+/* Center - Flow canvas */
+.flow-canvas {
+    flex: 1;
+    background: var(--bg-primary);
+    /* border-radius: var(--radius-md); */
+    /* Removed, now only border-left/right on panels */
+    /* border: 1px solid var(--border-color); */
+    /* Removed, now only border-left/right on panels */
+    position: relative;
+    /* min-width: 500px; */
+    /* Removed, now min-width: 0 */
+    /* Ensure canvas takes available space */
+    min-width: 0;
+}
+
+/* Panel Toggle Button */
+.panel-toggle-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    /* Floating on canvas */
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    z-index: 5;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.panel-toggle-btn:hover {
+    background: var(--bg-card-hover);
+    color: var(--accent-primary);
+}
+
+.panel-toggle-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.panel-toggle-btn.closed svg {
+    transform: rotate(180deg);
+    /* Flip arrow when closed to point left */
+}
+
+/* Right panel - Details */
+.viz-detail-panel {
+    width: 400px;
+    /* Smaller width as requested */
+    background: var(--bg-tertiary);
+    /* border-radius: var(--radius-md); */
+    /* Removed, now only border-left */
+    border-left: 1px solid var(--border-color);
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll during transition */
+    padding: var(--spacing-md);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        border 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    /* Prevent shrinking below set width when open */
+    flex-grow: 0;
+    /* Prevent growing */
+    white-space: normal;
+}
+
+.viz-detail-panel.closed {
+    width: 0 !important;
+    /* Force width to 0 */
+    padding: 0 !important;
+    border-left: none;
+    overflow: hidden;
+}
+
+.viz-detail-content {
+    color: var(--text-primary);
+}
+
+/* Adjust visual density in detail panel */
+.viz-detail-title {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.viz-detail-desc {
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.viz-detail-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.viz-detail-section h4 {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.viz-detail-section p,
+.viz-detail-section li {
+    font-size: 0.85rem;
+}
+
+
+.paradigm-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--accent-primary);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.paradigm-flow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--accent-tertiary);
+    font-weight: 600;
+    text-align: center;
+    padding: var(--spacing-sm);
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+}
+
+.data-info p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.key-point {
+    background: rgba(16, 185, 129, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--accent-success);
+}
+
+.key-point h4 {
+    color: var(--accent-success);
+}
+
+.hint {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 3px solid var(--accent-warning);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* React Flow customization */
+.react-flow__node {
+    cursor: pointer;
+}
+
+.react-flow__node:hover {
+    filter: brightness(1.1);
+}
+
+.react-flow__controls {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+}
+
+.react-flow__controls-button {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.react-flow__controls-button:hover {
+    background: var(--bg-card-hover);
+}
+
+/* Scrollbar for detail panel and sidebar */
+.viz-detail-panel::-webkit-scrollbar,
+.paradigm-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.viz-detail-panel::-webkit-scrollbar-track,
+.paradigm-sidebar::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 3px;
+}
+
+.viz-detail-panel::-webkit-scrollbar-thumb,
+.paradigm-sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.viz-detail-panel::-webkit-scrollbar-thumb:hover,
+.paradigm-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .viz-detail-panel {
+        width: 300px;
+    }
+
+    .paradigm-sidebar {
+        width: 240px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .main-area {
+        flex-direction: column;
+    }
+
+    .paradigm-sidebar,
+    .viz-detail-panel {
+        width: 100%;
+        max-height: 300px;
+    }
+
+    .flow-canvas {
+        min-height: 400px;
+    }
+}
