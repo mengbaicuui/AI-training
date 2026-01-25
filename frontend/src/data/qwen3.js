@@ -8,10 +8,10 @@ export const qwen3Config = {
   defaultParams: {
     vocab_size: 151936,
     hidden_size: 4096,
-    intermediate_size: 22016,
-    num_hidden_layers: 32,
+    intermediate_size: 12288,
+    num_hidden_layers: 36,
     num_attention_heads: 32,
-    num_key_value_heads: 32,
+    num_key_value_heads: 8,
     head_dim: 128,
     max_position_embeddings: 32768,
     rope_theta: 10000.0,
@@ -128,11 +128,11 @@ inputs_embeds = self.embed_tokens(input_ids)`,
           nameZh: "解码器层堆叠",
           description: "包含 32 个 Qwen3DecoderLayer，每层包含自注意力和前馈网络。使用 Pre-Norm 架构（先归一化后计算）",
           params: {
-            "num_layers": "32 (num_hidden_layers)",
+            "num_layers": "36 (num_hidden_layers)",
           },
           code: `self.layers = nn.ModuleList([
     Qwen3DecoderLayer(config, layer_idx) 
-    for layer_idx in range(config.num_hidden_layers)  # 32 layers
+    for layer_idx in range(config.num_hidden_layers)  # 36 layers
 ])
 
 # 前向传播
@@ -219,7 +219,7 @@ for decoder_layer in self.layers:
                   description: "多头自注意力机制，使用 GQA (Grouped Query Attention) 减少 KV Cache 显存占用。Qwen3 特色：对 Q 和 K 应用 RMSNorm",
                   params: {
                     "num_attention_heads": "32 (Q heads)",
-                    "num_key_value_heads": "32 (KV heads，Qwen3 使用 MHA)",
+                    "num_key_value_heads": "8 (KV heads，Qwen3 使用 GQA)",
                     "head_dim": "128",
                     "attention_dropout": "0.0",
                     "attention_bias": "False (无偏置)",
@@ -304,7 +304,7 @@ for decoder_layer in self.layers:
                       },
                       code: `self.k_proj = nn.Linear(
     config.hidden_size,                            # 4096
-    config.num_key_value_heads * self.head_dim,    # 32 * 128 = 4096
+    config.num_key_value_heads * self.head_dim,    # 8 * 128 = 1024
     bias=config.attention_bias                     # False
 )`,
                       children: [],
@@ -326,7 +326,7 @@ for decoder_layer in self.layers:
                       },
                       code: `self.v_proj = nn.Linear(
     config.hidden_size,                            # 4096
-    config.num_key_value_heads * self.head_dim,    # 32 * 128 = 4096
+    config.num_key_value_heads * self.head_dim,    # 8 * 128 = 1024
     bias=config.attention_bias                     # False
 )`,
                       children: [],
@@ -407,7 +407,7 @@ for decoder_layer in self.layers:
                   description: "SwiGLU 激活的前馈网络。公式: down_proj(SiLU(gate_proj(x)) * up_proj(x))。参数量占解码器层的约 2/3",
                   params: {
                     "hidden_size": "4096",
-                    "intermediate_size": "22016",
+                    "intermediate_size": "12288",
                     "hidden_act": "silu",
                   },
                   shapes: {
@@ -419,7 +419,7 @@ for decoder_layer in self.layers:
     def __init__(self, config):
         super().__init__()
         self.hidden_size = config.hidden_size          # 4096
-        self.intermediate_size = config.intermediate_size  # 22016
+        self.intermediate_size = config.intermediate_size  # 12288
         
         # SwiGLU 结构的三个线性层
         self.gate_proj = nn.Linear(self.hidden_size, self.intermediate_size, bias=False)
@@ -435,10 +435,10 @@ for decoder_layer in self.layers:
         return down_proj
         
 # 参数量计算:
-# gate_proj: 4096 × 22016 = 90,177,536
-# up_proj:   4096 × 22016 = 90,177,536  
-# down_proj: 22016 × 4096 = 90,177,536
-# 总计: ~270M 参数/层`,
+# gate_proj: 4096 × 12288 = 50,331,648
+# up_proj:   4096 × 12288 = 50,331,648  
+# down_proj: 12288 × 4096 = 50,331,648
+# 总计: ~151M 参数/层`,
                   children: [
                     {
                       id: "gate_proj",

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { formatParamCount, calculateParamRatio, calculateQwen3Params, calculateQwen3MoeParams } from '../utils/paramUtils';
 
 function DetailPanel({ node, breadcrumb, onBreadcrumbClick, config, isMoe }) {
     const [copiedCode, setCopiedCode] = useState(false);
@@ -102,6 +103,114 @@ function DetailPanel({ node, breadcrumb, onBreadcrumbClick, config, isMoe }) {
             </div>
 
             <div className="detail-content">
+                {/* 参数量统计 - 根据节点 ID 动态计算 */}
+                {(() => {
+                    const paramStats = isMoe ? calculateQwen3MoeParams(config) : calculateQwen3Params(config);
+                    const totalParams = paramStats.total;
+
+                    // 根据节点 ID 获取对应的参数量
+                    const getNodeParams = (nodeId) => {
+                        // Embedding
+                        if (nodeId === 'embed_tokens' || nodeId === 'moe_embed_tokens') return paramStats.embedding.embed_tokens;
+
+                        // Attention 相关
+                        if (nodeId === 'self_attn' || nodeId === 'moe_self_attn') return paramStats.attention.total_per_layer;
+                        if (nodeId === 'q_proj' || nodeId === 'moe_q_proj') return paramStats.attention.q_proj;
+                        if (nodeId === 'k_proj' || nodeId === 'moe_k_proj') return paramStats.attention.k_proj;
+                        if (nodeId === 'v_proj' || nodeId === 'moe_v_proj') return paramStats.attention.v_proj;
+                        if (nodeId === 'o_proj' || nodeId === 'moe_o_proj') return paramStats.attention.o_proj;
+                        if (nodeId === 'q_norm' || nodeId === 'moe_q_norm') return paramStats.attention.q_norm;
+                        if (nodeId === 'k_norm' || nodeId === 'moe_k_norm') return paramStats.attention.k_norm;
+
+                        // MLP 相关
+                        if (nodeId === 'mlp') return paramStats.mlp?.total_per_layer || 0;
+                        if (nodeId === 'gate_proj') return paramStats.mlp?.gate_proj || 0;
+                        if (nodeId === 'up_proj') return paramStats.mlp?.up_proj || 0;
+                        if (nodeId === 'down_proj') return paramStats.mlp?.down_proj || 0;
+
+                        // MoE 相关
+                        if (nodeId === 'moe_block') return paramStats.moe?.moe_block_total || 0;
+                        if (nodeId === 'moe_gate') return paramStats.moe?.router_gate || 0;
+                        if (nodeId === 'moe_experts') return paramStats.moe?.all_experts || 0;
+                        if (nodeId === 'single_expert') return paramStats.moe?.single_expert || 0;
+                        if (nodeId === 'expert_gate_proj') return paramStats.moe?.expert_breakdown?.gate_proj || 0;
+                        if (nodeId === 'expert_up_proj') return paramStats.moe?.expert_breakdown?.up_proj || 0;
+                        if (nodeId === 'expert_down_proj') return paramStats.moe?.expert_breakdown?.down_proj || 0;
+
+                        // Norm 相关
+                        if (nodeId === 'input_layernorm' || nodeId === 'moe_input_layernorm') return paramStats.norm.input_layernorm;
+                        if (nodeId === 'post_attention_layernorm' || nodeId === 'moe_post_attention_layernorm') return paramStats.norm.post_attention_layernorm;
+                        if (nodeId === 'final_norm' || nodeId === 'moe_final_norm') return paramStats.norm.final_norm;
+
+                        // LM Head
+                        if (nodeId === 'lm_head' || nodeId === 'moe_lm_head') return paramStats.lm_head.tied ? 0 : paramStats.lm_head.params;
+
+                        // 层级聚合
+                        if (nodeId === 'layers' || nodeId === 'moe_layers') return paramStats.all_layers;
+                        if (nodeId === 'decoder_layer' || nodeId === 'moe_decoder_layer') return paramStats.layer_total;
+                        if (nodeId === 'qwen3_model' || nodeId === 'qwen3_moe_model') return totalParams - (paramStats.lm_head.tied ? 0 : paramStats.lm_head.params);
+                        if (nodeId === 'qwen3_for_causal_lm' || nodeId === 'qwen3_moe_for_causal_lm') return totalParams;
+
+                        // Rotary Embedding (无参数或极少)
+                        if (nodeId === 'rotary_emb' || nodeId === 'moe_rotary_emb') return 0;
+
+                        return null;
+                    };
+
+                    const nodeParams = getNodeParams(node.id);
+
+                    if (nodeParams !== null && nodeParams >= 0) {
+                        const ratio = totalParams > 0 ? (nodeParams / totalParams) * 100 : 0;
+                        const isPerLayer = ['self_attn', 'moe_self_attn', 'mlp', 'moe_block', 'decoder_layer', 'moe_decoder_layer',
+                            'input_layernorm', 'moe_input_layernorm', 'post_attention_layernorm', 'moe_post_attention_layernorm'].includes(node.id);
+                        const numLayers = paramStats.config?.num_hidden_layers || 32;
+
+                        return (
+                            <div className="detail-section param-stats-section">
+                                <h3 className="section-title">
+                                    <span className="section-icon">📊</span>
+                                    参数量统计
+                                </h3>
+                                <div className="param-stats-grid">
+                                    <div className="param-stat-card">
+                                        <div className="param-stat-label">
+                                            {isPerLayer ? '每层参数量' : '参数量'}
+                                        </div>
+                                        <div className="param-stat-value">
+                                            {nodeParams === 0 ? (paramStats.lm_head.tied && (node.id === 'lm_head' || node.id === 'moe_lm_head') ? '共享 (0)' : '0') : formatParamCount(nodeParams)}
+                                        </div>
+                                    </div>
+                                    {isPerLayer && (
+                                        <div className="param-stat-card">
+                                            <div className="param-stat-label">全部层总计</div>
+                                            <div className="param-stat-value">{formatParamCount(nodeParams * numLayers)}</div>
+                                        </div>
+                                    )}
+                                    <div className="param-stat-card">
+                                        <div className="param-stat-label">占模型总参数</div>
+                                        <div className="param-stat-value">
+                                            {isPerLayer ? calculateParamRatio(nodeParams * numLayers, totalParams) : calculateParamRatio(nodeParams, totalParams)}
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* 进度条 */}
+                                <div className="param-progress-container">
+                                    <div className="param-progress-bar">
+                                        <div
+                                            className="param-progress-fill"
+                                            style={{ width: `${Math.min(100, isPerLayer ? (nodeParams * numLayers / totalParams) * 100 : ratio)}%` }}
+                                        />
+                                    </div>
+                                    <div className="param-progress-label">
+                                        模型总参数: {formatParamCount(totalParams)}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
+                    return null;
+                })()}
+
                 {/* Description */}
                 {node.description && (
                     <div className="detail-section">

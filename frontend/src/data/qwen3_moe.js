@@ -13,7 +13,7 @@ export const qwen3MoeConfig = {
         num_hidden_layers: 48,
         num_attention_heads: 32,
         num_key_value_heads: 4,
-        head_dim: 64,
+        head_dim: 128,
         num_experts: 128,
         num_experts_per_tok: 8,
         decoder_sparse_step: 1,
@@ -303,7 +303,7 @@ else:
                                     code: `class Qwen3MoeAttention(nn.Module):
     def __init__(self, config: Qwen3MoeConfig, layer_idx: int):
         super().__init__()
-        self.head_dim = config.head_dim  # 64 (比稠密模型的 128 小)
+        self.head_dim = config.head_dim  # 128
         self.num_key_value_groups = config.num_attention_heads // config.num_key_value_heads  # 32/4=8
         self.scaling = self.head_dim ** -0.5  # 1/sqrt(64)
         
@@ -334,11 +334,11 @@ else:
                                             description: "Query 投影层，输出维度 = num_attention_heads × head_dim",
                                             params: {
                                                 "in_features": "2048",
-                                                "out_features": "2048 (32 × 64)",
+                                                "out_features": "4096 (32 × 128)",
                                                 "bias": "False",
                                             },
                                             shapes: {
-                                                weight: "(2048, 2048)",
+                                                weight: "(4096, 2048)",
                                             },
                                             children: [],
                                         },
@@ -349,11 +349,11 @@ else:
                                             description: "Key 投影层（GQA），输出维度远小于 Q，大幅减少 KV Cache",
                                             params: {
                                                 "in_features": "2048",
-                                                "out_features": "256 (4 × 64) ⭐ 仅为 Q 的 1/8",
+                                                "out_features": "512 (4 × 128)",
                                                 "bias": "False",
                                             },
                                             shapes: {
-                                                weight: "(256, 2048)",
+                                                weight: "(512, 2048)",
                                             },
                                             children: [],
                                         },
@@ -364,11 +364,11 @@ else:
                                             description: "Value 投影层（GQA），与 Key 相同维度",
                                             params: {
                                                 "in_features": "2048",
-                                                "out_features": "256 (4 × 64)",
+                                                "out_features": "512 (4 × 128)",
                                                 "bias": "False",
                                             },
                                             shapes: {
-                                                weight: "(256, 2048)",
+                                                weight: "(512, 2048)",
                                             },
                                             children: [],
                                         },
@@ -393,7 +393,7 @@ else:
                                             nameZh: "Query 归一化",
                                             description: "Qwen3 特有设计：对 Query 进行 RMSNorm",
                                             params: {
-                                                "normalized_shape": "64 (head_dim)",
+                                                "normalized_shape": "128 (head_dim)",
                                                 "eps": "1e-6",
                                             },
                                             children: [],
@@ -404,7 +404,7 @@ else:
                                             nameZh: "Key 归一化",
                                             description: "Qwen3 特有设计：对 Key 进行 RMSNorm",
                                             params: {
-                                                "normalized_shape": "64 (head_dim)",
+                                                "normalized_shape": "128 (head_dim)",
                                                 "eps": "1e-6",
                                             },
                                             children: [],

@@ -95,6 +95,70 @@ body {
   font-size: 0.9rem;
 }
 
+/* ===================== Parameter Stats ===================== */
+.param-stats-section {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.05));
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.param-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.param-stat-card {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.param-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.param-stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.param-progress-container {
+  margin-top: var(--spacing-sm);
+}
+
+.param-progress-bar {
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-xs);
+}
+
+.param-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+  border-radius: 4px;
+  transition: width var(--transition-normal);
+  min-width: 2px;
+}
+
+.param-progress-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
 /* ===================== Tab Navigation ===================== */
 .tab-navigation {
   display: flex;
