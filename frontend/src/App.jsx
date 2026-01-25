@@ -6,6 +6,7 @@ import MacroView from './components/MacroView';
 import ViewSwitcher from './components/ViewSwitcher';
 import LLMHistoryTimeline from './components/LLMHistoryTimeline';
 import LLMPipelineViz from './components/LLMPipelineViz';
+import TransformerTab from './components/TransformerTab';
 import qwen3Architecture, { qwen3Config } from './data/qwen3';
 import qwen3MoeArchitecture, { qwen3MoeConfig } from './data/qwen3_moe';
 import './App.css';
@@ -88,6 +89,13 @@ function App() {
           <span className="tab-icon">🚀</span>
           LLM 训练范式
         </button>
+        <button
+          className={`tab-button ${activeTab === 'transformer' ? 'active' : ''}`}
+          onClick={() => handleTabChange('transformer')}
+        >
+          <span className="tab-icon">📖</span>
+          Transformer 原理
+        </button>
       </nav>
 
       <main className="main-content">
@@ -102,6 +110,8 @@ function App() {
           <LLMHistoryTimeline />
         ) : activeTab === 'pipeline' ? (
           <LLMPipelineViz />
+        ) : activeTab === 'transformer' ? (
+          <TransformerTab />
         ) : (
           <>
             {/* View Switcher only for non-compare tabs */}
