@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 /* Import images */
 import attention1 from '../data/training/images/attention1.png';
 import attention2 from '../data/training/images/attention2.png';
+import transformerOverall from '../data/training/images/transformer-overall.png';
 import Plot from 'react-plotly.js';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import transformerQuestions from '../data/transformerQuestions';
@@ -90,6 +91,12 @@ const TransformerTab = () => {
                     >
                         6. Output (输出)
                     </button>
+                    <button
+                        className={`transformer-nav-item ${activeSection === 'summary' ? 'active' : ''}`}
+                        onClick={() => setActiveSection('summary')}
+                    >
+                        7. 总结
+                    </button>
                 </nav>
             </div>
 
@@ -100,6 +107,7 @@ const TransformerTab = () => {
                 {activeSection === 'attention' && <AttentionSection />}
                 {activeSection === 'encoder-decoder' && <EncoderDecoderSection />}
                 {activeSection === 'output' && <OutputSection />}
+                {activeSection === 'summary' && <SummarySection />}
             </div>
 
             {/* 问题面板 - 使用 key 强制重新渲染 */}
@@ -328,6 +336,15 @@ const AttentionSection = () => {
                         点击左侧生成的英文单词（Query），查看它主要关注哪一个中文词（Key）。
                     </p>
                     <AttentionMatrix />
+                </div>
+
+                {/* QKV 交互详解 */}
+                <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '30px', marginTop: '30px' }}>
+                    <h3>🔍 深入理解：Q、K、V 矩阵是如何交互的？</h3>
+                    <p style={{ marginBottom: '20px', color: 'var(--text-secondary)' }}>
+                        以"小明是学生，他喜欢编程" 为例，看看"他"这个词是如何通过注意力机制找到"小明"的。
+                    </p>
+                    <QKVInteractionDemo />
                 </div>
             </div>
         </section>
@@ -562,12 +579,552 @@ const AttentionMatrix = () => {
                         </div>
                     ) : (
                         <div style={{ color: 'var(--text-muted)', fontSize: '0.8em' }}>
-                            点击任意一行，看这个词“关注”了谁。
+                            点击任意一行，看这个词"关注"了谁。
                         </div>
                     )}
                 </>
             )}
         />
+    );
+};
+
+// QKV 交互演示组件
+const QKVInteractionDemo = () => {
+    const [step, setStep] = useState(0);
+
+    // 示例："小明是学生，他喜欢编程" - 重点展示"他"指向"小明"
+    const sourceTokens = ['小明', '是', '学生', '，', '他', '喜欢', '编程'];
+
+    // 模拟的 Embedding 向量（简化为4维）
+    const embeddings = {
+        '小明': [0.9, 0.3, 0.2, 0.8],
+        '是': [0.2, 0.7, 0.3, 0.2],
+        '学生': [0.6, 0.4, 0.2, 0.7],
+        '，': [0.1, 0.1, 0.1, 0.1],
+        '他': [0.85, 0.25, 0.15, 0.75],
+        '喜欢': [0.4, 0.8, 0.5, 0.3],
+        '编程': [0.5, 0.6, 0.8, 0.4],
+    };
+
+    // 计算 Q, K, V（简化的矩阵乘法结果）
+    const Q_vectors = {
+        '小明': [0.72, 0.41, 0.58, 0.65],
+        '是': [0.38, 0.55, 0.42, 0.31],
+        '学生': [0.56, 0.48, 0.45, 0.62],
+        '，': [0.15, 0.18, 0.12, 0.14],
+        '他': [0.70, 0.38, 0.52, 0.61],
+        '喜欢': [0.45, 0.62, 0.55, 0.38],
+        '编程': [0.52, 0.58, 0.68, 0.45],
+    };
+
+    const K_vectors = {
+        '小明': [0.68, 0.45, 0.52, 0.71],
+        '是': [0.35, 0.48, 0.38, 0.29],
+        '学生': [0.51, 0.42, 0.39, 0.55],
+        '，': [0.12, 0.15, 0.11, 0.13],
+        '他': [0.65, 0.42, 0.48, 0.68],
+        '喜欢': [0.42, 0.58, 0.51, 0.35],
+        '编程': [0.48, 0.52, 0.62, 0.41],
+    };
+
+    const V_vectors = {
+        '小明': [0.75, 0.38, 0.45, 0.72],
+        '是': [0.31, 0.62, 0.28, 0.35],
+        '学生': [0.52, 0.45, 0.38, 0.61],
+        '，': [0.08, 0.10, 0.09, 0.08],
+        '他': [0.71, 0.35, 0.42, 0.69],
+        '喜欢': [0.38, 0.65, 0.48, 0.32],
+        '编程': [0.45, 0.55, 0.71, 0.38],
+    };
+
+    // 注意力分数（Q·K^T / √d_k）- 7x7 矩阵，重点是"他"对"小明"的高分
+    const attentionScores = [
+        [0.92, 0.28, 0.45, 0.08, 0.78, 0.35, 0.42],  // "小明" 的注意力分数
+        [0.32, 0.88, 0.41, 0.05, 0.28, 0.52, 0.38],  // "是"
+        [0.48, 0.38, 0.91, 0.06, 0.42, 0.45, 0.55],  // "学生"
+        [0.15, 0.12, 0.14, 0.25, 0.13, 0.18, 0.16],  // "，"
+        [0.89, 0.25, 0.38, 0.05, 0.72, 0.32, 0.35],  // "他" - 对"小明"分数最高！
+        [0.35, 0.48, 0.42, 0.06, 0.38, 0.85, 0.62],  // "喜欢"
+        [0.38, 0.42, 0.52, 0.07, 0.35, 0.58, 0.88],  // "编程"
+    ];
+
+    // Softmax 后的注意力权重 - "他"主要关注"小明"
+    const attentionWeights = [
+        [0.38, 0.08, 0.15, 0.02, 0.28, 0.05, 0.04],  // "小明"
+        [0.10, 0.42, 0.14, 0.02, 0.08, 0.16, 0.08],  // "是"
+        [0.16, 0.10, 0.40, 0.02, 0.12, 0.10, 0.10],  // "学生"
+        [0.14, 0.13, 0.15, 0.18, 0.13, 0.14, 0.13],  // "，"
+        [0.45, 0.07, 0.12, 0.02, 0.22, 0.06, 0.06],  // "他" - 45%关注"小明"！
+        [0.08, 0.14, 0.10, 0.02, 0.08, 0.38, 0.20],  // "喜欢"
+        [0.08, 0.10, 0.14, 0.02, 0.06, 0.18, 0.42],  // "编程"
+    ];
+
+    const steps = [
+        {
+            title: '第1步：输入 Embedding',
+            description: '每个词先通过 Embedding 层，变成一个向量（这里简化为4维）',
+        },
+        {
+            title: '第2步：生成 Q、K、V',
+            description: '输入向量分别乘以三个权重矩阵 W_Q、W_K、W_V，得到 Query、Key、Value 向量',
+        },
+        {
+            title: '第3步：计算注意力分数',
+            description: 'Q 和 K 做点积，得到每对词之间的"相关性分数"，再除以 √d_k 进行缩放',
+        },
+        {
+            title: '第4步：Softmax 归一化',
+            description: '对每一行做 Softmax，把分数变成概率分布（每行和为1）',
+        },
+        {
+            title: '第5步：加权求和得到输出',
+            description: '用注意力权重对 V 向量加权求和，得到融合了上下文信息的新向量',
+        },
+    ];
+
+    // 根据注意力分数获取背景颜色（颜色深浅体现注意力强弱）
+    const getHeatColor = (val, isAttentionMatrix = false) => {
+        if (!isAttentionMatrix || typeof val !== 'number') {
+            return 'var(--bg-tertiary)';
+        }
+        // 使用红色系，分数越高颜色越深
+        if (val > 0.8) return 'rgba(239, 68, 68, 0.9)';  // 深红
+        if (val > 0.6) return 'rgba(239, 68, 68, 0.7)';  // 中深红
+        if (val > 0.4) return 'rgba(239, 68, 68, 0.5)';  // 中红
+        if (val > 0.2) return 'rgba(239, 68, 68, 0.3)';  // 浅红
+        if (val > 0.1) return 'rgba(239, 68, 68, 0.15)'; // 很浅红
+        return 'var(--bg-tertiary)';  // 几乎无色
+    };
+
+    const renderMatrix = (data, labels, title, useHeatmap = false) => (
+        <div style={{ marginBottom: '15px' }}>
+            <div style={{ fontSize: '0.8em', color: 'var(--text-secondary)', marginBottom: '8px', fontWeight: 'bold' }}>{title}</div>
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: `60px repeat(${data[0]?.length || 4}, 1fr)`,
+                gap: '2px',
+                fontSize: '0.75em'
+            }}>
+                {/* Header */}
+                <div></div>
+                {(labels || ['d1', 'd2', 'd3', 'd4']).map((l, i) => (
+                    <div key={i} style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '4px' }}>{l}</div>
+                ))}
+                {/* Data rows */}
+                {data.map((row, r) => (
+                    <React.Fragment key={r}>
+                        <div style={{
+                            textAlign: 'right',
+                            paddingRight: '8px',
+                            color: 'var(--accent-primary)',
+                            fontWeight: 'bold'
+                        }}>
+                            {sourceTokens[r] || `Row${r}`}
+                        </div>
+                        {row.map((val, c) => {
+                            const bgColor = getHeatColor(val, useHeatmap);
+                            const isHighScore = useHeatmap && typeof val === 'number' && val > 0.4;
+                            return (
+                                <div key={c} style={{
+                                    background: bgColor,
+                                    color: isHighScore ? 'white' : 'var(--text-primary)',
+                                    padding: '6px 4px',
+                                    textAlign: 'center',
+                                    borderRadius: '4px',
+                                    fontFamily: 'monospace',
+                                    fontWeight: isHighScore ? 'bold' : 'normal',
+                                    transition: 'all 0.2s ease'
+                                }}>
+                                    {typeof val === 'number' ? val.toFixed(2) : val}
+                                </div>
+                            );
+                        })}
+                    </React.Fragment>
+                ))}
+            </div>
+        </div>
+    );
+
+    const renderVectorComparison = () => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
+            {/* Q vectors */}
+            <div style={{ background: 'rgba(99, 102, 241, 0.1)', padding: '12px', borderRadius: '8px', border: '2px solid var(--accent-primary)' }}>
+                <div style={{ fontWeight: 'bold', color: 'var(--accent-primary)', marginBottom: '10px', textAlign: 'center' }}>
+                    Q (Query) 查询
+                </div>
+                <div style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'center' }}>
+                    "我想找什么？"
+                </div>
+                {sourceTokens.map((t, i) => (
+                    <div key={i} style={{ marginBottom: '8px' }}>
+                        <span style={{ fontWeight: 'bold' }}>{t}:</span>
+                        <div style={{ fontFamily: 'monospace', fontSize: '0.8em', color: 'var(--text-secondary)' }}>
+                            [{Q_vectors[t].map(v => v.toFixed(2)).join(', ')}]
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* K vectors */}
+            <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '12px', borderRadius: '8px', border: '2px solid var(--accent-success)' }}>
+                <div style={{ fontWeight: 'bold', color: 'var(--accent-success)', marginBottom: '10px', textAlign: 'center' }}>
+                    K (Key) 键
+                </div>
+                <div style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'center' }}>
+                    "我的标签是什么？"
+                </div>
+                {sourceTokens.map((t, i) => (
+                    <div key={i} style={{ marginBottom: '8px' }}>
+                        <span style={{ fontWeight: 'bold' }}>{t}:</span>
+                        <div style={{ fontFamily: 'monospace', fontSize: '0.8em', color: 'var(--text-secondary)' }}>
+                            [{K_vectors[t].map(v => v.toFixed(2)).join(', ')}]
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* V vectors */}
+            <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '12px', borderRadius: '8px', border: '2px solid var(--accent-warning)' }}>
+                <div style={{ fontWeight: 'bold', color: 'var(--accent-warning)', marginBottom: '10px', textAlign: 'center' }}>
+                    V (Value) 值
+                </div>
+                <div style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'center' }}>
+                    "我的实际内容"
+                </div>
+                {sourceTokens.map((t, i) => (
+                    <div key={i} style={{ marginBottom: '8px' }}>
+                        <span style={{ fontWeight: 'bold' }}>{t}:</span>
+                        <div style={{ fontFamily: 'monospace', fontSize: '0.8em', color: 'var(--text-secondary)' }}>
+                            [{V_vectors[t].map(v => v.toFixed(2)).join(', ')}]
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+
+    const renderAttentionCalculation = () => (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+            {/* Raw scores */}
+            <div>
+                <div style={{ fontWeight: 'bold', marginBottom: '10px', color: 'var(--text-primary)' }}>
+                    Q · K<sup>T</sup> / √d<sub>k</sub> (原始分数)
+                </div>
+                {renderMatrix(attentionScores, sourceTokens, '', true)}
+                <div style={{ fontSize: '0.8em', color: 'var(--text-muted)', marginTop: '8px' }}>
+                    每个格子 = Q<sub>行</sub> · K<sub>列</sub> 的点积结果
+                </div>
+            </div>
+
+            {/* Softmax weights */}
+            <div>
+                <div style={{ fontWeight: 'bold', marginBottom: '10px', color: 'var(--text-primary)' }}>
+                    Softmax(scores) (注意力权重)
+                </div>
+                {renderMatrix(attentionWeights, sourceTokens, '', true)}
+                <div style={{ fontSize: '0.8em', color: 'var(--text-muted)', marginTop: '8px' }}>
+                    每行和为 1，表示"关注度分配"
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderFinalOutput = () => {
+        // 计算 "他" 这个词的输出（作为示例）- 重点展示指代消解
+        const exampleToken = '他';
+        const exampleIndex = 4; // "他" 在 sourceTokens 中的索引
+        const weights = attentionWeights[exampleIndex];
+
+        return (
+            <div style={{ background: 'var(--bg-tertiary)', padding: '20px', borderRadius: '12px' }}>
+                <div style={{ fontWeight: 'bold', marginBottom: '15px', color: 'var(--accent-primary)', fontSize: '1.1em' }}>
+                    以 "{exampleToken}" 为例，计算输出向量：
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    flexWrap: 'wrap',
+                    marginBottom: '20px',
+                    fontSize: '0.85em'
+                }}>
+                    <span style={{ color: 'var(--accent-primary)', fontWeight: 'bold' }}>Output</span>
+                    <span>=</span>
+                    <span style={{ background: 'rgba(239, 68, 68, 0.3)', padding: '4px 8px', borderRadius: '4px', border: '2px solid #ef4444', fontWeight: 'bold' }}>
+                        {weights[0].toFixed(2)} × V<sub>小明</sub>
+                    </span>
+                    <span>+</span>
+                    <span style={{ background: 'rgba(99, 102, 241, 0.1)', padding: '4px 8px', borderRadius: '4px' }}>
+                        {weights[1].toFixed(2)} × V<sub>是</sub>
+                    </span>
+                    <span>+</span>
+                    <span style={{ background: 'rgba(99, 102, 241, 0.1)', padding: '4px 8px', borderRadius: '4px' }}>
+                        {weights[2].toFixed(2)} × V<sub>学生</sub>
+                    </span>
+                    <span>+ ...</span>
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    alignItems: 'center'
+                }}>
+                    <span>=</span>
+                    <div style={{
+                        background: 'var(--accent-success)',
+                        color: 'white',
+                        padding: '10px 20px',
+                        borderRadius: '8px',
+                        fontFamily: 'monospace',
+                        fontWeight: 'bold'
+                    }}>
+                        [0.58, 0.39, 0.41, 0.55]
+                    </div>
+                </div>
+
+                <div style={{
+                    marginTop: '20px',
+                    padding: '15px',
+                    background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(99, 102, 241, 0.1))',
+                    borderRadius: '8px',
+                    border: '2px solid var(--accent-primary)'
+                }}>
+                    <div style={{ fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-primary)' }}>
+                        🎯 关键发现：指代消解 (Coreference Resolution)
+                    </div>
+                    <div style={{ fontSize: '0.9em', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+                        "<b>他</b>" 的注意力权重中，<span style={{ color: '#ef4444', fontWeight: 'bold' }}>45% 指向了 "小明"</span>！
+                        <br/><br/>
+                        这说明模型通过 Self-Attention "理解"了：<b>"他" 指的就是 "小明"</b>。
+                        <br/>
+                        这就是 Attention 机制解决<b>代词指代</b>问题的核心原理。
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div style={{
+            background: 'var(--bg-card)',
+            padding: '25px',
+            borderRadius: '12px',
+            border: '1px solid var(--border-color)'
+        }}>
+            {/* Step indicator */}
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '8px',
+                marginBottom: '25px',
+                flexWrap: 'wrap'
+            }}>
+                {steps.map((s, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setStep(i)}
+                        style={{
+                            padding: '8px 16px',
+                            border: 'none',
+                            borderRadius: '20px',
+                            background: step === i ? 'var(--accent-primary)' : 'var(--bg-tertiary)',
+                            color: step === i ? 'white' : 'var(--text-secondary)',
+                            cursor: 'pointer',
+                            fontSize: '0.85em',
+                            fontWeight: step === i ? 'bold' : 'normal',
+                            transition: 'all 0.2s ease'
+                        }}
+                    >
+                        Step {i + 1}
+                    </button>
+                ))}
+            </div>
+
+            {/* Current step info */}
+            <div style={{
+                textAlign: 'center',
+                marginBottom: '25px',
+                padding: '15px',
+                background: 'var(--bg-tertiary)',
+                borderRadius: '8px'
+            }}>
+                <h4 style={{ color: 'var(--accent-primary)', marginBottom: '8px' }}>
+                    {steps[step].title}
+                </h4>
+                <p style={{ color: 'var(--text-secondary)', margin: 0, fontSize: '0.9em' }}>
+                    {steps[step].description}
+                </p>
+            </div>
+
+            {/* Step content */}
+            <div className="fade-in" key={step}>
+                {step === 0 && (
+                    <div>
+                        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                            <div style={{ fontSize: '1.5em', marginBottom: '15px' }}>
+                                {sourceTokens.map((t, i) => (
+                                    <span key={i} style={{
+                                        display: 'inline-block',
+                                        margin: '0 10px',
+                                        padding: '10px 20px',
+                                        background: 'var(--accent-primary)',
+                                        color: 'white',
+                                        borderRadius: '8px',
+                                        fontWeight: 'bold'
+                                    }}>
+                                        {t}
+                                    </span>
+                                ))}
+                            </div>
+                            <div style={{ fontSize: '2em', margin: '10px 0' }}>↓</div>
+                            <div style={{ color: 'var(--text-muted)' }}>Embedding Layer</div>
+                            <div style={{ fontSize: '2em', margin: '10px 0' }}>↓</div>
+                        </div>
+                        {renderMatrix(
+                            sourceTokens.map(t => embeddings[t]),
+                            ['dim 1', 'dim 2', 'dim 3', 'dim 4'],
+                            'Embedding 向量（每个词 → 4维向量）'
+                        )}
+                    </div>
+                )}
+
+                {step === 1 && (
+                    <div>
+                        <div style={{
+                            textAlign: 'center',
+                            marginBottom: '20px',
+                            padding: '15px',
+                            background: 'rgba(99, 102, 241, 0.1)',
+                            borderRadius: '8px'
+                        }}>
+                            <div style={{ fontFamily: 'monospace', fontSize: '1.1em' }}>
+                                <span style={{ color: 'var(--accent-primary)' }}>Q</span> = X · W<sub>Q</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                <span style={{ color: 'var(--accent-success)' }}>K</span> = X · W<sub>K</sub> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                <span style={{ color: 'var(--accent-warning)' }}>V</span> = X · W<sub>V</sub>
+                            </div>
+                            <div style={{ fontSize: '0.85em', color: 'var(--text-muted)', marginTop: '8px' }}>
+                                同一个输入 X，乘以不同的权重矩阵，得到不同"角色"的向量
+                            </div>
+                        </div>
+                        {renderVectorComparison()}
+                    </div>
+                )}
+
+                {step === 2 && (
+                    <div>
+                        <div style={{
+                            textAlign: 'center',
+                            marginBottom: '20px',
+                            padding: '15px',
+                            background: 'rgba(99, 102, 241, 0.1)',
+                            borderRadius: '8px'
+                        }}>
+                            <div style={{ fontFamily: 'monospace', fontSize: '1.1em' }}>
+                                Score<sub>ij</sub> = Q<sub>i</sub> · K<sub>j</sub><sup>T</sup> / √d<sub>k</sub>
+                            </div>
+                            <div style={{ fontSize: '0.85em', color: 'var(--text-muted)', marginTop: '8px' }}>
+                                计算每对 (Query, Key) 的相关性分数
+                            </div>
+                        </div>
+                        {renderMatrix(attentionScores, sourceTokens, '注意力分数矩阵 (7×7)', true)}
+                        <div style={{
+                            marginTop: '15px',
+                            padding: '12px',
+                            background: 'var(--bg-tertiary)',
+                            borderRadius: '8px',
+                            fontSize: '0.85em'
+                        }}>
+                            <b>解读：</b> 注意看 "<span style={{color: '#ef4444', fontWeight: 'bold'}}>他</span>" 这一行：对 "<span style={{color: '#ef4444', fontWeight: 'bold'}}>小明</span>" 的分数高达 0.89（颜色最深），
+                            远高于其他词！这说明模型已经在学习"他"和"小明"之间的指代关系。
+                        </div>
+                    </div>
+                )}
+
+                {step === 3 && (
+                    <div>
+                        <div style={{
+                            textAlign: 'center',
+                            marginBottom: '20px',
+                            padding: '15px',
+                            background: 'rgba(16, 185, 129, 0.1)',
+                            borderRadius: '8px'
+                        }}>
+                            <div style={{ fontFamily: 'monospace', fontSize: '1.1em' }}>
+                                Attention<sub>i</sub> = Softmax(Score<sub>i</sub>)
+                            </div>
+                            <div style={{ fontSize: '0.85em', color: 'var(--text-muted)', marginTop: '8px' }}>
+                                Softmax 让每行分数变成概率分布（和为1）
+                            </div>
+                        </div>
+                        {renderAttentionCalculation()}
+                    </div>
+                )}
+
+                {step === 4 && (
+                    <div>
+                        <div style={{
+                            textAlign: 'center',
+                            marginBottom: '20px',
+                            padding: '15px',
+                            background: 'rgba(245, 158, 11, 0.1)',
+                            borderRadius: '8px'
+                        }}>
+                            <div style={{ fontFamily: 'monospace', fontSize: '1.1em' }}>
+                                Output<sub>i</sub> = Σ<sub>j</sub> (Attention<sub>ij</sub> × V<sub>j</sub>)
+                            </div>
+                            <div style={{ fontSize: '0.85em', color: 'var(--text-muted)', marginTop: '8px' }}>
+                                用注意力权重对所有 V 向量加权求和
+                            </div>
+                        </div>
+                        {renderFinalOutput()}
+                    </div>
+                )}
+            </div>
+
+            {/* Navigation */}
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: '25px',
+                paddingTop: '20px',
+                borderTop: '1px solid var(--border-color)'
+            }}>
+                <button
+                    onClick={() => setStep(Math.max(0, step - 1))}
+                    disabled={step === 0}
+                    style={{
+                        padding: '10px 25px',
+                        border: 'none',
+                        borderRadius: '8px',
+                        background: step === 0 ? 'var(--bg-tertiary)' : 'var(--bg-secondary)',
+                        color: step === 0 ? 'var(--text-muted)' : 'var(--text-primary)',
+                        cursor: step === 0 ? 'not-allowed' : 'pointer',
+                        fontSize: '0.9em'
+                    }}
+                >
+                    ← 上一步
+                </button>
+                <button
+                    onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
+                    disabled={step === steps.length - 1}
+                    style={{
+                        padding: '10px 25px',
+                        border: 'none',
+                        borderRadius: '8px',
+                        background: step === steps.length - 1 ? 'var(--bg-tertiary)' : 'var(--accent-primary)',
+                        color: step === steps.length - 1 ? 'var(--text-muted)' : 'white',
+                        cursor: step === steps.length - 1 ? 'not-allowed' : 'pointer',
+                        fontSize: '0.9em',
+                        fontWeight: 'bold'
+                    }}
+                >
+                    下一步 →
+                </button>
+            </div>
+        </div>
     );
 };
 
@@ -952,5 +1509,84 @@ const DecoderDemo = () => {
         </div>
     );
 };
+
+const SummarySection = () => (
+    <section className="transformer-section fade-in">
+        <h2 className="section-title">7. Transformer 总结</h2>
+        <div className="content-text">
+            <p>恭喜你完成了 Transformer 架构的学习！让我们回顾一下整个流程：</p>
+        </div>
+
+        <div className="analogy-box" style={{ marginBottom: '30px' }}>
+            <strong>🎯 核心要点回顾：</strong>
+            <ul style={{ marginTop: '10px', paddingLeft: '20px', lineHeight: '1.8' }}>
+                <li><b>Tokenization (分词)</b>：将文本转换为模型能理解的数字编号</li>
+                <li><b>Embedding (词嵌入)</b>：将 Token ID 映射为多维向量，表达词的语义关系</li>
+                <li><b>Position Encoding (位置编码)</b>：为每个词添加"座位号"，让模型理解词序</li>
+                <li><b>Self-Attention (自注意力)</b>：让每个词"关注"其他词，捕捉上下文关系</li>
+                <li><b>Encoder vs Decoder</b>：Encoder 全向注意力用于理解，Decoder 单向注意力用于生成</li>
+                <li><b>Output (输出)</b>：通过分类头或逐词生成完成最终任务</li>
+            </ul>
+        </div>
+
+        <div className="visual-container" style={{ textAlign: 'center' }}>
+            <h3 style={{ marginBottom: '20px', color: 'var(--accent-primary)' }}>Transformer 整体架构图</h3>
+            <div style={{
+                background: 'var(--bg-tertiary)',
+                padding: '20px',
+                borderRadius: '12px',
+                border: '1px solid var(--border-color)'
+            }}>
+                <img
+                    src={transformerOverall}
+                    alt="Transformer 整体架构"
+                    style={{
+                        maxWidth: '100%',
+                        maxHeight: '600px',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                    }}
+                />
+            </div>
+            <p className="visual-caption" style={{ marginTop: '15px' }}>
+                Transformer 架构的完整视图：左侧为 Encoder，右侧为 Decoder
+            </p>
+        </div>
+
+        <div className="interactive-demo-card" style={{
+            background: 'linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary))',
+            padding: '24px',
+            marginTop: '30px',
+            borderRadius: '12px',
+            border: '1px solid var(--border-accent)',
+            textAlign: 'center'
+        }}>
+            <h3 style={{ fontSize: '1.2rem', color: 'white', marginBottom: '12px' }}>🚀 LLM 动态演示</h3>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>
+                想要更直观地理解 Transformer 的工作原理？试试这个交互式可视化工具，动态展示 LLM 的运行过程。
+            </p>
+            <a
+                href="https://poloclub.github.io/transformer-explainer/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                    display: 'inline-block',
+                    padding: '12px 32px',
+                    background: 'var(--accent-primary)',
+                    color: 'white',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease',
+                    boxShadow: '0 4px 12px rgba(99, 102, 241, 0.4)'
+                }}
+                onMouseOver={(e) => e.target.style.transform = 'translateY(-2px)'}
+                onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
+            >
+                打开 Transformer Explainer ➜
+            </a>
+        </div>
+    </section>
+);
 
 export default TransformerTab;
