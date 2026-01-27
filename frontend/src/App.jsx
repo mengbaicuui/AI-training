@@ -104,6 +104,27 @@ function App() {
 
       <nav className="tab-navigation">
         <button
+          className={`tab-button ${activeTab === 'history' ? 'active' : ''}`}
+          onClick={() => handleTabChange('history')}
+        >
+          <span className="tab-icon">📜</span>
+          LLM 关键技术演进
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'pipeline' ? 'active' : ''}`}
+          onClick={() => handleTabChange('pipeline')}
+        >
+          <span className="tab-icon">🚀</span>
+          LLM 训练范式
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'transformer' ? 'active' : ''}`}
+          onClick={() => handleTabChange('transformer')}
+        >
+          <span className="tab-icon">📖</span>
+          Transformer 原理
+        </button>
+        <button
           className={`tab-button ${activeTab === 'qwen3' ? 'active' : ''}`}
           onClick={() => handleTabChange('qwen3')}
         >
@@ -123,27 +144,6 @@ function App() {
         >
           <span className="tab-icon">⚖️</span>
           对比视图
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'history' ? 'active' : ''}`}
-          onClick={() => handleTabChange('history')}
-        >
-          <span className="tab-icon">📜</span>
-          LLM 发展史
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'pipeline' ? 'active' : ''}`}
-          onClick={() => handleTabChange('pipeline')}
-        >
-          <span className="tab-icon">🚀</span>
-          LLM 训练范式
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'transformer' ? 'active' : ''}`}
-          onClick={() => handleTabChange('transformer')}
-        >
-          <span className="tab-icon">📖</span>
-          Transformer 原理
         </button>
       </nav>
 

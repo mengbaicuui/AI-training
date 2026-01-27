@@ -36,6 +36,13 @@ const TimelineNode = ({ data, isExpanded, onToggle, side }) => {
                     <div className="card-body">
                         <p className="description">{data.details.description}</p>
 
+                        {data.details.formula && (
+                            <div className="formula-container">
+                                <div className="formula-label">核心公式</div>
+                                <code className="formula-code">{data.details.formula}</code>
+                            </div>
+                        )}
+
                         <div className="key-points">
                             <h4>核心要点</h4>
                             <ul>

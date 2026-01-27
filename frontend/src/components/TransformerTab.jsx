@@ -1397,14 +1397,553 @@ const DecoderDemo = () => {
     const isFinished = currentStep === targetSteps.length;
     const currentProbs = isFinished ? [] : targetSteps[currentStep].probs;
 
+    // MLP 输出层可视化组件
+    const MLPOutputVisualization = () => {
+        // 模拟的隐藏状态维度（简化展示）
+        const hiddenDim = 4;
+        const vocabSize = 6;
+
+        // 模拟每个已生成 token 的隐藏状态（简化为4维）
+        const hiddenStates = generated.map((token, idx) => ({
+            token,
+            values: [
+                (Math.sin(idx * 0.5) * 0.5 + 0.5).toFixed(2),
+                (Math.cos(idx * 0.3) * 0.5 + 0.5).toFixed(2),
+                (Math.sin(idx * 0.7 + 1) * 0.5 + 0.5).toFixed(2),
+                (Math.cos(idx * 0.4 + 0.5) * 0.5 + 0.5).toFixed(2)
+            ]
+        }));
+
+        // 只展示最后一个 token 的处理过程
+        const lastToken = generated[generated.length - 1];
+        const lastHidden = hiddenStates[hiddenStates.length - 1];
+
+        return (
+            <div style={{
+                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1))',
+                border: '1px solid var(--border-color)',
+                borderRadius: '12px',
+                padding: '20px',
+                marginBottom: '20px'
+            }}>
+                <h4 style={{
+                    color: 'var(--accent-primary)',
+                    marginBottom: '15px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    fontSize: '1em'
+                }}>
+                    🧠 Output MLP Layer (输出层)
+                </h4>
+
+                {/* 流程图展示 */}
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '10px',
+                    flexWrap: 'wrap',
+                    marginBottom: '20px'
+                }}>
+                    {/* 1. 隐藏状态输入 */}
+                    <div style={{
+                        background: 'var(--bg-tertiary)',
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '2px solid var(--accent-primary)',
+                        minWidth: '120px',
+                        textAlign: 'center'
+                    }}>
+                        <div style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                            Hidden State
+                        </div>
+                        <div style={{
+                            fontFamily: 'monospace',
+                            fontSize: '0.7em',
+                            color: 'var(--accent-primary)',
+                            fontWeight: 'bold'
+                        }}>
+                            h<sub>{generated.length - 1}</sub> = [{lastHidden.values.join(', ')}]
+                        </div>
+                        <div style={{ fontSize: '0.7em', color: 'var(--text-muted)', marginTop: '4px' }}>
+                            (d_model 维)
+                        </div>
+                    </div>
+
+                    {/* 箭头 */}
+                    <div style={{ fontSize: '1.5em', color: 'var(--text-muted)' }}>→</div>
+
+                    {/* 2. MLP 神经网络层 */}
+                    <div style={{
+                        background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2))',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        border: '2px dashed var(--accent-warning)',
+                        textAlign: 'center',
+                        position: 'relative'
+                    }}>
+                        <div style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                            MLP (Linear)
+                        </div>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            justifyContent: 'center'
+                        }}>
+                            {/* 神经网络图标 */}
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '2px'
+                            }}>
+                                <div style={{ display: 'flex', gap: '3px' }}>
+                                    {[1,2,3,4].map(i => (
+                                        <div key={i} style={{
+                                            width: '8px',
+                                            height: '8px',
+                                            borderRadius: '50%',
+                                            background: 'var(--accent-warning)'
+                                        }} />
+                                    ))}
+                                </div>
+                                <div style={{ fontSize: '0.6em', color: 'var(--text-muted)' }}>input</div>
+                            </div>
+
+                            <div style={{ fontSize: '1.2em', color: 'var(--text-muted)' }}>×</div>
+
+                            {/* 权重矩阵 */}
+                            <div style={{
+                                border: '1px solid var(--accent-warning)',
+                                borderRadius: '4px',
+                                padding: '4px 8px',
+                                background: 'rgba(245, 158, 11, 0.1)'
+                            }}>
+                                <div style={{ fontSize: '0.7em', fontWeight: 'bold', color: 'var(--accent-warning)' }}>
+                                    W<sub>lm</sub>
+                                </div>
+                                <div style={{ fontSize: '0.6em', color: 'var(--text-muted)' }}>
+                                    d × V
+                                </div>
+                            </div>
+                        </div>
+                        <div style={{ fontSize: '0.65em', color: 'var(--text-muted)', marginTop: '6px' }}>
+                            W ∈ ℝ<sup>d_model × vocab_size</sup>
+                        </div>
+                    </div>
+
+                    {/* 箭头 */}
+                    <div style={{ fontSize: '1.5em', color: 'var(--text-muted)' }}>→</div>
+
+                    {/* 3. Logits 输出 */}
+                    <div style={{
+                        background: 'var(--bg-tertiary)',
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '2px solid var(--accent-success)',
+                        minWidth: '100px',
+                        textAlign: 'center'
+                    }}>
+                        <div style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                            Logits
+                        </div>
+                        <div style={{
+                            fontFamily: 'monospace',
+                            fontSize: '0.7em',
+                            color: 'var(--accent-success)',
+                            fontWeight: 'bold'
+                        }}>
+                            [2.1, 0.3, -0.5, ...]
+                        </div>
+                        <div style={{ fontSize: '0.7em', color: 'var(--text-muted)', marginTop: '4px' }}>
+                            (vocab_size 维)
+                        </div>
+                    </div>
+
+                    {/* 箭头 */}
+                    <div style={{ fontSize: '1.5em', color: 'var(--text-muted)' }}>→</div>
+
+                    {/* 4. Softmax */}
+                    <div style={{
+                        background: 'rgba(16, 185, 129, 0.15)',
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '2px solid var(--accent-success)',
+                        textAlign: 'center'
+                    }}>
+                        <div style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                            Softmax
+                        </div>
+                        <div style={{
+                            fontSize: '0.8em',
+                            color: 'var(--accent-success)',
+                            fontWeight: 'bold'
+                        }}>
+                            e<sup>z<sub>i</sub></sup> / Σe<sup>z</sup>
+                        </div>
+                        <div style={{ fontSize: '0.7em', color: 'var(--text-muted)', marginTop: '4px' }}>
+                            → 概率分布
+                        </div>
+                    </div>
+                </div>
+
+                {/* 多 Token 概率矩阵展示 */}
+                <div style={{
+                    background: 'var(--bg-card)',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    border: '1px solid var(--border-color)'
+                }}>
+                    <div style={{
+                        fontSize: '0.85em',
+                        fontWeight: 'bold',
+                        marginBottom: '12px',
+                        color: 'var(--text-primary)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                    }}>
+                        📊 多 Token 概率矩阵 (每个位置预测下一个 Token)
+                    </div>
+
+                    {/* 概率矩阵表格 */}
+                    <div style={{ overflowX: 'auto' }}>
+                        <table style={{
+                            width: '100%',
+                            borderCollapse: 'collapse',
+                            fontSize: '0.72em'
+                        }}>
+                            <thead>
+                                <tr>
+                                    <th style={{
+                                        padding: '8px 6px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'left',
+                                        color: 'var(--text-muted)',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        Token
+                                    </th>
+                                    <th style={{
+                                        padding: '4px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--text-muted)',
+                                        width: '20px'
+                                    }}>
+                                    </th>
+                                    <th style={{
+                                        padding: '8px 6px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--accent-primary)',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        Hidden States
+                                    </th>
+                                    <th style={{
+                                        padding: '4px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--text-muted)',
+                                        width: '20px'
+                                    }}>
+                                    </th>
+                                    <th style={{
+                                        padding: '8px 6px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--accent-warning)',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        Logits
+                                    </th>
+                                    <th style={{
+                                        padding: '4px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--text-muted)',
+                                        width: '20px'
+                                    }}>
+                                    </th>
+                                    <th style={{
+                                        padding: '8px 6px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--text-muted)'
+                                    }}>
+                                        概率分布 (Softmax)
+                                    </th>
+                                    <th style={{
+                                        padding: '4px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--text-muted)',
+                                        width: '20px'
+                                    }}>
+                                    </th>
+                                    <th style={{
+                                        padding: '8px 6px',
+                                        borderBottom: '2px solid var(--border-color)',
+                                        textAlign: 'center',
+                                        color: 'var(--accent-success)',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        采样
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {generated.map((token, idx) => {
+                                    // 模拟每个位置的概率分布
+                                    const nextTokenProbs = idx < targetSteps.length
+                                        ? targetSteps[idx].probs
+                                        : [{ n: '[END]', v: 0.98 }];
+                                    const sampledToken = idx < targetSteps.length
+                                        ? targetSteps[idx].word
+                                        : '[END]';
+                                    const isCurrentPosition = idx === generated.length - 1 && !isFinished;
+
+                                    // 模拟 hidden states (简化为4维向量)
+                                    const hiddenStateValues = [
+                                        (Math.sin(idx * 0.5 + 0.1) * 0.5 + 0.5).toFixed(2),
+                                        (Math.cos(idx * 0.3 + 0.2) * 0.5 + 0.5).toFixed(2),
+                                        (Math.sin(idx * 0.7 + 1) * 0.5 + 0.5).toFixed(2),
+                                        (Math.cos(idx * 0.4 + 0.5) * 0.5 + 0.5).toFixed(2)
+                                    ];
+
+                                    // 模拟 logits (未归一化的分数)
+                                    const logitsValues = nextTokenProbs.slice(0, 3).map((p, i) =>
+                                        (Math.log(p.v / (1 - p.v + 0.01)) + (i === 0 ? 2 : 0)).toFixed(1)
+                                    );
+
+                                    return (
+                                        <tr key={idx} style={{
+                                            background: isCurrentPosition
+                                                ? 'rgba(99, 102, 241, 0.15)'
+                                                : 'transparent',
+                                            transition: 'all 0.3s ease'
+                                        }}>
+                                            {/* Token 列 */}
+                                            <td style={{
+                                                padding: '8px 6px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                fontWeight: 'bold',
+                                                color: isCurrentPosition ? 'var(--accent-primary)' : 'var(--text-primary)'
+                                            }}>
+                                                <span style={{
+                                                    padding: '2px 6px',
+                                                    background: idx === 0 ? 'var(--text-muted)' : 'var(--accent-success)',
+                                                    color: 'white',
+                                                    borderRadius: '4px',
+                                                    fontSize: '0.9em'
+                                                }}>
+                                                    {token}
+                                                </span>
+                                                {isCurrentPosition && (
+                                                    <span style={{
+                                                        marginLeft: '4px',
+                                                        fontSize: '0.75em',
+                                                        color: 'var(--accent-primary)'
+                                                    }}>
+                                                        ←
+                                                    </span>
+                                                )}
+                                            </td>
+
+                                            {/* 箭头 → */}
+                                            <td style={{
+                                                padding: '4px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                textAlign: 'center',
+                                                color: 'var(--text-muted)',
+                                                fontSize: '1.1em'
+                                            }}>
+                                                →
+                                            </td>
+
+                                            {/* Hidden States 列 */}
+                                            <td style={{
+                                                padding: '6px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                textAlign: 'center'
+                                            }}>
+                                                <div style={{
+                                                    display: 'inline-block',
+                                                    padding: '3px 6px',
+                                                    background: 'rgba(99, 102, 241, 0.15)',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid var(--accent-primary)',
+                                                    fontFamily: 'monospace',
+                                                    fontSize: '0.85em',
+                                                    color: 'var(--accent-primary)'
+                                                }}>
+                                                    [{hiddenStateValues.join(', ')}]
+                                                </div>
+                                            </td>
+
+                                            {/* 箭头 → MLP */}
+                                            <td style={{
+                                                padding: '4px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                textAlign: 'center',
+                                                color: 'var(--accent-warning)',
+                                                fontSize: '1em'
+                                            }}>
+                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1px' }}>
+                                                    <span style={{ fontSize: '0.6em', color: 'var(--text-muted)' }}>×W</span>
+                                                    <span>→</span>
+                                                </div>
+                                            </td>
+
+                                            {/* Logits 列 */}
+                                            <td style={{
+                                                padding: '6px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                textAlign: 'center'
+                                            }}>
+                                                <div style={{
+                                                    display: 'inline-block',
+                                                    padding: '3px 6px',
+                                                    background: 'rgba(245, 158, 11, 0.15)',
+                                                    borderRadius: '4px',
+                                                    border: '1px solid var(--accent-warning)',
+                                                    fontFamily: 'monospace',
+                                                    fontSize: '0.85em',
+                                                    color: 'var(--accent-warning)'
+                                                }}>
+                                                    [{logitsValues.join(', ')}, ...]
+                                                </div>
+                                            </td>
+
+                                            {/* 箭头 → Softmax */}
+                                            <td style={{
+                                                padding: '4px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                textAlign: 'center',
+                                                color: 'var(--accent-success)',
+                                                fontSize: '1em'
+                                            }}>
+                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1px' }}>
+                                                    <span style={{ fontSize: '0.55em', color: 'var(--text-muted)' }}>softmax</span>
+                                                    <span>→</span>
+                                                </div>
+                                            </td>
+
+                                            {/* 概率分布列 */}
+                                            <td style={{
+                                                padding: '6px',
+                                                borderBottom: '1px solid var(--border-color)'
+                                            }}>
+                                                <div style={{
+                                                    display: 'flex',
+                                                    gap: '3px',
+                                                    flexWrap: 'wrap',
+                                                    justifyContent: 'center'
+                                                }}>
+                                                    {nextTokenProbs.slice(0, 3).map((p, i) => (
+                                                        <span key={i} style={{
+                                                            padding: '2px 4px',
+                                                            background: i === 0
+                                                                ? 'rgba(16, 185, 129, 0.3)'
+                                                                : 'var(--bg-tertiary)',
+                                                            borderRadius: '3px',
+                                                            fontSize: '0.85em',
+                                                            border: i === 0
+                                                                ? '1px solid var(--accent-success)'
+                                                                : '1px solid var(--border-color)'
+                                                        }}>
+                                                            {p.n}: <b>{(p.v * 100).toFixed(0)}%</b>
+                                                        </span>
+                                                    ))}
+                                                    <span style={{
+                                                        color: 'var(--text-muted)',
+                                                        fontSize: '0.8em'
+                                                    }}>
+                                                        ...
+                                                    </span>
+                                                </div>
+                                            </td>
+
+                                            {/* 箭头 → 采样 */}
+                                            <td style={{
+                                                padding: '4px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                textAlign: 'center',
+                                                color: 'var(--accent-success)',
+                                                fontSize: '1em'
+                                            }}>
+                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1px' }}>
+                                                    <span style={{ fontSize: '0.55em', color: 'var(--text-muted)' }}>sample</span>
+                                                    <span>→</span>
+                                                </div>
+                                            </td>
+
+                                            {/* 采样结果列 */}
+                                            <td style={{
+                                                padding: '6px',
+                                                borderBottom: '1px solid var(--border-color)',
+                                                textAlign: 'center'
+                                            }}>
+                                                {idx < generated.length - 1 || isFinished ? (
+                                                    <span style={{
+                                                        padding: '2px 8px',
+                                                        background: 'var(--accent-success)',
+                                                        color: 'white',
+                                                        borderRadius: '4px',
+                                                        fontWeight: 'bold'
+                                                    }}>
+                                                        {sampledToken}
+                                                    </span>
+                                                ) : (
+                                                    <span style={{
+                                                        padding: '2px 6px',
+                                                        border: '1px dashed var(--accent-primary)',
+                                                        borderRadius: '4px',
+                                                        color: 'var(--accent-primary)',
+                                                        animation: 'pulse 1.5s infinite',
+                                                        fontSize: '0.9em'
+                                                    }}>
+                                                        🎲
+                                                    </span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* 采样说明 */}
+                    <div style={{
+                        marginTop: '12px',
+                        padding: '10px',
+                        background: 'rgba(99, 102, 241, 0.1)',
+                        borderRadius: '6px',
+                        fontSize: '0.8em',
+                        color: 'var(--text-secondary)'
+                    }}>
+                        💡 <b>数据流</b>：Token → Hidden States (d维) → <b>×W<sub>lm</sub></b> → Logits (vocab_size维) → <b>Softmax</b> → 概率分布 → <b>采样</b> → 下一个 Token
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             <div style={{ textAlign: 'center', marginBottom: '20px' }}>
                 <h3 style={{ color: 'var(--accent-success)' }}>Decoder 任务: 翻译生成</h3>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.9em' }}>
-                    Decoder 必须“戴着眼罩”工作。它只能根据<b>已生成的词</b>，来预测<b>下一个词</b>。
+                    Decoder 必须"戴着眼罩"工作。它只能根据<b>已生成的词</b>，通过 <b>Output MLP</b> 预测<b>下一个词的概率分布</b>，然后采样生成。
                 </p>
             </div>
+
+            {/* MLP 输出层可视化 */}
+            <MLPOutputVisualization />
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', flex: 1 }}>
                 {/* Left: Visualization of Generation */}
