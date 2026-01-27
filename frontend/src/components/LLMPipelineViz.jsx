@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
     ReactFlow,
     Controls,
@@ -13,10 +13,12 @@ import {
     unifiedNodes,
     unifiedEdges,
     paradigms,
-    summary
+    summary,
+    pipelineWarmupQuestions
 } from '../data/pipelineData';
 import { trainingSamples } from '../data/traning_datas';
 import { Layers, Sparkles, Database, BookOpen, ChevronRight, Globe } from 'lucide-react';
+import QuestionPanel from './QuestionPanel';
 
 // Modal Component for displaying data
 const DataModal = ({ isOpen, onClose, data }) => {
@@ -48,6 +50,34 @@ const LLMPipelineViz = () => {
     const [edges, setEdges, onEdgesChange] = useEdgesState(unifiedEdges);
     const [selectedStage, setSelectedStage] = useState(null);
     const [selectedParadigm, setSelectedParadigm] = useState(null); // Default: null (Panorama)
+
+    // 收集所有训练范式的问题
+    const allQuestions = useMemo(() => {
+        const questions = [];
+        // 阶段问题
+        stages.forEach(stage => {
+            if (stage.details?.questions) {
+                stage.details.questions.forEach(q => {
+                    questions.push({
+                        ...q,
+                        question: `【${stage.name}】${q.question}`
+                    });
+                });
+            }
+        });
+        // 范式问题
+        paradigms.forEach(paradigm => {
+            if (paradigm.questions) {
+                paradigm.questions.forEach(q => {
+                    questions.push({
+                        ...q,
+                        question: `【${paradigm.name}】${q.question}`
+                    });
+                });
+            }
+        });
+        return questions;
+    }, []);
     const [selectedNode, setSelectedNode] = useState(null);
     const [modalData, setModalData] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -473,6 +503,13 @@ const LLMPipelineViz = () => {
                     {renderDetailPanel()}
                 </div>
             </div>
+
+            {/* 问题面板 */}
+            <QuestionPanel
+                questions={allQuestions}
+                warmupQuestions={pipelineWarmupQuestions}
+                sectionTitle="LLM 训练范式"
+            />
         </div>
     );
 };

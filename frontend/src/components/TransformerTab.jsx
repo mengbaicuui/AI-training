@@ -1,12 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 /* Import images */
 import attention1 from '../data/training/images/attention1.png';
 import attention2 from '../data/training/images/attention2.png';
 import Plot from 'react-plotly.js';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import transformerQuestions from '../data/transformerQuestions';
+import QuestionPanel from './QuestionPanel';
 
 const TransformerTab = () => {
     const [activeSection, setActiveSection] = useState('tokenization');
+
+    // 使用 useMemo 确保问题随 activeSection 变化而更新
+    const currentQuestions = useMemo(() => {
+        const sectionMap = {
+            'tokenization': 'tokenization',
+            'embedding': 'embedding',
+            'position': 'position',
+            'attention': 'attention',
+            'encoder-decoder': 'encoderDecoder',
+            'output': 'output'
+        };
+        const key = sectionMap[activeSection];
+        return transformerQuestions[key]?.questions || [];
+    }, [activeSection]);
+
+    // 获取热身问题
+    const currentWarmupQuestions = useMemo(() => {
+        const sectionMap = {
+            'tokenization': 'tokenization',
+            'embedding': 'embedding',
+            'position': 'position',
+            'attention': 'attention',
+            'encoder-decoder': 'encoderDecoder',
+            'output': 'output'
+        };
+        const key = sectionMap[activeSection];
+        return transformerQuestions[key]?.warmupQuestions || [];
+    }, [activeSection]);
+
+    const sectionTitle = useMemo(() => {
+        const titles = {
+            'tokenization': 'Tokenization (分词)',
+            'embedding': 'Embedding (词嵌入)',
+            'position': 'Position (位置编码)',
+            'attention': 'Self Attention (自注意力)',
+            'encoder-decoder': 'Encoder vs Decoder',
+            'output': 'Output (输出)'
+        };
+        return titles[activeSection] || '';
+    }, [activeSection]);
 
     return (
         <div className="transformer-tab">
@@ -59,6 +101,14 @@ const TransformerTab = () => {
                 {activeSection === 'encoder-decoder' && <EncoderDecoderSection />}
                 {activeSection === 'output' && <OutputSection />}
             </div>
+
+            {/* 问题面板 - 使用 key 强制重新渲染 */}
+            <QuestionPanel
+                key={activeSection}
+                questions={currentQuestions}
+                warmupQuestions={currentWarmupQuestions}
+                sectionTitle={sectionTitle}
+            />
         </div>
     );
 };

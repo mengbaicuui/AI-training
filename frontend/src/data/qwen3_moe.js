@@ -5,6 +5,16 @@ export const qwen3MoeConfig = {
     name: "Qwen3MoeForCausalLM",
     description: "Qwen3 混合专家因果语言模型 - 仅激活部分专家参数进行计算，实现大模型智力与小模型速度",
     type: "sparse_moe",
+    questions: [
+        {
+            question: 'MoE 模型号称"30B 参数但只有 3B 激活"，这是什么意思？真的能省这么多计算吗？',
+            answer: '意思是模型总参数有 300 亿，但每次推理只用到 30 亿（因为只激活部分专家）。计算量确实大幅降低，但有代价：1）显存仍需存储全部参数；2）专家并行需要特殊的分布式策略；3）通信开销可能很大。'
+        },
+        {
+            question: '为什么 MoE 的专家数量通常是 2 的幂次（如 8、64、128）？',
+            answer: '主要是工程原因：1）便于在多卡上均匀切分；2）硬件（GPU）对 2 的幂次更友好；3）负载均衡更容易实现。理论上任意数量都行，但实践中 2 的幂次效率更高。'
+        }
+    ],
     defaultParams: {
         vocab_size: 151936,
         hidden_size: 2048,
@@ -438,6 +448,16 @@ else:
                                         expert_output: "每个专家: (num_tokens_for_expert, 2048)",
                                         output: "(batch_size, seq_len, 2048)",
                                     },
+                                    questions: [
+                                        {
+                                            question: 'Qwen3-MoE 有 128 个专家，但每个 token 只激活 8 个。这意味着什么？为什么不激活全部专家？',
+                                            answer: '这意味着虽然模型拥有 128 个专家的知识容量，但推理时只需计算 8 个专家（约 6% 的计算量）。如果激活全部专家，计算成本会高 16 倍，失去了 MoE 的意义。稀疏激活是 MoE 的核心思想：用参数量换智能，用稀疏换效率。'
+                                        },
+                                        {
+                                            question: '不同的 token 会激活不同的专家吗？模型怎么决定激活哪些专家？',
+                                            answer: '是的，每个 token 根据自己的内容被路由到不同的专家。Router（门控网络）为每个 token 计算对 128 个专家的"亲和度分数"，然后选分数最高的 8 个。这样不同类型的内容会被不同的专家处理。'
+                                        }
+                                    ],
                                     code: `class Qwen3MoeSparseMoeBlock(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -499,6 +519,16 @@ else:
                                                 input: "(batch_size × seq_len, 2048)",
                                                 output: "(batch_size × seq_len, 128) [logits]",
                                             },
+                                            questions: [
+                                                {
+                                                    question: '如果 MoE 的路由器总是把所有 token 都路由到同一个专家，会发生什么问题？这个问题如何解决？',
+                                                    answer: '会发生"路由崩塌"（Router Collapse）：只有少数专家被使用，其他专家浪费。这会导致模型无法利用全部容量。解决方案是添加负载均衡损失（Load Balancing Loss），惩罚专家负载不均衡的情况，鼓励 token 均匀分配给各专家。'
+                                                },
+                                                {
+                                                    question: 'Router 的参数量很小（128 × 2048 ≈ 26 万），但它的作用却很关键，为什么？',
+                                                    answer: 'Router 决定了每个 token 被哪些专家处理，相当于"任务分配器"。如果 Router 学得不好，token 可能被分配到不擅长处理它的专家，导致整体效果变差。小参数量，大责任。'
+                                                }
+                                            ],
                                             code: `self.gate = nn.Linear(config.hidden_size, config.num_experts, bias=False)
 
 # 路由计算流程
@@ -527,6 +557,16 @@ routing_weights, selected_experts = torch.topk(routing_weights, self.top_k, dim=
                                                 single_expert_input: "(num_tokens_for_this_expert, 2048)",
                                                 single_expert_output: "(num_tokens_for_this_expert, 2048)",
                                             },
+                                            questions: [
+                                                {
+                                                    question: '每个专家的 intermediate_size 只有 768，远小于稠密模型的 12288，为什么这样设计？',
+                                                    answer: '因为每个 token 会激活 8 个专家，8 × 768 = 6144，与稠密模型的 intermediate_size 相当。这样单个 token 的计算量保持不变，但通过 128 个不同的小专家，模型拥有了更大的知识容量（参数量）。'
+                                                },
+                                                {
+                                                    question: '128 个专家是否会学到不同的"专业知识"？还是只是简单的冗余？',
+                                                    answer: '研究表明专家确实会分化：有的专家擅长处理代码，有的擅长数学，有的擅长对话。但这种分化不是显式设计的，而是通过 Router 和负载均衡损失自动涌现的。不过也存在一定程度的冗余。'
+                                                }
+                                            ],
                                             code: `self.experts = nn.ModuleList([
     Qwen3MoeMLP(config, intermediate_size=config.moe_intermediate_size)
     for _ in range(self.num_experts)  # 128 个专家

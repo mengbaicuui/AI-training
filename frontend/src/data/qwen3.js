@@ -84,6 +84,17 @@ export const qwen3Architecture = {
 
 # 前向传播
 inputs_embeds = self.embed_tokens(input_ids)`,
+          questions: [
+            {
+              question: 'Embedding 层的参数量是多少？这个层在整个模型中占多大比例？',
+              hint: '参数量 = 词表大小 × 嵌入维度',
+              answer: '参数量 = 151936 × 4096 ≈ 6.22 亿。对于 7B 模型来说约占 9%，对于 70B 模型只占约 1%。词表大小是固定的，所以模型越大，Embedding 占比越小。'
+            },
+            {
+              question: '为什么 Embedding 层需要 padding_idx？它有什么作用？',
+              answer: 'padding_idx 指定哪个 token ID 是填充符（用于对齐不同长度的序列）。该位置的 embedding 向量永远是零向量，且在训练时不更新。这确保填充位置不携带任何信息，不影响模型计算。'
+            }
+          ],
           children: [],
         },
         {
@@ -114,12 +125,23 @@ inputs_embeds = self.embed_tokens(input_ids)`,
         inv_freq_expanded = self.inv_freq[None, :, None].float()\\
             .expand(position_ids.shape[0], -1, 1).to(x.device)
         position_ids_expanded = position_ids[:, None, :].float()
-        
+
         freqs = (inv_freq_expanded @ position_ids_expanded).transpose(1, 2)
         emb = torch.cat((freqs, freqs), dim=-1)
         cos = emb.cos() * self.attention_scaling
         sin = emb.sin() * self.attention_scaling
         return cos.to(dtype=x.dtype), sin.to(dtype=x.dtype)`,
+          questions: [
+            {
+              question: 'RoPE 为什么只作用于 Q 和 K，不作用于 V？',
+              hint: '想想 Attention 公式中各部分的作用',
+              answer: 'Attention 分数是通过 Q 和 K 的点积计算的，位置信息需要影响"谁关注谁"。V 是被加权求和的值，不参与相关性计算，加位置编码没有意义。RoPE 通过旋转 Q 和 K，使相对位置信息自然融入 Attention 分数。'
+            },
+            {
+              question: 'rope_theta（基频）的值为什么重要？不同的值会有什么影响？',
+              answer: 'rope_theta 控制位置编码的频率范围。较小的 theta（如 10000）适合短序列，较大的 theta（如 1000000）可以支持更长的上下文。Qwen3-MoE 用 1000000，因为它需要支持超长上下文。'
+            }
+          ],
           children: [],
         },
         {
@@ -195,6 +217,16 @@ for decoder_layer in self.layers:
                     input: "(batch_size, seq_len, 4096)",
                     output: "(batch_size, seq_len, 4096)",
                   },
+                  questions: [
+                    {
+                      question: 'RMSNorm 和传统 LayerNorm 有什么区别？为什么 LLM 普遍改用 RMSNorm？',
+                      answer: 'LayerNorm 需要计算均值和方差，然后减均值除标准差；RMSNorm 只计算均方根（RMS），省去了均值计算。好处：1）计算更快（少一次 reduce 操作）；2）实验表明效果相当甚至更好。这是 LLaMA 带火的设计。'
+                    },
+                    {
+                      question: '为什么 Qwen3 用的是 Pre-Norm（先归一化再计算）而不是 Post-Norm？',
+                      answer: 'Pre-Norm 把归一化放在子层之前，梯度更稳定，深层网络更容易训练。Post-Norm 放在之后，理论上表达能力更强但训练困难。现代深层 LLM（几十上百层）基本都用 Pre-Norm。'
+                    }
+                  ],
                   code: `class Qwen3RMSNorm(nn.Module):
     def __init__(self, hidden_size, eps: float = 1e-6):
         super().__init__()
@@ -231,6 +263,21 @@ for decoder_layer in self.layers:
                     V: "(batch_size, 32, seq_len, 128)",
                     output: "(batch_size, seq_len, 4096)",
                   },
+                  questions: [
+                    {
+                      question: 'Qwen3 使用 32 个 Q 头但只有 8 个 KV 头（4:1 比例），这样做的主要好处是什么？有什么代价？',
+                      answer: '好处：大幅减少 KV Cache 的显存占用（只需存储 1/4 的 KV 状态），在长序列推理时效果显著。代价：每 4 个 Q 头共享同一个 KV 头，可能会略微损失表达能力，但实验表明这个代价很小。'
+                    },
+                    {
+                      question: 'Qwen3 为什么要对 Q 和 K 做 RMSNorm（q_norm 和 k_norm）？其他模型有这个设计吗？',
+                      hint: '想想 Q 和 K 的点积会有什么问题',
+                      answer: '对 Q 和 K 归一化可以稳定 Attention 分数的数值范围，避免训练不稳定。这是 Qwen3 的特色设计，也叫 QK Norm。类似设计在 PaLM、Gemma 等模型中也有使用，是提升训练稳定性的有效技巧。'
+                    },
+                    {
+                      question: 'attention_bias 为 False 意味着什么？为什么现代 LLM 普遍不用偏置？',
+                      answer: '意味着 Q/K/V/O 四个投影矩阵都没有偏置项。不用偏置的原因：1）减少参数量；2）Layer Norm 已经提供了偏移能力；3）实验表明去掉偏置对效果影响很小甚至更好。这是一种简化设计的趋势。'
+                    }
+                  ],
                   code: `class Qwen3Attention(nn.Module):
     def __init__(self, config: Qwen3Config, layer_idx: int):
         super().__init__()
@@ -415,6 +462,16 @@ for decoder_layer in self.layers:
                     intermediate: "(batch_size, seq_len, 22016)",
                     output: "(batch_size, seq_len, 4096)",
                   },
+                  questions: [
+                    {
+                      question: 'SwiGLU 和普通的 FFN（两层线性 + ReLU）有什么区别？为什么现代 LLM 都用 SwiGLU？',
+                      answer: 'SwiGLU 有三个线性层（gate、up、down）而非两个，并用门控机制（gate × up）代替简单的激活函数。好处是：1）更强的表达能力；2）更平滑的梯度；3）实验表明在相同参数量下效果更好。代价是多了 50% 的参数。'
+                    },
+                    {
+                      question: 'intermediate_size 为什么是 hidden_size 的约 3 倍（12288 vs 4096）？这个比例是怎么确定的？',
+                      answer: '这是经验值。原始 Transformer 用的是 4 倍，但 SwiGLU 有三个投影矩阵，为了保持总参数量相近，通常用 8/3 ≈ 2.67 倍。Qwen3 用的是 3 倍。这个比例会影响模型容量和计算效率的平衡。'
+                    }
+                  ],
                   code: `class Qwen3MLP(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -528,6 +585,16 @@ hidden_states = self.norm(hidden_states)`,
         input: "(batch_size, seq_len, 4096)",
         output: "(batch_size, seq_len, 151936) [logits]",
       },
+      questions: [
+        {
+          question: 'LM Head 输出 151936 维的向量，每个维度代表什么？怎么变成最终的词？',
+          answer: '每个维度对应词表中的一个 token，值是未归一化的分数（logits）。通过 Softmax 转换成概率分布，然后用采样策略（贪婪、Top-k 等）选择最终的 token。151936 就是 Qwen3 的词表大小。'
+        },
+        {
+          question: 'tie_word_embeddings 为 True 时，LM Head 和 Embedding 共享权重，这是怎么做到的？',
+          answer: 'Embedding 层的权重是 (vocab_size, hidden_size)，LM Head 需要 (hidden_size, vocab_size)。共享时直接用 Embedding 权重的转置作为 LM Head 的权重。这样两个方向的映射保持一致，还能减少约 6 亿参数。'
+        }
+      ],
       code: `self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
 
 # forward 中

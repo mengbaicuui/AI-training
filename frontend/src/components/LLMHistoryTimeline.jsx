@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { llmHistoryData } from '../data/llm_history';
+import { useState, useMemo } from 'react';
+import { llmHistoryData, llmHistoryWarmupQuestions } from '../data/llm_history';
+import QuestionPanel from './QuestionPanel';
 import './LLMHistoryTimeline.css';
 
 const TimelineNode = ({ data, isExpanded, onToggle, side }) => {
@@ -58,6 +59,22 @@ const TimelineNode = ({ data, isExpanded, onToggle, side }) => {
 const LLMHistoryTimeline = () => {
     const [expandedIds, setExpandedIds] = useState(llmHistoryData.map(item => item.id)); // Default expand all
 
+    // 收集所有里程碑的问题
+    const allQuestions = useMemo(() => {
+        const questions = [];
+        llmHistoryData.forEach(item => {
+            if (item.details?.questions) {
+                item.details.questions.forEach(q => {
+                    questions.push({
+                        ...q,
+                        question: `【${item.title}】${q.question}`
+                    });
+                });
+            }
+        });
+        return questions;
+    }, []);
+
     const handleToggle = (id) => {
         setExpandedIds(prev => {
             if (prev.includes(id)) {
@@ -90,6 +107,13 @@ const LLMHistoryTimeline = () => {
                     />
                 ))}
             </div>
+
+            {/* 问题面板 */}
+            <QuestionPanel
+                questions={allQuestions}
+                warmupQuestions={llmHistoryWarmupQuestions}
+                sectionTitle="LLM 发展史"
+            />
         </div>
     );
 };
