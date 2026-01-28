@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>主流 PEFT 技术实战 - 垂域模型训练方法</title>
+    <title>主流 PEFT 技术原理 - 垂域模型训练方法</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -596,7 +596,7 @@
         <!-- 页面头部 -->
         <header class="page-header">
             <div class="section-tag">1.1 高效微调策略</div>
-            <h1>主流 PEFT 技术实战</h1>
+            <h1>主流 PEFT 技术原理</h1>
             <p class="desc">PEFT 方法概览、LoRA/QLoRA 原理与参数配置、灾难性遗忘应对策略</p>
         </header>
 
@@ -1120,67 +1120,166 @@
                 <h3>实验数据对比（GPT-3 175B）</h3>
                 <p>以下是各 PEFT 方法在 GPT-3 175B 上的对比实验结果：</p>
 
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>方法</th>
-                                <th>可训练参数</th>
-                                <th>WikiSQL (Acc%)</th>
-                                <th>MNLI-m (Acc%)</th>
-                                <th>SAMSum (R1/R2/RL)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Full Fine-Tuning</td>
-                                <td>175,255.8M</td>
-                                <td>73.8</td>
-                                <td>89.5</td>
-                                <td>52.0/28.0/44.5</td>
-                            </tr>
-                            <tr>
-                                <td>BitFit (只训练 Bias)</td>
-                                <td>14.2M</td>
-                                <td>71.3</td>
-                                <td>91.0</td>
-                                <td>51.3/27.4/43.5</td>
-                            </tr>
-                            <tr>
-                                <td>Prefix Embedding</td>
-                                <td>3.2M</td>
-                                <td>63.1</td>
-                                <td>88.6</td>
-                                <td>48.3/24.2/40.5</td>
-                            </tr>
-                            <tr>
-                                <td>Prefix Layer</td>
-                                <td>20.2M</td>
-                                <td>70.1</td>
-                                <td>89.5</td>
-                                <td>50.8/27.3/43.5</td>
-                            </tr>
-                            <tr>
-                                <td>Adapter</td>
-                                <td>7.1M</td>
-                                <td>71.9</td>
-                                <td>89.8</td>
-                                <td>53.0/28.9/44.8</td>
-                            </tr>
-                            <tr style="background: rgba(6, 182, 212, 0.1);">
-                                <td><strong style="color: #06b6d4;">LoRA</strong></td>
-                                <td><strong>4.7M</strong></td>
-                                <td><strong style="color: #10b981;">73.4</strong></td>
-                                <td><strong style="color: #10b981;">91.7</strong></td>
-                                <td><strong style="color: #10b981;">53.8/29.8/45.9</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="diagram" style="text-align: center;">
+                    <img
+                        src="gpt3_175b_peft_results.png"
+                        alt="GPT-3 175B 上各 PEFT 方法的实验对比结果（截图）"
+                        style="width: 100%; max-width: 900px; border-radius: 10px;"
+                    >
                 </div>
 
                 <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 12px;">
                     <em>数据来源：LoRA 原论文 (Hu et al., 2021)</em>
                 </p>
+            </div>
+        </section>
+
+        <!-- 微调工具 -->
+        <section class="section">
+            <h2 class="section-title">微调工具：从「算法」到「工程落地」</h2>
+
+            <div class="content-card">
+                <h3>为什么需要“微调工具”？</h3>
+                <p>PEFT（如 LoRA/QLoRA）解决的是“怎么高效训练”的算法问题；而微调工具解决的是“如何把训练流程跑通并规模化复用”的工程问题，包括数据集管理、模板/对话格式、训练配置、日志与评估、导出与部署等。</p>
+
+                <div class="diagram" style="text-align: center;">
+                    <!-- 原创示意图（SVG），避免版权风险 -->
+                    <svg viewBox="0 0 1100 640" width="100%" style="max-width: 860px; border-radius: 10px;">
+                        <!-- background -->
+                        <rect x="0" y="0" width="1100" height="640" rx="14" fill="#f3efe6"/>
+
+                        <!-- helper styles (inline for portability) -->
+                        <defs>
+                            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.12"/>
+                            </filter>
+                        </defs>
+
+                        <!-- left main node -->
+                        <g filter="url(#shadow)">
+                            <rect x="60" y="210" width="260" height="100" rx="16" fill="#e8dfcf" stroke="#c8b89a" stroke-width="3"/>
+                            <text x="190" y="265" text-anchor="middle" font-size="34" font-weight="700" fill="#2b2b2b" font-family="Noto Sans SC, sans-serif">大模型微调工具</text>
+                        </g>
+
+                        <!-- connectors -->
+                        <path d="M 320 255 C 410 120, 470 92, 560 92" fill="none" stroke="#9b8f7b" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M 320 260 C 420 250, 470 250, 560 250" fill="none" stroke="#9b8f7b" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M 320 265 C 410 470, 470 510, 560 510" fill="none" stroke="#9b8f7b" stroke-width="4" stroke-linecap="round"/>
+
+                        <!-- branch 1: PEFT -->
+                        <g filter="url(#shadow)">
+                            <rect x="560" y="50" width="480" height="92" rx="16" fill="#f1eadc" stroke="#c8b89a" stroke-width="3"/>
+                            <text x="800" y="93" text-anchor="middle" font-size="28" font-weight="700" fill="#2b2b2b" font-family="Noto Sans SC, sans-serif">基础工具：PEFT</text>
+                            <text x="800" y="122" text-anchor="middle" font-size="18" fill="#6b6b6b" font-family="Noto Sans SC, sans-serif">提供 LoRA / QLoRA / Adapter 等参数高效微调能力</text>
+                        </g>
+
+                        <!-- branch 2: LLaMA-Factory -->
+                        <g filter="url(#shadow)">
+                            <rect x="560" y="176" width="480" height="220" rx="16" fill="#f1eadc" stroke="#c8b89a" stroke-width="3"/>
+                            <text x="740" y="214" text-anchor="start" font-size="26" font-weight="800" fill="#2b2b2b" font-family="Noto Sans SC, sans-serif">全栈微调工具</text>
+                            <text x="740" y="245" text-anchor="start" font-size="24" font-weight="800" fill="#2b2b2b" font-family="Noto Sans SC, sans-serif">LLaMA-Factory</text>
+
+                            <!-- icon: factory + gear (original) -->
+                            <g transform="translate(585, 205)">
+                                <rect x="0" y="20" width="110" height="70" rx="10" fill="#e8dfcf" stroke="#c8b89a" stroke-width="2"/>
+                                <rect x="16" y="5" width="28" height="30" rx="6" fill="#e8dfcf" stroke="#c8b89a" stroke-width="2"/>
+                                <rect x="52" y="0" width="18" height="35" rx="6" fill="#e8dfcf" stroke="#c8b89a" stroke-width="2"/>
+                                <rect x="78" y="10" width="18" height="25" rx="6" fill="#e8dfcf" stroke="#c8b89a" stroke-width="2"/>
+                                <circle cx="80" cy="55" r="14" fill="none" stroke="#9b8f7b" stroke-width="3"/>
+                                <path d="M80 39 v-6 M80 77 v-6 M64 55 h-6 M102 55 h-6 M70 45 l-4 -4 M90 65 l4 4 M70 65 l-4 4 M90 45 l4 -4"
+                                      stroke="#9b8f7b" stroke-width="3" stroke-linecap="round"/>
+                                <circle cx="80" cy="55" r="6" fill="#9b8f7b"/>
+                            </g>
+
+                            <!-- bullets -->
+                            <g font-family="Noto Sans SC, sans-serif" font-size="17" fill="#5f5f5f">
+                                <text x="740" y="280">• 支持海量模型 + 主流微调方法</text>
+                                <text x="740" y="310">• 内置基础训练数据集</text>
+                                <text x="740" y="340">• 支持预训练 / 增量训练</text>
+                                <text x="740" y="370">• 模型生态友好（如 ModelScope / HF）</text>
+                            </g>
+                        </g>
+
+                        <!-- branch 3: SWIFT -->
+                        <g filter="url(#shadow)">
+                            <rect x="560" y="462" width="480" height="150" rx="16" fill="#f1eadc" stroke="#c8b89a" stroke-width="3"/>
+                            <text x="740" y="504" text-anchor="start" font-size="24" font-weight="800" fill="#2b2b2b" font-family="Noto Sans SC, sans-serif">轻量级微调工具</text>
+                            <text x="740" y="534" text-anchor="start" font-size="24" font-weight="800" fill="#2b2b2b" font-family="Noto Sans SC, sans-serif">SWIFT</text>
+
+                            <!-- icon: lightning + rocket (original) -->
+                            <g transform="translate(590, 485)">
+                                <path d="M48 0 L22 40 H44 L30 76 L78 30 H54 L66 0 Z" fill="#9b8f7b" opacity="0.9"/>
+                                <path d="M100 26 C108 34, 108 46, 100 54 L76 78 C68 86, 56 86, 48 78 L22 52 C14 44, 14 32, 22 24 L46 0 C54 -8, 66 -8, 74 0 Z"
+                                      fill="#e8dfcf" stroke="#c8b89a" stroke-width="2"/>
+                                <circle cx="72" cy="32" r="8" fill="none" stroke="#9b8f7b" stroke-width="3"/>
+                                <path d="M18 84 C30 76, 42 76, 54 84" fill="none" stroke="#9b8f7b" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+
+                            <g font-family="Noto Sans SC, sans-serif" font-size="17" fill="#5f5f5f">
+                                <text x="740" y="566">• 以中文模型为主，覆盖常见微调方法</text>
+                                <text x="740" y="596">• 支持脚本训练与一键微调</text>
+                            </g>
+                        </g>
+
+              
+                    </svg>
+
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>三类工具的典型定位</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>类别</th>
+                                <th>代表</th>
+                                <th>你主要用它做什么</th>
+                                <th>适用人群/场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong style="color: var(--accent-cyan);">基础组件（算法库）</strong></td>
+                                <td>PEFT（LoRA/QLoRA/Adapter…）</td>
+                                <td>把“可训练增量参数”挂到模型上；控制 <code>r/alpha/target_modules</code> 等核心超参</td>
+                                <td>需要深度可控、自己写训练脚本/框架集成</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: var(--accent-blue);">全栈训练工具</strong></td>
+                                <td>LLaMA-Factory</td>
+                                <td>一站式：数据准备 → 模板/对话格式 → 训练/评估 → 导出（含各类微调方法）</td>
+                                <td>希望“快速跑通 + 标准化复用”的训练团队</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: var(--accent-purple);">轻量级训练工具</strong></td>
+                                <td>SWIFT</td>
+                                <td>更偏“开箱即用/一键微调”，适配中文模型生态与常见训练配方</td>
+                                <td>快速验证、小团队/个人、教学演示</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tip-box info">
+                    <span class="icon">🧭</span>
+                    <div class="content">
+                        <strong>选择建议：</strong>如果你主要目标是<strong style="color: var(--accent-cyan);">快速落地与工程化复用</strong>，优先选“全栈工具”（如 LLaMA-Factory / SWIFT）；如果你需要<strong style="color: var(--accent-cyan);">极致可控与自定义</strong>（例如特殊损失、特殊数据管线），则以 PEFT + 自己的训练框架为主。
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>微调工具通常帮你“省掉”的工作</h3>
+                <ul class="feature-list">
+                    <li>数据集整理与格式转换：指令微调/对话数据、SFT vs DPO 等数据结构</li>
+                    <li>模板与 Tokenization：Chat Template、特殊符号、padding/truncation 策略</li>
+                    <li>训练配方：学习率调度、梯度累积、混合精度、断点续训、日志监控</li>
+                    <li>评估与对比：基准集、自动评测、训练/验证曲线与过拟合预警</li>
+                    <li>导出与部署：合并 LoRA、量化、推理端加载适配器等</li>
+                </ul>
             </div>
         </section>
 
@@ -1474,9 +1573,9 @@ model.<span class="function">print_trainable_parameters</span>()
                             <svg viewBox="0 0 200 100">
                                 <line x1="20" y1="80" x2="180" y2="80" stroke="#2d3a4f" stroke-width="1"/>
                                 <line x1="20" y1="20" x2="20" y2="80" stroke="#2d3a4f" stroke-width="1"/>
-                                <!-- Train/Val Loss 下降缓慢 -->
-                                <path d="M 20 65 Q 60 60 100 58 T 180 55" fill="none" stroke="#06b6d4" stroke-width="2"/>
-                                <path d="M 20 68 Q 60 64 100 62 T 180 60" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4"/>
+                                <!-- 欠拟合：Train/Val Loss 都在高位，几乎平坦，Val 在 Train 上方 -->
+                                <path d="M 20 42 L 60 40 L 100 39 L 140 38 L 180 37" fill="none" stroke="#06b6d4" stroke-width="2"/>
+                                <path d="M 20 35 L 60 34 L 100 33 L 140 33 L 180 32" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4"/>
                                 <text x="100" y="95" fill="#6b7280" font-size="8" text-anchor="middle">Epochs</text>
                             </svg>
                         </div>
@@ -1506,6 +1605,38 @@ model.<span class="function">print_trainable_parameters</span>()
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
                         <strong>讨论要点：</strong>每条曲线反映了什么问题？应该如何调整学习率、Rank、数据量或训练轮次？
                     </p>
+                </div>
+
+                <!-- 折叠答案 -->
+                <div class="expandable-block" onclick="this.classList.toggle('expanded')" style="margin-top: 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; cursor: pointer;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="toggle-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; font-size: 12px; color: var(--accent-green); background: rgba(16, 185, 129, 0.15); border-radius: 4px; transition: transform 0.2s ease;">▶</span>
+                        <span style="color: var(--accent-green); font-weight: 600;">💡 点击查看答案</span>
+                    </div>
+                    <div class="block-detail" style="display: none; margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-green);">
+                                <div style="color: var(--accent-green); font-weight: 600; margin-bottom: 8px;">曲线 A：✅ 正常拟合</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px;">Train/Val Loss 同步下降，间距合理。</p>
+                                <p style="color: var(--accent-cyan); font-size: 0.85rem;">👉 继续训练或保持当前配置</p>
+                            </div>
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-red);">
+                                <div style="color: var(--accent-red); font-weight: 600; margin-bottom: 8px;">曲线 B：⚠️ 过拟合</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px;">Train Loss 下降，Val Loss 先降后升，间距变大。</p>
+                                <p style="color: var(--accent-cyan); font-size: 0.85rem;">👉 增加数据、降低 Rank、加 Dropout、早停</p>
+                            </div>
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-amber);">
+                                <div style="color: var(--accent-amber); font-weight: 600; margin-bottom: 8px;">曲线 C：⚠️ 欠拟合</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px;">Train/Val Loss 都在高位，几乎不下降，模型学不动。</p>
+                                <p style="color: var(--accent-cyan); font-size: 0.85rem;">👉 增大 Rank、增加训练轮次、提高学习率</p>
+                            </div>
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-purple);">
+                                <div style="color: var(--accent-purple); font-weight: 600; margin-bottom: 8px;">曲线 D：⚠️ 学习率过大</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px;">Loss 剧烈震荡，无法收敛。</p>
+                                <p style="color: var(--accent-cyan); font-size: 0.85rem;">👉 降低学习率、使用学习率调度器</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
