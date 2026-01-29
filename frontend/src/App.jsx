@@ -96,9 +96,9 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className="app-title">🧠 Qwen3 模型架构可视化</h1>
+        <h1 className="app-title">🧠 垂域模型训练理论基础</h1>
         <p className="app-subtitle">
-          深入解析 Qwen3 稠密模型与 Qwen3-MoE 混合专家模型的架构差异
+          垂域模型训练理论基础：关键技术、训练范式、Transformer原理
         </p>
       </header>
 

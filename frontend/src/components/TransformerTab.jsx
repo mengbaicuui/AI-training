@@ -318,18 +318,6 @@ const AttentionSection = () => {
             </div>
 
             <div className="visual-container">
-                <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginBottom: '30px', flexWrap: 'wrap' }}>
-                    <div className="img-wrapper">
-                        {/* Using imported images */}
-                        <img src={attention1} alt="Attention Example 1" style={{ maxWidth: '100%', borderRadius: '8px', maxHeight: '300px' }} />
-                        <p className="img-caption">注意力热力图示例 1</p>
-                    </div>
-                    <div className="img-wrapper">
-                        <img src={attention2} alt="Attention Example 2" style={{ maxWidth: '100%', borderRadius: '8px', maxHeight: '300px' }} />
-                        <p className="img-caption">注意力热力图示例 2</p>
-                    </div>
-                </div>
-
                 <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
                     <h3>交互式演示: "我是一个学生" ➜ "I am a student"</h3>
                     <p style={{ marginBottom: '20px', color: 'var(--text-secondary)' }}>
@@ -1150,7 +1138,7 @@ const EncoderDecoderSection = () => {
     });
 
     // Decoder Data
-    const decoderTokens = ["[START]", "I", "love", "coding", "with", "AI"];
+    const decoderTokens = ["。", "I", "love", "coding", "with", "AI"];
     const [decoderActive, setDecoderActive] = useState(null);
     const [decoderMatrix] = useState(() => {
         // Causal Attention: Masked Future
@@ -1381,7 +1369,7 @@ const DecoderDemo = () => {
     ];
 
     const [currentStep, setCurrentStep] = useState(0);
-    const [generated, setGenerated] = useState(["[START]"]);
+    const [generated, setGenerated] = useState(["。"]);
 
     const handleNext = () => {
         if (currentStep < targetSteps.length) {
@@ -1389,7 +1377,7 @@ const DecoderDemo = () => {
             setCurrentStep(prev => prev + 1);
         } else {
             // Reset
-            setGenerated(["[START]"]);
+            setGenerated(["。"]);
             setCurrentStep(0);
         }
     };
