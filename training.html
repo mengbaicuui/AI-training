@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
     <style>
         :root {
             --bg-primary: #0a0e17;
@@ -229,6 +230,51 @@
             color: var(--accent-cyan);
             font-weight: bold;
             flex-shrink: 0;
+        }
+
+        /* 可折叠单元格（用于 Loss 公式） */
+        .expandable-cell {
+            cursor: pointer;
+        }
+
+        .expandable-cell .cell-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .expandable-cell .toggle-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.15);
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .expandable-cell.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .expandable-cell .cell-detail {
+            display: none;
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .expandable-cell.expanded .cell-detail {
+            display: block;
         }
 
         /* 监控指标卡片 */
@@ -513,22 +559,69 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Cross-Entropy Loss</strong></td>
+                                <td class="expandable-cell" onclick="this.classList.toggle('expanded')">
+                                    <div class="cell-header">
+                                        <span class="toggle-icon">▶</span>
+                                        <strong>Cross-Entropy Loss</strong>
+                                    </div>
+                                    <div class="cell-detail">
+                                        <p style="margin-bottom: 6px;">自回归语言模型最常用的 Loss，对应“预测下一个 token 的负对数似然”：</p>
+                                        <div style="background: var(--bg-secondary); border-radius: 6px; padding: 10px; text-align: center;">
+                                            \[
+                                            \mathcal{L}_{\text{CE}} = - \frac{1}{T} \sum_{t=1}^{T} \sum_{k=1}^{K}
+                                            y_{t,k} \log p_{\theta}(k \mid x_{1:t-1})
+                                            \]
+                                        </div>
+                                        <p style="margin-top: 8px;">其中 \(y_{t,k}\) 是 one-hot（或 soft label），\(p_{\theta}\) 为模型在 t 时刻对词表第 k 个 token 的预测概率。</p>
+                                    </div>
+                                </td>
                                 <td>文本生成、因果语言模型</td>
                                 <td>最常用，计算 next-token 预测损失</td>
                             </tr>
                             <tr>
-                                <td><strong>Focal Loss</strong></td>
+                                <td class="expandable-cell" onclick="this.classList.toggle('expanded')">
+                                    <div class="cell-header">
+                                        <span class="toggle-icon">▶</span>
+                                        <strong>Focal Loss</strong>
+                                    </div>
+                                    <div class="cell-detail">
+                                        <p style="margin-bottom: 6px;">在类别极度不平衡时，通过增加难样本权重、降低易样本权重：</p>
+                                        <div style="background: var(--bg-secondary); border-radius: 6px; padding: 10px; text-align: center;">
+                                            \[
+                                            \mathcal{L}_{\text{Focal}} = -
+                                            \alpha (1 - p_t)^{\gamma} \log(p_t)
+                                            \]
+                                        </div>
+                                        <p style="margin-top: 8px;">其中 \(p_t\) 为模型对真实类别的预测概率，\(\gamma &gt; 0\) 控制“聚焦”程度，\(\alpha\) 为不同类别的权重系数。</p>
+                                    </div>
+                                </td>
                                 <td>类别不平衡的分类任务</td>
                                 <td>降低易分类样本权重，关注难样本</td>
                             </tr>
+                           
                             <tr>
-                                <td><strong>Label Smoothing CE</strong></td>
-                                <td>分类、生成</td>
-                                <td>防止模型过度自信，提升泛化</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Contrastive Loss</strong></td>
+                                <td class="expandable-cell" onclick="this.classList.toggle('expanded')">
+                                    <div class="cell-header">
+                                        <span class="toggle-icon">▶</span>
+                                        <strong>Contrastive Loss</strong>
+                                    </div>
+                                    <div class="cell-detail">
+                                        <p style="margin-bottom: 6px;">以 InfoNCE / NT-Xent 为例，通过温度缩放的 softmax 拉近正样本、推远负样本：</p>
+                                        <div style="background: var(--bg-secondary); border-radius: 6px; padding: 10px; text-align: center;">
+                                            \[
+                                            \mathcal{L}_{i} =
+                                            - \log
+                                            \frac{
+                                                \exp(\mathrm{sim}(z_i, z_i^+)/\tau)
+                                            }{
+                                                \sum_{j}
+                                                \exp(\mathrm{sim}(z_i, z_j)/\tau)
+                                            }
+                                            \]
+                                        </div>
+                                        <p style="margin-top: 8px;">其中 \(z_i\) 与 \(z_i^+\) 为一对正样本表示，\(\mathrm{sim}(\cdot,\cdot)\) 通常为余弦相似度，\(\tau\) 为温度参数。</p>
+                                    </div>
+                                </td>
                                 <td>对比学习、Embedding</td>
                                 <td>拉近正样本，推远负样本</td>
                             </tr>
@@ -714,6 +807,36 @@
                         <li>需要调整哪些超参数？</li>
                     </ul>
                 </div>
+
+                <!-- 折叠答案 -->
+                <div class="expandable-block" onclick="this.classList.toggle('expanded')" style="margin-top: 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; cursor: pointer;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="toggle-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; font-size: 12px; color: var(--accent-green); background: rgba(16, 185, 129, 0.15); border-radius: 4px; transition: transform 0.2s ease;">▶</span>
+                        <span style="color: var(--accent-green); font-weight: 600;">💡 点击查看参考答案</span>
+                    </div>
+                    <div class="block-detail" style="display: none; margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-red);">
+                                <div style="color: var(--accent-red); font-weight: 600; margin-bottom: 8px;">案例 A：典型过拟合</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px;">
+                                    Train Loss 持续下降，而 Val Loss 先降后升，二者间的 Gap 越来越大 → <strong style="color: var(--accent-red);">模型在训练集上学得太好，但在验证集上开始退化</strong>。
+                                </p>
+                                <p style="color: var(--accent-cyan); font-size: 0.85rem;">
+                                    调整建议：在 Val Loss 最低的 Epoch（约 3~4）附近<strong>提前停止训练</strong>；增加训练数据、加大 <code>lora_dropout</code> 或其他正则；必要时适当降低 Rank。
+                                </p>
+                            </div>
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-amber);">
+                                <div style="color: var(--accent-amber); font-weight: 600; margin-bottom: 8px;">案例 B：明显欠拟合 / 学习率过小</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px;">
+                                    Train / Val Loss 都在高位缓慢下降，曲线近乎平行，Gap 较小 → <strong style="color: var(--accent-amber);">模型一直在“龟速学习”</strong>，表达能力或训练信号不足。
+                                </p>
+                                <p style="color: var(--accent-cyan); font-size: 0.85rem;">
+                                    调整建议：<strong>适当提高学习率</strong>或使用更积极的 LR 调度；增大 Rank、延长训练轮次；同时检查数据与标签是否存在问题（噪声过大、对齐不良等）。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -734,6 +857,8 @@
     </div>
 </body>
 </html>
+
+
 
 
 

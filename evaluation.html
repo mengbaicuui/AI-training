@@ -334,6 +334,15 @@
             content: "💬";
         }
 
+        /* 可折叠答案块 */
+        .expandable-block.expanded .toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .expandable-block.expanded .block-detail {
+            display: block !important;
+        }
+
         /* 场景卡片 */
         .scenario-grid {
             display: grid;
@@ -969,6 +978,53 @@
                         <li>安全相关的场景，是否必须人工评估？</li>
                         <li>如何平衡评估成本与评估质量？</li>
                     </ul>
+                </div>
+
+                <!-- 折叠答案 -->
+                <div class="expandable-block" onclick="this.classList.toggle('expanded')" style="margin-top: 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; cursor: pointer;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="toggle-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; font-size: 12px; color: var(--accent-green); background: rgba(16, 185, 129, 0.15); border-radius: 4px; transition: transform 0.2s ease;">▶</span>
+                        <span style="color: var(--accent-green); font-weight: 600;">💡 点击查看参考答案</span>
+                    </div>
+                    <div class="block-detail" style="display: none; margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-blue);">
+                                <div style="color: var(--accent-blue); font-weight: 600; margin-bottom: 6px;">场景 A：故障代码解释</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 6px;">
+                                    输出形式接近<strong>结构化知识问答</strong>（故障含义 + 可能原因），推荐：
+                                </p>
+                                <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 16px; list-style: disc;">
+                                    <li>自动化：Exact Match / F1（按 slot：故障名称、部件、原因）</li>
+                                    <li>语义：必要时配合 BERTScore / LLM-as-Judge 抽样</li>
+                                    <li>人工：只需对 Bad Case 小批量复核</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-purple);">
+                                <div style="color: var(--accent-purple); font-weight: 600; margin-bottom: 6px;">场景 B：维修步骤生成</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 6px;">
+                                    属于<strong>长文本 + 强可操作性</strong>场景，步骤顺序和细节都很重要：
+                                </p>
+                                <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 16px; list-style: disc;">
+                                    <li>自动化：BERTScore / ROUGE 作为粗筛</li>
+                                    <li>LLM-as-Judge：按“准确性/完整性/可操作性”多维打分</li>
+                                    <li>人工：对关键流程样本做专家评审（抽样 5-10%）</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent-red);">
+                                <div style="color: var(--accent-red); font-weight: 600; margin-bottom: 6px;">场景 C：安全警告生成</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 6px;">
+                                    高风险场景，<strong style="color: var(--accent-red);">必须有人在环</strong>：
+                                </p>
+                                <ul style="color: var(--text-secondary); font-size: 0.85rem; margin-left: 16px; list-style: disc;">
+                                    <li>自动化：召回率优先（F1 / 自定义安全规则检测）</li>
+                                    <li>LLM-as-Judge：辅助识别潜在风险表述</li>
+                                    <li>人工：安全专家对全部或大部分样本做终审，不建议只用自动化指标</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
