@@ -1,0 +1,10 @@
+{
+  "Cars_details_QA": {
+    "file_name": "Cars_details_QA/train.json",
+    "columns": {
+      "prompt": "Questions",
+      "query": "input",
+      "response": "Answers"
+    }
+  }
+}

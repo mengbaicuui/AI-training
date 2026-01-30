@@ -1,0 +1,42 @@
+{
+  "builder_name": "csv",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "cars_details_qa",
+  "dataset_size": 867203,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/Majipa/Cars_details_QA@02facf0b0363192320e7fa13d62a268839458a69/Cars_details_QA.csv": {
+      "num_bytes": 842563,
+      "checksum": null
+    }
+  },
+  "download_size": 842563,
+  "features": {
+    "Questions": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "Answers": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 1709766,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 867203,
+      "num_examples": 6068,
+      "dataset_name": "cars_details_qa"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
