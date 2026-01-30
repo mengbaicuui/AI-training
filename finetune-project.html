@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微调项目实战 - D05 数据工程专项</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --bg-code: #0d1117;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: #2d3a4f;
+            --gradient-1: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        .bg-pattern { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3; background-image: radial-gradient(ellipse at 10% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 90% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 50%); }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10, 14, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .nav-brand:hover { color: var(--accent-cyan); }
+        .nav-brand svg { width: 20px; height: 20px; }
+        .nav-progress { display: flex; align-items: center; gap: 8px; }
+        .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); transition: background 0.3s; }
+        .nav-dot.active { background: var(--accent-cyan); }
+        .nav-dot.completed { background: var(--accent-green); }
+        .container { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 100px 40px 60px; }
+        .page-header { margin-bottom: 50px; }
+        .section-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 6px; font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 16px; }
+        .page-header h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-header .desc { color: var(--text-secondary); font-size: 1.05rem; }
+        .section { margin-bottom: 60px; }
+        .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--border-color); }
+        .section-title::before { content: "▸"; color: var(--accent-cyan); }
+        .content-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+        .content-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 16px; color: var(--accent-cyan); }
+        .content-card p { color: var(--text-secondary); margin-bottom: 16px; }
+        .content-card p:last-child { margin-bottom: 0; }
+        .content-card ul { color: var(--text-secondary); margin-left: 20px; margin-bottom: 16px; }
+        .content-card li { margin-bottom: 8px; }
+        .tip-box { display: flex; gap: 14px; padding: 18px; border-radius: 8px; margin: 20px 0; }
+        .tip-box.info { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .tip-box.warning { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .tip-box.success { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tip-box .icon { font-size: 1.2rem; flex-shrink: 0; }
+        .tip-box .content { font-size: 0.95rem; color: var(--text-secondary); }
+        .timeline { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+        .timeline-item { display: flex; gap: 12px; }
+        .timeline-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; background: var(--accent-cyan); flex-shrink: 0; }
+        .timeline-content { color: var(--text-secondary); font-size: 0.95rem; }
+        .pipeline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 20px 0; padding: 20px; background: var(--bg-secondary); border-radius: 10px; justify-content: center; }
+        .pipeline-step { background: var(--bg-card); border: 1px solid var(--accent-cyan); border-radius: 8px; padding: 14px 20px; font-size: 0.95rem; color: var(--text-primary); }
+        .pipeline-arrow { color: var(--accent-cyan); font-size: 1.2rem; }
+        .code-block { background: var(--bg-code); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin: 20px 0; }
+        .code-header { padding: 10px 16px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+        .code-content { padding: 18px; overflow-x: auto; }
+        .code-content pre { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: var(--text-primary); margin: 0; }
+        .emphasis { color: var(--accent-amber); font-weight: 500; }
+        .page-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-color); }
+        .page-nav a { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); text-decoration: none; font-size: 0.95rem; transition: all 0.3s; }
+        .page-nav a:hover { border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.05); }
+        .page-nav a svg { width: 18px; height: 18px; color: var(--accent-cyan); }
+        .page-nav .next { margin-left: auto; }
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist li { margin-bottom: 8px; color: var(--text-secondary); padding-left: 24px; position: relative; }
+        .checklist li::before { content: "☐ "; position: absolute; left: 0; color: var(--accent-cyan); }
+        @media (max-width: 768px) {
+            .container { padding: 90px 20px 40px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .page-nav { flex-direction: column; gap: 12px; }
+            .pipeline { flex-direction: column; }
+            .pipeline-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            返回目录
+        </a>
+        <div class="nav-progress">
+            <div class="nav-dot completed"></div>
+            <div class="nav-dot completed"></div>
+            <div class="nav-dot active"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <div class="section-tag">实战 · 完整链路</div>
+            <h1>微调项目实战</h1>
+            <p class="desc">从数据准备到训练、评估与导出，串联 Easy Dataset 与 LLaMA Factory，完成一次完整的领域微调项目。</p>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">1. 项目目标与流程</h2>
+            <div class="content-card">
+                <h3>1.1 目标</h3>
+                <p>选定一个领域（如内部规范、产品文档、客服话术），完成：<strong>数据准备 → 注册数据集 → 在 LLaMA Factory 中训练 → 对话测试 → 导出部署</strong>。重点体会数据格式、数据质量与微调效果的关系。</p>
+            </div>
+            <div class="content-card">
+                <h3>1.2 整体流程</h3>
+                <div class="pipeline">
+                    <span class="pipeline-step">领域文档</span>
+                    <span class="pipeline-arrow">→</span>
+                    <span class="pipeline-step">Easy Dataset（QA 对）</span>
+                    <span class="pipeline-arrow">→</span>
+                    <span class="pipeline-step">LLaMA Factory 训练</span>
+                    <span class="pipeline-arrow">→</span>
+                    <span class="pipeline-step">评估与对话</span>
+                    <span class="pipeline-arrow">→</span>
+                    <span class="pipeline-step">导出部署</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">2. 数据准备（与 Easy Dataset 衔接）</h2>
+            <div class="content-card">
+                <h3>2.1 准备材料</h3>
+                <p>用 Markdown、PDF（可先用 MinerU 等转 Markdown）或已有文档，在 Easy Dataset 中完成：<strong>文本分割 → 问题生成 → 答案生成</strong>，导出为 <strong>Alpaca</strong> 或 <strong>ShareGPT</strong> 格式的 JSONL。</p>
+            </div>
+            <div class="content-card">
+                <h3>2.2 数据质量检查</h3>
+                <ul>
+                    <li>抽样检查：问题是否能在原文中找到依据，答案是否与问题匹配。</li>
+                    <li>格式检查：字段名与 LLaMA Factory 的 dataset_info 中 columns 一致（instruction/input/output 或 conversations）。</li>
+                    <li>规模：课堂演示可用几百条；正式项目按领域与资源调整，建议至少数千条并做 train/val 划分。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">3. 训练配置与启动</h2>
+            <div class="content-card">
+                <h3>3.1 注册数据集</h3>
+                <p>将导出的 JSONL 放到 LLaMA Factory 的 <code>data/</code> 目录，在 <code>data/dataset_info.json</code> 中注册数据集名称、<code>file_name</code>、<code>formatting</code>（alpaca/sharegpt）和 <code>columns</code>。</p>
+            </div>
+            <div class="content-card">
+                <h3>3.2 选择模型与微调方式</h3>
+                <p>选择基座模型路径（如 Qwen2-7B、ChatGLM3-6B）。显存紧张时用 <strong>QLoRA</strong>（4bit 量化 + LoRA），否则可用 LoRA。设置学习率（如 1e-4 或 5e-5）、batch size、max steps，启动训练。</p>
+            </div>
+            <div class="content-card">
+                <h3>3.3 监控与保存</h3>
+                <p>在 Web UI 中观察 loss 曲线；可按步数保存 checkpoint，便于后续选最佳 checkpoint 做评估与导出。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">4. 评估与对话测试</h2>
+            <div class="content-card">
+                <h3>4.1 评估</h3>
+                <p>在 LLaMA Factory 的「评估」页加载微调后的 adapter，在验证集上查看困惑度等指标，对比不同 step 的 checkpoint。</p>
+            </div>
+            <div class="content-card">
+                <h3>4.2 对话测试</h3>
+                <p>在「对话」页加载基座 + adapter，用领域内问题做人工测试：指令遵循、事实一致性、风格是否符合预期。根据结果决定是否增加数据、调整学习率或步数后重新训练。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">5. 导出与后续部署</h2>
+            <div class="content-card">
+                <h3>5.1 合并与量化</h3>
+                <p>在「导出」页将 LoRA 合并回基座，得到完整权重；可选 4bit/8bit 量化以减小体积与显存，或导出为 GGUF 等格式供 Ollama、vLLM 等使用。</p>
+            </div>
+            <div class="content-card">
+                <h3>5.2 与业务对接</h3>
+                <p>将导出后的模型接入推理服务或 API，完成从「数据 → 训练 → 部署」的闭环。后续可迭代：补充数据、修正 badcase、增量微调。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">6. 常见问题与检查清单</h2>
+            <div class="content-card">
+                <h3>6.1 常见问题</h3>
+                <ul>
+                    <li><strong>显存不足</strong>：减小 batch size、用 QLoRA、缩短 max length。</li>
+                    <li><strong>Loss 不降或震荡</strong>：调低学习率、检查数据格式与字段是否错位。</li>
+                    <li><strong>对话效果差</strong>：检查数据质量与规模，增加领域样本或做多轮对话格式（ShareGPT）。</li>
+                </ul>
+            </div>
+            <div class="content-card">
+                <h3>6.2 实战检查清单</h3>
+                <ul class="checklist">
+                    <li>JSONL 为 Alpaca 或 ShareGPT 格式，字段名与 dataset_info 一致</li>
+                    <li>dataset_info.json 中已注册数据集，file_name 路径正确</li>
+                    <li>基座模型路径正确，显存满足 LoRA/QLoRA 需求</li>
+                    <li>训练后在对话页验证指令与领域表现，再导出</li>
+                </ul>
+            </div>
+            <div class="tip-box success">
+                <span class="icon">✅</span>
+                <div class="content">
+                    <strong>与课程衔接</strong>：数据准备见「微调数据准备实战：Easy Dataset」；工具操作见「微调工具使用指南：LLaMA Factory」；SFT 原理见「SFT 与 PEFT 的数据工程」。
+                </div>
+            </div>
+        </section>
+
+        <nav class="page-nav">
+            <a href="llama-factory-guide.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                微调工具使用指南：LLaMA Factory
+            </a>
+            <a href="model-optimization.html" class="next">
+                模型优化：蒸馏、量化、剪枝
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>

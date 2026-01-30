@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D05 数据工程专项实战工作坊</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #2d3a4f;
+            --gradient-1: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --gradient-2: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+            --gradient-3: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 背景动效 */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+            background-image: 
+                radial-gradient(ellipse at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(45, 58, 79, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(45, 58, 79, 0.3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* 顶部标签 */
+        .course-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--accent-amber);
+            margin-bottom: 24px;
+        }
+
+        .course-tag::before {
+            content: "D05";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 10px;
+            background: var(--accent-amber);
+            color: var(--bg-primary);
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* 标题区 */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        /* 目标卡片组 */
+        .objectives {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto 50px;
+        }
+
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 20px;
+        }
+
+        .objective-item .icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .objective-item .text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 两天概览 */
+        .days-overview {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .day-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .day-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .day-card.day-1::before {
+            background: var(--gradient-1);
+        }
+
+        .day-card.day-2::before {
+            background: var(--gradient-2);
+        }
+
+        .day-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .day-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .day-1 .day-number {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-cyan);
+        }
+
+        .day-2 .day-number {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent-purple);
+        }
+
+        .day-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .day-header .time {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .day-card ul {
+            list-style: none;
+        }
+
+        .day-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .day-card li:last-child {
+            border-bottom: none;
+        }
+
+        .day-card li::before {
+            content: "▸";
+            flex-shrink: 0;
+        }
+
+        .day-1 li::before {
+            color: var(--accent-cyan);
+        }
+
+        .day-2 li::before {
+            color: var(--accent-purple);
+        }
+
+        .day-card li a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .day-card li a:hover {
+            color: var(--text-primary);
+        }
+
+        .time-badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            background: rgba(148, 163, 184, 0.15);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        /* 课程模块导航 */
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+        }
+
+        .section-title span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .module-card:nth-child(1)::after { background: var(--gradient-1); }
+        .module-card:nth-child(2)::after { background: var(--gradient-2); }
+        .module-card:nth-child(3)::after { background: var(--gradient-3); }
+
+        .module-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
+        }
+
+        .module-card:hover::after {
+            opacity: 1;
+        }
+
+        .module-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .module-card:nth-child(1) .module-icon {
+            background: rgba(6, 182, 212, 0.15);
+        }
+
+        .module-card:nth-child(2) .module-icon {
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .module-card:nth-child(3) .module-icon {
+            background: rgba(245, 158, 11, 0.15);
+        }
+
+        .module-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .module-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .module-card .arrow {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+        }
+
+        .module-card .arrow svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+
+        .module-card:hover .arrow svg {
+            transform: translateX(4px);
+        }
+
+        /* 底部信息 */
+        .footer-info {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .footer-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-info .highlight {
+            color: var(--accent-amber);
+            font-weight: 500;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .objectives {
+                grid-template-columns: 1fr;
+            }
+
+            .days-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+        <header class="header">
+            <div class="course-tag">数据工程专项实战工作坊</div>
+            <h1>面向数据技术人员的 AI 实战</h1>
+            <p class="subtitle">以数据工程为核心，系统学习微调数据准备与 SFT 数据流程；掌握 LLM 微调与 Embedding 模型训练的方法与实践，将数据能力转化为可落地的模型与应用。</p>
+        </header>
+
+        <!-- 课程目标 -->
+        <div class="objectives">
+            <div class="objective-item">
+                <span class="icon">🎯</span>
+                <span class="text">围绕数据工程与微调需求，系统讲解数据准备、清洗与格式转换（QA 对、Alpaca/ShareGPT 等）</span>
+            </div>
+            <div class="objective-item">
+                <span class="icon">🔧</span>
+                <span class="text">掌握 LLM 微调（SFT/PEFT）的数据流程与最佳实践</span>
+            </div>
+            <div class="objective-item">
+                <span class="icon">📊</span>
+                <span class="text">学习 Embedding 模型训练的数据构建与向量化方法</span>
+            </div>
+            <div class="objective-item">
+                <span class="icon">🚀</span>
+                <span class="text">通过实战串联从数据到模型到应用的完整链路</span>
+            </div>
+        </div>
+
+        <!-- 两天概览 -->
+        <div class="days-overview">
+            <div class="day-card day-1">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div>
+                        <h2>第一天</h2>
+                        <div class="time">9:00 - 18:00</div>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        <a href="training-overview.html">大模型训练的方法流程和实践概览</a>
+                        <span class="time-badge">9:15-10:20</span>
+                    </li>
+                    <li>
+                        <a href="sft-data.html">SFT 与 PEFT 的数据工程</a>
+                        <span class="time-badge">10:30-11:20</span>
+                    </li>
+                    <li>
+                        <a href="easy-dataset-tutorial.html">微调数据准备工具：Easy Dataset</a>
+                        <span class="time-badge">10:30-11:10</span>
+                    </li>
+                    <li>
+                        <a href="llama-factory-guide.html">微调工具使用指南：LLaMA Factory</a>
+                        <span class="time-badge">11:10-11:50</span>
+                    </li>
+                    <li>
+                        <a href="finetune-project.html">微调项目实战</a>
+                        <span class="time-badge">11:50-12:00</span>
+                    </li>
+                    <li>
+                        <a href="model-optimization.html">模型优化：蒸馏、量化、剪枝</a>
+                        <span class="time-badge">14:00-14:40</span>
+                    </li>
+
+                    <li>
+                        数据工程实战练习（SFT、蒸馏）
+                        <span class="time-badge">14:10-18:00</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="day-card day-2">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div>
+                        <h2>第二天</h2>
+                        <div class="time">9:00 - 17:30</div>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        Embedding 训练的原理、数据工程基础
+                        <span class="time-badge">9:15-11:20</span>
+                    </li>
+                    <li>
+                        分组练习：使用工具处理微调数据集
+                        <span class="time-badge">11:20-12:00</span>
+                    </li>
+                    <li>
+                        Embedding 训练实战
+                        <span class="time-badge">13:50-17:00</span>
+                    </li>
+                    <li>
+                        课程总结、Q&A
+                        <span class="time-badge">17:00-17:30</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 课程模块导航 -->
+        <h2 class="section-title">第一天 · <span>理论模块</span></h2>
+
+        <div class="modules-grid">
+            <a href="training-overview.html" class="module-card">
+                <div class="module-icon">🗺️</div>
+                <h3>大模型训练方法概览</h3>
+                <p>预训练 → 微调 → 对齐 → 部署的完整流程，理解数据在各阶段的角色</p>
+                <div class="arrow">
+                    开始学习
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+
+            <a href="sft-data.html" class="module-card">
+                <div class="module-icon">📝</div>
+                <h3>SFT 与 PEFT 的数据工程</h3>
+                <p>指令数据格式、LoRA/QLoRA 高效微调、数据集构建与质量控制</p>
+                <div class="arrow">
+                    开始学习
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+
+            <a href="easy-dataset-tutorial.html" class="module-card">
+                <div class="module-icon">🔧</div>
+                <h3>微调数据准备实战：Easy Dataset</h3>
+                <p>用 Easy Dataset 从文档提取 QA 问答对，三步完成文本分割、问题生成与答案构建</p>
+                <div class="arrow">
+                    开始学习
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+
+            <a href="llama-factory-guide.html" class="module-card">
+                <div class="module-icon">🛠️</div>
+                <h3>微调工具使用指南：LLaMA Factory</h3>
+                <p>LLaMA Factory 安装与 Web UI、数据格式与 dataset_info、训练/评估/对话/导出全流程</p>
+                <div class="arrow">
+                    开始学习
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+
+            <a href="finetune-project.html" class="module-card">
+                <div class="module-icon">🚀</div>
+                <h3>微调项目实战</h3>
+                <p>从数据准备到训练、评估与导出，串联 Easy Dataset 与 LLaMA Factory 的完整项目</p>
+                <div class="arrow">
+                    开始学习
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+
+            <a href="model-optimization.html" class="module-card">
+                <div class="module-icon">⚡</div>
+                <h3>模型优化：蒸馏、量化、剪枝</h3>
+                <p>知识蒸馏原理、量化与剪枝技术、模型压缩的数据工程</p>
+                <div class="arrow">
+                    开始学习
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+        <!-- 底部信息 -->
+        <div class="footer-info">
+            <p>
+                <span class="highlight">注：</span>可包含 2 次线上导入，重点覆盖数据工程、LLM 微调与 Embedding 模型训练
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

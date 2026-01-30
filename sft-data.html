@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFT 与 PEFT 的数据工程 - D05 数据工程专项</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --bg-code: #0d1117;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #2d3a4f;
+            --gradient-1: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        .bg-pattern { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3; background-image: radial-gradient(ellipse at 10% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 90% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 50%); }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10, 14, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .nav-brand:hover { color: var(--accent-cyan); }
+        .nav-brand svg { width: 20px; height: 20px; }
+        .nav-progress { display: flex; align-items: center; gap: 8px; }
+        .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); transition: background 0.3s; }
+        .nav-dot.active { background: var(--accent-cyan); }
+        .nav-dot.completed { background: var(--accent-green); }
+        .container { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 100px 40px 60px; }
+        .page-header { margin-bottom: 50px; }
+        .section-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 6px; font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 16px; }
+        .page-header h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-header .desc { color: var(--text-secondary); font-size: 1.05rem; }
+        .section { margin-bottom: 60px; }
+        .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--border-color); }
+        .section-title::before { content: "▸"; color: var(--accent-cyan); }
+        .content-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+        .content-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 16px; color: var(--accent-cyan); }
+        .content-card p { color: var(--text-secondary); margin-bottom: 16px; }
+        .content-card p:last-child { margin-bottom: 0; }
+        .table-wrapper { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background: var(--bg-secondary); font-weight: 600; color: var(--accent-cyan); }
+        tr:hover { background: rgba(6, 182, 212, 0.05); }
+        .diagram { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; }
+        .diagram img { max-width: 100%; border-radius: 8px; }
+        .diagram-placeholder { min-height: 200px; background: rgba(45, 58, 79, 0.5); border: 2px dashed var(--border-color); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 0.9rem; gap: 12px; }
+        .diagram-placeholder strong { color: var(--accent-amber); }
+        .interaction-box { background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 28px; margin: 30px 0; }
+        .interaction-box h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; color: var(--accent-purple); margin-bottom: 16px; }
+        .interaction-box h3::before { content: "💬"; }
+        .quiz-options { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .quiz-opt { padding: 14px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; cursor: pointer; transition: all 0.2s; color: var(--text-secondary); font-size: 1rem; }
+        .quiz-opt:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .quiz-opt.selected { border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan); }
+        .quiz-opt.correct { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+        .quiz-opt.wrong { border-color: var(--accent-red); background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
+        .quiz-feedback { margin-top: 20px; padding: 16px; border-radius: 8px; font-size: 0.95rem; display: none; }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.right { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: var(--accent-green); }
+        .quiz-feedback.wrong { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--accent-red); }
+        .answer-reveal { display: none; margin-top: 24px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; }
+        .answer-reveal.show { display: block; }
+        .tip-box { display: flex; gap: 14px; padding: 18px; border-radius: 8px; margin: 20px 0; }
+        .tip-box.info { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .tip-box.warning { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .tip-box.success { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tip-box .icon { font-size: 1.2rem; flex-shrink: 0; }
+        .tip-box .content { font-size: 0.95rem; color: var(--text-secondary); }
+        .code-block { background: var(--bg-code); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin: 20px 0; }
+        .code-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border-color); }
+        .code-lang { font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+        .code-content { padding: 20px; overflow-x: auto; }
+        .code-content pre { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: var(--text-primary); margin: 0; }
+        .code-content .comment { color: #6a737d; }
+        .code-content .keyword { color: #ff7b72; }
+        .code-content .string { color: #a5d6ff; }
+        .code-content .number { color: #79c0ff; }
+        .code-content .function { color: #d2a8ff; }
+        .code-content .param { color: #ffa657; }
+        .reference-box { background: var(--bg-secondary); border-left: 3px solid var(--accent-blue); padding: 16px 20px; margin: 24px 0; font-size: 0.9rem; }
+        .reference-box .title { font-weight: 600; color: var(--accent-blue); margin-bottom: 8px; }
+        .reference-box .cite { color: var(--text-secondary); font-style: italic; }
+        .page-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-color); }
+        .page-nav a { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); text-decoration: none; font-size: 0.95rem; transition: all 0.3s; }
+        .page-nav a:hover { border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.05); }
+        .page-nav a svg { width: 18px; height: 18px; color: var(--accent-cyan); }
+        .page-nav .next { margin-left: auto; }
+        .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+        .scenario-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; text-align: center; transition: all 0.2s; }
+        .scenario-card:hover { border-color: var(--accent-cyan); transform: translateY(-2px); }
+        .scenario-card .icon { font-size: 2rem; margin-bottom: 12px; }
+        .scenario-card .title { font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+        .scenario-card .desc { font-size: 0.85rem; color: var(--text-secondary); }
+        .template-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .template-tab { padding: 8px 16px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.85rem; color: var(--text-secondary); transition: all 0.2s; }
+        .template-tab:hover { border-color: var(--accent-cyan); }
+        .template-tab.active { background: rgba(6, 182, 212, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .template-content { display: none; }
+        .template-content.active { display: block; }
+        .data-pipeline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 20px 0; padding: 20px; background: var(--bg-secondary); border-radius: 10px; }
+        .pipeline-step { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 18px; font-size: 0.9rem; color: var(--text-primary); }
+        .pipeline-arrow { color: var(--accent-cyan); font-size: 1.2rem; }
+        .expandable-cell { cursor: pointer; position: relative; }
+        .expandable-cell .cell-header { display: flex; align-items: center; gap: 8px; }
+        .expandable-cell .toggle-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; font-size: 10px; color: var(--accent-cyan); background: rgba(6, 182, 212, 0.15); border-radius: 4px; transition: transform 0.2s ease; flex-shrink: 0; }
+        .expandable-cell.expanded .toggle-icon { transform: rotate(90deg); }
+        .expandable-cell .cell-detail { display: none; margin-top: 12px; padding: 14px; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.85rem; line-height: 1.6; }
+        .expandable-cell.expanded .cell-detail { display: block; }
+        .cell-detail .detail-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border-color); }
+        .cell-detail .detail-row:last-child { border-bottom: none; }
+        .cell-detail .detail-label { color: var(--text-secondary); }
+        .cell-detail .detail-value { color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; }
+        .expandable-block { cursor: pointer; }
+        .expandable-block .toggle-icon { transition: transform 0.2s ease; }
+        .expandable-block.expanded .toggle-icon { transform: rotate(90deg); }
+        .expandable-block.expanded .block-detail { display: block !important; }
+        @media (max-width: 768px) {
+            .container { padding: 90px 20px 40px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .page-nav { flex-direction: column; gap: 12px; }
+            .scenario-grid { grid-template-columns: 1fr; }
+            .data-pipeline { flex-direction: column; }
+            .pipeline-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            返回目录
+        </a>
+        <div class="nav-progress">
+            <div class="nav-dot completed"></div>
+            <div class="nav-dot active"></div>
+            <div class="nav-dot"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <div class="section-tag">第一天 · 10:30-11:20</div>
+            <h1>SFT 与 PEFT 的数据工程</h1>
+            <p class="desc">指令微调的定义与场景、数据构建全流程、LoRA/QLoRA 高效微调</p>
+        </header>
+
+        <!-- ========== 模块1: SFT 定义和应用场景 ========== -->
+        <section class="section">
+            <h2 class="section-title">1. SFT 定义和应用场景</h2>
+            
+            <div class="content-card">
+                <h3>什么是 SFT？</h3>
+                <p><strong>SFT（Supervised Fine-Tuning，监督微调）</strong>是在预训练大模型基础上，使用「指令-回答」结构化数据进行训练，让模型学会：</p>
+                <ul style="color: var(--text-secondary); margin-left: 20px; margin-top: 12px;">
+                    <li style="margin-bottom: 8px;">遵循指令、理解任务要求</li>
+                    <li style="margin-bottom: 8px;">按照期望的格式和风格输出</li>
+                    <li style="margin-bottom: 8px;"><strong style="color: var(--accent-amber);">最核心的是：学会指令遵循，把知识按照要求表达出来</strong></li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h3>为什么需要微调？</h3>
+                <p>大模型在预训练阶段学习的是语言分布和常识知识，但实际任务往往需要更精确的指令与特定的输出格式。微调能够使预训练模型在特定任务的分布上进行训练，通过少量任务数据输入与反馈调整模型输出质量，进而在生成质量与可控性上获得更大提升。</p>
+            </div>
+
+            <div class="content-card">
+                <h3>大模型微调的 6 大场景</h3>
+                <div class="scenario-grid">
+                    <div class="scenario-card">
+                        <div class="icon">🎨</div>
+                        <div class="title">回答风格调整</div>
+                        <div class="desc">调整语气、长度、格式等输出风格</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="icon">💬</div>
+                        <div class="title">问答对话/记忆</div>
+                        <div class="desc">多轮对话能力、上下文记忆</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="icon">📚</div>
+                        <div class="title">领域知识灌注</div>
+                        <div class="desc">金融、医疗、法律等垂域知识</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="icon">💻</div>
+                        <div class="title">代码/数学能力增强</div>
+                        <div class="desc">编程、推理、计算能力提升</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="icon">🔧</div>
+                        <div class="title">Function Calling</div>
+                        <div class="desc">工具调用、API 调用能力</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="icon">🤖</div>
+                        <div class="title">Agent 能力增强</div>
+                        <div class="desc">规划、决策、多步推理</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========== 模块2: 微调与预训练的区别 ========== -->
+        <section class="section">
+            <h2 class="section-title">2. 微调与预训练的区别</h2>
+
+            <div class="interaction-box">
+                <h3>小互动：你觉得微调和预训练的主要区别在哪？</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 8px;">思考一下，从以下三个维度，哪个是最核心的区别？</p>
+                <div class="quiz-options" id="quiz1-options">
+                    <button type="button" class="quiz-opt" data-value="a">A. 模型结构</button>
+                    <button type="button" class="quiz-opt" data-value="b">B. Loss 函数</button>
+                    <button type="button" class="quiz-opt" data-value="c">C. 数据</button>
+                </div>
+                <div id="quiz1-feedback" class="quiz-feedback"></div>
+                <div id="quiz1-answer" class="answer-reveal"></div>
+            </div>
+
+            <div class="content-card" id="comparison-table" style="display: none;">
+                <h3>三大维度对比</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>维度</th>
+                                <th>预训练</th>
+                                <th>微调（SFT）</th>
+                                <th>有区别？</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>模型结构</strong></td>
+                                <td>Transformer Decoder</td>
+                                <td>Transformer Decoder</td>
+                                <td style="color: var(--accent-red);">❌ 相同</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Loss 函数</strong></td>
+                                <td>Next Token Prediction</td>
+                                <td class="expandable-cell" onclick="this.classList.toggle('expanded')">
+                                    <div class="cell-header">
+                                        <span class="toggle-icon">▶</span>
+                                        <span>Next Token Prediction</span>
+                                    </div>
+                                    <div class="cell-detail">
+                                        <p style="color: var(--text-secondary); margin-bottom: 8px;">细微差别：</p>
+                                        <div class="detail-row">
+                                            <span class="detail-label">预训练</span>
+                                            <span class="detail-value">所有 token 都算 loss</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">SFT</span>
+                                            <span class="detail-value">只对 output 部分算 loss</span>
+                                        </div>
+                                        <p style="margin-top: 10px; color: var(--accent-amber); font-size: 0.85rem;">但本质还是同一个 Loss 函数，只是 mask 不同</p>
+                                    </div>
+                                </td>
+                                <td style="color: var(--accent-red);">❌ 基本相同</td>
+                            </tr>
+                            <tr style="background: rgba(16, 185, 129, 0.08);">
+                                <td><strong style="color: var(--accent-green);">数据</strong></td>
+                                <td>海量纯文本（TB 级）</td>
+                                <td><strong style="color: var(--accent-green);">指令-回答结构化数据</strong></td>
+                                <td style="color: var(--accent-green);">✅ <strong>核心区别</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tip-box success">
+                    <span class="icon">🎯</span>
+                    <div class="content">
+                        <strong>结论：数据是最核心的区别。</strong><br>
+                        预训练用海量纯文本学「语言规律」；SFT 用结构化的「指令-回答」数据教模型「如何按要求回答」。所以<strong>数据工程是 SFT 成功的关键</strong>。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 模块3: Chat Template 机制 ========== -->
+        <section class="section">
+            <h2 class="section-title">3. Chat Template 机制</h2>
+
+            <div class="content-card">
+                <h3>为什么需要 Chat Template？</h3>
+                <p>不同模型在训练时使用不同的「对话模板」来区分角色（system / user / assistant），并告诉模型「哪部分是输入、哪部分是需要学习的输出」。</p>
+                <ul style="color: var(--text-secondary); margin-left: 20px; margin-top: 12px;">
+                    <li style="margin-bottom: 8px;">区分 system / user / assistant 等角色边界</li>
+                    <li style="margin-bottom: 8px;">训练时对 output 部分计算 loss，input 部分 mask 掉</li>
+                    <li style="margin-bottom: 8px;">推理时按相同格式拼接，保证模型理解输入结构</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h3>主流模型 Chat Template 对比</h3>
+                <p style="margin-bottom: 16px;">点击查看不同模型的 Template 格式：</p>
+                
+                <div class="template-tabs">
+                    <div class="template-tab active" data-tab="qwen">Qwen</div>
+                    <div class="template-tab" data-tab="llama">Llama 3</div>
+                    <div class="template-tab" data-tab="chatgpt">ChatGPT</div>
+                    <div class="template-tab" data-tab="chatglm">ChatGLM</div>
+                </div>
+
+                <div class="template-content active" id="template-qwen">
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">Qwen Chat Template</span></div>
+                        <div class="code-content">
+<pre><span class="string">&lt;|im_start|&gt;</span>system
+You are a helpful assistant.<span class="string">&lt;|im_end|&gt;</span>
+<span class="string">&lt;|im_start|&gt;</span>user
+你好，请介绍一下自己<span class="string">&lt;|im_end|&gt;</span>
+<span class="string">&lt;|im_start|&gt;</span>assistant
+我是一个AI助手，很高兴为您服务！<span class="string">&lt;|im_end|&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="template-content" id="template-llama">
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">Llama 3 Chat Template</span></div>
+                        <div class="code-content">
+<pre><span class="string">&lt;|begin_of_text|&gt;&lt;|start_header_id|&gt;</span>system<span class="string">&lt;|end_header_id|&gt;</span>
+
+You are a helpful assistant.<span class="string">&lt;|eot_id|&gt;&lt;|start_header_id|&gt;</span>user<span class="string">&lt;|end_header_id|&gt;</span>
+
+你好，请介绍一下自己<span class="string">&lt;|eot_id|&gt;&lt;|start_header_id|&gt;</span>assistant<span class="string">&lt;|end_header_id|&gt;</span>
+
+我是一个AI助手，很高兴为您服务！<span class="string">&lt;|eot_id|&gt;</span></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="template-content" id="template-chatgpt">
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">OpenAI Messages Format (API)</span></div>
+                        <div class="code-content">
+<pre>{
+  <span class="string">"messages"</span>: [
+    {<span class="string">"role"</span>: <span class="string">"system"</span>, <span class="string">"content"</span>: <span class="string">"You are a helpful assistant."</span>},
+    {<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"你好，请介绍一下自己"</span>},
+    {<span class="string">"role"</span>: <span class="string">"assistant"</span>, <span class="string">"content"</span>: <span class="string">"我是一个AI助手！"</span>}
+  ]
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="template-content" id="template-chatglm">
+                    <div class="code-block">
+                        <div class="code-header"><span class="code-lang">ChatGLM Chat Template</span></div>
+                        <div class="code-content">
+<pre>[gMASK]sop <span class="string">&lt;|system|&gt;</span>
+You are a helpful assistant.
+<span class="string">&lt;|user|&gt;</span>
+你好，请介绍一下自己
+<span class="string">&lt;|assistant|&gt;</span>
+我是一个AI助手，很高兴为您服务！</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box warning">
+                <span class="icon">⚠️</span>
+                <div class="content">
+                    <strong>重要：做数据时不需要手动加 Template！</strong><br>
+                    数据准备阶段只需提供 <code>instruction / input / output</code> 或 <code>messages</code> 格式的 JSON。Template 的转换由训练框架通过 <code>tokenizer.apply_chat_template()</code> 自动完成。但理解 Template 有助于：debug、理解 loss mask 机制、适配不同模型。
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 模块4: 微调数据构建 ========== -->
+        <section class="section">
+            <h2 class="section-title">4. 微调数据构建（核心重点）</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 28px;">下面 4.1～4.8 为<strong>流程介绍</strong>：从数据格式、来源、文档转 QA、合成数据、量级、清洗到管道与版本管理，建立整体认知。具体的文档预处理（PDF 解析、分块策略）见下一章。</p>
+
+            <div class="content-card">
+                <h3>4.1 数据格式</h3>
+                <p>SFT 数据的核心结构是「指令-输入-输出」三元组：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>字段</th><th>说明</th><th>示例</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>instruction</code></td><td>任务描述/指令</td><td>「请用一句话总结以下段落」</td></tr>
+                            <tr><td><code>input</code></td><td>具体内容（可为空）</td><td>段落原文...</td></tr>
+                            <tr><td><code>output</code></td><td>期望的回答</td><td>该段主要讨论了...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="code-block">
+                    <div class="code-header"><span class="code-lang">Alpaca 格式示例</span></div>
+                    <div class="code-content">
+<pre>{
+  <span class="string">"instruction"</span>: <span class="string">"请将以下文本翻译成英文"</span>,
+  <span class="string">"input"</span>: <span class="string">"人工智能正在改变世界"</span>,
+  <span class="string">"output"</span>: <span class="string">"Artificial intelligence is changing the world."</span>
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.2 如何获取数据？</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>来源</th><th>方式</th><th>优缺点</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>人工标注</strong></td>
+                                <td>领域专家编写 Q&A 对</td>
+                                <td>✅ 质量高 &nbsp; ❌ 成本高、速度慢</td>
+                            </tr>
+                            <tr>
+                                <td><strong>文档转 QA</strong></td>
+                                <td>从已有文档提取问答对</td>
+                                <td>✅ 利用存量资产 &nbsp; ❌ 需设计提问策略</td>
+                            </tr>
+                            <tr>
+                                <td><strong>合成数据</strong></td>
+                                <td>用大模型生成训练数据</td>
+                                <td>✅ 快速扩量 &nbsp; ❌ 质量需把控</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.3 从文档转为 QA 对</h3>
+                <p>核心问题：<strong style="color: var(--accent-amber);">谁来想问题？用什么策略提问？</strong></p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>策略</th><th>做法</th><th>适用场景</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>基于段落摘要</td>
+                                <td>让模型针对每段内容生成「这段说了什么」类问题</td>
+                                <td>知识问答</td>
+                            </tr>
+                            <tr>
+                                <td>基于实体/术语</td>
+                                <td>抽取关键实体，生成「XX 是什么」类问题</td>
+                                <td>术语解释</td>
+                            </tr>
+                            <tr>
+                                <td>基于业务场景</td>
+                                <td>模拟用户真实会问的问题（「怎么办理」「多少钱」）</td>
+                                <td>客服、咨询</td>
+                            </tr>
+                            <tr>
+                                <td>多跳推理</td>
+                                <td>需要结合多段信息才能回答的问题</td>
+                                <td>复杂问答</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.4 合成数据的方式</h3>
+                <p>用大模型（如 GPT-4、Qwen-Max）批量生成训练数据，常见方法：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>方法</th><th>原理</th><th>参考</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Self-Instruct</strong></td>
+                                <td>给几个种子示例，让模型生成更多类似指令</td>
+                                <td>Stanford Alpaca</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evol-Instruct</strong></td>
+                                <td>对简单指令逐步「进化」为复杂指令</td>
+                                <td>WizardLM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>蒸馏</strong></td>
+                                <td>用大模型的输出作为小模型的训练标签</td>
+                                <td>Alpaca、Vicuna</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tip-box info">
+                    <span class="icon">💡</span>
+                    <div class="content">
+                        <strong>合成数据注意事项：</strong>需要人工抽检质量、过滤低质量样本、避免模型「自我强化」错误模式。
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.5 数据量级：多少数据才够？</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>场景</th><th>推荐数据量</th><th>说明</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>风格调整 / 格式控制</td>
+                                <td>几百 ~ 几千条</td>
+                                <td>任务简单，少量高质量数据即可</td>
+                            </tr>
+                            <tr>
+                                <td>垂域知识问答</td>
+                                <td>1万 ~ 10万条</td>
+                                <td>需覆盖领域知识点</td>
+                            </tr>
+                            <tr>
+                                <td>复杂推理 / Agent</td>
+                                <td>10万+ 条</td>
+                                <td>多样性和难度梯度很重要</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tip-box warning">
+                    <span class="icon">⚠️</span>
+                    <div class="content">
+                        <strong>质量 > 数量：</strong>1000 条高质量数据的效果可能好于 10000 条低质量数据。先保证质量，再扩充数量。
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.6 数据清洗</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>清洗项</th><th>做法</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>去重</td><td>基于 hash / embedding 相似度去除重复或近似样本</td></tr>
+                            <tr><td>长度过滤</td><td>过滤过短（无意义）或过长（超出模型上下文）的样本</td></tr>
+                            <tr><td>质量打分</td><td>用规则或小模型对样本质量打分，过滤低分样本</td></tr>
+                            <tr><td>格式校验</td><td>确保 JSON 格式正确、字段完整</td></tr>
+                            <tr><td>敏感词/合规</td><td>过滤敏感内容、确保符合业务合规要求</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.7 数据管道搭建</h3>
+                <p>从原始数据到训练集的典型流程：</p>
+                <div class="data-pipeline">
+                    <div class="pipeline-step">📄 原始数据采集</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">🔄 格式转换</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">🧹 清洗 & 去重</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">✅ 质量打分</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">📊 统计分析</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">💾 输出训练集</div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.8 数据审核与版本管理</h3>
+                <ul style="color: var(--text-secondary); margin-left: 20px;">
+                    <li style="margin-bottom: 10px;"><strong>人工抽检：</strong>定期抽样审核数据质量，建立质量基线</li>
+                    <li style="margin-bottom: 10px;"><strong>版本管理：</strong>每次数据更新记录 changelog，支持回滚</li>
+                    <li style="margin-bottom: 10px;"><strong>可追溯性：</strong>保留数据来源信息，便于问题排查</li>
+                    <li style="margin-bottom: 10px;"><strong>迭代机制：</strong>根据模型效果反馈，持续优化数据</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== 模块5: 具体的文档预处理方法 ========== -->
+        <section class="section">
+            <h2 class="section-title">5. 具体的文档预处理方法</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 28px;">在「流程介绍」之后，落地到两件事：<strong>文档怎么进来</strong>（尤其是 PDF 的解析）、<strong>文档怎么切</strong>（分块策略）。前者重点介绍 VLM 处理 PDF，后者给出按场景的推荐策略与参数。</p>
+
+            <div class="content-card">
+                <h3>5.1 VLM 处理 PDF（重点）</h3>
+                <p>PDF 是微调数据的重要来源，但原生是「像素/矢量」而非文本。要转为可分块、可生成 QA 的文本，需要<strong>版面分析 + OCR/文本抽取</strong>。视觉语言模型（VLM）与多模态文档解析工具能同时理解版面（标题、段落、表格、公式、图）并输出结构化文本。</p>
+                <ul style="color: var(--text-secondary); margin-left: 20px; margin-top: 12px;">
+                    <li><strong>MinerU</strong>（OpenDataLab）：多模态文档智能解析，PDF → Markdown/LaTeX/HTML。采用<strong>版面检测（Transformer 页面对象检测）→ 内容识别（CRNN+TrOCR、公式识别）→ 后处理</strong>三级架构，支持文本型 PDF 原生抽取与扫描版 109 种语言 OCR；新版 hybrid 后端融合 pipeline 与 VLM，降低解析幻觉。适合批量 PDF 转结构化文本后再做分块与 QA 生成。</li>
+                    <li><strong>Unstructured / LlamaParse</strong>：将 PDF 解析为 HTML 或 Markdown，<strong>表格整体保留为一个块</strong>，避免行列关系被切碎；适合财报、规格书等含大量表格的文档。</li>
+                    <li><strong>通用思路</strong>：文本型 PDF 可优先用原生文本抽取 + 版面信息；扫描版或复杂版式用 VLM/OCR 管线；表格密集文档务必「整表一 chunk」或专用表格解析，再接入后续分块与 QA 流程。</li>
+                </ul>
+                <div class="tip-box info">
+                    <span class="icon">ℹ️</span>
+                    <div class="content">
+                        <strong>与微调数据流水线衔接</strong>：PDF 经 MinerU/Unstructured 等解析为 Markdown 或结构化文本后，可交给 Easy Dataset 等工具做「文本分割 → 问题生成 → 答案构建」，得到 Alpaca/ShareGPT 格式的微调数据。
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>5.2 文档分块方法</h3>
+                <p>解析得到的长文档需要<strong>分块（chunk）</strong>后再做检索或生成 QA。不同场景下应选用不同策略与参数，以保证语义完整、不切断句子/表格、兼顾检索精度与上下文长度。下表按场景给出推荐策略、建议参数与核心理由。</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>场景</th>
+                                <th>推荐策略/工具</th>
+                                <th>建议参数（Tokens / Overlap）</th>
+                                <th>核心理由</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>通用文本</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">新闻、报告、文章</span></td>
+                                <td>递归字符切分<br><code>RecursiveCharacterTextSplitter</code></td>
+                                <td>500–1000 / 10–15%</td>
+                                <td>首选默认方案。优先按段落（<code>\n\n</code>）切，保证语义尽可能完整，不把一句话切断。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>结构化文档</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">Markdown、Wiki</span></td>
+                                <td>按标题切分<br><code>MarkdownHeaderTextSplitter</code></td>
+                                <td>按 Header 层级 / 0</td>
+                                <td>保留层级元数据。将 H1/H2 作为元数据注入内容，防止切片丢失「属于哪一章」的信息。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>代码文件</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">Python、JS、Go</span></td>
+                                <td>语言结构切分<br><code>PythonCodeTextSplitter</code> 等</td>
+                                <td>800–1500 / 0</td>
+                                <td>保持逻辑完整性。按类/函数边界切，不会把一条 <code>if</code> 语句劈成两半。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>包含大量表格</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">财报、规格书</span></td>
+                                <td>HTML/Markdown 转换<br>Unstructured / LlamaParse</td>
+                                <td>表格整体作为一个块</td>
+                                <td>表格绝不能切碎。整张 <code>&lt;table&gt;</code> 解析为 Markdown/HTML 作为独立 Chunk，否则行列关系全毁。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>高精度检索</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">法律条款、合规</span></td>
+                                <td>父子索引<br><code>ParentDocumentRetriever</code></td>
+                                <td>父: 2000 / 子: 200</td>
+                                <td>搜得准、读得全。用「子块」做向量匹配（极灵敏），给 LLM 喂「父块」（上下文完整）。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>话题跳跃性强</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">会议纪要、聊天记录</span></td>
+                                <td>语义切分<br><code>SemanticChunker</code></td>
+                                <td>基于语义阈值（Percentile）</td>
+                                <td>按意思切、不按字数切。用 Embedding 判断话题何时结束，解决「上一句谈工资、下一句谈天气」混在一块的问题。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>模型窗口极小</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">本地小模型</span></td>
+                                <td>固定大小切分<br><code>TokenTextSplitter</code></td>
+                                <td>256–512 / 20%</td>
+                                <td>硬约束。显存受限或 Embedding 模型只支持 512 token 时使用。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tip-box success">
+                    <span class="icon">✅</span>
+                    <div class="content">
+                        <strong>选型建议</strong>：先看文档类型（通用/结构化/代码/表格/多话题/小窗口），再选对应策略；参数可按数据抽样调试，优先保证「不切断语义单元」再调 chunk 大小与 overlap。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 模块6: 如何微调？三大路线 ========== -->
+        <section class="section">
+            <h2 class="section-title">6. 如何微调？三大路线</h2>
+
+            <div class="content-card">
+                <h3>三大微调路线对比</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>路线</th><th>原理</th><th>可训练参数</th><th>7B 模型显存</th><th>适用场景</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>全参数微调</strong></td>
+                                <td>更新模型所有参数</td>
+                                <td>100%</td>
+                                <td class="expandable-cell" onclick="this.classList.toggle('expanded')">
+                                    <div class="cell-header">
+                                        <span class="toggle-icon">▶</span>
+                                        <span>~60GB+</span>
+                                    </div>
+                                    <div class="cell-detail">
+                                        <div class="detail-row">
+                                            <span class="detail-label">模型参数 (FP16)</span>
+                                            <span class="detail-value">≈ 14GB</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">梯度</span>
+                                            <span class="detail-value">≈ 14GB</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">优化器状态 (Adam)</span>
+                                            <span class="detail-value">≈ 28GB</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>数据充足、资源充足</td>
+                            </tr>
+                            <tr style="background: rgba(6, 182, 212, 0.08);">
+                                <td><strong style="color: var(--accent-cyan);">PEFT (LoRA/QLoRA)</strong></td>
+                                <td>冻结原参数，只训练少量新增参数</td>
+                                <td>0.1% ~ 3%</td>
+                                <td class="expandable-cell" onclick="this.classList.toggle('expanded')">
+                                    <div class="cell-header">
+                                        <span class="toggle-icon">▶</span>
+                                        <span>6~16GB</span>
+                                    </div>
+                                    <div class="cell-detail">
+                                        <div class="detail-row">
+                                            <span class="detail-label">LoRA (FP16)</span>
+                                            <span class="detail-value">≈ 16GB</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-label">QLoRA (4-bit)</span>
+                                            <span class="detail-value">≈ 6GB</span>
+                                        </div>
+                                        <p style="margin-top: 8px; color: var(--accent-green); font-size: 0.85rem;">省掉了梯度和优化器的大部分显存</p>
+                                    </div>
+                                </td>
+                                <td><strong style="color: var(--accent-green);">主流选择</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>其他 PEFT</strong></td>
+                                <td>Adapter / Prefix Tuning / P-Tuning</td>
+                                <td>1% ~ 3%</td>
+                                <td>中等</td>
+                                <td>特定场景</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>LoRA 核心思想</h3>
+                <p>LoRA（Low-Rank Adaptation）通过低秩分解来近似权重更新：原始权重 W₀ 保持冻结，只训练两个小矩阵 B 和 A。</p>
+                <div class="diagram">
+                    <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%;">
+                        <rect x="30" y="40" width="100" height="80" fill="none" stroke="#3b82f6" stroke-width="2" rx="4"/>
+                        <text x="80" y="75" fill="#3b82f6" font-size="14" text-anchor="middle">W₀</text>
+                        <text x="80" y="95" fill="#6b7280" font-size="10" text-anchor="middle">(冻结)</text>
+                        <text x="155" y="82" fill="#94a3b8" font-size="22" text-anchor="middle">+</text>
+                        <rect x="185" y="45" width="45" height="70" fill="none" stroke="#06b6d4" stroke-width="2" rx="4"/>
+                        <text x="207" y="85" fill="#06b6d4" font-size="13" text-anchor="middle">B</text>
+                        <text x="245" y="82" fill="#94a3b8" font-size="16" text-anchor="middle">×</text>
+                        <rect x="265" y="55" width="70" height="50" fill="none" stroke="#06b6d4" stroke-width="2" rx="4"/>
+                        <text x="300" y="85" fill="#06b6d4" font-size="13" text-anchor="middle">A</text>
+                        <text x="360" y="82" fill="#94a3b8" font-size="22" text-anchor="middle">=</text>
+                        <rect x="390" y="40" width="80" height="80" fill="none" stroke="#10b981" stroke-width="2" rx="4"/>
+                        <text x="430" y="85" fill="#10b981" font-size="14" text-anchor="middle">W</text>
+                        <text x="240" y="145" fill="#06b6d4" font-size="11" text-anchor="middle">ΔW = B·A (可训练)</text>
+                    </svg>
+                </div>
+                <ul style="color: var(--text-secondary); margin-left: 20px; margin-top: 16px;">
+                    <li style="margin-bottom: 8px;">原始权重 W₀ 保持冻结，不参与梯度更新</li>
+                    <li style="margin-bottom: 8px;">只训练低秩矩阵 B 和 A，参数量大幅减少</li>
+                    <li style="margin-bottom: 8px;">推理时可将 BA 合并到 W₀，<strong style="color: var(--accent-green);">无额外推理延迟</strong></li>
+                </ul>
+
+                <!-- 小互动：计算 LoRA 参数量 -->
+                <div style="margin-top: 24px; padding: 20px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                        <span style="font-size: 1.2rem;">🧮</span>
+                        <span style="color: var(--accent-cyan); font-weight: 600; font-size: 1.1rem;">小互动：计算 LoRA 参数量</span>
+                    </div>
+                    
+                    <div style="background: var(--bg-card); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                        <p style="color: var(--text-secondary); margin-bottom: 12px;">已知某个权重矩阵 W₀ 的配置：</p>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; text-align: center;">
+                            <div style="background: var(--bg-secondary); padding: 12px; border-radius: 6px;">
+                                <div style="color: #6b7280; font-size: 0.8rem;">原始参数量</div>
+                                <div style="color: var(--text-primary); font-weight: 600; font-size: 1.1rem;">100 万</div>
+                            </div>
+                            <div style="background: var(--bg-secondary); padding: 12px; border-radius: 6px;">
+                                <div style="color: #6b7280; font-size: 0.8rem;">输出维度</div>
+                                <div style="color: var(--accent-cyan); font-weight: 600; font-size: 1.1rem;">d = 1000</div>
+                            </div>
+                            <div style="background: var(--bg-secondary); padding: 12px; border-radius: 6px;">
+                                <div style="color: #6b7280; font-size: 0.8rem;">输入维度</div>
+                                <div style="color: var(--accent-cyan); font-weight: 600; font-size: 1.1rem;">k = 1000</div>
+                            </div>
+                            <div style="background: var(--bg-secondary); padding: 12px; border-radius: 6px;">
+                                <div style="color: #6b7280; font-size: 0.8rem;">秩 Rank</div>
+                                <div style="color: var(--accent-purple); font-weight: 600; font-size: 1.1rem;">r = 8</div>
+                            </div>
+                        </div>
+                        <p style="color: var(--accent-amber); margin-top: 16px; font-weight: 500;">❓ 问题：LoRA 需要训练多少参数？节省了百分之多少？</p>
+                    </div>
+
+                    <!-- 折叠答案 -->
+                    <div class="expandable-block" onclick="this.classList.toggle('expanded')" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; cursor: pointer;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="toggle-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; font-size: 11px; color: var(--accent-green); background: rgba(16, 185, 129, 0.15); border-radius: 4px; transition: transform 0.2s ease;">▶</span>
+                            <span style="color: var(--accent-green); font-weight: 500;">💡 点击查看答案</span>
+                        </div>
+                        <div class="block-detail" style="display: none; margin-top: 16px;">
+                            <div style="background: var(--bg-primary); border-radius: 6px; padding: 16px; margin-bottom: 12px;">
+                                <p style="color: var(--text-secondary); margin-bottom: 12px;">LoRA 只训练 B 和 A 两个矩阵：</p>
+                                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 2;">
+                                    <div style="color: var(--text-secondary);">
+                                        <span style="color: var(--accent-cyan);">B 的参数量</span> = d × r = 1000 × 8 = <span style="color: var(--accent-green);">8,000</span>
+                                    </div>
+                                    <div style="color: var(--text-secondary);">
+                                        <span style="color: var(--accent-cyan);">A 的参数量</span> = r × k = 8 × 1000 = <span style="color: var(--accent-green);">8,000</span>
+                                    </div>
+                                    <div style="color: var(--text-secondary); padding-top: 8px; border-top: 1px dashed var(--border-color); margin-top: 8px;">
+                                        <span style="color: var(--accent-amber);">总参数量</span> = 8,000 + 8,000 = <span style="color: var(--accent-green); font-weight: 600; font-size: 1.1rem;">16,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 16px;">
+                                <div style="flex: 1; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 6px; padding: 12px; text-align: center;">
+                                    <div style="color: #ef4444; font-size: 0.85rem;">全量微调</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">100 万参数</div>
+                                </div>
+                                <div style="flex: 1; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 12px; text-align: center;">
+                                    <div style="color: #10b981; font-size: 0.85rem;">LoRA</div>
+                                    <div style="color: var(--text-primary); font-weight: 600;">1.6 万参数</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 16px; padding: 12px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; text-align: center;">
+                                <span style="color: var(--accent-green); font-size: 1.1rem; font-weight: 600;">🎉 节省了 98.4% 的可训练参数！</span>
+                            </div>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 12px; text-align: center;">
+                                ⚠️ 注意：W₀ 的 100 万参数是<strong>冻结</strong>的，不参与训练，所以不占用梯度和优化器显存！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>LoRA 参数配置</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>参数</th><th>含义</th><th>推荐值</th><th>说明</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>r</code> (Rank)</td><td>低秩矩阵的秩</td><td>8 / 16 / 32</td><td>领域差异越大，Rank 越高</td></tr>
+                            <tr><td><code>lora_alpha</code></td><td>缩放因子</td><td>= Rank 或 2×Rank</td><td>实际缩放 = alpha / r</td></tr>
+                            <tr><td><code>target_modules</code></td><td>应用 LoRA 的层</td><td>q_proj, v_proj</td><td>可扩展到 k, o, gate 等</td></tr>
+                            <tr><td><code>lora_dropout</code></td><td>Dropout 比例</td><td>0.05 ~ 0.1</td><td>防止过拟合</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="code-block">
+                    <div class="code-header"><span class="code-lang">Python - PEFT LoRA 配置示例</span></div>
+                    <div class="code-content">
+<pre><span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig, get_peft_model
+
+peft_config = <span class="function">LoraConfig</span>(
+    <span class="param">r</span>=<span class="number">16</span>,                        <span class="comment"># Rank</span>
+    <span class="param">lora_alpha</span>=<span class="number">32</span>,                <span class="comment"># Alpha</span>
+    <span class="param">target_modules</span>=[<span class="string">"q_proj"</span>, <span class="string">"v_proj"</span>],
+    <span class="param">lora_dropout</span>=<span class="number">0.05</span>,
+    <span class="param">bias</span>=<span class="string">"none"</span>,
+    <span class="param">task_type</span>=<span class="string">"CAUSAL_LM"</span>
+)
+
+model = <span class="function">get_peft_model</span>(base_model, peft_config)
+model.<span class="function">print_trainable_parameters</span>()
+<span class="comment"># trainable params: 4,194,304 || all params: 6,738,415,616 || trainable%: 0.0622%</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>QLoRA：更省显存的方案</h3>
+                <p>QLoRA 在 LoRA 基础上引入 4-bit 量化（NF4），使得在消费级 GPU 上微调大模型成为可能。</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>特性</th><th>LoRA</th><th>QLoRA</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>基础模型精度</td><td>FP16 / BF16</td><td>NF4 (4-bit)</td></tr>
+                            <tr><td>7B 模型显存</td><td>~16GB</td><td>~6GB</td></tr>
+                            <tr><td>训练速度</td><td>较快</td><td>略慢（需反量化）</td></tr>
+                            <tr><td>适用场景</td><td>显存充足</td><td><strong style="color: var(--accent-green);">显存受限（消费级 GPU）</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="interaction-box">
+                <h3>小互动：为什么不推荐 Adapter / Prefix-Tuning / P-Tuning v2？</h3>
+                <p style="color: var(--text-secondary);">这些方法也是参数高效微调，但为什么实践中大家更倾向于用 LoRA？想一想它们可能有什么问题。</p>
+                
+                <div id="peft-answer-btn" style="margin-top: 20px;">
+                    <button type="button" onclick="document.getElementById('peft-answer').style.display='block'; this.style.display='none';" style="padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--accent-purple); border-radius: 8px; color: var(--accent-purple); cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
+                        🔍 点击查看答案
+                    </button>
+                </div>
+
+                <div id="peft-answer" style="display: none; margin-top: 20px;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px;">
+                        <ul style="color: var(--text-secondary); margin-left: 20px;">
+                            <li style="margin-bottom: 12px; padding-left: 8px; border-left: 3px solid var(--accent-red);">
+                                <strong style="color: var(--text-primary);">Adapter Tuning</strong>：增加了模型层数，<strong style="color: var(--accent-red);">引入了额外的推理延迟</strong>
+                            </li>
+                            <li style="margin-bottom: 12px; padding-left: 8px; border-left: 3px solid var(--accent-red);">
+                                <strong style="color: var(--text-primary);">Prefix-Tuning</strong>：难于训练，且预留给 Prompt 的序列<strong style="color: var(--accent-red);">挤占了下游任务的输入序列空间</strong>，影响模型性能
+                            </li>
+                            <li style="margin-bottom: 12px; padding-left: 8px; border-left: 3px solid var(--accent-red);">
+                                <strong style="color: var(--text-primary);">P-Tuning v2</strong>：很容易<strong style="color: var(--accent-red);">导致旧知识遗忘</strong>，微调之后的模型在之前的问题上表现明显变差
+                            </li>
+                        </ul>
+                        <div class="tip-box info" style="margin-top: 16px; margin-bottom: 0;">
+                            <span class="icon">💡</span>
+                            <div class="content">
+                                <strong>LoRA 的优势：</strong>原始权重完全冻结（抗遗忘）、推理时可合并（无延迟）、不挤占序列空间。这就是为什么 LoRA/QLoRA 成为主流选择。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box success">
+                <span class="icon">🏆</span>
+                <div class="content">
+                    <strong>结论：</strong>综合考虑效果、显存和抗遗忘能力，<strong style="color: var(--accent-cyan);">LoRA / QLoRA 是目前最主流的微调选择</strong>。它在多个 benchmark 上证明，仅用 0.1% 的可训练参数即可达到接近全量微调的效果。
+                </div>
+            </div>
+
+            <div class="reference-box">
+                <div class="title">📄 参考论文</div>
+                <div class="cite">
+                    • LoRA: <em>Low-Rank Adaptation of Large Language Models</em> (Hu et al., 2021)<br>
+                    • QLoRA: <em>Efficient Finetuning of Quantized LLMs</em> (Dettmers et al., 2023)
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部导航 -->
+        <nav class="page-nav">
+            <a href="training-overview.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                上一节
+            </a>
+            <a href="easy-dataset-tutorial.html" class="next">
+                下一节：微调数据准备实战（Easy Dataset）
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // 小互动：微调 vs 预训练
+        (function() {
+            var opts = document.getElementById('quiz1-options');
+            var fb = document.getElementById('quiz1-feedback');
+            var ans = document.getElementById('quiz1-answer');
+            var table = document.getElementById('comparison-table');
+            if (!opts || !fb || !ans || !table) return;
+
+            opts.querySelectorAll('.quiz-opt').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    opts.querySelectorAll('.quiz-opt').forEach(function(b) { b.classList.remove('selected','correct','wrong'); });
+                    this.classList.add('selected');
+                    var v = this.getAttribute('data-value');
+                    
+                    if (v === 'c') {
+                        this.classList.add('correct');
+                        fb.className = 'quiz-feedback show right';
+                        fb.innerHTML = '✅ <strong>正确！</strong>数据是最核心的区别。让我们看看三个维度的详细对比 ↓';
+                    } else {
+                        this.classList.add('wrong');
+                        fb.className = 'quiz-feedback show wrong';
+                        if (v === 'a') {
+                            fb.innerHTML = '❌ 模型结构通常是相同的（都是 Transformer）。再想想？';
+                        } else {
+                            fb.innerHTML = '❌ Loss 函数本质相同（都是 Next Token Prediction），只是 mask 策略不同。再想想？';
+                        }
+                    }
+                    
+                    // 显示对比表格
+                    setTimeout(function() {
+                        table.style.display = 'block';
+                        table.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 500);
+                });
+            });
+        })();
+
+        // Chat Template 标签切换
+        (function() {
+            var tabs = document.querySelectorAll('.template-tab');
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(function(t) { t.classList.remove('active'); });
+                    this.classList.add('active');
+                    var target = this.getAttribute('data-tab');
+                    document.querySelectorAll('.template-content').forEach(function(c) { c.classList.remove('active'); });
+                    document.getElementById('template-' + target).classList.add('active');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

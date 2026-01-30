@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型训练方法概览 - D05 数据工程专项</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --bg-code: #0d1117;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #2d3a4f;
+            --gradient-1: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        .bg-pattern { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3; background-image: radial-gradient(ellipse at 10% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 90% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 50%); }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10, 14, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .nav-brand:hover { color: var(--accent-cyan); }
+        .nav-brand svg { width: 20px; height: 20px; }
+        .nav-progress { display: flex; align-items: center; gap: 8px; }
+        .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); transition: background 0.3s; }
+        .nav-dot.active { background: var(--accent-cyan); }
+        .nav-dot.completed { background: var(--accent-green); }
+        .container { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 100px 40px 60px; }
+        .page-header { margin-bottom: 50px; }
+        .section-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 6px; font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 16px; }
+        .page-header h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-header .desc { color: var(--text-secondary); font-size: 1.05rem; }
+        .section { margin-bottom: 60px; }
+        .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--border-color); }
+        .section-title::before { content: "▸"; color: var(--accent-cyan); }
+        .content-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+        .content-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 16px; color: var(--accent-cyan); }
+        .content-card p { color: var(--text-secondary); margin-bottom: 16px; }
+        .content-card p:last-child { margin-bottom: 0; }
+        .table-wrapper { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background: var(--bg-secondary); font-weight: 600; color: var(--accent-cyan); }
+        tr:hover { background: rgba(6, 182, 212, 0.05); }
+        .timeline { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+        .timeline-item { display: flex; gap: 12px; }
+        .timeline-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; background: var(--accent-cyan); flex-shrink: 0; }
+        .timeline-content { color: var(--text-secondary); font-size: 0.95rem; }
+        .tip-box { display: flex; gap: 14px; padding: 18px; border-radius: 8px; margin: 20px 0; }
+        .tip-box.info { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .tip-box.warning { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .tip-box.success { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tip-box .icon { font-size: 1.2rem; flex-shrink: 0; }
+        .tip-box .content { font-size: 0.95rem; color: var(--text-secondary); }
+        .diagram { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; }
+        .diagram-placeholder { min-height: 180px; border-radius: 8px; border: 2px dashed var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 0.9rem; }
+        .page-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-color); }
+        .page-nav a { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); text-decoration: none; font-size: 0.95rem; transition: all 0.3s; }
+        .page-nav a:hover { border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.05); }
+        .page-nav a svg { width: 18px; height: 18px; color: var(--accent-cyan); }
+        .page-nav .next { margin-left: auto; }
+        .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+        .scenario-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; padding: 18px; text-align: center; transition: all 0.2s; }
+        .scenario-card:hover { border-color: var(--accent-cyan); transform: translateY(-2px); }
+        .scenario-card .icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .scenario-card .title { font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+        .scenario-card .desc { font-size: 0.85rem; color: var(--text-secondary); }
+        .code-block { background: var(--bg-code); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin: 20px 0; }
+        .code-header { padding: 10px 16px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+        .code-content { padding: 18px; overflow-x: auto; }
+        .code-content pre { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: var(--text-primary); margin: 0; }
+        .code-content .comment { color: #6a737d; }
+        .code-content .keyword { color: #ff7b72; }
+        .code-content .string { color: #a5d6ff; }
+        .code-content .number { color: #79c0ff; }
+        .code-content .function { color: #d2a8ff; }
+        .emphasis { color: var(--accent-amber); font-weight: 500; }
+        @media (max-width: 768px) {
+            .container { padding: 90px 20px 40px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .page-nav { flex-direction: column; gap: 12px; }
+            .scenario-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            返回目录
+        </a>
+        <div class="nav-progress">
+            <div class="nav-dot active"></div>
+            <div class="nav-dot"></div>
+            <div class="nav-dot"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <div class="section-tag">第一天 · 9:15-10:20</div>
+            <h1>大模型训练方法概览</h1>
+            <p class="desc">从「大一统预训练」到「面向业务的精调与对齐」，梳理一个可落地的大模型训练全景图。</p>
+        </header>
+
+        <!-- 1. 总览：四个阶段 -->
+        <section class="section">
+            <h2 class="section-title">1. 整体视角：大模型训练四个阶段</h2>
+
+            <div class="content-card">
+                <h3>1.1 经典「3+1」流程</h3>
+                <p>大语言模型从「通用能力」到「业务可用」通常经历四个阶段：</p>
+                <div class="diagram">
+                    <svg viewBox="0 0 800 130" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%;">
+                        <rect x="30" y="40" width="140" height="50" rx="10" fill="#111827" stroke="#3b82f6" stroke-width="2"/>
+                        <text x="100" y="63" fill="#e5e7eb" font-size="13" text-anchor="middle">预训练</text>
+                        <text x="100" y="80" fill="#60a5fa" font-size="10" text-anchor="middle">海量无监督文本</text>
+
+                        <text x="185" y="65" fill="#6b7280" font-size="18">→</text>
+
+                        <rect x="220" y="40" width="140" height="50" rx="10" fill="#111827" stroke="#06b6d4" stroke-width="2"/>
+                        <text x="290" y="63" fill="#e5e7eb" font-size="13" text-anchor="middle">监督微调 (SFT)</text>
+                        <text x="290" y="80" fill="#22d3ee" font-size="10" text-anchor="middle">指令-回答数据</text>
+
+                        <text x="375" y="65" fill="#6b7280" font-size="18">→</text>
+
+                        <rect x="410" y="40" width="140" height="50" rx="10" fill="#111827" stroke="#8b5cf6" stroke-width="2"/>
+                        <text x="480" y="63" fill="#e5e7eb" font-size="13" text-anchor="middle">对齐 (RLHF / DPO)</text>
+                        <text x="480" y="80" fill="#a855f7" font-size="10" text-anchor="middle">人类偏好 / 规则</text>
+
+                        <text x="565" y="65" fill="#6b7280" font-size="18">→</text>
+
+                        <rect x="600" y="40" width="140" height="50" rx="10" fill="#111827" stroke="#10b981" stroke-width="2"/>
+                        <text x="670" y="63" fill="#e5e7eb" font-size="13" text-anchor="middle">部署 & 优化</text>
+                        <text x="670" y="80" fill="#6ee7b7" font-size="10" text-anchor="middle">蒸馏 / 量化 / 剪枝</text>
+                    </svg>
+                </div>
+                <p>本课程更多聚焦在后面三个环节（SFT、对齐、压缩），<span class="emphasis">这些都是数据工程人员可以参与、也最接近业务价值的阶段</span>。</p>
+            </div>
+
+            <div class="content-card">
+                <h3>1.2 面向业务落地的三种典型路径</h3>
+                <div class="scenario-grid">
+                    <div class="scenario-card">
+                        <div class="icon">🧱</div>
+                        <div class="title">直接调用 API</div>
+                        <div class="desc">零训练，通过 Prompt/RAG 解决问题</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="icon">🧪</div>
+                        <div class="title">微调现有模型</div>
+                        <div class="desc">SFT + 对齐，适配自家业务</div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="icon">🏭</div>
+                        <div class="title">自研/托管大模型</div>
+                        <div class="desc">全链路控制，高投入高可控</div>
+                    </div>
+                </div>
+                <div class="tip-box info">
+                    <span class="icon">💡</span>
+                    <div class="content">
+                        大多数企业不会从零训练基础模型，而是选择在通用基座（Qwen、Llama 等）上做 <strong>二次训练 + 压缩部署</strong>。本工作坊的重点也是：<strong>如何围绕这些环节做数据工程</strong>。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 预训练：只需要知道什么？ -->
+        <section class="section">
+            <h2 class="section-title">2. 预训练：你需要了解到什么程度？</h2>
+
+            <div class="content-card">
+                <h3>2.1 预训练的目标与数据</h3>
+                <p>预训练阶段的核心是：让模型在海量文本上学习「语言建模」任务，即预测下一个 token：</p>
+                <div class="code-block">
+                    <div class="code-header">数学视角（简化）</div>
+                    <div class="code-content">
+<pre><span class="comment">// 给定前面所有 token，预测下一个 token 的概率</span>
+<span class="function">maximize</span>  ∑ log P(<span class="keyword">token</span><sub>t</sub> | <span class="keyword">token</span><sub>&lt;t</sub>)
+
+<span class="comment">// 对数据工程的启示：</span>
+<span class="comment">//  - 预训练数据越多、越干净，基础能力越强</span>
+<span class="comment">//  - 预训练阶段关注“覆盖面”和“多样性”，不是具体任务</span></pre>
+                    </div>
+                </div>
+                <p>典型预训练数据包括：网络爬虫文本、书籍、代码、论坛对话等，规模通常是 <span class="emphasis">TB 级</span>，远超企业可单独构建的量级。</p>
+            </div>
+
+            <div class="content-card">
+                <h3>2.2 作为业务方/数据工程师，需要知道的边界</h3>
+                <ul style="color: var(--text-secondary); margin-left: 20px;">
+                    <li style="margin-bottom: 8px;">✔ 预训练<strong>极其耗费资源</strong>，通常由大厂或基础模型团队承担</li>
+                    <li style="margin-bottom: 8px;">✔ 你的工作更聚焦于：在预训练模型之上<strong>做增量数据工程</strong></li>
+                    <li style="margin-bottom: 8px;">✔ 需要知道预训练大致用过哪些公共语料，<strong>避免在下游数据中重复灌入无效信息</strong></li>
+                    <li style="margin-bottom: 8px;">✔ 明确：预训练不保证「对齐」，它只让模型会说话，会“胡思乱想”</li>
+                </ul>
+                <div class="tip-box warning">
+                    <span class="icon">⚠️</span>
+                    <div class="content">
+                        实际项目中，「预训练做不好」和「微调数据做不好」很难区分。从团队可控性的角度，<span class="emphasis">更应该把精力放在后面的 SFT / 对齐 / 蒸馏 数据工程</span>。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SFT：从通用大模型到任务模型 -->
+        <section class="section">
+            <h2 class="section-title">3. SFT：从基础模型到任务模型</h2>
+
+            <div class="content-card">
+                <h3>3.1 SFT 的输入输出形式</h3>
+                <p>SFT 是在预训练模型之上，使用「指令-回答」数据做监督学习。典型数据结构：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>字段</th><th>作用</th><th>示例</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>instruction</code></td>
+                                <td>告诉模型「要做什么任务」</td>
+                                <td>请根据以下配置，生成一条 API 调用示例</td>
+                            </tr>
+                            <tr>
+                                <td><code>input</code></td>
+                                <td>任务相关的具体内容（可为空）</td>
+                                <td>接口定义 JSON、表结构、业务参数等</td>
+                            </tr>
+                            <tr>
+                                <td><code>output</code></td>
+                                <td>我们期待模型输出的内容</td>
+                                <td>一条合法的 curl 命令 / SQL / 对话回答</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>本工作坊的 <a href="sft-data.html" style="color: var(--accent-cyan); text-decoration: none;">《SFT 与 PEFT 的数据工程》</a> 页面会详细展开如何构建这些数据。</p>
+            </div>
+
+            <div class="content-card">
+                <h3>3.2 SFT 解决了什么问题？</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>从“知道”到“按要求说出来”</strong><br>
+                            预训练模型往往已经「知道」很多事实，但 SFT 教会它在特定任务中如何组织答案、遵守格式与角色设定。
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>输出可控性</strong><br>
+                            通过大量示例告诉模型「该说什么、不该说什么」，例如：不要随意编造数据、不要输出敏感信息等。
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>快速适配领域语言</strong><br>
+                            通过垂直领域 QA 样本，让模型熟悉汽车、金融、制造等专业术语与表达方式。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 对齐：让模型“像人一样说话” -->
+        <section class="section">
+            <h2 class="section-title">4. 对齐：从「会做题」到「行为符合预期」</h2>
+
+            <div class="content-card">
+                <h3>4.1 RLHF / DPO 的核心思路</h3>
+                <p>对齐阶段通常不再直接给出「标准答案」，而是给出<strong>偏好信息</strong>，让模型学会哪种回答更好：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>方法</th><th>训练数据</th><th>直观理解</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>RLHF</strong></td>
+                                <td>question + (answer, score) 或 (answer A, answer B, 人类偏好)</td>
+                                <td>先训练一个「奖励模型」，再用强化学习调整语言模型</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DPO</strong></td>
+                                <td>question + (preferred answer, rejected answer)</td>
+                                <td>直接最大化「好答案」相对于「差答案」的概率</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tip-box success">
+                    <span class="icon">🏷️</span>
+                    <div class="content">
+                        从数据工程视角看：<span class="emphasis">对齐的关键是有高质量的「比较数据」</span>——针对同一个问题，准备多种回答，并明确哪个更符合业务与安全要求。
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>4.2 对齐中的数据来源</h3>
+                <ul style="color: var(--text-secondary); margin-left: 20px;">
+                    <li style="margin-bottom: 8px;">内部客服/机器人历史对话日志（需要做脱敏与清洗）</li>
+                    <li style="margin-bottom: 8px;">标注团队针对常见问题给出的多版本回答与偏好选择</li>
+                    <li style="margin-bottom: 8px;">通过大模型生成多个回答，再由人类选出更合适的一条（人机协同）</li>
+                    <li style="margin-bottom: 8px;">安全/合规模块给出的「不允许输出」的负样本</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. 部署与压缩：为落地做准备 -->
+        <section class="section">
+            <h2 class="section-title">5. 部署与压缩：从「好用」到「用得起」</h2>
+
+            <div class="content-card">
+                <h3>5.1 为什么需要蒸馏、量化、剪枝？</h3>
+                <p>一个效果很好的大模型，如果<strong>部署成本过高、延迟过大</strong>，在企业内往往是无法真正落地的。典型痛点：</p>
+                <ul style="color: var(--text-secondary); margin-left: 20px;">
+                    <li style="margin-bottom: 8px;">推理显存需求高，难以在现有 GPU 资源上大量并发部署</li>
+                    <li style="margin-bottom: 8px;">单次响应延迟高，无法满足在线业务 SLA</li>
+                    <li style="margin-bottom: 8px;">能耗与成本难以接受（尤其是 24×7 在线服务）</li>
+                </ul>
+                <p>因此需要在保持尽可能多能力的前提下，通过 <strong>蒸馏 / 量化 / 剪枝</strong> 把模型变小、变快。下一节 <a href="model-optimization.html" style="color: var(--accent-cyan); text-decoration: none;">《模型优化：蒸馏、量化、剪枝》</a> 会重点展开。</p>
+            </div>
+
+            <div class="content-card">
+                <h3>5.2 对数据工程的整体要求</h3>
+                <p>从大模型训练全流程看，数据工程的工作可以简单归纳为三类：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>阶段</th><th>数据类型</th><th>数据工程重点</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>预训练</td>
+                                <td>大规模通用文本</td>
+                                <td>清洗、去重、多样性、合规（通常由基础团队负责）</td>
+                            </tr>
+                            <tr>
+                                <td>SFT / 对齐</td>
+                                <td>指令-回答 / 偏好数据</td>
+                                <td>如何把企业文档/日志转成结构化训练数据</td>
+                            </tr>
+                            <tr>
+                                <td>压缩（蒸馏等）</td>
+                                <td>「教师-学生」训练对、推理日志</td>
+                                <td>采样策略、难例挖掘、在线数据闭环</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tip-box success">
+                <span class="icon">✅</span>
+                <div class="content">
+                    在后续的两节中，我们会分别深入：<br>
+                    • <a href="sft-data.html" style="color: var(--accent-cyan); text-decoration: none;">如何系统构建 SFT / PEFT 数据集</a><br>
+                    • <a href="model-optimization.html" style="color: var(--accent-cyan); text-decoration: none;">如何为蒸馏/量化/剪枝设计合适的数据与实验</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部导航 -->
+        <nav class="page-nav">
+            <a href="index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                返回目录
+            </a>
+            <a href="sft-data.html" class="next">
+                下一节：SFT 与 PEFT 的数据工程
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型训练方法流程概览 - D05 数据工程专项</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #2d3a4f;
+            --gradient-1: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        .bg-pattern {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3;
+            background-image: radial-gradient(ellipse at 10% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10, 14, 23, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color);
+            padding: 16px 40px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .nav-brand:hover { color: var(--accent-cyan); }
+        .nav-brand svg { width: 20px; height: 20px; }
+        .container { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 100px 40px 60px; }
+        .page-header { margin-bottom: 50px; }
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
+            background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 6px;
+            font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 16px;
+        }
+        .page-header h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-header .desc { color: var(--text-secondary); font-size: 1.05rem; }
+        .section { margin-bottom: 60px; }
+        .section-title {
+            display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; margin-bottom: 24px;
+            padding-bottom: 12px; border-bottom: 2px solid var(--border-color);
+        }
+        .section-title::before { content: "▸"; color: var(--accent-cyan); }
+        .content-card {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 28px; margin-bottom: 24px;
+        }
+        .content-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 16px; color: var(--accent-cyan); }
+        .content-card p { color: var(--text-secondary); margin-bottom: 16px; }
+        .table-wrapper { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background: var(--bg-secondary); font-weight: 600; color: var(--accent-cyan); }
+        tr:hover { background: rgba(6, 182, 212, 0.05); }
+        .diagram {
+            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px;
+            padding: 30px; margin: 24px 0; text-align: center;
+        }
+        .diagram-placeholder {
+            min-height: 280px; background: rgba(45, 58, 79, 0.5); border: 2px dashed var(--border-color);
+            border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: var(--text-secondary); font-size: 0.9rem; gap: 12px;
+        }
+        .diagram-placeholder strong { color: var(--accent-amber); }
+        .interaction-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 28px; margin: 30px 0;
+        }
+        .interaction-box h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; color: var(--accent-purple); margin-bottom: 16px; }
+        .interaction-box h3::before { content: "💬"; }
+        .quiz-options { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .quiz-opt {
+            padding: 14px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px;
+            cursor: pointer; transition: all 0.2s; color: var(--text-secondary);
+        }
+        .quiz-opt:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .quiz-opt.selected { border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan); }
+        .quiz-opt.correct { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+        .quiz-opt.wrong { border-color: var(--accent-red); background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
+        .quiz-feedback { margin-top: 16px; padding: 14px; border-radius: 8px; font-size: 0.95rem; display: none; }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.right { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: var(--accent-green); }
+        .quiz-feedback.wrong { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--accent-red); }
+        .tip-box { display: flex; gap: 14px; padding: 18px; border-radius: 8px; margin: 20px 0; }
+        .tip-box.info { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .tip-box .icon { font-size: 1.2rem; flex-shrink: 0; }
+        .tip-box .content { font-size: 0.95rem; color: var(--text-secondary); }
+        .reference-box { background: var(--bg-secondary); border-left: 3px solid var(--accent-blue); padding: 16px 20px; margin: 24px 0; font-size: 0.9rem; }
+        .reference-box .title { font-weight: 600; color: var(--accent-blue); margin-bottom: 8px; }
+        .reference-box .cite { color: var(--text-secondary); font-style: italic; }
+        .reference-box a { color: var(--accent-cyan); text-decoration: none; }
+        .reference-box a:hover { text-decoration: underline; }
+        .page-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-color); }
+        .page-nav a { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); text-decoration: none; font-size: 0.95rem; transition: all 0.3s; }
+        .page-nav a:hover { border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.05); }
+        .page-nav a svg { width: 18px; height: 18px; color: var(--accent-cyan); }
+        .page-nav .next { margin-left: auto; }
+        .pipeline-svg { max-width: 100%; }
+        @media (max-width: 768px) { .container { padding: 90px 20px 40px; } .page-header h1 { font-size: 1.8rem; } .page-nav { flex-direction: column; gap: 12px; } }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            返回目录
+        </a>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <div class="section-tag">第一天 · 9:15-10:20</div>
+            <h1>大模型训练方法流程与实践概览</h1>
+            <p class="desc">从预训练到部署的完整技术链路，理解数据在各阶段的作用</p>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">训练全景：预训练 → 微调 → 对齐 → 部署</h2>
+            <div class="content-card">
+                <h3>为什么需要分阶段训练？</h3>
+                <p>大模型不是一步练成的。预训练学「通识」，微调与对齐学「听话、好用」，部署阶段则关注延迟与成本。每一阶段的数据形态、规模和工程要求都不同，数据工程正是串起这条链路的底座。</p>
+            </div>
+            <div class="content-card">
+                <h3>各阶段对比</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>阶段</th><th>数据形态</th><th>目标</th><th>数据工程重点</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>预训练</td><td>海量纯文本 / 代码</td><td>语言建模、世界知识</td><td>去重、质量过滤、长上下文</td></tr>
+                            <tr><td>SFT</td><td>指令-输入-输出三元组</td><td>按指令回答、格式一致</td><td>格式统一、多样性、标注质量</td></tr>
+                            <tr><td>对齐（RLHF/DPO 等）</td><td>偏好对、排序数据</td><td>符合人类偏好、安全</td><td>偏好标注、一致性、安全边界</td></tr>
+                            <tr><td>推理 / 部署</td><td>请求-响应流</td><td>低延迟、高吞吐</td><td>输入规范化、输出解析、监控</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="content-card">
+                <h3>训练流程示意图（原论文可替换）</h3>
+                <p style="margin-bottom:16px;color:var(--text-secondary);">下图可替换为 LLaMA、Qwen 等论文中的训练 pipeline 图，便于课堂对照讲解。</p>
+                <div class="diagram">
+                    <div class="diagram-placeholder">
+                        <strong>📷 原论文训练流程图占位</strong>
+                        <span>可将 LLaMA / Qwen / 其他论文中的「预训练 → SFT → RLHF」示意图截图替换此区域</span>
+                        <span style="font-size:0.85rem;color:var(--accent-cyan);">建议尺寸：宽 800–1000px，格式 PNG/SVG</span>
+                    </div>
+                    <p style="margin-top:12px;font-size:0.85rem;color:var(--text-secondary);">参考文献示例：LLaMA 2, Qwen2 技术报告中的训练流程章节</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">数据在各阶段的角色</h2>
+            <div class="content-card">
+                <h3>数据决定模型天花板</h3>
+                <p>同一套模型结构和算法，换一批数据，效果可能天差地别。预训练阶段关注规模与多样性；微调阶段关注「指令-答案」的准确与一致；对齐阶段关注人类偏好与安全边界。数据工程要针对不同阶段设计采集、清洗、存储与迭代流程。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">PEFT：高效微调与数据需求</h2>
+            <div class="content-card">
+                <h3>PEFT 是什么？</h3>
+                <p>PEFT（Parameter-Efficient Fine-Tuning）指只更新少量参数的微调方式，如 LoRA、QLoRA、Adapter、Prefix Tuning 等。与「全量微调」相比，PEFT 省显存、省时间，且往往更不容易灾难性遗忘。</p>
+                <p><strong style="color:var(--accent-cyan);">重要：</strong>SFT 和 PEFT 是不同维度——SFT 说的是「用什么数据」（监督指令数据），PEFT 说的是「怎么训」（只训少量参数）。<strong>两者搭配时，数据准备完全一致</strong>，都是指令-输入-输出格式。</p>
+            </div>
+            <div class="content-card">
+                <h3>LoRA 核心思想（与数据无关，属训练方式）</h3>
+                <p>LoRA 用低秩矩阵 \(B \cdot A\) 近似权重更新 \(\Delta W\)，原始权重 \(W_0\) 冻结，只训 \(B、A\)。推理时可把 \(B\cdot A\) 合并进 \(W_0\)，无额外延迟。</p>
+                <div class="diagram">
+                    <svg class="pipeline-svg" viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="50" width="90" height="60" fill="none" stroke="#3b82f6" stroke-width="2" rx="4"/>
+                        <text x="65" y="85" fill="#3b82f6" font-size="14" text-anchor="middle">W₀</text>
+                        <text x="65" y="102" fill="#64748b" font-size="10" text-anchor="middle">冻结</text>
+                        <text x="130" y="82" fill="#94a3b8" font-size="20" text-anchor="middle">+</text>
+                        <rect x="160" y="55" width="50" height="50" fill="none" stroke="#06b6d4" stroke-width="2" rx="4"/>
+                        <text x="185" y="85" fill="#06b6d4" font-size="12" text-anchor="middle">B</text>
+                        <text x="225" y="82" fill="#94a3b8" font-size="18" text-anchor="middle">×</text>
+                        <rect x="245" y="60" width="70" height="40" fill="none" stroke="#06b6d4" stroke-width="2" rx="4"/>
+                        <text x="280" y="85" fill="#06b6d4" font-size="12" text-anchor="middle">A</text>
+                        <text x="330" y="82" fill="#94a3b8" font-size="20" text-anchor="middle">=</text>
+                        <rect x="350" y="50" width="90" height="60" fill="none" stroke="#10b981" stroke-width="2" rx="4"/>
+                        <text x="395" y="85" fill="#10b981" font-size="14" text-anchor="middle">W</text>
+                        <text x="240" y="135" fill="#06b6d4" font-size="11" text-anchor="middle">可训练 ΔW = B·A</text>
+                    </svg>
+                </div>
+                <div class="tip-box info">
+                    <span class="icon">📌</span>
+                    <div class="content">
+                        <strong>延伸学习：</strong>LoRA/QLoRA 原理、Rank 与 Alpha 配置、灾难性遗忘应对等，详见
+                        <a href="../llm-finetune-course/peft.html" target="_blank" style="color:var(--accent-cyan);">《主流 PEFT 技术实战》</a>（llm-finetune-course/peft.html）。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="interaction-box">
+            <h3>小互动：阶段与数据形态匹配</h3>
+            <p style="color:var(--text-secondary);">以下哪一阶段<strong>主要</strong>依赖「指令-答案」形式的监督数据？</p>
+            <div class="quiz-options" id="quiz1-options">
+                <button type="button" class="quiz-opt" data-value="pt">预训练</button>
+                <button type="button" class="quiz-opt" data-value="sft">SFT</button>
+                <button type="button" class="quiz-opt" data-value="rlhf">RLHF / 对齐</button>
+                <button type="button" class="quiz-opt" data-value="inf">推理部署</button>
+            </div>
+            <div id="quiz1-feedback" class="quiz-feedback"></div>
+        </div>
+
+        <div class="reference-box">
+            <div class="title">📄 可引用的论文/报告图</div>
+            <div class="cite">
+                • LLaMA 2: <em>Llama 2: Open Foundation and Fine-Tuned Chat Models</em> (Touvron et al.) — 训练 pipeline 图<br>
+                • Qwen2: <em>Qwen2 Technical Report</em> — 预训练与 SFT 数据说明<br>
+                • 若使用自绘流程图，可放在上方「原论文训练流程图占位」处，便于替换为论文截图
+            </div>
+        </div>
+
+        <nav class="page-nav">
+            <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回目录</a>
+            <a href="distillation-data.html" class="next">下一节：蒸馏的数据工程<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </nav>
+    </div>
+
+    <script>
+        (function() {
+            var opts = document.getElementById('quiz1-options');
+            var fb = document.getElementById('quiz1-feedback');
+            if (!opts || !fb) return;
+            opts.querySelectorAll('.quiz-opt').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    opts.querySelectorAll('.quiz-opt').forEach(function(b) { b.classList.remove('selected','correct','wrong'); });
+                    this.classList.add('selected');
+                    var v = this.getAttribute('data-value');
+                    if (v === 'sft') {
+                        this.classList.add('correct');
+                        fb.className = 'quiz-feedback show right';
+                        fb.textContent = '✅ 正确。SFT 阶段使用「指令-输入-输出」监督数据，教模型按指令作答。';
+                    } else {
+                        this.classList.add('wrong');
+                        fb.className = 'quiz-feedback show wrong';
+                        fb.textContent = '❌ 应选 SFT。预训练用纯文本；RLHF 用偏好对；推理部署不训练，只做服务。';
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
