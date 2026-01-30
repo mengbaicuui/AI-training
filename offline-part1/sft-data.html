@@ -133,6 +133,38 @@
             .data-pipeline { flex-direction: column; }
             .pipeline-arrow { transform: rotate(90deg); }
         }
+
+        /* ===== 翻转卡片样式 ===== */
+        .flip-card-container { display: flex; gap: 24px; margin-top: 20px; align-items: stretch; }
+        .flip-deck { display: flex; flex-direction: column; gap: 8px; width: 220px; flex-shrink: 0; }
+        .deck-item { padding: 12px 16px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; font-size: 0.88rem; color: var(--text-secondary); transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+        .deck-item:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .deck-item.active { background: rgba(6, 182, 212, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .deck-item .deck-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--bg-card); border-radius: 50%; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; }
+        .deck-item.active .deck-num { background: var(--accent-cyan); color: var(--bg-primary); }
+        .flip-card-wrapper { flex: 1; perspective: 1000px; display: flex; }
+        .flip-card { width: 100%; height: 100%; min-height: 480px; position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .flip-card.flipped { transform: rotateY(180deg); }
+        .flip-card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; }
+        .flip-card-front { background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%); border: 2px solid rgba(239, 68, 68, 0.4); align-items: center; justify-content: center; text-align: center; }
+        .flip-card-front .card-icon { font-size: 3.5rem; margin-bottom: 24px; }
+        .flip-card-front .card-title { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
+        .flip-card-front .card-subtitle { font-size: 1rem; color: var(--accent-amber); margin-bottom: 28px; }
+        .flip-card-front .flip-hint { font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+        .flip-card-front .flip-hint svg { width: 16px; height: 16px; }
+        .flip-card-back { background: var(--bg-card); border: 2px solid var(--border-color); transform: rotateY(180deg); }
+        .flip-card-back .back-title { font-size: 1.2rem; font-weight: 600; color: var(--accent-red); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .flip-card-back .back-section { margin-bottom: 18px; }
+        .flip-card-back .back-label { font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .flip-card-back .back-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+        .flip-card-back .back-note { margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border-color); font-size: 0.88rem; color: var(--text-secondary); font-style: italic; }
+        .flip-card-back .flip-back-hint { position: absolute; bottom: 20px; right: 24px; font-size: 0.8rem; color: var(--text-secondary); }
+        @media (max-width: 900px) {
+            .flip-card-container { flex-direction: column; }
+            .flip-deck { flex-direction: row; flex-wrap: wrap; width: auto; }
+            .deck-item { flex: 1 1 calc(50% - 4px); min-width: 140px; }
+            .flip-card { min-height: 400px; }
+        }
     </style>
 </head>
 <body>
@@ -168,11 +200,61 @@
                     <li style="margin-bottom: 8px;">按照期望的格式和风格输出</li>
                     <li style="margin-bottom: 8px;"><strong style="color: var(--accent-amber);">最核心的是：学会指令遵循，把知识按照要求表达出来</strong></li>
                 </ul>
+
+                <div style="margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--border-color);">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                        <span style="font-size: 1.15rem;">📌</span>
+                        <span style="color: var(--accent-cyan); font-weight: 600;">知识点回顾：有监督微调的“监督”具体体现在哪里？</span>
+                    </div>
+
+                    <!-- 折叠答案 -->
+                    <div class="expandable-block" onclick="this.classList.toggle('expanded')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; cursor: pointer;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="toggle-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; font-size: 11px; color: var(--accent-green); background: rgba(16, 185, 129, 0.15); border-radius: 4px; transition: transform 0.2s ease;">▶</span>
+                            <span style="color: var(--accent-green); font-weight: 500;">点击展开答案： “监督”的具体实现</span>
+                        </div>
+                        <div class="block-detail" style="display: none; margin-top: 14px;">
+                            <div style="background: var(--bg-primary); border-radius: 6px; padding: 14px; border: 1px solid var(--border-color);">
+                                <p style="color: var(--text-secondary); margin-bottom: 10px;">
+                                    在监督学习里，训练数据包含输入 <em>X</em> 和目标 <em>Y</em>。SFT 也是一样：
+                                </p>
+                                <ul style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 12px;">
+                                    <li style="margin-bottom: 6px;"><strong style="color: var(--accent-cyan);">X（输入/Prompt）</strong>：用户指令（例如：“写一首关于夏天的诗”）</li>
+                                    <li style="margin-bottom: 6px;"><strong style="color: var(--accent-cyan);">Y（标签/Label）</strong>：期望的回复（例如：“夏日炎炎似火烧...”）</li>
+                                </ul>
+                                <p style="color: var(--text-secondary); margin-bottom: 10px;">
+                                    这里的“监督”指的就是 <em>Y</em>。训练时计算 Loss（损失）通常会做一个关键处理：<strong style="color: var(--accent-amber);">只计算 <em>Y</em> 部分的 Loss，不计算 <em>X</em> 部分的 Loss</strong>（通过 mask 实现）。
+                                </p>
+                                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; line-height: 1.7; color: var(--text-primary); background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 6px; padding: 12px;">
+                                    <div style="color: var(--text-secondary);">模型读入：</div>
+                                    <div>[User] 写首诗</div>
+                                    <div>[Assistant] 夏日炎炎...</div>
+                                    <div style="color: var(--text-secondary); margin-top: 10px;">计算梯度（监督信号）：</div>
+                                    <div>只监督模型是否学会生成 “[Assistant] 夏日炎炎...”</div>
+                                    <div style="color: var(--text-secondary);">不监督模型去预测 “写首诗” 这些人类给定的输入词</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="content-card">
-                <h3>为什么需要微调？</h3>
-                <p>大模型在预训练阶段学习的是语言分布和常识知识，但实际任务往往需要更精确的指令与特定的输出格式。微调能够使预训练模型在特定任务的分布上进行训练，通过少量任务数据输入与反馈调整模型输出质量，进而在生成质量与可控性上获得更大提升。</p>
+                
+                <h3><span style="font-size: 1.15rem;">📌</span> 知识点回顾：为什么需要微调？</h3>
+
+                <!-- 折叠答案 -->
+                <div class="expandable-block" onclick="this.classList.toggle('expanded')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; cursor: pointer; margin-top: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="toggle-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; font-size: 11px; color: var(--accent-green); background: rgba(16, 185, 129, 0.15); border-radius: 4px; transition: transform 0.2s ease;">▶</span>
+                        <span style="color: var(--accent-green); font-weight: 500;">点击展开答案</span>
+                    </div>
+                    <div class="block-detail" style="display: none; margin-top: 14px;">
+                        <div style="background: var(--bg-primary); border-radius: 6px; padding: 14px; border: 1px solid var(--border-color);">
+                            <p>大模型在预训练阶段学习的是语言分布和常识知识，但实际任务往往需要更精确的指令与特定的输出格式。微调能够使预训练模型在特定任务的分布上进行训练，通过少量任务数据输入与反馈调整模型输出质量，进而在生成质量与可控性上获得更大提升。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="content-card">
@@ -291,9 +373,218 @@
             </div>
         </section>
 
-        <!-- ========== 模块3: Chat Template 机制 ========== -->
+        <!-- ========== 模块3: 微调数据构建 ========== -->
         <section class="section">
-            <h2 class="section-title">3. Chat Template 机制</h2>
+            <h2 class="section-title">3. 微调数据构建（核心重点）</h2>
+
+            <div class="content-card">
+                <h3>3.1 数据格式</h3>
+                <p>SFT 数据的核心结构是「指令-输入-输出」三元组：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>字段</th><th>说明</th><th>示例</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>instruction</code></td><td>任务描述/指令</td><td>「请用一句话总结以下段落」</td></tr>
+                            <tr><td><code>input</code></td><td>具体内容（可为空）</td><td>段落原文...</td></tr>
+                            <tr><td><code>output</code></td><td>期望的回答</td><td>该段主要讨论了...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="code-block">
+                    <div class="code-header"><span class="code-lang">Alpaca 格式示例</span></div>
+                    <div class="code-content">
+<pre>{
+  <span class="string">"instruction"</span>: <span class="string">"请将以下文本翻译成英文"</span>,
+  <span class="string">"input"</span>: <span class="string">"人工智能正在改变世界"</span>,
+  <span class="string">"output"</span>: <span class="string">"Artificial intelligence is changing the world."</span>
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.2 如何获取数据？</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>来源</th><th>方式</th><th>优缺点</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>人工标注</strong></td>
+                                <td>领域专家编写 Q&A 对</td>
+                                <td>✅ 质量高 &nbsp; ❌ 成本高、速度慢</td>
+                            </tr>
+                            <tr>
+                                <td><strong>文档转 QA</strong></td>
+                                <td>从已有文档提取问答对</td>
+                                <td>✅ 利用存量资产 &nbsp; ❌ 需设计提问策略</td>
+                            </tr>
+                            <tr>
+                                <td><strong>合成数据</strong></td>
+                                <td>用大模型生成训练数据</td>
+                                <td>✅ 快速扩量 &nbsp; ❌ 质量需把控</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.3 从文档转为 QA 对</h3>
+                <p>核心问题：<strong style="color: var(--accent-amber);">谁来想问题？用什么策略提问？</strong></p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>策略</th><th>做法</th><th>适用场景</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>基于段落摘要</td>
+                                <td>让模型针对每段内容生成「这段说了什么」类问题</td>
+                                <td>知识问答</td>
+                            </tr>
+                            <tr>
+                                <td>基于实体/术语</td>
+                                <td>抽取关键实体，生成「XX 是什么」类问题</td>
+                                <td>术语解释</td>
+                            </tr>
+                            <tr>
+                                <td>基于业务场景</td>
+                                <td>模拟用户真实会问的问题（「怎么办理」「多少钱」）</td>
+                                <td>客服、咨询</td>
+                            </tr>
+                            <tr>
+                                <td>多跳推理</td>
+                                <td>需要结合多段信息才能回答的问题</td>
+                                <td>复杂问答</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.4 合成数据的方式</h3>
+                <p>用大模型（如 GPT-4、Qwen-Max）批量生成训练数据，常见方法：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>方法</th><th>原理</th><th>参考</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Self-Instruct</strong></td>
+                                <td>给几个种子示例，让模型生成更多类似指令</td>
+                                <td>Stanford Alpaca</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Evol-Instruct</strong></td>
+                                <td>对简单指令逐步「进化」为复杂指令</td>
+                                <td>WizardLM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>蒸馏</strong></td>
+                                <td>用大模型的输出作为小模型的训练标签</td>
+                                <td>Alpaca、Vicuna</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tip-box info">
+                    <span class="icon">💡</span>
+                    <div class="content">
+                        <strong>合成数据注意事项：</strong>需要人工抽检质量、过滤低质量样本、避免模型「自我强化」错误模式。
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.5 数据量级：多少数据才够？</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>场景</th><th>推荐数据量</th><th>说明</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>风格调整 / 格式控制</td>
+                                <td>几百 ~ 几千条</td>
+                                <td>任务简单，少量高质量数据即可</td>
+                            </tr>
+                            <tr>
+                                <td>垂域知识问答</td>
+                                <td>1万 ~ 10万条</td>
+                                <td>需覆盖领域知识点</td>
+                            </tr>
+                            <tr>
+                                <td>复杂推理 / Agent</td>
+                                <td>10万+ 条</td>
+                                <td>多样性和难度梯度很重要</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tip-box warning">
+                    <span class="icon">⚠️</span>
+                    <div class="content">
+                        <strong>质量 > 数量：</strong>1000 条高质量数据的效果可能好于 10000 条低质量数据。先保证质量，再扩充数量。
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.6 数据清洗</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>清洗项</th><th>做法</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>去重</td><td>基于 hash / embedding 相似度去除重复或近似样本</td></tr>
+                            <tr><td>长度过滤</td><td>过滤过短（无意义）或过长（超出模型上下文）的样本</td></tr>
+                            <tr><td>质量打分</td><td>用规则或小模型对样本质量打分，过滤低分样本</td></tr>
+                            <tr><td>格式校验</td><td>确保 JSON 格式正确、字段完整</td></tr>
+                            <tr><td>敏感词/合规</td><td>过滤敏感内容、确保符合业务合规要求</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.7 数据管道搭建</h3>
+                <p>从原始数据到训练集的典型流程：</p>
+                <div class="data-pipeline">
+                    <div class="pipeline-step">📄 原始数据采集</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">🔄 格式转换</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">🧹 清洗 & 去重</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">✅ 质量打分</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">📊 统计分析</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">💾 输出训练集</div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>3.8 数据审核与版本管理</h3>
+                <ul style="color: var(--text-secondary); margin-left: 20px;">
+                    <li style="margin-bottom: 10px;"><strong>人工抽检：</strong>定期抽样审核数据质量，建立质量基线</li>
+                    <li style="margin-bottom: 10px;"><strong>版本管理：</strong>每次数据更新记录 changelog，支持回滚</li>
+                    <li style="margin-bottom: 10px;"><strong>可追溯性：</strong>保留数据来源信息，便于问题排查</li>
+                    <li style="margin-bottom: 10px;"><strong>迭代机制：</strong>根据模型效果反馈，持续优化数据</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== 模块4: Chat Template 机制 ========== -->
+        <section class="section">
+            <h2 class="section-title">4. Chat Template 机制</h2>
 
             <div class="content-card">
                 <h3>为什么需要 Chat Template？</h3>
@@ -384,300 +675,56 @@ You are a helpful assistant.
             </div>
         </section>
 
-        <!-- ========== 模块4: 微调数据构建 ========== -->
+        <!-- ========== 模块5: 导致微调失败的常见问题 ========== -->
         <section class="section">
-            <h2 class="section-title">4. 微调数据构建（核心重点）</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 28px;">下面 4.1～4.8 为<strong>流程介绍</strong>：从数据格式、来源、文档转 QA、合成数据、量级、清洗到管道与版本管理，建立整体认知。具体的文档预处理（PDF 解析、分块策略）见下一章。</p>
+            <h2 class="section-title">5. 导致微调失败的常见问题</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">点击下方卡片可翻转查看详细解释，左侧列表可切换不同问题。</p>
 
-            <div class="content-card">
-                <h3>4.1 数据格式</h3>
-                <p>SFT 数据的核心结构是「指令-输入-输出」三元组：</p>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr><th>字段</th><th>说明</th><th>示例</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><code>instruction</code></td><td>任务描述/指令</td><td>「请用一句话总结以下段落」</td></tr>
-                            <tr><td><code>input</code></td><td>具体内容（可为空）</td><td>段落原文...</td></tr>
-                            <tr><td><code>output</code></td><td>期望的回答</td><td>该段主要讨论了...</td></tr>
-                        </tbody>
-                    </table>
+            <div class="flip-card-container">
+                <!-- 左侧 Deck 列表 -->
+                <div class="flip-deck" id="failureDeck">
+                    <div class="deck-item active" data-index="0"><span class="deck-num">1</span>数据量不足</div>
+                    <div class="deck-item" data-index="1"><span class="deck-num">2</span>数据噪声过大</div>
+                    <div class="deck-item" data-index="2"><span class="deck-num">3</span>样本分布不均匀</div>
+                    <div class="deck-item" data-index="3"><span class="deck-num">4</span>任务相关性不足</div>
+                    <div class="deck-item" data-index="4"><span class="deck-num">5</span>不相关数据混入</div>
+                    <div class="deck-item" data-index="5"><span class="deck-num">6</span>数据多样性不足</div>
+                    <div class="deck-item" data-index="6"><span class="deck-num">7</span>参数设置不合理</div>
+                    <div class="deck-item" data-index="7"><span class="deck-num">8</span>数据被截断</div>
+                    <div class="deck-item" data-index="8"><span class="deck-num">9</span>Batch/梯度配置不合理</div>
                 </div>
-                <div class="code-block">
-                    <div class="code-header"><span class="code-lang">Alpaca 格式示例</span></div>
-                    <div class="code-content">
-<pre>{
-  <span class="string">"instruction"</span>: <span class="string">"请将以下文本翻译成英文"</span>,
-  <span class="string">"input"</span>: <span class="string">"人工智能正在改变世界"</span>,
-  <span class="string">"output"</span>: <span class="string">"Artificial intelligence is changing the world."</span>
-}</pre>
-                    </div>
-                </div>
-            </div>
 
-            <div class="content-card">
-                <h3>4.2 如何获取数据？</h3>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr><th>来源</th><th>方式</th><th>优缺点</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>人工标注</strong></td>
-                                <td>领域专家编写 Q&A 对</td>
-                                <td>✅ 质量高 &nbsp; ❌ 成本高、速度慢</td>
-                            </tr>
-                            <tr>
-                                <td><strong>文档转 QA</strong></td>
-                                <td>从已有文档提取问答对</td>
-                                <td>✅ 利用存量资产 &nbsp; ❌ 需设计提问策略</td>
-                            </tr>
-                            <tr>
-                                <td><strong>合成数据</strong></td>
-                                <td>用大模型生成训练数据</td>
-                                <td>✅ 快速扩量 &nbsp; ❌ 质量需把控</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>4.3 从文档转为 QA 对</h3>
-                <p>核心问题：<strong style="color: var(--accent-amber);">谁来想问题？用什么策略提问？</strong></p>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr><th>策略</th><th>做法</th><th>适用场景</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>基于段落摘要</td>
-                                <td>让模型针对每段内容生成「这段说了什么」类问题</td>
-                                <td>知识问答</td>
-                            </tr>
-                            <tr>
-                                <td>基于实体/术语</td>
-                                <td>抽取关键实体，生成「XX 是什么」类问题</td>
-                                <td>术语解释</td>
-                            </tr>
-                            <tr>
-                                <td>基于业务场景</td>
-                                <td>模拟用户真实会问的问题（「怎么办理」「多少钱」）</td>
-                                <td>客服、咨询</td>
-                            </tr>
-                            <tr>
-                                <td>多跳推理</td>
-                                <td>需要结合多段信息才能回答的问题</td>
-                                <td>复杂问答</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>4.4 合成数据的方式</h3>
-                <p>用大模型（如 GPT-4、Qwen-Max）批量生成训练数据，常见方法：</p>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr><th>方法</th><th>原理</th><th>参考</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Self-Instruct</strong></td>
-                                <td>给几个种子示例，让模型生成更多类似指令</td>
-                                <td>Stanford Alpaca</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Evol-Instruct</strong></td>
-                                <td>对简单指令逐步「进化」为复杂指令</td>
-                                <td>WizardLM</td>
-                            </tr>
-                            <tr>
-                                <td><strong>蒸馏</strong></td>
-                                <td>用大模型的输出作为小模型的训练标签</td>
-                                <td>Alpaca、Vicuna</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tip-box info">
-                    <span class="icon">💡</span>
-                    <div class="content">
-                        <strong>合成数据注意事项：</strong>需要人工抽检质量、过滤低质量样本、避免模型「自我强化」错误模式。
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>4.5 数据量级：多少数据才够？</h3>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr><th>场景</th><th>推荐数据量</th><th>说明</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>风格调整 / 格式控制</td>
-                                <td>几百 ~ 几千条</td>
-                                <td>任务简单，少量高质量数据即可</td>
-                            </tr>
-                            <tr>
-                                <td>垂域知识问答</td>
-                                <td>1万 ~ 10万条</td>
-                                <td>需覆盖领域知识点</td>
-                            </tr>
-                            <tr>
-                                <td>复杂推理 / Agent</td>
-                                <td>10万+ 条</td>
-                                <td>多样性和难度梯度很重要</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tip-box warning">
-                    <span class="icon">⚠️</span>
-                    <div class="content">
-                        <strong>质量 > 数量：</strong>1000 条高质量数据的效果可能好于 10000 条低质量数据。先保证质量，再扩充数量。
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>4.6 数据清洗</h3>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr><th>清洗项</th><th>做法</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>去重</td><td>基于 hash / embedding 相似度去除重复或近似样本</td></tr>
-                            <tr><td>长度过滤</td><td>过滤过短（无意义）或过长（超出模型上下文）的样本</td></tr>
-                            <tr><td>质量打分</td><td>用规则或小模型对样本质量打分，过滤低分样本</td></tr>
-                            <tr><td>格式校验</td><td>确保 JSON 格式正确、字段完整</td></tr>
-                            <tr><td>敏感词/合规</td><td>过滤敏感内容、确保符合业务合规要求</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>4.7 数据管道搭建</h3>
-                <p>从原始数据到训练集的典型流程：</p>
-                <div class="data-pipeline">
-                    <div class="pipeline-step">📄 原始数据采集</div>
-                    <div class="pipeline-arrow">→</div>
-                    <div class="pipeline-step">🔄 格式转换</div>
-                    <div class="pipeline-arrow">→</div>
-                    <div class="pipeline-step">🧹 清洗 & 去重</div>
-                    <div class="pipeline-arrow">→</div>
-                    <div class="pipeline-step">✅ 质量打分</div>
-                    <div class="pipeline-arrow">→</div>
-                    <div class="pipeline-step">📊 统计分析</div>
-                    <div class="pipeline-arrow">→</div>
-                    <div class="pipeline-step">💾 输出训练集</div>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>4.8 数据审核与版本管理</h3>
-                <ul style="color: var(--text-secondary); margin-left: 20px;">
-                    <li style="margin-bottom: 10px;"><strong>人工抽检：</strong>定期抽样审核数据质量，建立质量基线</li>
-                    <li style="margin-bottom: 10px;"><strong>版本管理：</strong>每次数据更新记录 changelog，支持回滚</li>
-                    <li style="margin-bottom: 10px;"><strong>可追溯性：</strong>保留数据来源信息，便于问题排查</li>
-                    <li style="margin-bottom: 10px;"><strong>迭代机制：</strong>根据模型效果反馈，持续优化数据</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- ========== 模块5: 具体的文档预处理方法 ========== -->
-        <section class="section">
-            <h2 class="section-title">5. 具体的文档预处理方法</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 28px;">在「流程介绍」之后，落地到两件事：<strong>文档怎么进来</strong>（尤其是 PDF 的解析）、<strong>文档怎么切</strong>（分块策略）。前者重点介绍 VLM 处理 PDF，后者给出按场景的推荐策略与参数。</p>
-
-            <div class="content-card">
-                <h3>5.1 VLM 处理 PDF（重点）</h3>
-                <p>PDF 是微调数据的重要来源，但原生是「像素/矢量」而非文本。要转为可分块、可生成 QA 的文本，需要<strong>版面分析 + OCR/文本抽取</strong>。视觉语言模型（VLM）与多模态文档解析工具能同时理解版面（标题、段落、表格、公式、图）并输出结构化文本。</p>
-                <ul style="color: var(--text-secondary); margin-left: 20px; margin-top: 12px;">
-                    <li><strong>MinerU</strong>（OpenDataLab）：多模态文档智能解析，PDF → Markdown/LaTeX/HTML。采用<strong>版面检测（Transformer 页面对象检测）→ 内容识别（CRNN+TrOCR、公式识别）→ 后处理</strong>三级架构，支持文本型 PDF 原生抽取与扫描版 109 种语言 OCR；新版 hybrid 后端融合 pipeline 与 VLM，降低解析幻觉。适合批量 PDF 转结构化文本后再做分块与 QA 生成。</li>
-                    <li><strong>Unstructured / LlamaParse</strong>：将 PDF 解析为 HTML 或 Markdown，<strong>表格整体保留为一个块</strong>，避免行列关系被切碎；适合财报、规格书等含大量表格的文档。</li>
-                    <li><strong>通用思路</strong>：文本型 PDF 可优先用原生文本抽取 + 版面信息；扫描版或复杂版式用 VLM/OCR 管线；表格密集文档务必「整表一 chunk」或专用表格解析，再接入后续分块与 QA 流程。</li>
-                </ul>
-                <div class="tip-box info">
-                    <span class="icon">ℹ️</span>
-                    <div class="content">
-                        <strong>与微调数据流水线衔接</strong>：PDF 经 MinerU/Unstructured 等解析为 Markdown 或结构化文本后，可交给 Easy Dataset 等工具做「文本分割 → 问题生成 → 答案构建」，得到 Alpaca/ShareGPT 格式的微调数据。
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>5.2 文档分块方法</h3>
-                <p>解析得到的长文档需要<strong>分块（chunk）</strong>后再做检索或生成 QA。不同场景下应选用不同策略与参数，以保证语义完整、不切断句子/表格、兼顾检索精度与上下文长度。下表按场景给出推荐策略、建议参数与核心理由。</p>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>场景</th>
-                                <th>推荐策略/工具</th>
-                                <th>建议参数（Tokens / Overlap）</th>
-                                <th>核心理由</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>通用文本</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">新闻、报告、文章</span></td>
-                                <td>递归字符切分<br><code>RecursiveCharacterTextSplitter</code></td>
-                                <td>500–1000 / 10–15%</td>
-                                <td>首选默认方案。优先按段落（<code>\n\n</code>）切，保证语义尽可能完整，不把一句话切断。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>结构化文档</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">Markdown、Wiki</span></td>
-                                <td>按标题切分<br><code>MarkdownHeaderTextSplitter</code></td>
-                                <td>按 Header 层级 / 0</td>
-                                <td>保留层级元数据。将 H1/H2 作为元数据注入内容，防止切片丢失「属于哪一章」的信息。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>代码文件</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">Python、JS、Go</span></td>
-                                <td>语言结构切分<br><code>PythonCodeTextSplitter</code> 等</td>
-                                <td>800–1500 / 0</td>
-                                <td>保持逻辑完整性。按类/函数边界切，不会把一条 <code>if</code> 语句劈成两半。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>包含大量表格</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">财报、规格书</span></td>
-                                <td>HTML/Markdown 转换<br>Unstructured / LlamaParse</td>
-                                <td>表格整体作为一个块</td>
-                                <td>表格绝不能切碎。整张 <code>&lt;table&gt;</code> 解析为 Markdown/HTML 作为独立 Chunk，否则行列关系全毁。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>高精度检索</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">法律条款、合规</span></td>
-                                <td>父子索引<br><code>ParentDocumentRetriever</code></td>
-                                <td>父: 2000 / 子: 200</td>
-                                <td>搜得准、读得全。用「子块」做向量匹配（极灵敏），给 LLM 喂「父块」（上下文完整）。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>话题跳跃性强</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">会议纪要、聊天记录</span></td>
-                                <td>语义切分<br><code>SemanticChunker</code></td>
-                                <td>基于语义阈值（Percentile）</td>
-                                <td>按意思切、不按字数切。用 Embedding 判断话题何时结束，解决「上一句谈工资、下一句谈天气」混在一块的问题。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>模型窗口极小</strong><br><span style="font-size:0.85rem;color:var(--text-secondary);">本地小模型</span></td>
-                                <td>固定大小切分<br><code>TokenTextSplitter</code></td>
-                                <td>256–512 / 20%</td>
-                                <td>硬约束。显存受限或 Embedding 模型只支持 512 token 时使用。</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tip-box success">
-                    <span class="icon">✅</span>
-                    <div class="content">
-                        <strong>选型建议</strong>：先看文档类型（通用/结构化/代码/表格/多话题/小窗口），再选对应策略；参数可按数据抽样调试，优先保证「不切断语义单元」再调 chunk 大小与 overlap。
+                <!-- 右侧翻转卡片 -->
+                <div class="flip-card-wrapper">
+                    <div class="flip-card" id="failureCard" onclick="this.classList.toggle('flipped')">
+                        <!-- 正面 -->
+                        <div class="flip-card-face flip-card-front">
+                            <div class="card-icon">❗</div>
+                            <div class="card-title" id="cardTitle">数据量不足</div>
+                            <div class="card-subtitle" id="cardSubtitle">Insufficient Data Volume</div>
+                            <div class="flip-hint">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18m-6-6l6 6-6 6"/></svg>
+                                点击翻转查看详情
+                            </div>
+                        </div>
+                        <!-- 背面 -->
+                        <div class="flip-card-face flip-card-back">
+                            <div class="back-title">❗ <span id="backTitle">数据量不足</span></div>
+                            <div class="back-section">
+                                <div class="back-label">问题表现</div>
+                                <div class="back-text" id="backSymptom">训练样本数量过少，模型难以学习到稳定、泛化的特征规律</div>
+                            </div>
+                            <div class="back-section">
+                                <div class="back-label">核心风险</div>
+                                <div class="back-text" id="backRisk">模型容易过拟合少量样本中的偶然模式</div>
+                            </div>
+                            <div class="back-section">
+                                <div class="back-label">直接后果</div>
+                                <div class="back-text" id="backResult">训练集效果看似不错，但在新数据或真实场景中表现显著下降</div>
+                            </div>
+                            <div class="back-note" id="backNote">不同微调任务对数据量要求差异较大，知识注入类、指令理解类任务通常需要更高的数据覆盖度；应优先保证数据质量与有效性，再考虑扩大规模，而非盲目堆量</div>
+                            <div class="flip-back-hint">← 点击翻回</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1018,6 +1065,116 @@ model.<span class="function">print_trainable_parameters</span>()
                     var target = this.getAttribute('data-tab');
                     document.querySelectorAll('.template-content').forEach(function(c) { c.classList.remove('active'); });
                     document.getElementById('template-' + target).classList.add('active');
+                });
+            });
+        })();
+
+        // 微调失败问题 - 翻转卡片交互
+        (function() {
+            var failureData = [
+                {
+                    title: '数据量不足',
+                    subtitle: 'Insufficient Data Volume',
+                    symptom: '训练样本数量过少，模型难以学习到稳定、泛化的特征规律',
+                    risk: '模型容易过拟合少量样本中的偶然模式',
+                    result: '训练集效果看似不错，但在新数据或真实场景中表现显著下降',
+                    note: '不同微调任务对数据量要求差异较大，知识注入类、指令理解类任务通常需要更高的数据覆盖度；应优先保证数据质量与有效性，再考虑扩大规模，而非盲目堆量'
+                },
+                {
+                    title: '数据噪声过大',
+                    subtitle: 'High Noise',
+                    symptom: '文本错误、格式混乱、标注错误、问答不匹配等',
+                    risk: '模型学习到错误或不稳定的映射关系',
+                    result: '训练不稳定，性能上限受限，甚至出现能力退化',
+                    note: ''
+                },
+                {
+                    title: '样本分布不均匀',
+                    subtitle: 'Distribution Imbalance',
+                    symptom: '某类样本占比过高，关键但低频场景覆盖不足',
+                    risk: '模型过度强化高频模式，忽视长尾能力',
+                    result: '模型在真实复杂场景下失效',
+                    note: ''
+                },
+                {
+                    title: '任务相关性不足',
+                    subtitle: 'Weak Task Relevance',
+                    symptom: '数据来自同一领域，但任务目标与实际应用不一致',
+                    risk: '梯度方向冲突，模型难以对目标能力形成稳定约束',
+                    result: '输出模糊、性能提升有限',
+                    note: ''
+                },
+                {
+                    title: '不相关数据混入',
+                    subtitle: 'Irrelevant Data',
+                    symptom: '引入与目标任务无关的通用对话或背景知识数据',
+                    risk: '有限的可训练参数被无关模式占用',
+                    result: '模型"更会说话"，但任务能力下降',
+                    note: ''
+                },
+                {
+                    title: '数据多样性不足',
+                    subtitle: 'Low Diversity',
+                    symptom: '输入形式、指令类型、复杂度单一',
+                    risk: '模型仅适应理想化输入',
+                    result: '泛化能力差，真实场景鲁棒性不足',
+                    note: ''
+                },
+                {
+                    title: '参数设置不合理',
+                    subtitle: 'Improper Hyperparameter Settings',
+                    symptom: '学习率过大或过小、LoRA rank 设置不合理、训练轮数与数据规模不匹配',
+                    risk: '模型无法有效收敛，或在少量数据上过度拟合',
+                    result: '训练过程不稳定，微调效果对随机种子高度敏感',
+                    note: '在小数据场景下，参数配置对最终效果的影响往往被显著放大'
+                },
+                {
+                    title: '数据被截断',
+                    subtitle: 'Sequence Truncation',
+                    symptom: '输入文本长度超过模型最大上下文，关键信息被截断',
+                    risk: '模型在训练中无法看到完整语义或因果链',
+                    result: '模型学习到错误或不完整的输入–输出映射',
+                    note: '截断往往是"无声发生"的，容易被忽视，却会系统性损害模型能力'
+                },
+                {
+                    title: 'Batch/梯度配置不合理',
+                    subtitle: 'Improper Batch/Gradient Settings',
+                    symptom: 'batch size 过小、梯度累积设置不当',
+                    risk: '梯度噪声过大，训练方向不稳定',
+                    result: 'loss 波动大，可复现性差',
+                    note: ''
+                }
+            ];
+
+            var deck = document.getElementById('failureDeck');
+            var card = document.getElementById('failureCard');
+            var deckItems = deck ? deck.querySelectorAll('.deck-item') : [];
+
+            function updateCard(index) {
+                var data = failureData[index];
+                document.getElementById('cardTitle').textContent = data.title;
+                document.getElementById('cardSubtitle').textContent = data.subtitle;
+                document.getElementById('backTitle').textContent = data.title;
+                document.getElementById('backSymptom').textContent = data.symptom;
+                document.getElementById('backRisk').textContent = data.risk;
+                document.getElementById('backResult').textContent = data.result;
+                var noteEl = document.getElementById('backNote');
+                if (data.note) {
+                    noteEl.textContent = data.note;
+                    noteEl.style.display = 'block';
+                } else {
+                    noteEl.style.display = 'none';
+                }
+                // 重置翻转状态
+                if (card) card.classList.remove('flipped');
+            }
+
+            deckItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    deckItems.forEach(function(i) { i.classList.remove('active'); });
+                    this.classList.add('active');
+                    var idx = parseInt(this.getAttribute('data-index'), 10);
+                    updateCard(idx);
                 });
             });
         })();
