@@ -69,9 +69,29 @@
         .pipeline-step { background: var(--bg-card); border: 1px solid var(--accent-cyan); border-radius: 8px; padding: 14px 20px; font-size: 0.95rem; color: var(--text-primary); }
         .pipeline-arrow { color: var(--accent-cyan); font-size: 1.2rem; }
         .code-block { background: var(--bg-code); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin: 20px 0; }
-        .code-header { padding: 10px 16px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
-        .code-content { padding: 18px; overflow-x: auto; }
-        .code-content pre { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: var(--text-primary); margin: 0; }
+        .code-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px 10px 16px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+        .code-title { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+        .code-title .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(6, 182, 212, 0.6); flex-shrink: 0; }
+        .code-title .text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .code-actions { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .code-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; background: rgba(26, 35, 50, 0.65); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; font-size: 0.78rem; line-height: 1; user-select: none; }
+        .code-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .code-btn:active { transform: translateY(1px); }
+        .code-btn svg { width: 14px; height: 14px; }
+        .code-content { padding: 18px; overflow-x: auto; position: relative; }
+        .code-content pre { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; color: var(--text-primary); margin: 0; white-space: pre; }
+        .code-content pre.wrap { white-space: pre-wrap; word-break: break-word; }
+        .code-block.is-collapsed .code-content { max-height: 220px; overflow: hidden; }
+        .code-block.is-collapsed .code-content::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56px; background: linear-gradient(to bottom, rgba(13, 17, 23, 0), rgba(13, 17, 23, 0.95)); pointer-events: none; }
+
+        /* ===== 代码示例 Tabs（6.2） ===== */
+        .code-samples { margin-top: 16px; }
+        .code-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .code-tab { padding: 10px 14px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 10px; cursor: pointer; font-size: 0.9rem; color: var(--text-secondary); transition: all 0.2s; user-select: none; }
+        .code-tab:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .code-tab.active { background: rgba(6, 182, 212, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .code-panel { display: none; }
+        .code-panel.active { display: block; }
         .emphasis { color: var(--accent-amber); font-weight: 500; }
         .page-nav { display: flex; justify-content: space-between; margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-color); }
         .page-nav a { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-primary); text-decoration: none; font-size: 0.95rem; transition: all 0.3s; }
@@ -151,7 +171,7 @@
                 <div class="feature-grid">
                     <div class="feature-card">
                         <div class="title">📄 多格式文档解析</div>
-                        <div class="desc">支持 PDF、Markdown、DOCX、TXT、EPUB 等，自动识别结构。</div>
+                        <div class="desc">支持 PDF、Markdown、DOCX、TXT 等常见格式，自动识别结构。</div>
                     </div>
                     <div class="feature-card">
                         <div class="title">✂️ 智能文本分割</div>
@@ -349,7 +369,7 @@ npm run start</pre>
                             </tr>
                             <tr>
                                 <td>JSON / JSONL</td>
-                                <td>每行一条样本，字段可自定义</td>
+                                <td><strong>JSON</strong>：通常是一个数组/对象；<strong>JSONL</strong>：每行一条 JSON 记录（更常用于训练数据管道）</td>
                                 <td>通用格式，可转为 Alpaca/ShareGPT 等</td>
                             </tr>
                         </tbody>
@@ -360,18 +380,55 @@ npm run start</pre>
             <div class="content-card">
                 <h3>6.2 格式长什么样？（示例）</h3>
                 <p>LLaMA Factory 等框架常用 <strong>Alpaca</strong> 与 <strong>ShareGPT</strong>，导出为 JSONL（每行一条 JSON）。</p>
-                <p><strong>Alpaca 格式</strong>：单条样本包含 <code>instruction</code>、<code>input</code>（可选）、<code>output</code>。</p>
-                <div class="code-block">
-                    <div class="code-header">Alpaca 单条示例（JSONL 一行）</div>
-                    <div class="code-content">
-                        <pre>{"instruction": "什么是监督微调？", "input": "", "output": "监督微调（SFT）是在预训练模型基础上，用指令-回答对数据进行有监督训练，使模型学会遵循指令并生成高质量回答。"}</pre>
+                <p><strong>提示</strong>：下面为了便于阅读，示例展示为「格式化 JSON」。复制时会自动复制成<strong>一行 JSON</strong>（可直接作为 JSONL 的一行）。</p>
+
+                <div class="code-samples" data-code-samples>
+                    <div class="code-tabs" role="tablist" aria-label="导出格式示例切换">
+                        <button class="code-tab active" type="button" data-code-tab="alpaca">Alpaca（常见/变体）</button>
+                        <button class="code-tab" type="button" data-code-tab="sharegpt">ShareGPT（多轮）</button>
                     </div>
-                </div>
-                <p><strong>ShareGPT 格式</strong>：单条样本包含 <code>conversations</code> 列表，每项有 <code>from</code>（human/user、gpt/assistant）和 <code>value</code>，适合多轮对话。</p>
-                <div class="code-block">
-                    <div class="code-header">ShareGPT 单条示例（JSONL 一行）</div>
-                    <div class="code-content">
-                        <pre>{"conversations": [{"from": "human", "value": "什么是 SFT？"}, {"from": "gpt", "value": "SFT 即监督微调，用指令-回答对训练模型。"}]}</pre>
+
+                    <div class="code-panel active" data-code-panel="alpaca">
+                        <p><strong>Alpaca（常见）</strong>：单条样本包含 <code>instruction</code>、<code>input</code>（可选）、<code>output</code>，因此经常被用于<strong>单轮指令</strong>数据。但在一些数据集/工具链中也会扩展出 <code>history</code> 等字段表示多轮上下文（更准确称为 <strong>Alpaca-like / Alpaca 变体</strong>）。</p>
+                        <div class="code-block">
+                            <div class="code-header">Alpaca 示例（复制为 JSONL 一行）</div>
+                            <div class="code-content">
+<pre>{
+  "instruction": "什么是监督微调？",
+  "input": "",
+  "output": "监督微调（SFT）是在预训练模型基础上，用指令-回答对数据进行有监督训练，使模型学会遵循指令并生成高质量回答。"
+}</pre>
+                            </div>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">Alpaca 变体（带 history，多轮上下文）</div>
+                            <div class="code-content">
+<pre>{
+  "instruction": "继续解释一下“监督”体现在哪？",
+  "input": "",
+  "history": [
+    ["什么是 SFT？", "SFT 是监督微调，用指令-回答对训练模型。"]
+  ],
+  "output": "监督主要体现在训练数据里有明确的目标输出（label），训练时通常只对回答部分计算 loss。"
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-panel" data-code-panel="sharegpt">
+                        <p><strong>ShareGPT 格式</strong>：单条样本包含 <code>conversations</code> 列表，每项常见字段是 <code>from</code> 与 <code>value</code>。<code>from</code> 常见取值为 <code>human</code>/<code>gpt</code>（也有数据集用 <code>user</code>/<code>assistant</code>；关键是与训练框架/配置的角色映射保持一致）。</p>
+                        <div class="code-block">
+                            <div class="code-header">ShareGPT 示例（复制为 JSONL 一行）</div>
+                            <div class="code-content">
+<pre>{
+  "conversations": [
+    { "from": "human", "value": "什么是 SFT？" },
+    { "from": "gpt", "value": "SFT 即监督微调，用指令-回答对训练模型。" }
+  ]
+}</pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <p>Easy Dataset 导出时选择对应格式即可得到上述结构的 JSONL，直接用于 LLaMA Factory 的数据集配置。</p>
@@ -395,5 +452,137 @@ npm run start</pre>
             </a>
         </nav>
     </div>
+
+    <script>
+        // 代码块交互：复制 / 折叠 / 换行 + 6.2 示例 tabs
+        (function() {
+            function safeCopy(text) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    return navigator.clipboard.writeText(text);
+                }
+                return new Promise(function(resolve, reject) {
+                    try {
+                        var ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.style.position = 'fixed';
+                        ta.style.left = '-9999px';
+                        ta.style.top = '0';
+                        document.body.appendChild(ta);
+                        ta.focus();
+                        ta.select();
+                        var ok = document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        ok ? resolve() : reject(new Error('copy failed'));
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            }
+
+            function getCopyText(preEl) {
+                if (!preEl) return '';
+                var raw = (preEl.textContent || '').trim();
+                // 如果是 JSON，复制时压成一行，便于作为 JSONL 一行使用
+                if (raw && (raw[0] === '{' || raw[0] === '[')) {
+                    try {
+                        var obj = JSON.parse(raw);
+                        return JSON.stringify(obj);
+                    } catch (e) {
+                        // 非严格 JSON（例如包含注释/尾逗号）就回退原文本
+                        return raw;
+                    }
+                }
+                return raw;
+            }
+
+            // 6.2 示例 tabs
+            document.querySelectorAll('[data-code-samples]').forEach(function(root) {
+                var tabs = root.querySelectorAll('[data-code-tab]');
+                var panels = root.querySelectorAll('[data-code-panel]');
+                function activate(key) {
+                    tabs.forEach(function(t) { t.classList.toggle('active', t.getAttribute('data-code-tab') === key); });
+                    panels.forEach(function(p) { p.classList.toggle('active', p.getAttribute('data-code-panel') === key); });
+                }
+                tabs.forEach(function(tab) {
+                    tab.addEventListener('click', function() { activate(this.getAttribute('data-code-tab')); });
+                });
+            });
+
+            // 为所有 code-block 注入交互按钮
+            document.querySelectorAll('.code-block').forEach(function(block) {
+                var header = block.querySelector('.code-header');
+                var pre = block.querySelector('pre');
+                if (!header || !pre) return;
+
+                var title = header.textContent.trim() || 'code';
+                header.textContent = '';
+
+                var titleWrap = document.createElement('div');
+                titleWrap.className = 'code-title';
+                titleWrap.innerHTML = '<span class="dot"></span><span class="text"></span>';
+                titleWrap.querySelector('.text').textContent = title;
+
+                var actions = document.createElement('div');
+                actions.className = 'code-actions';
+
+                var btnWrap = document.createElement('button');
+                btnWrap.type = 'button';
+                btnWrap.className = 'code-btn';
+                btnWrap.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h16"/></svg>换行';
+                btnWrap.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    pre.classList.toggle('wrap');
+                });
+
+                var btnCopy = document.createElement('button');
+                btnCopy.type = 'button';
+                btnCopy.className = 'code-btn';
+                btnCopy.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>复制';
+                btnCopy.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var text = getCopyText(pre);
+                    safeCopy(text).then(function() {
+                        var old = btnCopy.innerHTML;
+                        btnCopy.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>已复制';
+                        btnCopy.style.borderColor = 'rgba(16, 185, 129, 0.6)';
+                        btnCopy.style.color = 'var(--accent-green)';
+                        setTimeout(function() {
+                            btnCopy.innerHTML = old;
+                            btnCopy.style.borderColor = '';
+                            btnCopy.style.color = '';
+                        }, 1000);
+                    }).catch(function() {
+                        var old2 = btnCopy.textContent;
+                        btnCopy.textContent = '复制失败';
+                        setTimeout(function() { btnCopy.textContent = old2; }, 1000);
+                    });
+                });
+
+                actions.appendChild(btnWrap);
+                actions.appendChild(btnCopy);
+
+                // 长代码自动折叠
+                var lines = (pre.textContent || '').split('\n').length;
+                if (lines >= 12) {
+                    block.classList.add('is-collapsed');
+                    var btnMore = document.createElement('button');
+                    btnMore.type = 'button';
+                    btnMore.className = 'code-btn';
+                    btnMore.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>展开';
+                    btnMore.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        var collapsed = block.classList.toggle('is-collapsed');
+                        btnMore.innerHTML = collapsed
+                            ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>展开'
+                            : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg>收起';
+                    });
+                    actions.insertBefore(btnMore, btnCopy);
+                }
+
+                header.appendChild(titleWrap);
+                header.appendChild(actions);
+            });
+        })();
+    </script>
 </body>
 </html>

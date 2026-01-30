@@ -111,17 +111,17 @@
         </header>
 
         <section class="section">
-            <h2 class="section-title">1. LLaMA Factory 简介（主讲）</h2>
+            <h2 class="section-title">1. LLaMA Factory 简介</h2>
             <div class="content-card">
                 <h3>1.1 是什么？</h3>
-                <p><strong>LLaMA Factory</strong> 是一个<strong>统一且高效的微调框架</strong>，旨在为超过 100 种大型语言模型（LLMs）和视觉语言模型（VLMs）提供便捷的微调支持，用户能够灵活地定制模型以适应各种下游任务。</p>
+                <p><strong>LLaMA Factory</strong> 是一个<strong>统一且高效的微调框架</strong>，旨在为大量大型语言模型（LLMs）与视觉语言模型（VLMs）提供便捷的微调支持，用户能够灵活地定制模型以适应各种下游任务（具体支持列表以官方文档为准）。</p>
             </div>
             <div class="content-card">
                 <h3>1.2 核心能力与特点</h3>
                 <div class="feature-grid">
                     <div class="feature-card">
                         <div class="title">📂 广泛模型支持</div>
-                        <div class="desc">支持 100+ LLMs 与 VLMs，包括 Llama 3、GLM-4、Mistral Small、PaliGemma2、Qwen、ChatGLM 等最新版本。</div>
+                        <div class="desc">覆盖大量 LLMs 与 VLMs，包含 Llama、Qwen、Mistral、GLM、Gemma 等主流模型家族（以官方支持列表为准）。</div>
                     </div>
                     <div class="feature-card">
                         <div class="title">⚡ 高效微调方法</div>
@@ -129,11 +129,11 @@
                     </div>
                     <div class="feature-card">
                         <div class="title">🎛️ Web UI 与 API</div>
-                        <div class="desc">训练、评估、对话、导出四大模块；提供类似 OpenAI 的 API、Gradio UI 和命令行，可结合 vLLM worker 做推理。</div>
+                        <div class="desc">训练、评估、对话、导出四大模块；提供 Web UI 与命令行，并可选启用 OpenAI 兼容的 API 服务（以版本与配置为准）。</div>
                     </div>
                     <div class="feature-card">
                         <div class="title">📊 多模态与实验监控</div>
-                        <div class="desc">除文本外支持语音识别、音频理解等；实验监控支持 LlamaBoard、TensorBoard、Wandb、MLflow。</div>
+                        <div class="desc">除文本外可支持图像/视频/音频等多模态数据（取决于所选模型与数据格式）；实验监控可对接 LlamaBoard、TensorBoard、Wandb、MLflow。</div>
                     </div>
                 </div>
                 <p style="color: var(--text-secondary); margin-top: 12px;">数据格式支持 Alpaca、ShareGPT 等，通过 <code>dataset_info.json</code> 注册数据集，与 Easy Dataset 导出的 JSONL 无缝对接。</p>
@@ -149,28 +149,28 @@
 
         <section class="section">
             <h2 class="section-title">2. 其他主流微调工具简介</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 24px;">除 LLaMA Factory 外，入门时还可关注以下四类高封装工具：<strong>Unsloth、ms-SWIFT、ColossalAI</strong>。也可使用更底层库如 PEFT、transformers 等实现高效微调。</p>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">除 LLaMA Factory 外，入门时还可关注以下几类高封装工具：<strong>Unsloth、ms-SWIFT、ColossalAI</strong>。也可使用更底层库如 PEFT、transformers 等实现高效微调。</p>
             <div class="content-card">
                 <h3>2.1 Unsloth</h3>
-                <p>专为 LLM 设计的<strong>动态量化与微调框架</strong>，通过手写 GPU 内核与数学优化，在无需改硬件的前提下显著加快训练、减少显存。与 HuggingFace 生态兼容，可与 transformers、peft、trl 结合做 SFT 与 DPO，仅需改模型加载方式。</p>
+                <p>专为 LLM 设计的<strong>高效微调框架</strong>，通过优化实现（含自定义 GPU 内核等）在不少场景下显著加快训练、减少显存。与 HuggingFace 生态兼容，可与 transformers、peft、trl 结合做 SFT、偏好对齐等任务，通常只需调整模型加载与训练代码。</p>
                 <ul>
-                    <li><strong>特点</strong>：微调速度约 2～5 倍提升、显存占用减少约 80%；4bit 动态量化（如 Qwen3 4bit 仅损失约 1% 性能），适合个人机与单卡。注意：动态量化模型<strong>仅支持单卡</strong>，无法多卡并行扩大吞吐。</li>
+                    <li><strong>特点</strong>：在不少任务中可获得明显的速度/显存收益（具体幅度依模型、序列长度、batch、实现与硬件而异）；常与 4bit 量化微调搭配，适合个人机与单卡。注意：截至目前其训练侧通常<strong>以单卡为主</strong>，多卡训练能力以官方实现与说明为准。</li>
                     <li><strong>适用</strong>：显存有限、希望快速跑通微调或 Colab/Kaggle 免费试用的场景。</li>
                 </ul>
                 <p><a href="https://github.com/unslothai/unsloth" class="link-out" target="_blank" rel="noopener">GitHub - unslothai/unsloth</a></p>
             </div>
             <div class="content-card">
                 <h3>2.2 ms-SWIFT（ModelScope）</h3>
-                <p>魔搭社区的<strong>轻量级微调与部署框架</strong>，一站式覆盖训练、推理、评测、量化与部署。支持 450+ LLMs、150+ 多模态模型（如 Qwen2.5、InternLM3、GLM4、Llama3.3、DeepSeek-R1、Qwen2.5-VL 等）。</p>
+                <p>魔搭社区的<strong>轻量级微调与部署框架</strong>，一站式覆盖训练、推理、评测、量化与部署，覆盖大量 LLM 与多模态模型（具体范围以官方仓库/文档为准）。</p>
                 <ul>
-                    <li><strong>特点</strong>：集成 LoRA、QLoRA、DoRA、GaLore、UnSloth 等多种轻量方法；支持 DDP、DeepSpeed ZeRO、FSDP 等分布式；推理端支持 vLLM、LMDeploy；提供 Gradio Web UI 做训练与量化。</li>
+                    <li><strong>特点</strong>：集成 LoRA、QLoRA、DoRA、GaLore 等多种轻量方法；支持 DDP、DeepSpeed ZeRO、FSDP 等分布式；推理端可对接 vLLM、LMDeploy；提供 Web UI 做训练与量化。</li>
                     <li><strong>适用</strong>：需要多模型、多模态或与魔搭数据集/模型仓库深度结合的场景。</li>
                 </ul>
                 <p><a href="https://github.com/modelscope/swift" class="link-out" target="_blank" rel="noopener">GitHub - modelscope/swift</a></p>
             </div>
             <div class="content-card">
                 <h3>2.3 ColossalAI</h3>
-                <p><strong>分布式 AI 训练系统</strong>，侧重大规模预训练与超高维并行，提供自动并行、内存优化、流水线/张量并行等。与 Megatron-LM 相比，可用更少 GPU 完成同等规模训练；目前<strong>唯一支持 DeepSeek R1 非量化模型高效微调</strong>的框架（如 4 节点 8 卡 A100 即可微调）。</p>
+                <p><strong>分布式 AI 训练系统</strong>，侧重大规模预训练与并行训练，提供自动并行、内存优化、流水线/张量并行等能力，适合企业级多卡/多节点训练与微调（不同模型的最佳实践与资源需求以官方示例为准）。</p>
                 <ul>
                     <li><strong>适用</strong>：企业级多卡/多节点、超大模型或 DeepSeek R1 等特定模型的高效微调。</li>
                 </ul>
@@ -189,8 +189,8 @@
                             <tr><th>特性</th><th>LoRA</th><th>QLoRA</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>核心技术</td><td>低秩适配器（Low-Rank Adapters）</td><td>低秩适配器 + 量化（INT4/INT8）</td></tr>
-                            <tr><td>适用场景</td><td>显存受限但设备性能尚可</td><td>极限显存受限或需快速推理</td></tr>
+                            <tr><td>核心技术</td><td>低秩适配器（Low-Rank Adapters）</td><td>低秩适配器 + 4bit 量化（常见如 NF4）</td></tr>
+                            <tr><td>适用场景</td><td>显存受限但仍希望保持较稳定的训练配置</td><td>更小显存下进行微调（主要解决“训练时加载基座模型”的显存压力）</td></tr>
                             <tr><td>显存/计算</td><td>较低，参数少</td><td>显著降低显存，适合更小设备</td></tr>
                             <tr><td>训练复杂度</td><td>较简单，多数场景适用</td><td>需量化和适配，适合超大模型</td></tr>
                         </tbody>
@@ -212,7 +212,7 @@
             <h2 class="section-title">4. 安装与启动（LLaMA Factory）</h2>
             <div class="content-card">
                 <h3>4.1 环境与安装</h3>
-                <p>需要 Python 3.8+、CUDA（GPU 训练）。推荐使用 conda/venv 创建虚拟环境后安装依赖。</p>
+                <p>需要 Python 3.10+、CUDA（GPU 训练）。推荐使用 conda/venv 创建虚拟环境后安装依赖。</p>
                 <div class="code-block">
                     <div class="code-header">bash</div>
                     <div class="code-content">
@@ -231,7 +231,7 @@ pip install -e ".[torch,metrics]"</pre>
                         <pre>llamafactory-cli webui</pre>
                     </div>
                 </div>
-                <p>浏览器访问默认地址（如 <code style="color: var(--accent-cyan);">http://localhost:7860</code>），即可使用训练、评估、对话、导出四个页签。</p>
+                <p>浏览器访问默认地址（通常为 <code style="color: var(--accent-cyan);">http://localhost:7860</code>；若端口被占用可能自动切换，以终端输出为准），即可使用训练、评估、对话、导出四个页签。</p>
             </div>
         </section>
 
@@ -239,7 +239,7 @@ pip install -e ".[torch,metrics]"</pre>
             <h2 class="section-title">5. 数据准备</h2>
             <div class="content-card">
                 <h3>5.1 支持的数据格式</h3>
-                <p>与前面「Easy Dataset」教程衔接：导出的 <strong>Alpaca</strong> 或 <strong>ShareGPT</strong> 格式 JSONL，可直接给 LLaMA Factory 使用。训练时框架会通过 <code>tokenizer.apply_chat_template()</code> 将 instruction/input/output 转为模型所需的特殊标记（如 <code>&lt;|im_start|&gt;</code>、<code>user</code>、<code>assistant</code>、<code>&lt;|im_end|&gt;</code> 等）。</p>
+                <p>与前面「Easy Dataset」教程衔接：导出的 <strong>Alpaca</strong> 或 <strong>ShareGPT</strong> 格式 JSONL，可直接给 LLaMA Factory 使用。训练时会根据所选模型的对话模板（chat template）将结构化字段序列化为模型所需的格式（例如不同模型可能使用不同的特殊标记与角色名称）。</p>
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -263,7 +263,7 @@ pip install -e ".[torch,metrics]"</pre>
                         </tbody>
                     </table>
                 </div>
-                <p style="margin-top: 16px;"><strong>扩展格式</strong>：若需<strong>系统提示词</strong>，可在数据中增加 <code>system</code> 或 <code>instruction</code> 作为系统角色；若做 <strong>Function calling</strong> 微调，需在 output 中提供符合模型约定的 tool_call 格式（如 <code>&lt;tool_call&gt;{"name": "...", "arguments": {...}}&lt;/tool_call&gt;</code>）；若做<strong>思考链</strong>（如 Qwen3 混合推理），可在 output 中保留思考链标记（如 <code>&lt;think&gt;...&lt;/think&gt;</code>），训练时模型会学习「assistant 前的内容 → assistant 后的输出」。</p>
+                <p style="margin-top: 16px;"><strong>扩展格式</strong>：若需<strong>系统提示词</strong>，建议使用数据中的 <code>system</code> 字段（或 ShareGPT 的 system 角色）来表达；若做 <strong>Function calling</strong> 微调，请严格遵循<strong>所选模型/模板</strong>的工具调用协议（不同模型的 tool call 序列化格式可能不同，例如 OpenAI 风格或特定模型的 tag 协议）；若使用带“推理/思考”标记的模型与模板，可按其约定保留相应标记，否则不建议在训练数据中写入冗长思考过程，以免口径不一致。</p>
             </div>
             <div class="content-card">
                 <h3>5.2 dataset_info.json 配置详细解答</h3>
@@ -318,7 +318,7 @@ pip install -e ".[torch,metrics]"</pre>
                         </tbody>
                     </table>
                 </div>
-                <p><strong>示例</strong>：若你的 JSONL 列名是 <code>question</code>、<code>answer</code>，可写 <code>"columns": {"prompt": "question", "response": "answer"}</code>，并保证数据里没有 <code>input</code> 或把 <code>query</code> 映射到空列名/对应列。</p>
+                <p><strong>示例</strong>：若你的 JSONL 列名是 <code>question</code>、<code>answer</code>，可写 <code>"columns": {"prompt": "question", "response": "answer"}</code>；如果没有额外输入列，可不配置 <code>query</code> 映射（或让其指向你数据中对应的列）。</p>
 
                 <h4 style="font-size: 1rem; color: var(--accent-cyan); margin: 20px 0 12px;">5.2.4 formatting 与任务类型</h4>
                 <ul>
@@ -411,7 +411,7 @@ pip install -e ".[torch,metrics]"</pre>
             </div>
             <div class="content-card">
                 <h3>6.4 导出（Export）</h3>
-                <p>将 LoRA 合并回基座、量化（如 4bit/8bit）或导出为 GGUF 等格式，便于部署到 vLLM、Ollama 等推理服务。</p>
+                <p>将 LoRA 合并回基座、量化（如 4bit/8bit）或导出为 GGUF 等格式，便于后续部署。一般来说：HuggingFace 权重格式更适合 vLLM/TGI 等；GGUF 更适合 llama.cpp / Ollama 等。</p>
             </div>
             <div class="pipeline">
                 <span class="pipeline-step">训练</span>
@@ -442,13 +442,13 @@ pip install -e ".[torch,metrics]"</pre>
 
         <section class="section">
             <h2 class="section-title">8. 软硬件环境与显存参考</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 24px;">微调需要 Python 3.8+、CUDA（GPU）。<strong>多卡微调</strong>时推荐 Linux（Ubuntu/CentOS）以更好支持 DeepSpeed、FSDP 等；仅单卡可在 Windows 下运行。以下为不同规模模型的大致显存参考（FP16 全参微调 vs 4bit 量化/QLoRA），实际以 LoRA/QLoRA 为主时显存会明显低于全参。</p>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">微调需要 Python 3.10+、CUDA（GPU）。<strong>多卡微调</strong>时推荐 Linux（Ubuntu/CentOS）以更好支持 DeepSpeed、FSDP 等；仅单卡也可在 Windows 下运行。下表给出不同规模模型的<strong>权重加载</strong>显存量级（FP16 vs 4bit）。注意：<span class="emphasis">训练显存通常远高于“仅加载权重”</span>，尤其是 FP16 全参 + Adam 还会额外占用梯度/优化器状态与激活。</p>
             <div class="content-card">
-                <h3>8.1 显存占用参考（示意）</h3>
+                <h3>8.1 权重加载显存参考（示意）</h3>
                 <div class="table-wrapper">
                     <table>
                         <thead>
-                            <tr><th>模型规模</th><th>FP16 全参微调（约）</th><th>4bit 量化微调（约）</th><th>备注</th></tr>
+                            <tr><th>模型规模</th><th>FP16 权重加载（约）</th><th>4bit 权重加载（约）</th><th>备注</th></tr>
                         </thead>
                         <tbody>
                             <tr><td>0.6B</td><td>~1.2 GB</td><td>~0.5 GB</td><td>低端 GPU 或 CPU 可跑</td></tr>
@@ -460,7 +460,7 @@ pip install -e ".[torch,metrics]"</pre>
                         </tbody>
                     </table>
                 </div>
-                <p>实际显存还与 batch size、序列长度、LoRA rank 等有关。课程中可按自身硬件选择对应规模基座（如 Qwen2-7B、Qwen3-8B、Qwen3-14B 等），仅需更换模型路径，流程一致。</p>
+                <p>实际显存还与 batch size、序列长度、LoRA rank、是否 checkpointing、优化器等有关。课程中可按自身硬件选择对应规模基座（如 Qwen2-7B、Qwen3-8B、Qwen3-14B 等），仅需更换模型路径，流程一致。</p>
             </div>
         </section>
 
