@@ -173,14 +173,13 @@
                 <div class="diagram">
                     <img src="assets/softmax-formula.png" alt="标准 Softmax 公式" style="max-width: 100%; height: auto;" />
                 </div>
-                <p>Softmax 中的一个重要参数是<strong>温度（T）</strong>——它用来控制模型预测的置信度或不确定性，调节概率分布的「尖锐程度」：要么更置信（尖锐），要么更不确定（柔和）。当 <em>T</em> = 1 时，是默认设置，对应标准的 softmax 行为，此时只有正确答案获得 100% 的概率，softmax 产生的是 <strong>hard targets</strong>（硬标签）。当温度升高（<em>T</em> &gt; 1）时，softmax 产生 <strong>soft targets</strong>（软标签），即概率分布更加分散、更「软」。</p>
+                <p>Softmax 中的一个重要参数是<strong>温度（T）</strong>——它用来控制模型预测的置信度或不确定性，调节概率分布的「尖锐程度」：要么更置信（尖锐），要么更不确定（柔和）。当 <em>T</em> = 1 时，是默认设置，对应标准的 softmax 行为，此时正确答案的概率接近100%（传统分类模型），softmax 产生的标签偏<strong>hard targets</strong>（硬标签）。当温度升高（<em>T</em> &gt; 1）时，softmax 产生 <strong>soft targets</strong>（软标签），即概率分布更加分散、更「软」。</p>
                 <div class="diagram">
                     <img src="assets/soft-targets-hard-vs-soft.png" alt="Hard targets 与 Soft targets 对比" style="max-width: 100%; height: auto;" />
                 </div>
                 <div class="diagram">
                     <img src="assets/softmax-temperature-formula.png" alt="带温度的 Softmax 公式" style="max-width: 100%; height: auto;" />
                 </div>
-                <p>Soft targets 对蒸馏和训练很有用，下面的知识蒸馏过程会说明原因。它通常包括以下步骤：</p>
                 <p>首先，教师模型在原始任务和数据集上训练。接着，教师模型产生 logits，这些 logits 通过带较高温度的 softmax 函数转换为 soft targets，使概率分布更软。然后，学生模型通常在这些 soft targets 以及 hard targets（真实标签）上训练，通过最小化学生输出分布与教师输出分布之间的差异来学习。</p>
             </div>
 
