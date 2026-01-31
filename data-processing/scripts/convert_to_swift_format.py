@@ -531,39 +531,36 @@ def main(
                         f"  [{config_name}] 拆分: 训练集 {len(train_data)}, 测试集 {len(test_data)}"
                     )
 
-                    # 保存单独的文件（如果不合并）
-                    if not merge:
-                        # 保存训练集
-                        train_filename = (
-                            f"swift_{dataset_type}_{config_name}_train.{format}"
-                        )
-                        train_path = output_dir / train_filename
-                        if format == "jsonl":
-                            save_jsonl_file(train_data, str(train_path))
-                        else:
-                            save_json_file(train_data, str(train_path))
-                        print(f"  [{config_name}] 训练集已保存到: {train_path}")
+                    # 保存训练集
+                    train_filename = (
+                        f"swift_{dataset_type}_{config_name}_train.{format}"
+                    )
+                    train_path = output_dir / train_filename
+                    if format == "jsonl":
+                        save_jsonl_file(train_data, str(train_path))
+                    else:
+                        save_json_file(train_data, str(train_path))
+                    print(f"  [{config_name}] 训练集已保存到: {train_path}")
 
-                        # 保存测试集
-                        test_filename = f"swift_{dataset_type}_{config_name}_test.json"
-                        test_path = output_dir / test_filename
-                        save_json_file(test_data, str(test_path))
-                        print(f"  [{config_name}] 测试集已保存到: {test_path}")
+                    # 保存测试集
+                    test_filename = f"swift_{dataset_type}_{config_name}_test.json"
+                    test_path = output_dir / test_filename
+                    save_json_file(test_data, str(test_path))
+                    print(f"  [{config_name}] 测试集已保存到: {test_path}")
 
                     all_train_by_config[config_name].extend(train_data)
                     all_test_by_config[config_name].extend(test_data)
                 else:
                     # 不拆分，保存全部数据
-                    if not merge:
-                        output_filename = f"swift_{dataset_type}_{config_name}.{format}"
-                        output_path = output_dir / output_filename
+                    output_filename = f"swift_{dataset_type}_{config_name}.{format}"
+                    output_path = output_dir / output_filename
 
-                        if format == "jsonl":
-                            save_jsonl_file(converted, str(output_path))
-                        else:
-                            save_json_file(converted, str(output_path))
+                    if format == "jsonl":
+                        save_jsonl_file(converted, str(output_path))
+                    else:
+                        save_json_file(converted, str(output_path))
 
-                        print(f"  [{config_name}] 已保存到: {output_path}")
+                    print(f"  [{config_name}] 已保存到: {output_path}")
 
                     all_train_by_config[config_name].extend(converted)
 

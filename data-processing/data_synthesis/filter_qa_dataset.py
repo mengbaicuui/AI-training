@@ -2,7 +2,7 @@ import json
 import os
 import asyncio
 from tqdm import tqdm
-from common import get_async_client, safe_json_parse
+from data_synthesis.common import get_async_client, safe_json_parse
 
 # Input/Output paths
 INPUT_FILE = "../outputs/data_synthesis/qa_v2_dataset.json"

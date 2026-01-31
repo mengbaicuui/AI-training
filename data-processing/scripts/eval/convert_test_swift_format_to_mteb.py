@@ -6,11 +6,20 @@ from tqdm import tqdm
 import csv
 import random
 import datasets
+import glob
 
 
-def load_json(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+def load_data(file_path):
+    if file_path.endswith(".jsonl"):
+        data = []
+        with open(file_path, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    data.append(json.loads(line))
+        return data
+    else:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
 
 
 def ensure_dir(path):
@@ -46,7 +55,7 @@ def strip_instruct_prefix(text):
 def convert_swift_to_mteb(input_file, output_dir):
     print(f"Converting Swift dataset from {input_file} to {output_dir}")
     try:
-        data = load_json(input_file)
+        data = load_data(input_file)
     except FileNotFoundError:
         print(f"Error: File {input_file} not found.")
         return
@@ -234,14 +243,21 @@ def download_and_convert_mteb(
 
 
 def main(
-    swift_test_path="outputs/swift_embedding/swift_embedding_eval_instruct.json",
+    swift_test_dir="outputs/swift_embedding",
     output_base="outputs/mteb_eval",
 ):
     # Convert Swift Test Data
-    if os.path.exists(swift_test_path):
-        convert_swift_to_mteb(swift_test_path, os.path.join(output_base, "swift_eval"))
-    else:
-        print(f"Warning: Swift test path {swift_test_path} does not exist.")
+    # Find all *test*.jsonl and *test*.json files
+    test_files = glob.glob(os.path.join(swift_test_dir, "*test*.json*"))
+    # Filter to ensure we only get .json and .jsonl
+    test_files = [f for f in test_files if f.endswith(".json") or f.endswith(".jsonl")]
+
+    if not test_files:
+        print(f"Warning: No *test*.json or *test*.jsonl files found in {swift_test_dir}")
+    
+    for swift_test_path in test_files:
+        file_name = Path(swift_test_path).stem
+        convert_swift_to_mteb(swift_test_path, os.path.join(output_base, file_name))
 
     # Download and convert MTEB-HF datasets
     mteb_datasets = ["mteb/scifact", "mteb/fiqa", "mteb/nfcorpus", "mteb/arguana"]
@@ -259,10 +275,10 @@ def main(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert datasets to MTEB format")
     parser.add_argument(
-        "--swift_test_path",
+        "--swift_test_dir",
         type=str,
-        default="outputs/swift_embedding/swift_embedding_eval_instruct.json",
-        help="Path to Swift embedding test dataset",
+        default="outputs/swift_embedding",
+        help="Directory containing Swift embedding test datasets",
     )
     parser.add_argument(
         "--output_base",
@@ -274,6 +290,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(
-        swift_test_path=args.swift_test_path,
+        swift_test_dir=args.swift_test_dir,
         output_base=args.output_base,
     )
