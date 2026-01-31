@@ -1,0 +1,18 @@
+[project]
+name = "data-processing"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.42.36",
+    "chromadb>=1.4.1",
+    "langchain>=1.2.7",
+    "langchain-text-splitters>=1.1.0",
+    "mlflow>=3.8.1",
+    "mteb>=2.7.13",
+    "numpy>=2.4.1",
+    "openai>=1.0.0",
+    "python-dotenv>=1.2.1",
+    "tqdm>=4.67.1",
+]
