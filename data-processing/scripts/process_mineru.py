@@ -57,6 +57,13 @@ def process_pdfs():
     print(f"Found {len(pdf_files)} PDFs to process.")
 
     for pdf_file in pdf_files:
+        output_filename = pdf_file.stem + ".md"
+        output_path = OUTPUT_DIR / output_filename
+
+        if output_path.exists():
+            print(f"Skipping {pdf_file.name}, {output_filename} already exists.")
+            continue
+
         print(f"Processing {pdf_file.name}...")
 
         result_json = parse_pdf(pdf_file)
@@ -78,9 +85,6 @@ def process_pdfs():
             content = result_json.get("data", {}).get("markdown", "") or str(
                 result_json
             )
-
-        output_filename = pdf_file.stem + ".md"
-        output_path = OUTPUT_DIR / output_filename
 
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(content)

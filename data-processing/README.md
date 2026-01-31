@@ -1,5 +1,12 @@
+## 安装
+
+pip install uv
+uv sync
+
+## 流程
+
 1. 将所有的pdfs放到data/pdfs目录下
-2. 执行一遍process_all（第一次执行只是为了跑通全流程，所以很多步骤的sample_count都是很小的值）
+2. 执行一遍`uv run python scripts/process_all.py`（第一次执行只是为了跑通全流程，所以很多步骤的sample_count都是很小的值）
 3. 将sample_count调到合适的值，然后重新执行一遍process_all
 4. 将生成的outputs/swift_embedding/swift_embedding_merged_instruct.jsonl的数据拿去训练
 5. 使用slerp脚本对新旧模型进行合并

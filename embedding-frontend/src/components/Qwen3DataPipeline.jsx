@@ -55,8 +55,41 @@ const Qwen3DataPipeline = () => {
                         </div>
                     </div>
 
+                    {/* Step 1: Configuration Generation Prompt */}
+                    <div style={{ background: '#1e293b', padding: '15px', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem', color: '#e2e8f0', fontFamily: 'monospace', marginBottom: '15px' }}>
+                        <div style={{ color: '#94a3b8', marginBottom: '8px', fontSize: '0.8rem' }}>// Step 1: Configuration Generation Prompt (Selects Character & Difficulty)</div>
+                        <pre style={{ margin: 0, whiteSpace: 'pre-wrap' }}>
+                            {`给定一个段落（Passage）和人物（Character），从三个字段中选择合适的选项：人物（Character）、问题类型（Question_Type）、难度（Difficulty），并以 JSON 格式返回输出。
+
+首先，从候选中选择对该段落可能感兴趣的人物（Character）。然后选择该人物可能针对该段落提出的问题类型（Question_Type）；最后，根据段落、人物和问题类型选择可能的问题难度（Difficulty）。
+
+人物（Character）：由输入给出
+
+问题类型（Question_Type）：
+keywords（关键词）：...
+acquire_knowledge（获取知识）：...
+summary（摘要）：...
+yes_or_no（是非题）：...
+background（背景）：...
+
+难度（Difficulty）：
+high_school（高中）：...
+university（大学）：...
+phd（博士）：...
+
+以下是一些示例 <Example1> <Example2> <Example3>
+
+现在，根据用户提供的段落（Passage）和人物（Character）生成输出，段落将为 {language} 语言，人物将为英文。确保仅生成内容为英文的 JSON 输出。
+
+Passage: {passage} Character: {character}`}
+                        </pre>
+                    </div>
+
+                    <div style={{ textAlign: 'center', color: '#64748b', marginBottom: '15px' }}>↓</div>
+
+                    {/* Step 2: Query Generation Prompt */}
                     <div style={{ background: '#1e293b', padding: '15px', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem', color: '#e2e8f0', fontFamily: 'monospace' }}>
-                        <div style={{ color: '#94a3b8', marginBottom: '8px', fontSize: '0.8rem' }}>// Prompt Example for Qwen3 Struct Data Generation</div>
+                        <div style={{ color: '#94a3b8', marginBottom: '8px', fontSize: '0.8rem' }}>// Step 2: Query Generation Prompt (Uses Config from Step 1)</div>
                         <pre style={{ margin: 0, whiteSpace: 'pre-wrap' }}>
                             {`给定一个**人物（Character）**、**段落（Passage）** 和**要求（Requirement）**，从该人物的视角生成一个满足该要求且可用于检索该段落的查询（query）。请以JSON格式返回结果。  
 

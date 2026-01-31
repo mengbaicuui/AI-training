@@ -37,11 +37,11 @@ def clean_jsonl_data():
 async def main():
     process_pdfs()
     await run_sts_generation(
-        "./data/books", "outputs/data_synthesis/sts_dataset.json", sample_count=10
+        "./data/books", "outputs/data_synthesis/sts_dataset.json", sample_count=500
     )
-    await build_qa_v2_dataset(sample_count=1)
+    await build_qa_v2_dataset(sample_count=500)
     await run_data_filter()
-    await convert_common_domain_mteb_to_swift(max_count=1)
+    await convert_common_domain_mteb_to_swift(max_count=500)
     convert_to_swift_format(split=True)
     merge_train_swift_embedding()
     clean_jsonl_data()
