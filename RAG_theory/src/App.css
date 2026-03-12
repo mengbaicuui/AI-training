@@ -1,0 +1,288 @@
+/* App-level overrides and pipeline-specific styles */
+
+/* ===================== Pipeline Viz Container ===================== */
+.pipeline-viz-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  height: calc(100vh - 200px);
+}
+
+.pipeline-top-bar {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.pipeline-main {
+  display: flex;
+  gap: var(--spacing-md);
+  flex: 1;
+  min-height: 0;
+}
+
+.pipeline-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-md);
+  overflow-y: auto;
+}
+
+.pipeline-canvas {
+  flex: 1;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  position: relative;
+  min-height: 400px;
+}
+
+.pipeline-detail {
+  width: 360px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  transition: width var(--transition-normal);
+}
+
+.pipeline-detail.collapsed { width: 0; padding: 0; overflow: hidden; border: none; }
+
+/* ===================== Trace Visualization ===================== */
+.trace-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.trace-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--border-color);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.trace-step:hover,
+.trace-step.active {
+  border-left-color: var(--accent-primary);
+  background: var(--bg-card-hover);
+}
+
+.trace-step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.trace-step-content { flex: 1; }
+
+.trace-step-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.trace-step-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.trace-step-meta {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.trace-step-badge {
+  font-size: 0.7rem;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-tertiary);
+}
+
+/* ===================== Selection Route ===================== */
+.route-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.route-item {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.route-item:hover,
+.route-item.active {
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.route-item-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.route-item-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ===================== Score Bar ===================== */
+.score-bar-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.score-bar-label {
+  width: 120px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.score-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-primary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width var(--transition-normal);
+}
+
+.score-bar-fill.bm25 { background: var(--accent-warning); }
+.score-bar-fill.dense { background: var(--accent-primary); }
+.score-bar-fill.hybrid { background: var(--accent-success); }
+.score-bar-fill.rerank { background: var(--accent-info); }
+
+.score-bar-value {
+  width: 40px;
+  text-align: right;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+}
+
+/* ===================== Chunk Card ===================== */
+.chunk-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  transition: all var(--transition-fast);
+}
+
+.chunk-card.relevant {
+  border-color: var(--accent-success);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.chunk-card.noise {
+  border-color: var(--accent-danger);
+  background: rgba(239, 68, 68, 0.05);
+  opacity: 0.7;
+}
+
+.chunk-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.chunk-source {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.chunk-score {
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.chunk-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.chunk-text mark {
+  background: rgba(245, 158, 11, 0.3);
+  color: var(--text-primary);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ===================== Summary Box ===================== */
+.summary-box {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.04));
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.summary-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-tertiary);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+}
+
+.summary-list li {
+  padding: var(--spacing-sm) 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.summary-list li:last-child { border-bottom: none; }
+.summary-list li strong { color: var(--accent-warning); }
