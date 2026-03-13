@@ -1,0 +1,412 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 6,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                432,
+                87,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 33,
+            "global_group_id": 33,
+            "block_polygon_points": [
+                [
+                    432.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    432.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "",
+            "block_bbox": [
+                168,
+                148,
+                1076,
+                687
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1,
+            "global_block_id": 34,
+            "global_group_id": 31,
+            "block_polygon_points": [
+                [
+                    168.0,
+                    148.0
+                ],
+                [
+                    1076.0,
+                    148.0
+                ],
+                [
+                    1076.0,
+                    687.0
+                ],
+                [
+                    168.0,
+                    687.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "公司负责人：李红京",
+            "block_bbox": [
+                176,
+                713,
+                372,
+                741
+            ],
+            "block_id": 2,
+            "block_order": null,
+            "group_id": 2,
+            "global_block_id": 35,
+            "global_group_id": 35,
+            "block_polygon_points": [
+                [
+                    176.0,
+                    713.0
+                ],
+                [
+                    372.0,
+                    713.0
+                ],
+                [
+                    372.0,
+                    741.0
+                ],
+                [
+                    176.0,
+                    741.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "主管会计工作负责人：李红京",
+            "block_bbox": [
+                471,
+                713,
+                750,
+                741
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3,
+            "global_block_id": 36,
+            "global_group_id": 36,
+            "block_polygon_points": [
+                [
+                    471.0,
+                    713.0
+                ],
+                [
+                    750.0,
+                    713.0
+                ],
+                [
+                    750.0,
+                    741.0
+                ],
+                [
+                    471.0,
+                    741.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "会计机构负责人：薛伟",
+            "block_bbox": [
+                849,
+                713,
+                1064,
+                742
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 37,
+            "global_group_id": 37,
+            "block_polygon_points": [
+                [
+                    849.0,
+                    713.0
+                ],
+                [
+                    1064.0,
+                    713.0
+                ],
+                [
+                    1064.0,
+                    742.0
+                ],
+                [
+                    849.0,
+                    742.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "157 / 306",
+            "block_bbox": [
+                581,
+                1542,
+                663,
+                1564
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 38,
+            "global_group_id": 38,
+            "block_polygon_points": [
+                [
+                    581.0,
+                    1542.0
+                ],
+                [
+                    662.0,
+                    1542.0
+                ],
+                [
+                    662.0,
+                    1563.0
+                ],
+                [
+                    581.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8534079194068909,
+                "coordinate": [
+                    432,
+                    87,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        432.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        432.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9714174270629883,
+                "coordinate": [
+                    168,
+                    148,
+                    1076,
+                    687
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        168.0,
+                        148.0
+                    ],
+                    [
+                        1076.0,
+                        148.0
+                    ],
+                    [
+                        1076.0,
+                        687.0
+                    ],
+                    [
+                        168.0,
+                        687.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8597816824913025,
+                "coordinate": [
+                    176,
+                    713,
+                    372,
+                    741
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        176.0,
+                        713.0
+                    ],
+                    [
+                        372.0,
+                        713.0
+                    ],
+                    [
+                        372.0,
+                        741.0
+                    ],
+                    [
+                        176.0,
+                        741.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8716152310371399,
+                "coordinate": [
+                    471,
+                    713,
+                    750,
+                    741
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        471.0,
+                        713.0
+                    ],
+                    [
+                        750.0,
+                        713.0
+                    ],
+                    [
+                        750.0,
+                        741.0
+                    ],
+                    [
+                        471.0,
+                        741.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.845377504825592,
+                "coordinate": [
+                    849,
+                    713,
+                    1064,
+                    742
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        849.0,
+                        713.0
+                    ],
+                    [
+                        1064.0,
+                        713.0
+                    ],
+                    [
+                        1064.0,
+                        742.0
+                    ],
+                    [
+                        849.0,
+                        742.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7673069834709167,
+                "coordinate": [
+                    581,
+                    1542,
+                    663,
+                    1564
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        581.0,
+                        1542.0
+                    ],
+                    [
+                        662.0,
+                        1542.0
+                    ],
+                    [
+                        662.0,
+                        1563.0
+                    ],
+                    [
+                        581.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,853 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 42,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                379,
+                87,
+                754,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 504,
+            "global_group_id": 504,
+            "block_polygon_points": [
+                [
+                    379.0,
+                    87.0
+                ],
+                [
+                    754.0,
+                    87.0
+                ],
+                [
+                    754.0,
+                    109.0
+                ],
+                [
+                    379.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "按照预期收回该资产或清偿该负债期间的适用税率计算确认递延所得税资产或递延所得税负债。",
+            "block_bbox": [
+                122,
+                146,
+                997,
+                223
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 505,
+            "global_group_id": 505,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    146.0
+                ],
+                [
+                    997.0,
+                    146.0
+                ],
+                [
+                    997.0,
+                    223.0
+                ],
+                [
+                    122.0,
+                    223.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "2. 确认递延所得税资产以很可能取得用来抵扣可抵扣暂时性差异的应纳税所得额为限。资产负债表日，有确凿证据表明未来期间很可能获得足够的应纳税所得额用来抵扣可抵扣暂时性差异的，确认以前会计期间未确认的递延所得税资产。",
+            "block_bbox": [
+                122,
+                239,
+                1014,
+                364
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 506,
+            "global_group_id": 506,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    239.0
+                ],
+                [
+                    1014.0,
+                    239.0
+                ],
+                [
+                    1014.0,
+                    364.0
+                ],
+                [
+                    122.0,
+                    364.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "3. 资产负债表日，对递延所得税资产的账面价值进行复核，如果未来期间很可能无法获得足够的应纳税所得额用以抵扣递延所得税资产的利益，则减记递延所得税资产的账面价值。在很可能获得足够的应纳税所得额时，转回减记的金额。",
+            "block_bbox": [
+                122,
+                381,
+                1014,
+                504
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 507,
+            "global_group_id": 507,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    381.0
+                ],
+                [
+                    1014.0,
+                    381.0
+                ],
+                [
+                    1014.0,
+                    504.0
+                ],
+                [
+                    122.0,
+                    504.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "4. 公司当期所得税和递延所得税作为所得税费用或收益计入当期损益，但不包括下列情况产生的所得税：(1)企业合并；(2)直接在所有者权益中确认的交易或者事项。",
+            "block_bbox": [
+                124,
+                520,
+                1014,
+                596
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 508,
+            "global_group_id": 508,
+            "block_polygon_points": [
+                [
+                    124.0,
+                    520.0
+                ],
+                [
+                    1014.0,
+                    520.0
+                ],
+                [
+                    1014.0,
+                    596.0
+                ],
+                [
+                    124.0,
+                    596.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "5.同时满足下列条件时，公司将递延所得税资产及递延所得税负债以抵销后的净额列示：(1)拥有以净额结算当期所得税资产及当期所得税负债的法定权利；(2)递延所得税资产和递延所得税负债是与同一税收征管部门对同一纳税主体征收的所得税相关或者对不同的纳税主体相关，但在未来每一具有重要性的递延所得税资产和递延所得税负债转回的期间内，涉及的纳税主体意图以净额结算当期所得税资产及当期所得税负债或是同时取得资产、清偿债务。",
+            "block_bbox": [
+                121,
+                614,
+                1017,
+                879
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 509,
+            "global_group_id": 509,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    614.0
+                ],
+                [
+                    1017.0,
+                    614.0
+                ],
+                [
+                    1017.0,
+                    879.0
+                ],
+                [
+                    121.0,
+                    879.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "38、其他重要的会计政策和会计估计",
+            "block_bbox": [
+                122,
+                926,
+                551,
+                956
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 510,
+            "global_group_id": 510,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    926.0
+                ],
+                [
+                    551.0,
+                    926.0
+                ],
+                [
+                    551.0,
+                    956.0
+                ],
+                [
+                    122.0,
+                    956.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "√适用 □不适用",
+            "block_bbox": [
+                123,
+                973,
+                304,
+                1000
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 511,
+            "global_group_id": 511,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    973.0
+                ],
+                [
+                    304.0,
+                    973.0
+                ],
+                [
+                    304.0,
+                    1000.0
+                ],
+                [
+                    123.0,
+                    1000.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1. 与回购公司股份相关的会计处理方法",
+            "block_bbox": [
+                171,
+                1006,
+                584,
+                1034
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 512,
+            "global_group_id": 512,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    1006.0
+                ],
+                [
+                    584.0,
+                    1006.0
+                ],
+                [
+                    584.0,
+                    1034.0
+                ],
+                [
+                    171.0,
+                    1034.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "因减少注册资本或奖励职工等原因收购本公司股份的，按实际支付的金额作为库存股处理，同时进行备查登记。如果将回购的股份注销，则将按注销股票面值和注销股数计算的股票面值总额与实际回购所支付的金额之间的差额冲减资本公积，资本公积不足冲减的，冲减留存收益；如果将回购的股份奖励给本公司职工属于以权益结算的股份支付，于职工行权购买本公司股份收到价款时，转销交付职工的库存股成本和等待期内资本公积（其他资本公积）累计金额，同时，按照其差额调整资本公积（股本溢价）。",
+            "block_bbox": [
+                121,
+                1052,
+                1017,
+                1362
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9,
+            "global_block_id": 513,
+            "global_group_id": 513,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1052.0
+                ],
+                [
+                    1017.0,
+                    1052.0
+                ],
+                [
+                    1017.0,
+                    1362.0
+                ],
+                [
+                    121.0,
+                    1362.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "2. 所得税及递延所得税资产",
+            "block_bbox": [
+                169,
+                1378,
+                466,
+                1407
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10,
+            "global_block_id": 514,
+            "global_group_id": 514,
+            "block_polygon_points": [
+                [
+                    169.0,
+                    1378.0
+                ],
+                [
+                    466.0,
+                    1378.0
+                ],
+                [
+                    466.0,
+                    1407.0
+                ],
+                [
+                    169.0,
+                    1407.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本公司在多个地区缴纳企业所得税。在正常的经营活动中，部分交易和事项的最终税务处理存在不确定性。在计提各个地区的所得税费用时，本公司需要作出重大判",
+            "block_bbox": [
+                122,
+                1425,
+                1017,
+                1502
+            ],
+            "block_id": 11,
+            "block_order": 11,
+            "group_id": 11,
+            "global_block_id": 515,
+            "global_group_id": 515,
+            "block_polygon_points": [
+                [
+                    122.5950927734375,
+                    1418.0047607421875
+                ],
+                [
+                    1016.594970703125,
+                    1425.0047607421875
+                ],
+                [
+                    1015.9998779296875,
+                    1501.0001220703125
+                ],
+                [
+                    122.0,
+                    1494.0001220703125
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "193 / 306",
+            "block_bbox": [
+                529,
+                1543,
+                611,
+                1564
+            ],
+            "block_id": 12,
+            "block_order": null,
+            "group_id": 12,
+            "global_block_id": 516,
+            "global_group_id": 516,
+            "block_polygon_points": [
+                [
+                    529.0,
+                    1543.0
+                ],
+                [
+                    610.0,
+                    1543.0
+                ],
+                [
+                    610.0,
+                    1563.0
+                ],
+                [
+                    529.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8704696297645569,
+                "coordinate": [
+                    379,
+                    87,
+                    754,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        379.0,
+                        87.0
+                    ],
+                    [
+                        754.0,
+                        87.0
+                    ],
+                    [
+                        754.0,
+                        109.0
+                    ],
+                    [
+                        379.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.92974853515625,
+                "coordinate": [
+                    122,
+                    146,
+                    997,
+                    223
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        122.0,
+                        146.0
+                    ],
+                    [
+                        997.0,
+                        146.0
+                    ],
+                    [
+                        997.0,
+                        223.0
+                    ],
+                    [
+                        122.0,
+                        223.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9521685838699341,
+                "coordinate": [
+                    122,
+                    239,
+                    1014,
+                    364
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        122.0,
+                        239.0
+                    ],
+                    [
+                        1014.0,
+                        239.0
+                    ],
+                    [
+                        1014.0,
+                        364.0
+                    ],
+                    [
+                        122.0,
+                        364.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.948698878288269,
+                "coordinate": [
+                    122,
+                    381,
+                    1014,
+                    504
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        122.0,
+                        381.0
+                    ],
+                    [
+                        1014.0,
+                        381.0
+                    ],
+                    [
+                        1014.0,
+                        504.0
+                    ],
+                    [
+                        122.0,
+                        504.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9307655096054077,
+                "coordinate": [
+                    124,
+                    520,
+                    1014,
+                    596
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        124.0,
+                        520.0
+                    ],
+                    [
+                        1014.0,
+                        520.0
+                    ],
+                    [
+                        1014.0,
+                        596.0
+                    ],
+                    [
+                        124.0,
+                        596.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9570054411888123,
+                "coordinate": [
+                    121,
+                    614,
+                    1017,
+                    879
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        121.0,
+                        614.0
+                    ],
+                    [
+                        1017.0,
+                        614.0
+                    ],
+                    [
+                        1017.0,
+                        879.0
+                    ],
+                    [
+                        121.0,
+                        879.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8554632067680359,
+                "coordinate": [
+                    122,
+                    926,
+                    551,
+                    956
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        122.0,
+                        926.0
+                    ],
+                    [
+                        551.0,
+                        926.0
+                    ],
+                    [
+                        551.0,
+                        956.0
+                    ],
+                    [
+                        122.0,
+                        956.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8125945925712585,
+                "coordinate": [
+                    123,
+                    973,
+                    304,
+                    1000
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        123.0,
+                        973.0
+                    ],
+                    [
+                        304.0,
+                        973.0
+                    ],
+                    [
+                        304.0,
+                        1000.0
+                    ],
+                    [
+                        123.0,
+                        1000.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8319095969200134,
+                "coordinate": [
+                    171,
+                    1006,
+                    584,
+                    1034
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        171.0,
+                        1006.0
+                    ],
+                    [
+                        584.0,
+                        1006.0
+                    ],
+                    [
+                        584.0,
+                        1034.0
+                    ],
+                    [
+                        171.0,
+                        1034.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9664203524589539,
+                "coordinate": [
+                    121,
+                    1052,
+                    1017,
+                    1362
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1052.0
+                    ],
+                    [
+                        1017.0,
+                        1052.0
+                    ],
+                    [
+                        1017.0,
+                        1362.0
+                    ],
+                    [
+                        121.0,
+                        1362.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.854346513748169,
+                "coordinate": [
+                    169,
+                    1378,
+                    466,
+                    1407
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        169.0,
+                        1378.0
+                    ],
+                    [
+                        466.0,
+                        1378.0
+                    ],
+                    [
+                        466.0,
+                        1407.0
+                    ],
+                    [
+                        169.0,
+                        1407.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9309433698654175,
+                "coordinate": [
+                    122,
+                    1425,
+                    1017,
+                    1502
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        122.5950927734375,
+                        1418.0047607421875
+                    ],
+                    [
+                        1016.594970703125,
+                        1425.0047607421875
+                    ],
+                    [
+                        1015.9998779296875,
+                        1501.0001220703125
+                    ],
+                    [
+                        122.0,
+                        1494.0001220703125
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7399605512619019,
+                "coordinate": [
+                    529,
+                    1543,
+                    611,
+                    1564
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        529.0,
+                        1543.0
+                    ],
+                    [
+                        610.0,
+                        1543.0
+                    ],
+                    [
+                        610.0,
+                        1563.0
+                    ],
+                    [
+                        529.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

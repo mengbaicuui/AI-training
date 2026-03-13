@@ -1,0 +1,664 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 16,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                380,
+                87,
+                754,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 90,
+            "global_group_id": 90,
+            "block_polygon_points": [
+                [
+                    380.0,
+                    87.0
+                ],
+                [
+                    754.0,
+                    87.0
+                ],
+                [
+                    754.0,
+                    109.0
+                ],
+                [
+                    380.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "三、公司基本情况",
+            "block_bbox": [
+                122,
+                151,
+                361,
+                181
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 91,
+            "global_group_id": 91,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    151.0
+                ],
+                [
+                    361.0,
+                    151.0
+                ],
+                [
+                    361.0,
+                    181.0
+                ],
+                [
+                    122.0,
+                    181.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1、公司概况",
+            "block_bbox": [
+                124,
+                204,
+                271,
+                233
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 92,
+            "global_group_id": 92,
+            "block_polygon_points": [
+                [
+                    124.0,
+                    204.0
+                ],
+                [
+                    271.0,
+                    204.0
+                ],
+                [
+                    271.0,
+                    233.0
+                ],
+                [
+                    124.0,
+                    233.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                128,
+                251,
+                324,
+                277
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 93,
+            "global_group_id": 93,
+            "block_polygon_points": [
+                [
+                    128.0,
+                    251.0
+                ],
+                [
+                    324.0,
+                    251.0
+                ],
+                [
+                    324.0,
+                    277.0
+                ],
+                [
+                    128.0,
+                    277.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "深圳市道通科技股份有限公司（以下简称公司或本公司）前身系深圳市道通科技有限公司，于2004年9月28日注册成立，总部位于广东省深圳市。2014年6月13日，经由深圳市市场监督管理局核准，深圳市道通科技有限公司以2013年10月31日为基准日，整体变更为股份有限公司，名称变更为深圳市道通科技股份有限公司。公司现持有统一社会信用代码为91440300767550462C的营业执照，注册资本451,878,028.00元，股份总数451,878,028股（每股面值1元）。其中，无限售条件的流通股份A股451,878,028股。公司股票已于2020年2月13日在上海证券交易所挂牌交易。",
+            "block_bbox": [
+                121,
+                282,
+                1016,
+                641
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 94,
+            "global_group_id": 94,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    282.0
+                ],
+                [
+                    1016.0,
+                    282.0
+                ],
+                [
+                    1016.0,
+                    641.0
+                ],
+                [
+                    121.0,
+                    641.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本公司经营范围主要为汽车数字诊断、检测分析系统、汽车电子零部件、智能充电网络的研发、生产、销售和服务，产品主要有汽车综合诊断产品、TPMS系列产品、ADAS系列产品、智能充电网络以及相关产品的软件云服务。",
+            "block_bbox": [
+                121,
+                656,
+                1014,
+                780
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 95,
+            "global_group_id": 95,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    656.0
+                ],
+                [
+                    1014.0,
+                    656.0
+                ],
+                [
+                    1014.0,
+                    780.0
+                ],
+                [
+                    121.0,
+                    780.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本财务报表已经公司 2025 年 3 月 28 日第四届董事会第十八次会议批准对外报出。",
+            "block_bbox": [
+                122,
+                796,
+                1006,
+                872
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 96,
+            "global_group_id": 96,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    796.0
+                ],
+                [
+                    1006.0,
+                    796.0
+                ],
+                [
+                    1006.0,
+                    872.0
+                ],
+                [
+                    122.0,
+                    872.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本财务报表附注中，除非另有说明，以下公司名称简称如下：",
+            "block_bbox": [
+                169,
+                890,
+                813,
+                918
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 97,
+            "global_group_id": 97,
+            "block_polygon_points": [
+                [
+                    169.0,
+                    890.0
+                ],
+                [
+                    813.0,
+                    890.0
+                ],
+                [
+                    813.0,
+                    918.0
+                ],
+                [
+                    169.0,
+                    918.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>名称</td><td>简称</td></tr><tr><td>Autel (USA), INC.</td><td>道通加州</td></tr><tr><td>Autel.US Inc.</td><td>道通纽约</td></tr><tr><td>Autel Europe GmbH</td><td>道通德国</td></tr><tr><td>Autel Hong Kong Holding Limited</td><td>道通香港</td></tr><tr><td>Công ty TNHH Autel Việt Nam</td><td>道通越南</td></tr><tr><td>Autel Imea DMCC</td><td>道通迪拜</td></tr><tr><td>Autel.JP Inc.</td><td>道通日本</td></tr><tr><td>Auteltech Latin America SA DE CV</td><td>道通墨西哥</td></tr><tr><td>Autel Europe S.R.L.</td><td>道通意大利</td></tr><tr><td>AUTEL EUROPE UK LTD</td><td>道通英国</td></tr><tr><td>AUTEL BRASIL TECNOLOGIA LTDA</td><td>道通巴西</td></tr><tr><td>Autel Netherlands B.V.</td><td>道通荷兰</td></tr><tr><td>AUTEL NEW ENERGY US INC</td><td>道通美国新能源</td></tr><tr><td>ECOM AMERICA INC</td><td>道通美国电商</td></tr><tr><td>CÔNG TY TNHH CÔNG NGHỆ NẪNG LƯƠNG MỚI AUTEL VIỆTNAM</td><td>道通越南新能源</td></tr><tr><td>Autel Europe France</td><td>道通法国</td></tr><tr><td>AUTEL INTELLIGENT TECHNOLOGY (AUSTRALIA) PTY LTD</td><td>道通澳大利亚</td></tr><tr><td>Autel Iberia S.L.</td><td>道通西班牙</td></tr><tr><td>Autel Nordic AB</td><td>道通瑞典</td></tr><tr><td>湖南省道通科技有限公司</td><td>湖南道通</td></tr><tr><td>深圳市道通合创数字能源有限公司</td><td>道通合创</td></tr><tr><td>深圳市道通合盛软件开发有限公司</td><td>道通合盛</td></tr><tr><td>西安道通科技有限公司</td><td>西安道通</td></tr><tr><td>深圳市塞防科技有限公司</td><td>塞防科技</td></tr><tr><td>深圳市彩虹科技发展有限公司</td><td>彩虹科技</td></tr><tr><td>深圳市道通彩虹信息咨询有限公司</td><td>彩虹信息咨询</td></tr><tr><td>海南道通科技有限公司</td><td>海南道通</td></tr><tr><td>深圳市道通合达供应链咨询管理有限公司</td><td>道通合达</td></tr><tr><td>深圳市道通智能航空技术股份有限公司</td><td>智能航空</td></tr><tr><td>深圳市小特道通新能源有限公司</td><td>小特道通</td></tr><tr><td>深圳市盈通物业管理发展有限公司</td><td>盈通物业</td></tr><tr><td>深圳市道通合新软件开发有限公司</td><td>道通合新</td></tr><tr><td>海南驰卓汽车服务有限公司</td><td>海南驰卓</td></tr><tr><td>AVANT INTELLIGENCE LTD</td><td>英国智能</td></tr></table>",
+            "block_bbox": [
+                139,
+                931,
+                938,
+                1511
+            ],
+            "block_id": 8,
+            "block_order": null,
+            "group_id": 8,
+            "global_block_id": 98,
+            "global_group_id": 98,
+            "block_polygon_points": [
+                [
+                    139.0,
+                    931.0
+                ],
+                [
+                    938.0,
+                    931.0
+                ],
+                [
+                    938.0,
+                    1511.0
+                ],
+                [
+                    139.0,
+                    1511.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "167 / 306",
+            "block_bbox": [
+                530,
+                1543,
+                610,
+                1563
+            ],
+            "block_id": 9,
+            "block_order": null,
+            "group_id": 9,
+            "global_block_id": 99,
+            "global_group_id": 99,
+            "block_polygon_points": [
+                [
+                    530.0,
+                    1543.0
+                ],
+                [
+                    609.0,
+                    1543.0
+                ],
+                [
+                    609.0,
+                    1562.0
+                ],
+                [
+                    530.0,
+                    1562.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.870299220085144,
+                "coordinate": [
+                    380,
+                    87,
+                    754,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        380.0,
+                        87.0
+                    ],
+                    [
+                        754.0,
+                        87.0
+                    ],
+                    [
+                        754.0,
+                        109.0
+                    ],
+                    [
+                        380.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8774302005767822,
+                "coordinate": [
+                    122,
+                    151,
+                    361,
+                    181
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        122.0,
+                        151.0
+                    ],
+                    [
+                        361.0,
+                        151.0
+                    ],
+                    [
+                        361.0,
+                        181.0
+                    ],
+                    [
+                        122.0,
+                        181.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8591306805610657,
+                "coordinate": [
+                    124,
+                    204,
+                    271,
+                    233
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        124.0,
+                        204.0
+                    ],
+                    [
+                        271.0,
+                        204.0
+                    ],
+                    [
+                        271.0,
+                        233.0
+                    ],
+                    [
+                        124.0,
+                        233.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8050023913383484,
+                "coordinate": [
+                    128,
+                    251,
+                    324,
+                    277
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        128.0,
+                        251.0
+                    ],
+                    [
+                        324.0,
+                        251.0
+                    ],
+                    [
+                        324.0,
+                        277.0
+                    ],
+                    [
+                        128.0,
+                        277.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.963518500328064,
+                "coordinate": [
+                    121,
+                    282,
+                    1016,
+                    641
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        121.0,
+                        282.0
+                    ],
+                    [
+                        1016.0,
+                        282.0
+                    ],
+                    [
+                        1016.0,
+                        641.0
+                    ],
+                    [
+                        121.0,
+                        641.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9525431990623474,
+                "coordinate": [
+                    121,
+                    656,
+                    1014,
+                    780
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        121.0,
+                        656.0
+                    ],
+                    [
+                        1014.0,
+                        656.0
+                    ],
+                    [
+                        1014.0,
+                        780.0
+                    ],
+                    [
+                        121.0,
+                        780.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9239922761917114,
+                "coordinate": [
+                    122,
+                    796,
+                    1006,
+                    872
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        122.0,
+                        796.0
+                    ],
+                    [
+                        1006.0,
+                        796.0
+                    ],
+                    [
+                        1006.0,
+                        872.0
+                    ],
+                    [
+                        122.0,
+                        872.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8561679124832153,
+                "coordinate": [
+                    169,
+                    890,
+                    813,
+                    918
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        169.0,
+                        890.0
+                    ],
+                    [
+                        813.0,
+                        890.0
+                    ],
+                    [
+                        813.0,
+                        918.0
+                    ],
+                    [
+                        169.0,
+                        918.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9817525148391724,
+                "coordinate": [
+                    139,
+                    931,
+                    938,
+                    1511
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        139.0,
+                        931.0
+                    ],
+                    [
+                        938.0,
+                        931.0
+                    ],
+                    [
+                        938.0,
+                        1511.0
+                    ],
+                    [
+                        139.0,
+                        1511.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8004769682884216,
+                "coordinate": [
+                    530,
+                    1543,
+                    610,
+                    1563
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        530.0,
+                        1543.0
+                    ],
+                    [
+                        609.0,
+                        1543.0
+                    ],
+                    [
+                        609.0,
+                        1562.0
+                    ],
+                    [
+                        530.0,
+                        1562.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

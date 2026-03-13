@@ -1,0 +1,538 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0051-0100.pdf",
+    "page_index": 28,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                86,
+                807,
+                108
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 324,
+            "global_group_id": 324,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    108.0
+                ],
+                [
+                    431.0,
+                    108.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(三) 报告期内提名委员会召开1次会议",
+            "block_bbox": [
+                178,
+                155,
+                617,
+                183
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 325,
+            "global_group_id": 325,
+            "block_polygon_points": [
+                [
+                    178.0,
+                    155.0
+                ],
+                [
+                    617.0,
+                    155.0
+                ],
+                [
+                    617.0,
+                    183.0
+                ],
+                [
+                    178.0,
+                    183.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>召开日期</td><td>会议内容</td><td>重要意见和建议</td><td>其他履行职责情况</td></tr><tr><td>2024年3月28日</td><td>1.《关于聘任公司董事会秘书的议案》</td><td>提名委员会严格按照《公司法》中国证监会监管规则以及《公司章程》《董事会议事规则》开展工作，勤勉尽责，经过充分沟通讨论，一致通过所有议案。</td><td>无</td></tr></table>",
+            "block_bbox": [
+                167,
+                198,
+                1074,
+                420
+            ],
+            "block_id": 2,
+            "block_order": null,
+            "group_id": 2,
+            "global_block_id": 326,
+            "global_group_id": 326,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    198.0
+                ],
+                [
+                    1074.0,
+                    198.0
+                ],
+                [
+                    1074.0,
+                    420.0
+                ],
+                [
+                    167.0,
+                    420.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(四) 报告期内薪酬与考核委员会召开4次会议",
+            "block_bbox": [
+                179,
+                456,
+                690,
+                484
+            ],
+            "block_id": 3,
+            "block_order": 2,
+            "group_id": 3,
+            "global_block_id": 327,
+            "global_group_id": 327,
+            "block_polygon_points": [
+                [
+                    179.0,
+                    456.0
+                ],
+                [
+                    690.0,
+                    456.0
+                ],
+                [
+                    690.0,
+                    484.0
+                ],
+                [
+                    179.0,
+                    484.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>召开日期</td><td>会议内容</td><td>重要意见和建议</td><td>其他履行职责情况</td></tr><tr><td>2024年3月28日</td><td>1.《关于公司董事2023年度薪酬及2024年度薪酬方案的议案》2.《关于公司高级管理人员2023年度薪酬及2024年度薪酬方案的议案》</td><td>薪酬与考核委员会严格按照《公司法》中国证监会监管规则以及《公司章程》《董事会议事规则》开展工作，勤勉尽责，经过充分沟通讨论，一致通过所有议案。</td><td>无</td></tr><tr><td>2024年4月24日</td><td>1.《关于作废处理2020年限制性股票激励计划部分已授予尚未归属的限制性股票的议案》2.《关于作废处理2021年限制性股票激励计划部分已授予尚未归属的限制性股票的议案》</td><td>薪酬与考核委员会严格按照《公司法》中国证监会监管规则以及《公司章程》《董事会议事规则》开展工作，勤勉尽责，经过充分沟通讨论，一致通过所有议案。</td><td>无</td></tr><tr><td>2024年9月28日</td><td>1.《关于&lt;公司2024年员工持股计划（草案）&gt;及其摘要的议案》2.《关于&lt;公司2024年员工持股计划管理办法&gt;的议案》3.《关于提请股东大会授权董事会办理公司2024年员工持股计划相关事宜的议案》4.《关于&lt;公司2024年限制性股票激励计划（草案）&gt;及其摘要的议案》5.《关于&lt;公司2024年限制性股票激励计划实施考核管理办法&gt;的议案》6.《关于提请股东大会授权董事会办理公司2024年限制性股票激励计划相关事宜的议案》</td><td>薪酬与考核委员会严格按照《公司法》中国证监会监管规则以及《公司章程》《董事会议事规则》开展工作，勤勉尽责，经过充分沟通讨论，一致通过所有议案。</td><td>无</td></tr><tr><td>2024年10月21日</td><td>1.《关于调整2024年限制性股票激励计划激励对象名单的议案》2.《关于向公司2024年限制性股票激励计划激励对象授予限制性股票的议案》</td><td>薪酬与考核委员会严格按照《公司法》中国证监会监管规则以及《公司章程》《董事会议事规则》开展工作，勤勉尽责，经过充分沟通讨论，一致通过所有议案。</td><td>无</td></tr></table>",
+            "block_bbox": [
+                168,
+                500,
+                1076,
+                1404
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 328,
+            "global_group_id": 328,
+            "block_polygon_points": [
+                [
+                    168.0,
+                    500.0
+                ],
+                [
+                    1076.0,
+                    500.0
+                ],
+                [
+                    1076.0,
+                    1404.0
+                ],
+                [
+                    168.0,
+                    1404.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(五) 报告期内战略委员会召开2次会议",
+            "block_bbox": [
+                179,
+                1441,
+                617,
+                1469
+            ],
+            "block_id": 5,
+            "block_order": 3,
+            "group_id": 5,
+            "global_block_id": 329,
+            "global_group_id": 329,
+            "block_polygon_points": [
+                [
+                    179.0,
+                    1441.0
+                ],
+                [
+                    617.0,
+                    1441.0
+                ],
+                [
+                    617.0,
+                    1469.0
+                ],
+                [
+                    179.0,
+                    1469.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>召开日期</td><td>会议内容</td><td>重要意见和建议</td><td>其他履行</td></tr><tr><td></td><td></td><td></td><td>职责情况</td></tr><tr><td>2024年3月28日</td><td>1.《关于公司2024年度“提质增效重回报”行动方案的议案》</td><td>战略委员会严格按照《公司法》中国证监会监管规则以及《公司章程》《董事会议事规则》开展工作，勤勉尽责，经过充分沟通讨论，一致通过所有议案。</td><td>无</td></tr><tr><td>2024年7月31日</td><td>1.《关于&lt;2024年度“提质增效重回报”专项行动方案半年度评估报告&gt;的议案》</td><td>战略委员会严格按照《公司法》中国证监会监管规则以及《公司章程》《董事会议事规则》开展工作，勤勉尽责，经过充分沟通讨论，一致通过所有议案。</td><td>无</td></tr></table>",
+            "block_bbox": [
+                167,
+                1484,
+                1074,
+                1515
+            ],
+            "block_id": 6,
+            "block_order": null,
+            "group_id": 6,
+            "global_block_id": 330,
+            "global_group_id": 330,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    1484.0
+                ],
+                [
+                    1074.0,
+                    1484.0
+                ],
+                [
+                    1074.0,
+                    1515.0
+                ],
+                [
+                    167.0,
+                    1515.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "79 / 306",
+            "block_bbox": [
+                586,
+                1543,
+                658,
+                1563
+            ],
+            "block_id": 7,
+            "block_order": null,
+            "group_id": 7,
+            "global_block_id": 331,
+            "global_group_id": 331,
+            "block_polygon_points": [
+                [
+                    586.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1562.0
+                ],
+                [
+                    586.0,
+                    1562.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8768358826637268,
+                "coordinate": [
+                    431,
+                    86,
+                    807,
+                    108
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        108.0
+                    ],
+                    [
+                        431.0,
+                        108.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8946583271026611,
+                "coordinate": [
+                    178,
+                    155,
+                    617,
+                    183
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        178.0,
+                        155.0
+                    ],
+                    [
+                        617.0,
+                        155.0
+                    ],
+                    [
+                        617.0,
+                        183.0
+                    ],
+                    [
+                        178.0,
+                        183.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9713534116744995,
+                "coordinate": [
+                    167,
+                    198,
+                    1074,
+                    420
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        198.0
+                    ],
+                    [
+                        1074.0,
+                        198.0
+                    ],
+                    [
+                        1074.0,
+                        420.0
+                    ],
+                    [
+                        167.0,
+                        420.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8778188228607178,
+                "coordinate": [
+                    179,
+                    456,
+                    690,
+                    484
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        179.0,
+                        456.0
+                    ],
+                    [
+                        690.0,
+                        456.0
+                    ],
+                    [
+                        690.0,
+                        484.0
+                    ],
+                    [
+                        179.0,
+                        484.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9868854284286499,
+                "coordinate": [
+                    168,
+                    500,
+                    1076,
+                    1404
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        168.0,
+                        500.0
+                    ],
+                    [
+                        1076.0,
+                        500.0
+                    ],
+                    [
+                        1076.0,
+                        1404.0
+                    ],
+                    [
+                        168.0,
+                        1404.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8804510235786438,
+                "coordinate": [
+                    179,
+                    1441,
+                    617,
+                    1469
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        179.0,
+                        1441.0
+                    ],
+                    [
+                        617.0,
+                        1441.0
+                    ],
+                    [
+                        617.0,
+                        1469.0
+                    ],
+                    [
+                        179.0,
+                        1469.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.8849086165428162,
+                "coordinate": [
+                    167,
+                    1484,
+                    1074,
+                    1515
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        1484.0
+                    ],
+                    [
+                        1074.0,
+                        1484.0
+                    ],
+                    [
+                        1074.0,
+                        1515.0
+                    ],
+                    [
+                        167.0,
+                        1515.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8379971385002136,
+                "coordinate": [
+                    586,
+                    1543,
+                    658,
+                    1563
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        586.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1562.0
+                    ],
+                    [
+                        586.0,
+                        1562.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,727 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0051-0100.pdf",
+    "page_index": 40,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                430,
+                85,
+                808,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 489,
+            "global_group_id": 489,
+            "block_polygon_points": [
+                [
+                    430.0,
+                    85.0
+                ],
+                [
+                    808.0,
+                    85.0
+                ],
+                [
+                    808.0,
+                    109.0
+                ],
+                [
+                    430.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "法》《中华人民共和国固体废物污染环境防治法》等法律法规，严格污染物治理与处置，制定相关管理措施，为生产和运营过程中产生的废水、废气、厂界噪声和固体废弃物明确了管理指引，确保环保设施运行正常，实现废水和废气的符合标准排放，厂界噪声的有效控制，以及固体废弃物的规范处理。",
+            "block_bbox": [
+                173,
+                154,
+                1068,
+                325
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 490,
+            "global_group_id": 490,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    154.0
+                ],
+                [
+                    1068.0,
+                    154.0
+                ],
+                [
+                    1068.0,
+                    325.0
+                ],
+                [
+                    173.0,
+                    325.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "面向公司的污染物处理，我们按照《环境因素识别与评价控制程序》的管理规范，根据自身情况积极开展设备优化、工艺升级、基础建设等措施，同时聘请合格第三方提供相关监测管理。2024年，公司没有发生任何环境污染问题。",
+            "block_bbox": [
+                173,
+                342,
+                1067,
+                465
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 491,
+            "global_group_id": 491,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    342.0
+                ],
+                [
+                    1067.0,
+                    342.0
+                ],
+                [
+                    1067.0,
+                    465.0
+                ],
+                [
+                    173.0,
+                    465.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司对污染物的主要处理措施如下：",
+            "block_bbox": [
+                224,
+                481,
+                600,
+                508
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 492,
+            "global_group_id": 492,
+            "block_polygon_points": [
+                [
+                    224.0,
+                    481.0
+                ],
+                [
+                    600.0,
+                    481.0
+                ],
+                [
+                    600.0,
+                    508.0
+                ],
+                [
+                    224.0,
+                    508.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>污废类型</td><td>具体分类</td><td>处理方式</td></tr><tr><td>废水</td><td>主要包括生活污水、恒温恒湿机排放水、防水测试机排放水、空压机排放水、盐雾测试废水、废清洗液、废油等。</td><td>公司用合适容器收集废水，并标注“废弃物回收标签”交由专人暂时保管。待积存到一定数量后，公司联络外部废弃物处理站或其它有资质的合法机构集中收集处理</td></tr><tr><td rowspan=\"2\">废气</td><td rowspan=\"2\">主要包括清洗液、石油醚、酒精、洗板水等液体的挥发物及焊锡、点胶产生的气体等。</td><td>若清洗液、废油等废水能被供应商回收，则由供应商合法回收。</td></tr><tr><td>公司在工位处设置集气罩将废气收集后通过管道引至楼顶排放，若废气为非甲烷总烃类，则先经活性炭吸附后再排放。同时，公司在作业完成后及时加盖，并在清洗时注意控制温度，尽量减少液体挥发。</td></tr><tr><td>固体废弃物</td><td>金属类、纸质类、布质类、塑胶类、其它类垃圾。</td><td>对于各类固体废弃物，公司划定存放区域并进行标识，各部门产生的固体废弃物进行分类，并按标识，各部门存放。当储存达到一定数量后，公司联络有资质的承包商集中统一回收。若固体废弃物为含油性布质污染物，则按废水处理方式处理。</td></tr></table>",
+            "block_bbox": [
+                167,
+                508,
+                1075,
+                948
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 493,
+            "global_group_id": 493,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    508.0
+                ],
+                [
+                    1075.0,
+                    508.0
+                ],
+                [
+                    1075.0,
+                    948.0
+                ],
+                [
+                    167.0,
+                    948.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "4、公司环保管理制度等情况",
+            "block_bbox": [
+                173,
+                1001,
+                491,
+                1031
+            ],
+            "block_id": 5,
+            "block_order": 4,
+            "group_id": 5,
+            "global_block_id": 494,
+            "global_group_id": 494,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    1001.0
+                ],
+                [
+                    491.0,
+                    1001.0
+                ],
+                [
+                    491.0,
+                    1031.0
+                ],
+                [
+                    173.0,
+                    1031.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                180,
+                1049,
+                365,
+                1076
+            ],
+            "block_id": 6,
+            "block_order": 5,
+            "group_id": 6,
+            "global_block_id": 495,
+            "global_group_id": 495,
+            "block_polygon_points": [
+                [
+                    180.0,
+                    1049.0
+                ],
+                [
+                    365.0,
+                    1049.0
+                ],
+                [
+                    365.0,
+                    1076.0
+                ],
+                [
+                    180.0,
+                    1076.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司重视环境的管理与保护，严格遵守《中华人民共和国环境保护法》《中华人民共和国环境影响评价法》等法律法规，搭建了健全的环境管理体系，并已通过 ISO 14001:2015 认证。我们制定了《环境因素识别与评价控制程序》《应急准备和响应控制程序》等制度文件，对生产和服务过程中可能对环境产生影响的因素进行识别与评估，确保环境因素得到有效控制，降低公司对环境的影响。",
+            "block_bbox": [
+                173,
+                1080,
+                1070,
+                1299
+            ],
+            "block_id": 7,
+            "block_order": 6,
+            "group_id": 7,
+            "global_block_id": 496,
+            "global_group_id": 496,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    1080.0
+                ],
+                [
+                    1070.0,
+                    1080.0
+                ],
+                [
+                    1070.0,
+                    1299.0
+                ],
+                [
+                    173.0,
+                    1299.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(四) 在报告期内为减少其碳排放所采取的措施及效果",
+            "block_bbox": [
+                174,
+                1350,
+                741,
+                1379
+            ],
+            "block_id": 8,
+            "block_order": 7,
+            "group_id": 8,
+            "global_block_id": 497,
+            "global_group_id": 497,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1350.0
+                ],
+                [
+                    741.0,
+                    1350.0
+                ],
+                [
+                    741.0,
+                    1379.0
+                ],
+                [
+                    174.0,
+                    1379.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>是否采取减碳措施</td><td>是</td></tr><tr><td>减少排放二氧化碳当量（单位: 吨）</td><td>/</td></tr><tr><td>减碳措施类型（如使用清洁能源发电、在生产过程中使用减碳技术、研发生产助于</td><td>研发生产有助于减碳的新产品</td></tr><tr><td>减碳的新产品等）</td><td></td></tr></table>",
+            "block_bbox": [
+                167,
+                1394,
+                1075,
+                1521
+            ],
+            "block_id": 9,
+            "block_order": null,
+            "group_id": 9,
+            "global_block_id": 498,
+            "global_group_id": 498,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    1394.0
+                ],
+                [
+                    1075.0,
+                    1394.0
+                ],
+                [
+                    1075.0,
+                    1521.0
+                ],
+                [
+                    167.0,
+                    1521.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "91 / 306",
+            "block_bbox": [
+                585,
+                1543,
+                658,
+                1564
+            ],
+            "block_id": 10,
+            "block_order": null,
+            "group_id": 10,
+            "global_block_id": 499,
+            "global_group_id": 499,
+            "block_polygon_points": [
+                [
+                    585.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1563.0
+                ],
+                [
+                    585.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8792064189910889,
+                "coordinate": [
+                    430,
+                    85,
+                    808,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        430.0,
+                        85.0
+                    ],
+                    [
+                        808.0,
+                        85.0
+                    ],
+                    [
+                        808.0,
+                        109.0
+                    ],
+                    [
+                        430.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9568737745285034,
+                "coordinate": [
+                    173,
+                    154,
+                    1068,
+                    325
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        173.0,
+                        154.0
+                    ],
+                    [
+                        1068.0,
+                        154.0
+                    ],
+                    [
+                        1068.0,
+                        325.0
+                    ],
+                    [
+                        173.0,
+                        325.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9473647475242615,
+                "coordinate": [
+                    173,
+                    342,
+                    1067,
+                    465
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        173.0,
+                        342.0
+                    ],
+                    [
+                        1067.0,
+                        342.0
+                    ],
+                    [
+                        1067.0,
+                        465.0
+                    ],
+                    [
+                        173.0,
+                        465.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5024827718734741,
+                "coordinate": [
+                    224,
+                    481,
+                    600,
+                    508
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        224.0,
+                        481.0
+                    ],
+                    [
+                        600.0,
+                        481.0
+                    ],
+                    [
+                        600.0,
+                        508.0
+                    ],
+                    [
+                        224.0,
+                        508.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9789757132530212,
+                "coordinate": [
+                    167,
+                    508,
+                    1075,
+                    948
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        508.0
+                    ],
+                    [
+                        1075.0,
+                        508.0
+                    ],
+                    [
+                        1075.0,
+                        948.0
+                    ],
+                    [
+                        167.0,
+                        948.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8711121678352356,
+                "coordinate": [
+                    173,
+                    1001,
+                    491,
+                    1031
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        173.0,
+                        1001.0
+                    ],
+                    [
+                        491.0,
+                        1001.0
+                    ],
+                    [
+                        491.0,
+                        1031.0
+                    ],
+                    [
+                        173.0,
+                        1031.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.787558376789093,
+                "coordinate": [
+                    180,
+                    1049,
+                    365,
+                    1076
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        180.0,
+                        1049.0
+                    ],
+                    [
+                        365.0,
+                        1049.0
+                    ],
+                    [
+                        365.0,
+                        1076.0
+                    ],
+                    [
+                        180.0,
+                        1076.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9599639177322388,
+                "coordinate": [
+                    173,
+                    1080,
+                    1070,
+                    1299
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        173.0,
+                        1080.0
+                    ],
+                    [
+                        1070.0,
+                        1080.0
+                    ],
+                    [
+                        1070.0,
+                        1299.0
+                    ],
+                    [
+                        173.0,
+                        1299.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8517684936523438,
+                "coordinate": [
+                    174,
+                    1350,
+                    741,
+                    1379
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1350.0
+                    ],
+                    [
+                        741.0,
+                        1350.0
+                    ],
+                    [
+                        741.0,
+                        1379.0
+                    ],
+                    [
+                        174.0,
+                        1379.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9526347517967224,
+                "coordinate": [
+                    167,
+                    1394,
+                    1075,
+                    1521
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        1394.0
+                    ],
+                    [
+                        1075.0,
+                        1394.0
+                    ],
+                    [
+                        1075.0,
+                        1521.0
+                    ],
+                    [
+                        167.0,
+                        1521.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8228302001953125,
+                "coordinate": [
+                    585,
+                    1543,
+                    658,
+                    1564
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        585.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1563.0
+                    ],
+                    [
+                        585.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

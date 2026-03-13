@@ -1,0 +1,412 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 7,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                432,
+                87,
+                806,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 39,
+            "global_group_id": 39,
+            "block_polygon_points": [
+                [
+                    432.0,
+                    87.0
+                ],
+                [
+                    806.0,
+                    87.0
+                ],
+                [
+                    806.0,
+                    109.0
+                ],
+                [
+                    432.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "合并现金流量表",
+            "block_bbox": [
+                533,
+                155,
+                709,
+                182
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 40,
+            "global_group_id": 40,
+            "block_polygon_points": [
+                [
+                    533.0,
+                    155.0
+                ],
+                [
+                    709.0,
+                    155.0
+                ],
+                [
+                    709.0,
+                    182.0
+                ],
+                [
+                    533.0,
+                    182.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "2024年1—12月",
+            "block_bbox": [
+                526,
+                187,
+                712,
+                213
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 41,
+            "global_group_id": 41,
+            "block_polygon_points": [
+                [
+                    526.0,
+                    187.0
+                ],
+                [
+                    712.0,
+                    187.0
+                ],
+                [
+                    712.0,
+                    213.0
+                ],
+                [
+                    526.0,
+                    213.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元币种：人民币",
+            "block_bbox": [
+                822,
+                216,
+                1064,
+                243
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3,
+            "global_block_id": 42,
+            "global_group_id": 42,
+            "block_polygon_points": [
+                [
+                    822.0,
+                    216.0
+                ],
+                [
+                    1064.0,
+                    216.0
+                ],
+                [
+                    1064.0,
+                    243.0
+                ],
+                [
+                    822.0,
+                    243.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>项目</td><td>附注</td><td>2024年度</td><td>2023年度</td></tr><tr><td colspan=\"4\">一、经营活动产生的现金流量：</td></tr><tr><td>销售商品、提供劳务收到的现金</td><td></td><td>4,157,931,817.50</td><td>3,311,628,641.99</td></tr><tr><td>客户存款和同业存放款项净增加额</td><td></td><td></td><td></td></tr><tr><td>向中央银行借款净增加额</td><td></td><td></td><td></td></tr><tr><td>向其他金融机构拆入资金净增加额</td><td></td><td></td><td></td></tr><tr><td>收到原保险合同保费取得的现金</td><td></td><td></td><td></td></tr><tr><td>收到再保业务现金净额</td><td></td><td></td><td></td></tr><tr><td>保户储金及投资款净增加额</td><td></td><td></td><td></td></tr><tr><td>收取利息、手续费及佣金的现金</td><td></td><td></td><td></td></tr><tr><td>拆入资金净增加额</td><td></td><td></td><td></td></tr><tr><td>回购业务资金净增加额</td><td></td><td></td><td></td></tr><tr><td>代理买卖证券收到的现金净额</td><td></td><td></td><td></td></tr><tr><td>收到的税费返还</td><td></td><td>309,566,073.95</td><td>168,067,577.20</td></tr><tr><td>收到其他与经营活动有关的现金</td><td>七（78）</td><td>81,863,350.63</td><td>57,068,378.58</td></tr><tr><td>经营活动现金流入小计</td><td></td><td>4,549,361,242.08</td><td>3,536,764,597.77</td></tr><tr><td>购买商品、接受劳务支付的现金</td><td></td><td>1,747,618,779.56</td><td>1,447,853,668.18</td></tr><tr><td>客户贷款及垫款净增加额</td><td></td><td></td><td></td></tr><tr><td>存放中央银行和同业款项净增加额</td><td></td><td></td><td></td></tr><tr><td>支付原保险合同赔付款项的现金</td><td></td><td></td><td></td></tr><tr><td>拆出资金净增加额</td><td></td><td></td><td></td></tr><tr><td>支付利息、手续费及佣金的现金</td><td></td><td></td><td></td></tr><tr><td>支付保单红利的现金</td><td></td><td></td><td></td></tr><tr><td>支付给职工及为职工支付的现金</td><td></td><td>843,480,565.97</td><td>751,003,066.43</td></tr><tr><td>支付的各项税费</td><td></td><td>278,165,548.53</td><td>325,123,343.96</td></tr><tr><td>支付其他与经营活动有关的现金</td><td>七（78）</td><td>932,578,862.17</td><td>578,728,101.33</td></tr><tr><td>经营活动现金流出小计</td><td></td><td>3,801,843,756.23</td><td>3,102,708,179.90</td></tr><tr><td>经营活动产生的现金流量净额</td><td>七（79）</td><td>747,517,485.85</td><td>434,056,417.87</td></tr><tr><td colspan=\"4\">二、投资活动产生的现金流量：</td></tr><tr><td>收回投资收到的现金</td><td>七（78）</td><td>48,624,416.78</td><td>2,007,016,233.38</td></tr><tr><td>取得投资收益收到的现金</td><td></td><td>1,284,135.92</td><td>6,045,411.98</td></tr><tr><td>处置固定资产、无形资产和其他长期资产收回的现金净额</td><td></td><td>2,349,712.86</td><td>89,000.00</td></tr><tr><td>处置子公司及其他营业单位收到的现金净额</td><td></td><td></td><td></td></tr><tr><td>收到其他与投资活动有关的现金</td><td></td><td></td><td></td></tr><tr><td>投资活动现金流入小计</td><td></td><td>52,258,265.56</td><td>2,013,150,645.36</td></tr><tr><td>购建固定资产、无形资产和其他长期资产支付的现金</td><td></td><td>150,498,028.15</td><td>215,789,015.52</td></tr><tr><td>投资支付的现金</td><td>七（78）</td><td>40,000,000.00</td><td>2,025,146,410.00</td></tr><tr><td>质押贷款净增加额</td><td></td><td></td><td></td></tr><tr><td>取得子公司及其他营业单位支付的现金净额</td><td></td><td></td><td></td></tr><tr><td>支付其他与投资活动有关的现金</td><td></td><td>67,428,254.52</td><td></td></tr><tr><td>投资活动现金流出小计</td><td></td><td>257,926,282.67</td><td>2,240,935,425.52</td></tr><tr><td>投资活动产生的现金流量净额</td><td></td><td>-205,668,017.11</td><td>-227,784,780.16</td></tr><tr><td colspan=\"4\">三、筹资活动产生的现金流量：</td></tr><tr><td>吸收投资收到的现金</td><td></td><td></td><td></td></tr><tr><td>其中：子公司吸收少数股东投资收到的现金</td><td></td><td></td><td></td></tr><tr><td>取得借款收到的现金</td><td></td><td>200,000,000.00</td><td></td></tr><tr><td>收到其他与筹资活动有关的现金</td><td></td><td></td><td></td></tr><tr><td>筹资活动现金流入小计</td><td></td><td>200,000,000.00</td><td></td></tr><tr><td>偿还债务支付的现金</td><td></td><td></td><td>150,000,000.00</td></tr><tr><td>分配股利、利润或偿付利息支付的现金</td><td></td><td>359,604,891.19</td><td>5,484,271.87</td></tr><tr><td>其中：子公司支付给少数股东的股利、利润</td><td></td><td></td><td></td></tr><tr><td>支付其他与筹资活动有关的现金</td><td>七（78）</td><td>169,006,000.06</td><td>21,944,763.49</td></tr><tr><td>筹资活动现金流出小计</td><td></td><td>528,610,891.25</td><td>177,429,035.36</td></tr><tr><td>筹资活动产生的现金流量净额</td><td></td><td>-328,610,891.25</td><td>-177,429,035.36</td></tr><tr><td>四、汇率变动对现金及现金等价物的影响</td><td></td><td>22,310,737.96</td><td>13,691,024.26</td></tr><tr><td>五、现金及现金等价物净增加额</td><td>七（79）</td><td>235,549,315.45</td><td>42,533,626.61</td></tr><tr><td>加：期初现金及现金等价物余额</td><td>七（79）</td><td>1,474,409,219.41</td><td>1,431,875,592.80</td></tr><tr><td>六、期末现金及现金等价物余额</td><td>七（79）</td><td>1,709,958,534.86</td><td>1,474,409,219.41</td></tr></table>",
+            "block_bbox": [
+                167,
+                240,
+                1076,
+                1535
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 43,
+            "global_group_id": 43,
+            "block_polygon_points": [
+                [
+                    167,
+                    240
+                ],
+                [
+                    167,
+                    1534
+                ],
+                [
+                    1075,
+                    1534
+                ],
+                [
+                    1075,
+                    240
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "158 / 306",
+            "block_bbox": [
+                582,
+                1543,
+                662,
+                1563
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 44,
+            "global_group_id": 44,
+            "block_polygon_points": [
+                [
+                    582.0,
+                    1543.0
+                ],
+                [
+                    661.0,
+                    1543.0
+                ],
+                [
+                    661.0,
+                    1562.0
+                ],
+                [
+                    582.0,
+                    1562.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8577542304992676,
+                "coordinate": [
+                    432,
+                    87,
+                    806,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        432.0,
+                        87.0
+                    ],
+                    [
+                        806.0,
+                        87.0
+                    ],
+                    [
+                        806.0,
+                        109.0
+                    ],
+                    [
+                        432.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7000091075897217,
+                "coordinate": [
+                    533,
+                    155,
+                    709,
+                    182
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        533.0,
+                        155.0
+                    ],
+                    [
+                        709.0,
+                        155.0
+                    ],
+                    [
+                        709.0,
+                        182.0
+                    ],
+                    [
+                        533.0,
+                        182.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5751169919967651,
+                "coordinate": [
+                    526,
+                    187,
+                    712,
+                    213
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        526.0,
+                        187.0
+                    ],
+                    [
+                        712.0,
+                        187.0
+                    ],
+                    [
+                        712.0,
+                        213.0
+                    ],
+                    [
+                        526.0,
+                        213.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8547659516334534,
+                "coordinate": [
+                    822,
+                    216,
+                    1064,
+                    243
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        822.0,
+                        216.0
+                    ],
+                    [
+                        1064.0,
+                        216.0
+                    ],
+                    [
+                        1064.0,
+                        243.0
+                    ],
+                    [
+                        822.0,
+                        243.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9815818071365356,
+                "coordinate": [
+                    167,
+                    240,
+                    1076,
+                    1535
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167,
+                        240
+                    ],
+                    [
+                        167,
+                        1534
+                    ],
+                    [
+                        1075,
+                        1534
+                    ],
+                    [
+                        1075,
+                        240
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8116540908813477,
+                "coordinate": [
+                    582,
+                    1543,
+                    662,
+                    1563
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        582.0,
+                        1543.0
+                    ],
+                    [
+                        661.0,
+                        1543.0
+                    ],
+                    [
+                        661.0,
+                        1562.0
+                    ],
+                    [
+                        582.0,
+                        1562.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,1105 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0201-0250.pdf",
+    "page_index": 9,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                379,
+                86,
+                754,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 222,
+            "global_group_id": 222,
+            "block_polygon_points": [
+                [
+                    379.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    109.0
+                ],
+                [
+                    379.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "其他说明：",
+            "block_bbox": [
+                123,
+                145,
+                237,
+                173
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 223,
+            "global_group_id": 223,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    145.0
+                ],
+                [
+                    237.0,
+                    145.0
+                ],
+                [
+                    237.0,
+                    173.0
+                ],
+                [
+                    123.0,
+                    173.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "□适用 √不适用",
+            "block_bbox": [
+                125,
+                176,
+                310,
+                205
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 224,
+            "global_group_id": 224,
+            "block_polygon_points": [
+                [
+                    125.0,
+                    176.0
+                ],
+                [
+                    310.0,
+                    176.0
+                ],
+                [
+                    310.0,
+                    205.0
+                ],
+                [
+                    125.0,
+                    205.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "其他应收款",
+            "block_bbox": [
+                123,
+                244,
+                253,
+                274
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 225,
+            "global_group_id": 225,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    244.0
+                ],
+                [
+                    253.0,
+                    244.0
+                ],
+                [
+                    253.0,
+                    274.0
+                ],
+                [
+                    123.0,
+                    274.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(13). 按账龄披露",
+            "block_bbox": [
+                123,
+                297,
+                302,
+                328
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 226,
+            "global_group_id": 226,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    297.0
+                ],
+                [
+                    302.0,
+                    297.0
+                ],
+                [
+                    302.0,
+                    328.0
+                ],
+                [
+                    123.0,
+                    328.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                129,
+                344,
+                311,
+                373
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 227,
+            "global_group_id": 227,
+            "block_polygon_points": [
+                [
+                    129.0,
+                    344.0
+                ],
+                [
+                    311.0,
+                    344.0
+                ],
+                [
+                    311.0,
+                    373.0
+                ],
+                [
+                    129.0,
+                    373.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元币种：人民币",
+            "block_bbox": [
+                767,
+                375,
+                1013,
+                402
+            ],
+            "block_id": 6,
+            "block_order": null,
+            "group_id": 6,
+            "global_block_id": 228,
+            "global_group_id": 228,
+            "block_polygon_points": [
+                [
+                    767.0,
+                    375.0
+                ],
+                [
+                    1013.0,
+                    375.0
+                ],
+                [
+                    1013.0,
+                    402.0
+                ],
+                [
+                    767.0,
+                    402.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>账龄</td><td>期末账面余额</td><td>期初账面余额</td></tr><tr><td colspan=\"3\">1年以内</td></tr><tr><td colspan=\"3\">其中：1年以内分项</td></tr><tr><td>1年以内</td><td>45,788,589.53</td><td>50,186,094.01</td></tr><tr><td>1年以内小计</td><td>45,788,589.53</td><td>50,186,094.01</td></tr><tr><td>1至2年</td><td>7,218,627.41</td><td>9,898,783.40</td></tr><tr><td>2年以上</td><td>14,094,698.62</td><td>16,505,842.73</td></tr><tr><td>合计</td><td>67,101,915.56</td><td>76,590,720.14</td></tr></table>",
+            "block_bbox": [
+                114,
+                402,
+                1023,
+                686
+            ],
+            "block_id": 7,
+            "block_order": null,
+            "group_id": 7,
+            "global_block_id": 229,
+            "global_group_id": 229,
+            "block_polygon_points": [
+                [
+                    114.0,
+                    402.0
+                ],
+                [
+                    1023.0,
+                    402.0
+                ],
+                [
+                    1023.0,
+                    686.0
+                ],
+                [
+                    114.0,
+                    686.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(14). 按款项性质分类情况",
+            "block_bbox": [
+                122,
+                724,
+                397,
+                755
+            ],
+            "block_id": 8,
+            "block_order": 6,
+            "group_id": 8,
+            "global_block_id": 230,
+            "global_group_id": 230,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    724.0
+                ],
+                [
+                    397.0,
+                    724.0
+                ],
+                [
+                    397.0,
+                    755.0
+                ],
+                [
+                    122.0,
+                    755.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                128,
+                770,
+                310,
+                800
+            ],
+            "block_id": 9,
+            "block_order": 7,
+            "group_id": 9,
+            "global_block_id": 231,
+            "global_group_id": 231,
+            "block_polygon_points": [
+                [
+                    128.0,
+                    770.0
+                ],
+                [
+                    310.0,
+                    770.0
+                ],
+                [
+                    310.0,
+                    800.0
+                ],
+                [
+                    128.0,
+                    800.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元币种：人民币",
+            "block_bbox": [
+                767,
+                802,
+                1013,
+                829
+            ],
+            "block_id": 10,
+            "block_order": null,
+            "group_id": 10,
+            "global_block_id": 232,
+            "global_group_id": 232,
+            "block_polygon_points": [
+                [
+                    767.0,
+                    802.0
+                ],
+                [
+                    1013.0,
+                    802.0
+                ],
+                [
+                    1013.0,
+                    829.0
+                ],
+                [
+                    767.0,
+                    829.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>款项性质</td><td>期末账面余额</td><td>期初账面余额</td></tr><tr><td>应收出口退税款</td><td>4,000,409.05</td><td>25,301,963.62</td></tr><tr><td>应收暂付款</td><td>7,484,084.32</td><td>18,957,857.79</td></tr><tr><td>押金及保证金</td><td>18,006,257.95</td><td>16,626,197.01</td></tr><tr><td>备用金</td><td>4,214,764.82</td><td>7,980,843.20</td></tr><tr><td>代缴社保与住房公积金</td><td>4,059,211.33</td><td>3,682,953.18</td></tr><tr><td>员工购房借款</td><td>4,917,188.09</td><td>4,040,905.34</td></tr><tr><td>应收股权转让款</td><td>24,420,000.00</td><td></td></tr><tr><td>合计</td><td>67,101,915.56</td><td>76,590,720.14</td></tr></table>",
+            "block_bbox": [
+                114,
+                826,
+                1023,
+                1150
+            ],
+            "block_id": 11,
+            "block_order": null,
+            "group_id": 11,
+            "global_block_id": 233,
+            "global_group_id": 233,
+            "block_polygon_points": [
+                [
+                    114,
+                    835
+                ],
+                [
+                    120,
+                    1149
+                ],
+                [
+                    1022,
+                    1141
+                ],
+                [
+                    1022,
+                    835
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(15). 坏账准备计提情况",
+            "block_bbox": [
+                123,
+                1186,
+                373,
+                1217
+            ],
+            "block_id": 12,
+            "block_order": 8,
+            "group_id": 12,
+            "global_block_id": 234,
+            "global_group_id": 234,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    1186.0
+                ],
+                [
+                    373.0,
+                    1186.0
+                ],
+                [
+                    373.0,
+                    1217.0
+                ],
+                [
+                    123.0,
+                    1217.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                129,
+                1233,
+                311,
+                1262
+            ],
+            "block_id": 13,
+            "block_order": 9,
+            "group_id": 13,
+            "global_block_id": 235,
+            "global_group_id": 235,
+            "block_polygon_points": [
+                [
+                    129.0,
+                    1233.0
+                ],
+                [
+                    311.0,
+                    1233.0
+                ],
+                [
+                    311.0,
+                    1262.0
+                ],
+                [
+                    129.0,
+                    1262.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元币种：人民币",
+            "block_bbox": [
+                767,
+                1264,
+                1013,
+                1292
+            ],
+            "block_id": 14,
+            "block_order": null,
+            "group_id": 14,
+            "global_block_id": 236,
+            "global_group_id": 236,
+            "block_polygon_points": [
+                [
+                    767.0,
+                    1264.0
+                ],
+                [
+                    1013.0,
+                    1264.0
+                ],
+                [
+                    1013.0,
+                    1292.0
+                ],
+                [
+                    767.0,
+                    1292.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td rowspan=\"2\">坏账准备</td><td>第一阶段</td><td>第二阶段</td><td>第三阶段</td><td rowspan=\"2\">合计</td></tr><tr><td>未来12个月预期信用损失</td><td>整个存续期预期信用损失(未发生信用减值)</td><td>整个存续期预期信用损失(已发生信用减值)</td></tr><tr><td>2024年1月1日余额</td><td>363,581.43</td><td>1,580,012.86</td><td>3,526,202.95</td><td>5,469,797.24</td></tr><tr><td>2024年1月1日余额在本期</td><td></td><td></td><td></td><td></td></tr><tr><td>--转入第二阶段</td><td>-81,124.53</td><td>81,124.53</td><td></td><td></td></tr><tr><td>--转入第三阶段</td><td></td><td>-324,066.59</td><td>324,066.59</td><td></td></tr><tr><td>--转回第二阶段</td><td></td><td></td><td></td><td></td></tr><tr><td>--转回第一阶段</td><td></td><td></td><td></td><td></td></tr><tr><td>本期计提</td><td>-198,093.97</td><td>-525,825.55</td><td>324,066.58</td><td>-399,852.94</td></tr><tr><td>本期转回</td><td></td><td></td><td></td><td></td></tr><tr><td>本期转销</td><td></td><td></td><td></td><td></td></tr><tr><td>本期核销</td><td></td><td></td><td></td><td></td></tr><tr><td>其他变动</td><td></td><td></td><td></td><td></td></tr><tr><td>2024年12月31日余额</td><td>84,362.93</td><td>811,245.25</td><td>4,174,336.12</td><td>5,069,944.30</td></tr></table>",
+            "block_bbox": [
+                114,
+                1293,
+                1022,
+                1524
+            ],
+            "block_id": 15,
+            "block_order": null,
+            "group_id": 15,
+            "global_block_id": 237,
+            "global_group_id": 237,
+            "block_polygon_points": [
+                [
+                    114.0,
+                    1293.0
+                ],
+                [
+                    1022.0,
+                    1293.0
+                ],
+                [
+                    1022.0,
+                    1524.0
+                ],
+                [
+                    114.0,
+                    1524.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "210 / 306",
+            "block_bbox": [
+                528,
+                1542,
+                611,
+                1564
+            ],
+            "block_id": 16,
+            "block_order": null,
+            "group_id": 16,
+            "global_block_id": 238,
+            "global_group_id": 238,
+            "block_polygon_points": [
+                [
+                    527.9999389648438,
+                    1542.0
+                ],
+                [
+                    609.9999389648438,
+                    1542.0
+                ],
+                [
+                    609.9999389648438,
+                    1563.0
+                ],
+                [
+                    527.9999389648438,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8821952939033508,
+                "coordinate": [
+                    379,
+                    86,
+                    754,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        379.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        109.0
+                    ],
+                    [
+                        379.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7972624897956848,
+                "coordinate": [
+                    123,
+                    145,
+                    237,
+                    173
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        123.0,
+                        145.0
+                    ],
+                    [
+                        237.0,
+                        145.0
+                    ],
+                    [
+                        237.0,
+                        173.0
+                    ],
+                    [
+                        123.0,
+                        173.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.823032021522522,
+                "coordinate": [
+                    125,
+                    176,
+                    310,
+                    205
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        125.0,
+                        176.0
+                    ],
+                    [
+                        310.0,
+                        176.0
+                    ],
+                    [
+                        310.0,
+                        205.0
+                    ],
+                    [
+                        125.0,
+                        205.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8606576323509216,
+                "coordinate": [
+                    123,
+                    244,
+                    253,
+                    274
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        123.0,
+                        244.0
+                    ],
+                    [
+                        253.0,
+                        244.0
+                    ],
+                    [
+                        253.0,
+                        274.0
+                    ],
+                    [
+                        123.0,
+                        274.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8422223329544067,
+                "coordinate": [
+                    123,
+                    297,
+                    302,
+                    328
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        123.0,
+                        297.0
+                    ],
+                    [
+                        302.0,
+                        297.0
+                    ],
+                    [
+                        302.0,
+                        328.0
+                    ],
+                    [
+                        123.0,
+                        328.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8166666626930237,
+                "coordinate": [
+                    129,
+                    344,
+                    311,
+                    373
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        129.0,
+                        344.0
+                    ],
+                    [
+                        311.0,
+                        344.0
+                    ],
+                    [
+                        311.0,
+                        373.0
+                    ],
+                    [
+                        129.0,
+                        373.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8728888034820557,
+                "coordinate": [
+                    767,
+                    375,
+                    1013,
+                    402
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        767.0,
+                        375.0
+                    ],
+                    [
+                        1013.0,
+                        375.0
+                    ],
+                    [
+                        1013.0,
+                        402.0
+                    ],
+                    [
+                        767.0,
+                        402.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9639094471931458,
+                "coordinate": [
+                    114,
+                    402,
+                    1023,
+                    686
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        114.0,
+                        402.0
+                    ],
+                    [
+                        1023.0,
+                        402.0
+                    ],
+                    [
+                        1023.0,
+                        686.0
+                    ],
+                    [
+                        114.0,
+                        686.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8716400265693665,
+                "coordinate": [
+                    122,
+                    724,
+                    397,
+                    755
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        122.0,
+                        724.0
+                    ],
+                    [
+                        397.0,
+                        724.0
+                    ],
+                    [
+                        397.0,
+                        755.0
+                    ],
+                    [
+                        122.0,
+                        755.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7853335738182068,
+                "coordinate": [
+                    128,
+                    770,
+                    310,
+                    800
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        128.0,
+                        770.0
+                    ],
+                    [
+                        310.0,
+                        770.0
+                    ],
+                    [
+                        310.0,
+                        800.0
+                    ],
+                    [
+                        128.0,
+                        800.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8816617131233215,
+                "coordinate": [
+                    767,
+                    802,
+                    1013,
+                    829
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        767.0,
+                        802.0
+                    ],
+                    [
+                        1013.0,
+                        802.0
+                    ],
+                    [
+                        1013.0,
+                        829.0
+                    ],
+                    [
+                        767.0,
+                        829.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9670408964157104,
+                "coordinate": [
+                    114,
+                    826,
+                    1023,
+                    1150
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        114,
+                        835
+                    ],
+                    [
+                        120,
+                        1149
+                    ],
+                    [
+                        1022,
+                        1141
+                    ],
+                    [
+                        1022,
+                        835
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8594799041748047,
+                "coordinate": [
+                    123,
+                    1186,
+                    373,
+                    1217
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        123.0,
+                        1186.0
+                    ],
+                    [
+                        373.0,
+                        1186.0
+                    ],
+                    [
+                        373.0,
+                        1217.0
+                    ],
+                    [
+                        123.0,
+                        1217.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.533903956413269,
+                "coordinate": [
+                    129,
+                    1233,
+                    311,
+                    1262
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        129.0,
+                        1233.0
+                    ],
+                    [
+                        311.0,
+                        1233.0
+                    ],
+                    [
+                        311.0,
+                        1262.0
+                    ],
+                    [
+                        129.0,
+                        1262.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8621228337287903,
+                "coordinate": [
+                    767,
+                    1264,
+                    1013,
+                    1292
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        767.0,
+                        1264.0
+                    ],
+                    [
+                        1013.0,
+                        1264.0
+                    ],
+                    [
+                        1013.0,
+                        1292.0
+                    ],
+                    [
+                        767.0,
+                        1292.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9665948748588562,
+                "coordinate": [
+                    114,
+                    1293,
+                    1022,
+                    1524
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        114.0,
+                        1293.0
+                    ],
+                    [
+                        1022.0,
+                        1293.0
+                    ],
+                    [
+                        1022.0,
+                        1524.0
+                    ],
+                    [
+                        114.0,
+                        1524.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8093818426132202,
+                "coordinate": [
+                    528,
+                    1542,
+                    611,
+                    1564
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        527.9999389648438,
+                        1542.0
+                    ],
+                    [
+                        609.9999389648438,
+                        1542.0
+                    ],
+                    [
+                        609.9999389648438,
+                        1563.0
+                    ],
+                    [
+                        527.9999389648438,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

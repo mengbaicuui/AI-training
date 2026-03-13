@@ -1,0 +1,853 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0051-0100.pdf",
+    "page_index": 34,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                85,
+                807,
+                108
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 399,
+            "global_group_id": 399,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    85.0
+                ],
+                [
+                    807.0,
+                    85.0
+                ],
+                [
+                    807.0,
+                    108.0
+                ],
+                [
+                    431.0,
+                    108.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "",
+            "block_bbox": [
+                167,
+                149,
+                1075,
+                456
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1,
+            "global_block_id": 400,
+            "global_group_id": 397,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    149.0
+                ],
+                [
+                    1075.0,
+                    149.0
+                ],
+                [
+                    1075.0,
+                    456.0
+                ],
+                [
+                    167.0,
+                    456.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "3、报告期内股权激励考核指标完成情况及确认的股份支付费用",
+            "block_bbox": [
+                172,
+                491,
+                853,
+                520
+            ],
+            "block_id": 2,
+            "block_order": 1,
+            "group_id": 2,
+            "global_block_id": 401,
+            "global_group_id": 401,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    491.0
+                ],
+                [
+                    853.0,
+                    491.0
+                ],
+                [
+                    853.0,
+                    520.0
+                ],
+                [
+                    172.0,
+                    520.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                180,
+                537,
+                363,
+                566
+            ],
+            "block_id": 3,
+            "block_order": 2,
+            "group_id": 3,
+            "global_block_id": 402,
+            "global_group_id": 402,
+            "block_polygon_points": [
+                [
+                    180.0,
+                    537.0
+                ],
+                [
+                    363.0,
+                    537.0
+                ],
+                [
+                    363.0,
+                    566.0
+                ],
+                [
+                    180.0,
+                    566.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元 币种：人民币",
+            "block_bbox": [
+                796,
+                568,
+                1064,
+                595
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 403,
+            "global_group_id": 403,
+            "block_polygon_points": [
+                [
+                    796.0,
+                    568.0
+                ],
+                [
+                    1064.0,
+                    568.0
+                ],
+                [
+                    1064.0,
+                    595.0
+                ],
+                [
+                    796.0,
+                    595.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>计划名称</td><td>报告期内公司层面考核指标完成情况</td><td>报告期确认的股份支付费用</td></tr><tr><td>2018年股权激励</td><td>不适用</td><td>1,516,519.14</td></tr><tr><td>2021年限制性股票激励计划</td><td>预计不达标</td><td>0</td></tr><tr><td>2024年限制性股票激励计划</td><td>预计可达标</td><td>13,321,278.21</td></tr><tr><td>2024年员工持股计划</td><td>预计可达标</td><td>823,138.71</td></tr><tr><td>合计</td><td>/</td><td>15,660,936.06</td></tr></table>",
+            "block_bbox": [
+                167,
+                593,
+                1075,
+                830
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 404,
+            "global_group_id": 404,
+            "block_polygon_points": [
+                [
+                    167,
+                    602
+                ],
+                [
+                    173,
+                    829
+                ],
+                [
+                    1074,
+                    821
+                ],
+                [
+                    1074,
+                    602
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "（二）相关激励事项已在临时公告披露且后续实施无进展或变化的",
+            "block_bbox": [
+                177,
+                868,
+                868,
+                897
+            ],
+            "block_id": 6,
+            "block_order": 3,
+            "group_id": 6,
+            "global_block_id": 405,
+            "global_group_id": 405,
+            "block_polygon_points": [
+                [
+                    177.0,
+                    868.0
+                ],
+                [
+                    868.0,
+                    868.0
+                ],
+                [
+                    868.0,
+                    897.0
+                ],
+                [
+                    177.0,
+                    897.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                181,
+                915,
+                363,
+                942
+            ],
+            "block_id": 7,
+            "block_order": 4,
+            "group_id": 7,
+            "global_block_id": 406,
+            "global_group_id": 406,
+            "block_polygon_points": [
+                [
+                    181.0,
+                    915.0
+                ],
+                [
+                    363.0,
+                    915.0
+                ],
+                [
+                    363.0,
+                    942.0
+                ],
+                [
+                    181.0,
+                    942.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>事项概述</td><td>查询索引</td></tr><tr><td>2024年4月24日，公司召开第四届董事会第十次会议和第四届监事会第六次会议，审议通过了《关于作废处理2020年限制性股票激励计划部分已授予尚未归属的限制性股票的议案》《关于作废处理2021年限制性股票激励计划部分已授予尚未归属的限制性股票的议案》</td><td>具体内容详见公司2024-041、2024-042号公告</td></tr><tr><td>2024年10月21日，公司召开第四届董事会第十五次会议、第四届监事会第九次会议，审议通过了《关于向公司2024年限制性股票激励计划激励对象授予限制性股票的议案》，确定2024年10月21日为授予日，以13.29元/股的授予价格向229名激励对象授予976.96万股限制性股票。</td><td>具体内容详见公司2024-090号公告</td></tr></table>",
+            "block_bbox": [
+                168,
+                942,
+                1067,
+                1275
+            ],
+            "block_id": 8,
+            "block_order": null,
+            "group_id": 8,
+            "global_block_id": 407,
+            "global_group_id": 407,
+            "block_polygon_points": [
+                [
+                    168.0,
+                    942.0
+                ],
+                [
+                    1067.0,
+                    942.0
+                ],
+                [
+                    1067.0,
+                    1275.0
+                ],
+                [
+                    168.0,
+                    1275.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "其他说明",
+            "block_bbox": [
+                176,
+                1308,
+                279,
+                1335
+            ],
+            "block_id": 9,
+            "block_order": 5,
+            "group_id": 9,
+            "global_block_id": 408,
+            "global_group_id": 408,
+            "block_polygon_points": [
+                [
+                    176.0,
+                    1308.0
+                ],
+                [
+                    279.0,
+                    1308.0
+                ],
+                [
+                    279.0,
+                    1335.0
+                ],
+                [
+                    176.0,
+                    1335.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                180,
+                1340,
+                376,
+                1366
+            ],
+            "block_id": 10,
+            "block_order": 6,
+            "group_id": 10,
+            "global_block_id": 409,
+            "global_group_id": 409,
+            "block_polygon_points": [
+                [
+                    180.0,
+                    1340.0
+                ],
+                [
+                    376.0,
+                    1340.0
+                ],
+                [
+                    376.0,
+                    1366.0
+                ],
+                [
+                    180.0,
+                    1366.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "道通科技 2021 年限制性股票激励计划计划在 2022-2024 年的 3 个会计年度中，分年度对公司财务业绩指标进行考核，依据公司 2024 年年度报告相关数据，激励计",
+            "block_bbox": [
+                174,
+                1371,
+                1068,
+                1447
+            ],
+            "block_id": 11,
+            "block_order": 7,
+            "group_id": 11,
+            "global_block_id": 410,
+            "global_group_id": 410,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1371.0
+                ],
+                [
+                    1068.0,
+                    1371.0
+                ],
+                [
+                    1068.0,
+                    1447.0
+                ],
+                [
+                    174.0,
+                    1447.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "85 / 306",
+            "block_bbox": [
+                585,
+                1542,
+                658,
+                1564
+            ],
+            "block_id": 12,
+            "block_order": null,
+            "group_id": 12,
+            "global_block_id": 411,
+            "global_group_id": 411,
+            "block_polygon_points": [
+                [
+                    585.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1563.0
+                ],
+                [
+                    585.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8765213489532471,
+                "coordinate": [
+                    431,
+                    85,
+                    807,
+                    108
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        85.0
+                    ],
+                    [
+                        807.0,
+                        85.0
+                    ],
+                    [
+                        807.0,
+                        108.0
+                    ],
+                    [
+                        431.0,
+                        108.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9742466807365417,
+                "coordinate": [
+                    167,
+                    149,
+                    1075,
+                    456
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        149.0
+                    ],
+                    [
+                        1075.0,
+                        149.0
+                    ],
+                    [
+                        1075.0,
+                        456.0
+                    ],
+                    [
+                        167.0,
+                        456.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8750109076499939,
+                "coordinate": [
+                    172,
+                    491,
+                    853,
+                    520
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        172.0,
+                        491.0
+                    ],
+                    [
+                        853.0,
+                        491.0
+                    ],
+                    [
+                        853.0,
+                        520.0
+                    ],
+                    [
+                        172.0,
+                        520.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7783890962600708,
+                "coordinate": [
+                    180,
+                    537,
+                    363,
+                    566
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        180.0,
+                        537.0
+                    ],
+                    [
+                        363.0,
+                        537.0
+                    ],
+                    [
+                        363.0,
+                        566.0
+                    ],
+                    [
+                        180.0,
+                        566.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8569372892379761,
+                "coordinate": [
+                    796,
+                    568,
+                    1064,
+                    595
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        796.0,
+                        568.0
+                    ],
+                    [
+                        1064.0,
+                        568.0
+                    ],
+                    [
+                        1064.0,
+                        595.0
+                    ],
+                    [
+                        796.0,
+                        595.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9611355066299438,
+                "coordinate": [
+                    167,
+                    593,
+                    1075,
+                    830
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167,
+                        602
+                    ],
+                    [
+                        173,
+                        829
+                    ],
+                    [
+                        1074,
+                        821
+                    ],
+                    [
+                        1074,
+                        602
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8753637075424194,
+                "coordinate": [
+                    177,
+                    868,
+                    868,
+                    897
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        177.0,
+                        868.0
+                    ],
+                    [
+                        868.0,
+                        868.0
+                    ],
+                    [
+                        868.0,
+                        897.0
+                    ],
+                    [
+                        177.0,
+                        897.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6409315466880798,
+                "coordinate": [
+                    181,
+                    915,
+                    363,
+                    942
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        181.0,
+                        915.0
+                    ],
+                    [
+                        363.0,
+                        915.0
+                    ],
+                    [
+                        363.0,
+                        942.0
+                    ],
+                    [
+                        181.0,
+                        942.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.967430591583252,
+                "coordinate": [
+                    168,
+                    942,
+                    1067,
+                    1275
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        168.0,
+                        942.0
+                    ],
+                    [
+                        1067.0,
+                        942.0
+                    ],
+                    [
+                        1067.0,
+                        1275.0
+                    ],
+                    [
+                        168.0,
+                        1275.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.4515399932861328,
+                "coordinate": [
+                    176,
+                    1308,
+                    279,
+                    1335
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        176.0,
+                        1308.0
+                    ],
+                    [
+                        279.0,
+                        1308.0
+                    ],
+                    [
+                        279.0,
+                        1335.0
+                    ],
+                    [
+                        176.0,
+                        1335.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6420843005180359,
+                "coordinate": [
+                    180,
+                    1340,
+                    376,
+                    1366
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        180.0,
+                        1340.0
+                    ],
+                    [
+                        376.0,
+                        1340.0
+                    ],
+                    [
+                        376.0,
+                        1366.0
+                    ],
+                    [
+                        180.0,
+                        1366.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9251485466957092,
+                "coordinate": [
+                    174,
+                    1371,
+                    1068,
+                    1447
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1371.0
+                    ],
+                    [
+                        1068.0,
+                        1371.0
+                    ],
+                    [
+                        1068.0,
+                        1447.0
+                    ],
+                    [
+                        174.0,
+                        1447.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8108437061309814,
+                "coordinate": [
+                    585,
+                    1542,
+                    658,
+                    1564
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        585.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1563.0
+                    ],
+                    [
+                        585.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

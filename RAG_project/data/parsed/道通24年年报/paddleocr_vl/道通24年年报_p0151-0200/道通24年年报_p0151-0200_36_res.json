@@ -1,0 +1,1042 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 36,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                379,
+                86,
+                755,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 414,
+            "global_group_id": 414,
+            "block_polygon_points": [
+                [
+                    379.0,
+                    86.0
+                ],
+                [
+                    755.0,
+                    86.0
+                ],
+                [
+                    755.0,
+                    110.0
+                ],
+                [
+                    379.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "1. 因对外提供担保、诉讼事项、产品质量保证、亏损合同、退货等或有事项形成的义务成为公司承担的现时义务，履行该义务很可能导致经济利益流出公司，且该义务的金额能够可靠的计量时，公司将该项义务确认为预计负债。",
+            "block_bbox": [
+                123,
+                146,
+                1015,
+                270
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 415,
+            "global_group_id": 415,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    146.0
+                ],
+                [
+                    1015.0,
+                    146.0
+                ],
+                [
+                    1015.0,
+                    270.0
+                ],
+                [
+                    123.0,
+                    270.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "2. 公司按照履行相关现时义务所需支出的最佳估计数对预计负债进行初始计量，并在资产负债表日对预计负债的账面价值进行复核。",
+            "block_bbox": [
+                122,
+                285,
+                1001,
+                363
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 416,
+            "global_group_id": 416,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    285.0
+                ],
+                [
+                    1001.0,
+                    285.0
+                ],
+                [
+                    1001.0,
+                    363.0
+                ],
+                [
+                    122.0,
+                    363.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "31、股份支付",
+            "block_bbox": [
+                122,
+                412,
+                314,
+                442
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 417,
+            "global_group_id": 417,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    412.0
+                ],
+                [
+                    314.0,
+                    412.0
+                ],
+                [
+                    314.0,
+                    442.0
+                ],
+                [
+                    122.0,
+                    442.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "√适用 □不适用",
+            "block_bbox": [
+                124,
+                459,
+                305,
+                487
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 418,
+            "global_group_id": 418,
+            "block_polygon_points": [
+                [
+                    124.0,
+                    459.0
+                ],
+                [
+                    305.0,
+                    459.0
+                ],
+                [
+                    305.0,
+                    487.0
+                ],
+                [
+                    124.0,
+                    487.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1. 股份支付的种类",
+            "block_bbox": [
+                172,
+                491,
+                368,
+                520
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 419,
+            "global_group_id": 419,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    491.0
+                ],
+                [
+                    368.0,
+                    491.0
+                ],
+                [
+                    368.0,
+                    520.0
+                ],
+                [
+                    172.0,
+                    520.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "包括以权益结算的股份支付和以现金结算的股份支付。",
+            "block_bbox": [
+                169,
+                538,
+                742,
+                567
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 420,
+            "global_group_id": 420,
+            "block_polygon_points": [
+                [
+                    169.0,
+                    538.0
+                ],
+                [
+                    742.0,
+                    538.0
+                ],
+                [
+                    742.0,
+                    567.0
+                ],
+                [
+                    169.0,
+                    567.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "2. 实施、修改、终止股份支付计划的相关会计处理",
+            "block_bbox": [
+                169,
+                584,
+                705,
+                613
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 421,
+            "global_group_id": 421,
+            "block_polygon_points": [
+                [
+                    169.0,
+                    584.0
+                ],
+                [
+                    705.0,
+                    584.0
+                ],
+                [
+                    705.0,
+                    613.0
+                ],
+                [
+                    169.0,
+                    613.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(1)以权益结算的股份支付",
+            "block_bbox": [
+                171,
+                631,
+                450,
+                661
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 422,
+            "global_group_id": 422,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    631.0
+                ],
+                [
+                    450.0,
+                    631.0
+                ],
+                [
+                    450.0,
+                    661.0
+                ],
+                [
+                    171.0,
+                    661.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "授予后立即可行权的换取职工服务的以权益结算的股份支付，在授予日按照权益工具的公允价值计入相关成本或费用，相应调整资本公积。完成等待期内的服务或达到规定业绩条件才可行权的换取职工服务的以权益结算的股份支付，在等待期内的每个资产负债表日，以对可行权权益工具数量的最佳估计为基础，按权益工具授予日的公允价值，将当期取得的服务计入相关成本或费用，相应调整资本公积。",
+            "block_bbox": [
+                121,
+                678,
+                1017,
+                897
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9,
+            "global_block_id": 423,
+            "global_group_id": 423,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    678.0
+                ],
+                [
+                    1017.0,
+                    678.0
+                ],
+                [
+                    1017.0,
+                    897.0
+                ],
+                [
+                    121.0,
+                    897.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "换取其他方服务的权益结算的股份支付，如果其他方服务的公允价值能够可靠计量的，按照其他方服务在取得日的公允价值计量；如果其他方服务的公允价值不能可靠计量，但权益工具的公允价值能够可靠计量的，按照权益工具在服务取得日的公允价值计量，计入相关成本或费用，相应增加所有者权益。",
+            "block_bbox": [
+                121,
+                911,
+                1017,
+                1083
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10,
+            "global_block_id": 424,
+            "global_group_id": 424,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    911.0
+                ],
+                [
+                    1017.0,
+                    911.0
+                ],
+                [
+                    1017.0,
+                    1083.0
+                ],
+                [
+                    121.0,
+                    1083.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(2)以现金结算的股份支付",
+            "block_bbox": [
+                171,
+                1098,
+                451,
+                1128
+            ],
+            "block_id": 11,
+            "block_order": 11,
+            "group_id": 11,
+            "global_block_id": 425,
+            "global_group_id": 425,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    1098.0
+                ],
+                [
+                    451.0,
+                    1098.0
+                ],
+                [
+                    451.0,
+                    1128.0
+                ],
+                [
+                    171.0,
+                    1128.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "授予后立即可行权的换取职工服务的以现金结算的股份支付，在授予日按公司承担负债的公允价值计入相关成本或费用，相应增加负债。完成等待期内的服务或达到规定业绩条件才可行权的换取职工服务的以现金结算的股份支付，在等待期内的每个资产负债表日，以对可行权情况的最佳估计为基础，按公司承担负债的公允价值，将当期取得的服务计入相关成本或费用和相应的负债。",
+            "block_bbox": [
+                121,
+                1145,
+                1016,
+                1363
+            ],
+            "block_id": 12,
+            "block_order": 12,
+            "group_id": 12,
+            "global_block_id": 426,
+            "global_group_id": 426,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1145.0
+                ],
+                [
+                    1016.0,
+                    1145.0
+                ],
+                [
+                    1016.0,
+                    1363.0
+                ],
+                [
+                    121.0,
+                    1363.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(3)修改、终止股份支付计划",
+            "block_bbox": [
+                171,
+                1377,
+                476,
+                1408
+            ],
+            "block_id": 13,
+            "block_order": 13,
+            "group_id": 13,
+            "global_block_id": 427,
+            "global_group_id": 427,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    1377.0
+                ],
+                [
+                    476.0,
+                    1377.0
+                ],
+                [
+                    476.0,
+                    1408.0
+                ],
+                [
+                    171.0,
+                    1408.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "如果修改增加了所授予的权益工具的公允价值，公司按照权益工具公允价值的增加相应地确认取得服务的增加；如果修改增加了所授予的权益工具的数量，公司将增",
+            "block_bbox": [
+                122,
+                1425,
+                1017,
+                1503
+            ],
+            "block_id": 14,
+            "block_order": 14,
+            "group_id": 14,
+            "global_block_id": 428,
+            "global_group_id": 428,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    1425.0
+                ],
+                [
+                    1017.0,
+                    1425.0
+                ],
+                [
+                    1017.0,
+                    1503.0
+                ],
+                [
+                    122.0,
+                    1503.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "187 / 306",
+            "block_bbox": [
+                529,
+                1542,
+                611,
+                1564
+            ],
+            "block_id": 15,
+            "block_order": null,
+            "group_id": 15,
+            "global_block_id": 429,
+            "global_group_id": 429,
+            "block_polygon_points": [
+                [
+                    529.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1563.0
+                ],
+                [
+                    529.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8728790879249573,
+                "coordinate": [
+                    379,
+                    86,
+                    755,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        379.0,
+                        86.0
+                    ],
+                    [
+                        755.0,
+                        86.0
+                    ],
+                    [
+                        755.0,
+                        110.0
+                    ],
+                    [
+                        379.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9465183615684509,
+                "coordinate": [
+                    123,
+                    146,
+                    1015,
+                    270
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        123.0,
+                        146.0
+                    ],
+                    [
+                        1015.0,
+                        146.0
+                    ],
+                    [
+                        1015.0,
+                        270.0
+                    ],
+                    [
+                        123.0,
+                        270.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9279987812042236,
+                "coordinate": [
+                    122,
+                    285,
+                    1001,
+                    363
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        122.0,
+                        285.0
+                    ],
+                    [
+                        1001.0,
+                        285.0
+                    ],
+                    [
+                        1001.0,
+                        363.0
+                    ],
+                    [
+                        122.0,
+                        363.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.840628445148468,
+                "coordinate": [
+                    122,
+                    412,
+                    314,
+                    442
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        122.0,
+                        412.0
+                    ],
+                    [
+                        314.0,
+                        412.0
+                    ],
+                    [
+                        314.0,
+                        442.0
+                    ],
+                    [
+                        122.0,
+                        442.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.5778355002403259,
+                "coordinate": [
+                    124,
+                    459,
+                    305,
+                    487
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        124.0,
+                        459.0
+                    ],
+                    [
+                        305.0,
+                        459.0
+                    ],
+                    [
+                        305.0,
+                        487.0
+                    ],
+                    [
+                        124.0,
+                        487.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.6326515674591064,
+                "coordinate": [
+                    172,
+                    491,
+                    368,
+                    520
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        172.0,
+                        491.0
+                    ],
+                    [
+                        368.0,
+                        491.0
+                    ],
+                    [
+                        368.0,
+                        520.0
+                    ],
+                    [
+                        172.0,
+                        520.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8437557816505432,
+                "coordinate": [
+                    169,
+                    538,
+                    742,
+                    567
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        169.0,
+                        538.0
+                    ],
+                    [
+                        742.0,
+                        538.0
+                    ],
+                    [
+                        742.0,
+                        567.0
+                    ],
+                    [
+                        169.0,
+                        567.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.5310094952583313,
+                "coordinate": [
+                    169,
+                    584,
+                    705,
+                    613
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        169.0,
+                        584.0
+                    ],
+                    [
+                        705.0,
+                        584.0
+                    ],
+                    [
+                        705.0,
+                        613.0
+                    ],
+                    [
+                        169.0,
+                        613.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.5655089616775513,
+                "coordinate": [
+                    171,
+                    631,
+                    450,
+                    661
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        171.0,
+                        631.0
+                    ],
+                    [
+                        450.0,
+                        631.0
+                    ],
+                    [
+                        450.0,
+                        661.0
+                    ],
+                    [
+                        171.0,
+                        661.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9559963345527649,
+                "coordinate": [
+                    121,
+                    678,
+                    1017,
+                    897
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        121.0,
+                        678.0
+                    ],
+                    [
+                        1017.0,
+                        678.0
+                    ],
+                    [
+                        1017.0,
+                        897.0
+                    ],
+                    [
+                        121.0,
+                        897.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9568939805030823,
+                "coordinate": [
+                    121,
+                    911,
+                    1017,
+                    1083
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        121.0,
+                        911.0
+                    ],
+                    [
+                        1017.0,
+                        911.0
+                    ],
+                    [
+                        1017.0,
+                        1083.0
+                    ],
+                    [
+                        121.0,
+                        1083.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7946344614028931,
+                "coordinate": [
+                    171,
+                    1098,
+                    451,
+                    1128
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        171.0,
+                        1098.0
+                    ],
+                    [
+                        451.0,
+                        1098.0
+                    ],
+                    [
+                        451.0,
+                        1128.0
+                    ],
+                    [
+                        171.0,
+                        1128.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9621001482009888,
+                "coordinate": [
+                    121,
+                    1145,
+                    1016,
+                    1363
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1145.0
+                    ],
+                    [
+                        1016.0,
+                        1145.0
+                    ],
+                    [
+                        1016.0,
+                        1363.0
+                    ],
+                    [
+                        121.0,
+                        1363.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8110600113868713,
+                "coordinate": [
+                    171,
+                    1377,
+                    476,
+                    1408
+                ],
+                "order": 13,
+                "polygon_points": [
+                    [
+                        171.0,
+                        1377.0
+                    ],
+                    [
+                        476.0,
+                        1377.0
+                    ],
+                    [
+                        476.0,
+                        1408.0
+                    ],
+                    [
+                        171.0,
+                        1408.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9261087775230408,
+                "coordinate": [
+                    122,
+                    1425,
+                    1017,
+                    1503
+                ],
+                "order": 14,
+                "polygon_points": [
+                    [
+                        122.0,
+                        1425.0
+                    ],
+                    [
+                        1017.0,
+                        1425.0
+                    ],
+                    [
+                        1017.0,
+                        1503.0
+                    ],
+                    [
+                        122.0,
+                        1503.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7439842820167542,
+                "coordinate": [
+                    529,
+                    1542,
+                    611,
+                    1564
+                ],
+                "order": 15,
+                "polygon_points": [
+                    [
+                        529.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1563.0
+                    ],
+                    [
+                        529.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

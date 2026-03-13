@@ -1,0 +1,1042 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 21,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                379,
+                86,
+                754,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 163,
+            "global_group_id": 163,
+            "block_polygon_points": [
+                [
+                    379.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    110.0
+                ],
+                [
+                    379.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(1)金融资产和金融负债的确认依据和初始计量方法",
+            "block_bbox": [
+                169,
+                146,
+                714,
+                176
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 164,
+            "global_group_id": 164,
+            "block_polygon_points": [
+                [
+                    169.0,
+                    146.0
+                ],
+                [
+                    714.0,
+                    146.0
+                ],
+                [
+                    714.0,
+                    176.0
+                ],
+                [
+                    169.0,
+                    176.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司成为金融工具合同的一方时，确认一项金融资产或金融负债。初始确认金融资产或金融负债时，按照公允价值计量；对于以公允价值计量且其变动计入当期损益的金融资产和金融负债，相关交易费用直接计入当期损益；对于其他类别的金融资产或金融负债，相关交易费用计入初始确认金额。但是，公司初始确认的应收账款未包含重大融资成分或公司不考虑未超过一年的合同中的融资成分的，按照《企业会计准则第14号——收入》所定义的交易价格进行初始计量。",
+            "block_bbox": [
+                121,
+                193,
+                1017,
+                457
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 165,
+            "global_group_id": 165,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    193.0
+                ],
+                [
+                    1017.0,
+                    193.0
+                ],
+                [
+                    1017.0,
+                    457.0
+                ],
+                [
+                    121.0,
+                    457.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(2)金融资产的后续计量方法",
+            "block_bbox": [
+                171,
+                472,
+                476,
+                503
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 166,
+            "global_group_id": 166,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    472.0
+                ],
+                [
+                    476.0,
+                    472.0
+                ],
+                [
+                    476.0,
+                    503.0
+                ],
+                [
+                    171.0,
+                    503.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1) 以摊余成本计量的金融资产",
+            "block_bbox": [
+                171,
+                519,
+                489,
+                549
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 167,
+            "global_group_id": 167,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    519.0
+                ],
+                [
+                    489.0,
+                    519.0
+                ],
+                [
+                    489.0,
+                    549.0
+                ],
+                [
+                    171.0,
+                    549.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "采用实际利率法，按照摊余成本进行后续计量。以摊余成本计量且不属于任何套期关系的一部分的金融资产所产生的利得或损失，在终止确认、重分类、按照实际利率法摊销或确认减值时，计入当期损益。",
+            "block_bbox": [
+                122,
+                566,
+                1016,
+                690
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 168,
+            "global_group_id": 168,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    566.0
+                ],
+                [
+                    1016.0,
+                    566.0
+                ],
+                [
+                    1016.0,
+                    690.0
+                ],
+                [
+                    122.0,
+                    690.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "2)以公允价值计量且其变动计入其他综合收益的债务工具投资",
+            "block_bbox": [
+                168,
+                706,
+                826,
+                736
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 169,
+            "global_group_id": 169,
+            "block_polygon_points": [
+                [
+                    168.0,
+                    706.0
+                ],
+                [
+                    826.0,
+                    706.0
+                ],
+                [
+                    826.0,
+                    736.0
+                ],
+                [
+                    168.0,
+                    736.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "采用公允价值进行后续计量。采用实际利率法计算的利息、减值损失或利得及汇兑损益计入当期损益，其他利得或损失计入其他综合收益。终止确认时，将之前计入其他综合收益的累计利得或损失从其他综合收益中转出，计入当期损益。",
+            "block_bbox": [
+                122,
+                753,
+                1015,
+                879
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 170,
+            "global_group_id": 170,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    753.0
+                ],
+                [
+                    1015.0,
+                    753.0
+                ],
+                [
+                    1015.0,
+                    879.0
+                ],
+                [
+                    122.0,
+                    879.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "3)以公允价值计量且其变动计入其他综合收益的权益工具投资",
+            "block_bbox": [
+                168,
+                893,
+                826,
+                923
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 171,
+            "global_group_id": 171,
+            "block_polygon_points": [
+                [
+                    168.0,
+                    893.0
+                ],
+                [
+                    826.0,
+                    893.0
+                ],
+                [
+                    826.0,
+                    923.0
+                ],
+                [
+                    168.0,
+                    923.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "采用公允价值进行后续计量。获得的股利（属于投资成本收回部分的除外）计入当期损益，其他利得或损失计入其他综合收益。终止确认时，将之前计入其他综合收益的累计利得或损失从其他综合收益中转出，计入留存收益。",
+            "block_bbox": [
+                122,
+                940,
+                1016,
+                1064
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9,
+            "global_block_id": 172,
+            "global_group_id": 172,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    940.0
+                ],
+                [
+                    1016.0,
+                    940.0
+                ],
+                [
+                    1016.0,
+                    1064.0
+                ],
+                [
+                    122.0,
+                    1064.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "4)以公允价值计量且其变动计入当期损益的金融资产",
+            "block_bbox": [
+                168,
+                1080,
+                728,
+                1110
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10,
+            "global_block_id": 173,
+            "global_group_id": 173,
+            "block_polygon_points": [
+                [
+                    168.0,
+                    1080.0
+                ],
+                [
+                    728.0,
+                    1080.0
+                ],
+                [
+                    728.0,
+                    1110.0
+                ],
+                [
+                    168.0,
+                    1110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "采用公允价值进行后续计量，产生的利得或损失（包括利息和股利收入）计入当期损益，除非该金融资产属于套期关系的一部分。",
+            "block_bbox": [
+                123,
+                1127,
+                1014,
+                1203
+            ],
+            "block_id": 11,
+            "block_order": 11,
+            "group_id": 11,
+            "global_block_id": 174,
+            "global_group_id": 174,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    1127.0
+                ],
+                [
+                    1014.0,
+                    1127.0
+                ],
+                [
+                    1014.0,
+                    1203.0
+                ],
+                [
+                    123.0,
+                    1203.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(3)金融负债的后续计量方法",
+            "block_bbox": [
+                170,
+                1220,
+                475,
+                1250
+            ],
+            "block_id": 12,
+            "block_order": 12,
+            "group_id": 12,
+            "global_block_id": 175,
+            "global_group_id": 175,
+            "block_polygon_points": [
+                [
+                    170.0,
+                    1220.0
+                ],
+                [
+                    475.0,
+                    1220.0
+                ],
+                [
+                    475.0,
+                    1250.0
+                ],
+                [
+                    170.0,
+                    1250.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1)以公允价值计量且其变动计入当期损益的金融负债",
+            "block_bbox": [
+                172,
+                1267,
+                730,
+                1297
+            ],
+            "block_id": 13,
+            "block_order": 13,
+            "group_id": 13,
+            "global_block_id": 176,
+            "global_group_id": 176,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    1267.0
+                ],
+                [
+                    730.0,
+                    1267.0
+                ],
+                [
+                    730.0,
+                    1297.0
+                ],
+                [
+                    172.0,
+                    1297.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "此类金融负债包括交易性金融负债（含属于金融负债的衍生工具）和指定为以公允价值计量且其变动计入当期损益的金融负债。对于此类金融负债以公允价值进行后续计量。因公司自身信用风险变动引起的指定为以公允价值计量且其变动计入当期损益的金融负债的公允价值变动金额计入其他综合收益，除非该处理会造成或扩大损益中的会计错配。此类金融负债产生的其他利得或损失（包括利息费用、除因公司自身",
+            "block_bbox": [
+                121,
+                1313,
+                1016,
+                1531
+            ],
+            "block_id": 14,
+            "block_order": 14,
+            "group_id": 14,
+            "global_block_id": 177,
+            "global_group_id": 177,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1313.0
+                ],
+                [
+                    1016.0,
+                    1313.0
+                ],
+                [
+                    1016.0,
+                    1531.0
+                ],
+                [
+                    121.0,
+                    1531.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "172 / 306",
+            "block_bbox": [
+                530,
+                1542,
+                611,
+                1564
+            ],
+            "block_id": 15,
+            "block_order": null,
+            "group_id": 15,
+            "global_block_id": 178,
+            "global_group_id": 178,
+            "block_polygon_points": [
+                [
+                    530.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1563.0
+                ],
+                [
+                    530.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8679243922233582,
+                "coordinate": [
+                    379,
+                    86,
+                    754,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        379.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        110.0
+                    ],
+                    [
+                        379.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8679247498512268,
+                "coordinate": [
+                    169,
+                    146,
+                    714,
+                    176
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        169.0,
+                        146.0
+                    ],
+                    [
+                        714.0,
+                        146.0
+                    ],
+                    [
+                        714.0,
+                        176.0
+                    ],
+                    [
+                        169.0,
+                        176.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9631590843200684,
+                "coordinate": [
+                    121,
+                    193,
+                    1017,
+                    457
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        121.0,
+                        193.0
+                    ],
+                    [
+                        1017.0,
+                        193.0
+                    ],
+                    [
+                        1017.0,
+                        457.0
+                    ],
+                    [
+                        121.0,
+                        457.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8590700626373291,
+                "coordinate": [
+                    171,
+                    472,
+                    476,
+                    503
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        171.0,
+                        472.0
+                    ],
+                    [
+                        476.0,
+                        472.0
+                    ],
+                    [
+                        476.0,
+                        503.0
+                    ],
+                    [
+                        171.0,
+                        503.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8422074913978577,
+                "coordinate": [
+                    171,
+                    519,
+                    489,
+                    549
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        171.0,
+                        519.0
+                    ],
+                    [
+                        489.0,
+                        519.0
+                    ],
+                    [
+                        489.0,
+                        549.0
+                    ],
+                    [
+                        171.0,
+                        549.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9477713704109192,
+                "coordinate": [
+                    122,
+                    566,
+                    1016,
+                    690
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        122.0,
+                        566.0
+                    ],
+                    [
+                        1016.0,
+                        566.0
+                    ],
+                    [
+                        1016.0,
+                        690.0
+                    ],
+                    [
+                        122.0,
+                        690.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.858136773109436,
+                "coordinate": [
+                    168,
+                    706,
+                    826,
+                    736
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        168.0,
+                        706.0
+                    ],
+                    [
+                        826.0,
+                        706.0
+                    ],
+                    [
+                        826.0,
+                        736.0
+                    ],
+                    [
+                        168.0,
+                        736.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9470947980880737,
+                "coordinate": [
+                    122,
+                    753,
+                    1015,
+                    879
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        122.0,
+                        753.0
+                    ],
+                    [
+                        1015.0,
+                        753.0
+                    ],
+                    [
+                        1015.0,
+                        879.0
+                    ],
+                    [
+                        122.0,
+                        879.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8360892534255981,
+                "coordinate": [
+                    168,
+                    893,
+                    826,
+                    923
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        168.0,
+                        893.0
+                    ],
+                    [
+                        826.0,
+                        893.0
+                    ],
+                    [
+                        826.0,
+                        923.0
+                    ],
+                    [
+                        168.0,
+                        923.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9470179080963135,
+                "coordinate": [
+                    122,
+                    940,
+                    1016,
+                    1064
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        122.0,
+                        940.0
+                    ],
+                    [
+                        1016.0,
+                        940.0
+                    ],
+                    [
+                        1016.0,
+                        1064.0
+                    ],
+                    [
+                        122.0,
+                        1064.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7911359071731567,
+                "coordinate": [
+                    168,
+                    1080,
+                    728,
+                    1110
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        168.0,
+                        1080.0
+                    ],
+                    [
+                        728.0,
+                        1080.0
+                    ],
+                    [
+                        728.0,
+                        1110.0
+                    ],
+                    [
+                        168.0,
+                        1110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9292168021202087,
+                "coordinate": [
+                    123,
+                    1127,
+                    1014,
+                    1203
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        123.0,
+                        1127.0
+                    ],
+                    [
+                        1014.0,
+                        1127.0
+                    ],
+                    [
+                        1014.0,
+                        1203.0
+                    ],
+                    [
+                        123.0,
+                        1203.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8389565348625183,
+                "coordinate": [
+                    170,
+                    1220,
+                    475,
+                    1250
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        170.0,
+                        1220.0
+                    ],
+                    [
+                        475.0,
+                        1220.0
+                    ],
+                    [
+                        475.0,
+                        1250.0
+                    ],
+                    [
+                        170.0,
+                        1250.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.822638750076294,
+                "coordinate": [
+                    172,
+                    1267,
+                    730,
+                    1297
+                ],
+                "order": 13,
+                "polygon_points": [
+                    [
+                        172.0,
+                        1267.0
+                    ],
+                    [
+                        730.0,
+                        1267.0
+                    ],
+                    [
+                        730.0,
+                        1297.0
+                    ],
+                    [
+                        172.0,
+                        1297.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9622844457626343,
+                "coordinate": [
+                    121,
+                    1313,
+                    1016,
+                    1531
+                ],
+                "order": 14,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1313.0
+                    ],
+                    [
+                        1016.0,
+                        1313.0
+                    ],
+                    [
+                        1016.0,
+                        1531.0
+                    ],
+                    [
+                        121.0,
+                        1531.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7681346535682678,
+                "coordinate": [
+                    530,
+                    1542,
+                    611,
+                    1564
+                ],
+                "order": 15,
+                "polygon_points": [
+                    [
+                        530.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1563.0
+                    ],
+                    [
+                        530.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

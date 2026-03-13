@@ -1,0 +1,412 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 14,
+    "page_count": 50,
+    "width": 1684,
+    "height": 1191,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                655,
+                86,
+                1032,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 78,
+            "global_group_id": 78,
+            "block_polygon_points": [
+                [
+                    655.0,
+                    86.0
+                ],
+                [
+                    1032.0,
+                    86.0
+                ],
+                [
+                    1032.0,
+                    109.0
+                ],
+                [
+                    655.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "母公司所有者权益变动表",
+            "block_bbox": [
+                707,
+                156,
+                982,
+                185
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 79,
+            "global_group_id": 79,
+            "block_polygon_points": [
+                [
+                    707.0,
+                    156.0
+                ],
+                [
+                    982.0,
+                    156.0
+                ],
+                [
+                    982.0,
+                    185.0
+                ],
+                [
+                    707.0,
+                    185.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "2024年1—12月",
+            "block_bbox": [
+                748,
+                189,
+                936,
+                216
+            ],
+            "block_id": 2,
+            "block_order": null,
+            "group_id": 2,
+            "global_block_id": 80,
+            "global_group_id": 80,
+            "block_polygon_points": [
+                [
+                    748.0,
+                    189.0
+                ],
+                [
+                    936.0,
+                    189.0
+                ],
+                [
+                    936.0,
+                    216.0
+                ],
+                [
+                    748.0,
+                    216.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元币种：人民币",
+            "block_bbox": [
+                1297,
+                219,
+                1542,
+                247
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3,
+            "global_block_id": 81,
+            "global_group_id": 81,
+            "block_polygon_points": [
+                [
+                    1297.0,
+                    219.0
+                ],
+                [
+                    1542.0,
+                    219.0
+                ],
+                [
+                    1542.0,
+                    247.0
+                ],
+                [
+                    1297.0,
+                    247.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td rowspan=\"2\">项目</td><td colspan=\"7\">2024年度</td></tr><tr><td>实收资本（或股本）</td><td>其他权益工具其他</td><td>资本公积</td><td>减：库存股</td><td>盈余公积</td><td>未分配利润</td><td>所有者权益合计</td></tr><tr><td>一.上年年末余额</td><td>451,877,086.00</td><td>192,384,973.75</td><td>1,295,589,877.33</td><td>100,280,543.07</td><td>173,465,094.17</td><td>901,994,989.56</td><td>2,915,031,477.74</td></tr><tr><td>加：会计政策变更</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>前期差错更正</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>其他</td><td></td><td></td><td></td><td></td><td>-5,653,714.94</td><td>-50,883,434.43</td><td>-56,537,149.37</td></tr><tr><td>二.本年期初余额</td><td>451,877,086.00</td><td>192,384,973.75</td><td>1,295,589,877.33</td><td>100,280,543.07</td><td>167,811,379.23</td><td>851,111,555.13</td><td>2,858,494,328.37</td></tr><tr><td>三.本期增减变动金额（减少以“－”号填列）</td><td>942.00</td><td>-4,810.59</td><td>34,663,599.89</td><td>42,652,677.20</td><td>19,105,043.18</td><td>-180,771,174.55</td><td>-169,659,077.27</td></tr><tr><td>（一）综合收益总额</td><td></td><td></td><td></td><td></td><td></td><td>191,050,431.83</td><td>191,050,431.83</td></tr><tr><td>（二）所有者投入和减少资本</td><td>942.00</td><td>-4,810.59</td><td>34,663,599.89</td><td>42,652,677.20</td><td></td><td></td><td>-7,992,945.90</td></tr><tr><td>1．所有者投入的普通股</td><td></td><td></td><td></td><td>42,652,677.20</td><td></td><td></td><td>-42,652,677.20</td></tr><tr><td>2．其他权益工具持有者投入资本</td><td>942.00</td><td>-4,810.59</td><td>35,017.69</td><td></td><td></td><td></td><td>31,149.10</td></tr><tr><td>3．股份支付计入所有者权益的金额</td><td></td><td></td><td>34,628,582.20</td><td></td><td></td><td></td><td>34,628,582.20</td></tr><tr><td>（三）利润分配</td><td></td><td></td><td></td><td></td><td>19,105,043.18</td><td>-371,821,606.38</td><td>-352,716,563.20</td></tr><tr><td>1．提取盈余公积</td><td></td><td></td><td></td><td></td><td>19,105,043.18</td><td>-19,105,043.18</td><td></td></tr><tr><td>2．对所有者（或股东）的分配</td><td></td><td></td><td></td><td></td><td></td><td>-352,716,563.20</td><td>-352,716,563.20</td></tr><tr><td>四.本期期末余额</td><td>451,878,028.00</td><td>192,380,163.16</td><td>1,330,253,477.22</td><td>142,933,220.27</td><td>186,916,422.41</td><td>670,340,380.58</td><td>2,688,835,251.10</td></tr><tr><td rowspan=\"2\">项目</td><td colspan=\"7\">2023年度</td></tr><tr><td>实收资本（或股本）</td><td>其他权益工具其他</td><td>资本公积</td><td>减：库存股</td><td>盈余公积</td><td>未分配利润</td><td>所有者权益合计</td></tr><tr><td>一.上年年末余额</td><td>451,869,675.00</td><td>192,423,759.16</td><td>1,290,483,785.53</td><td>100,280,543.07</td><td>171,029,937.69</td><td>880,078,581.29</td><td>2,885,605,195.60</td></tr><tr><td>二.本年期初余额</td><td>451,869,675.00</td><td>192,423,759.16</td><td>1,290,483,785.53</td><td>100,280,543.07</td><td>171,029,937.69</td><td>880,078,581.29</td><td>2,885,605,195.60</td></tr><tr><td>三.本期增减变动金额（减少以“－”号填列）</td><td>7,411.00</td><td>-38,785.41</td><td>5,106,091.80</td><td></td><td>2,435,156.48</td><td>21,916,408.27</td><td>29,426,282.14</td></tr><tr><td>（一）综合收益总额</td><td></td><td></td><td></td><td></td><td></td><td>24,351,564.75</td><td>24,351,564.75</td></tr><tr><td>（二）所有者投入和减少资本</td><td>7,411.00</td><td>-38,785.41</td><td>5,106,091.80</td><td></td><td></td><td></td><td>5,074,717.39</td></tr><tr><td>1．其他权益工具持有者投入资本</td><td>7,411.00</td><td>-38,785.41</td><td>279,500.71</td><td></td><td></td><td></td><td>248,126.30</td></tr><tr><td>2．股份支付计入所有者权益的金额</td><td></td><td></td><td>4,826,591.09</td><td></td><td></td><td></td><td>4,826,591.09</td></tr><tr><td>（三）利润分配</td><td></td><td></td><td></td><td></td><td>2,435,156.48</td><td>-2,435,156.48</td><td></td></tr><tr><td>1．提取盈余公积</td><td></td><td></td><td></td><td></td><td>2,435,156.48</td><td>-2,435,156.48</td><td></td></tr><tr><td>四.本期期末余额</td><td>451,877,086.00</td><td>192,384,973.75</td><td>1,295,589,877.33</td><td>100,280,543.07</td><td>173,465,094.17</td><td>901,994,989.56</td><td>2,915,031,477.74</td></tr></table>",
+            "block_bbox": [
+                144,
+                245,
+                1546,
+                888
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 82,
+            "global_group_id": 82,
+            "block_polygon_points": [
+                [
+                    144,
+                    245
+                ],
+                [
+                    144,
+                    887
+                ],
+                [
+                    1545,
+                    887
+                ],
+                [
+                    1545,
+                    251
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "165 / 306",
+            "block_bbox": [
+                805,
+                1050,
+                888,
+                1070
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 83,
+            "global_group_id": 83,
+            "block_polygon_points": [
+                [
+                    805.0,
+                    1049.9998779296875
+                ],
+                [
+                    887.0,
+                    1049.9998779296875
+                ],
+                [
+                    887.0,
+                    1068.9998779296875
+                ],
+                [
+                    805.0,
+                    1068.9998779296875
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8746249079704285,
+                "coordinate": [
+                    655,
+                    86,
+                    1032,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        655.0,
+                        86.0
+                    ],
+                    [
+                        1032.0,
+                        86.0
+                    ],
+                    [
+                        1032.0,
+                        109.0
+                    ],
+                    [
+                        655.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.6677618622779846,
+                "coordinate": [
+                    707,
+                    156,
+                    982,
+                    185
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        707.0,
+                        156.0
+                    ],
+                    [
+                        982.0,
+                        156.0
+                    ],
+                    [
+                        982.0,
+                        185.0
+                    ],
+                    [
+                        707.0,
+                        185.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.5800665616989136,
+                "coordinate": [
+                    748,
+                    189,
+                    936,
+                    216
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        748.0,
+                        189.0
+                    ],
+                    [
+                        936.0,
+                        189.0
+                    ],
+                    [
+                        936.0,
+                        216.0
+                    ],
+                    [
+                        748.0,
+                        216.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8860682249069214,
+                "coordinate": [
+                    1297,
+                    219,
+                    1542,
+                    247
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        1297.0,
+                        219.0
+                    ],
+                    [
+                        1542.0,
+                        219.0
+                    ],
+                    [
+                        1542.0,
+                        247.0
+                    ],
+                    [
+                        1297.0,
+                        247.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9781609773635864,
+                "coordinate": [
+                    144,
+                    245,
+                    1546,
+                    888
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        144,
+                        245
+                    ],
+                    [
+                        144,
+                        887
+                    ],
+                    [
+                        1545,
+                        887
+                    ],
+                    [
+                        1545,
+                        251
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8158031105995178,
+                "coordinate": [
+                    805,
+                    1050,
+                    888,
+                    1070
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        805.0,
+                        1049.9998779296875
+                    ],
+                    [
+                        887.0,
+                        1049.9998779296875
+                    ],
+                    [
+                        887.0,
+                        1068.9998779296875
+                    ],
+                    [
+                        805.0,
+                        1068.9998779296875
+                    ]
+                ]
+            }
+        ]
+    }
+}

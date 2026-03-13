@@ -1,0 +1,412 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0001-0050.pdf",
+    "page_index": 41,
+    "page_count": 50,
+    "width": 1684,
+    "height": 1191,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                645,
+                86,
+                1025,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 485,
+            "global_group_id": 485,
+            "block_polygon_points": [
+                [
+                    645.0,
+                    86.0
+                ],
+                [
+                    1025.0,
+                    86.0
+                ],
+                [
+                    1025.0,
+                    109.0
+                ],
+                [
+                    645.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "4、在研项目情况",
+            "block_bbox": [
+                136,
+                218,
+                336,
+                248
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 486,
+            "global_group_id": 486,
+            "block_polygon_points": [
+                [
+                    136.0,
+                    218.0
+                ],
+                [
+                    336.0,
+                    218.0
+                ],
+                [
+                    336.0,
+                    248.0
+                ],
+                [
+                    136.0,
+                    248.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                143,
+                264,
+                307,
+                290
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 487,
+            "global_group_id": 487,
+            "block_polygon_points": [
+                [
+                    143.0,
+                    264.0
+                ],
+                [
+                    307.0,
+                    264.0
+                ],
+                [
+                    307.0,
+                    290.0
+                ],
+                [
+                    143.0,
+                    290.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：万元",
+            "block_bbox": [
+                1386,
+                292,
+                1514,
+                320
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3,
+            "global_block_id": 488,
+            "global_group_id": 488,
+            "block_polygon_points": [
+                [
+                    1386.0,
+                    292.0
+                ],
+                [
+                    1514.0,
+                    292.0
+                ],
+                [
+                    1514.0,
+                    320.0
+                ],
+                [
+                    1386.0,
+                    320.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>序号</td><td>项目名称</td><td>预计总投资规模</td><td>本期投入金额</td><td>累计投入金额</td><td>进展或阶段性成果</td><td>拟达到目标</td><td>技术水平</td><td>具体应用前景</td></tr><tr><td>1</td><td>新能源汽车智能维修解决方案</td><td>18,955.81</td><td>1,154.83</td><td>5,685.57</td><td>1、完成中国、欧美主流新能源品牌车系升级，覆盖90%新能源车诊断；2、推出了针对高压锂电池维护、保养及更换场景的工具链产品，结合公司的EV诊断平板产品，实现了从车上到车下诊断场景的全面覆盖；3、完成充放电机与诊断平板数据打通，提升效率30%。</td><td>1、通过对多品牌诊断功能覆盖，实现一个设备即可支持多种车型，同时在诊断软件中实现动力电池专检功能，解决新能源诊断软件兼容差、功能弱的问题；2、通过电池单体内阻测试功能，让技师能在10分钟内完成内阻测试，提高效率30%以上；3、通过SOH测试整体评估高压电池寿命，精度达到95%以上；4、通过开发专业的充放电工具，解决电池诊断效率低下，安全风险大的问题。</td><td>1、覆盖车型&gt;95%，电池专检覆盖&gt;95%；2、内阻评估精度大于95%以上；3、SOH健康评估精度达到95%以上。</td><td>1、维修店新能源汽车整车诊断、故障定位、配件推荐等；2、动力电池故障定位、电池好坏检测、整包充放电、模组均衡、单体均衡、修复后的电池包测试、电池装车后测试等；3、电池梯次利用。</td></tr><tr><td>2</td><td>第二代超快一体充电产品项目</td><td>14,749.00</td><td>8,241.11</td><td>13,612.11</td><td>1、完成MaxiCharger DC系列新品的设计，并进入样机生产和认证阶段，其中480kW一体桩已导入制造并小批量发货；2、MCS（兆瓦级）充电系列产品进入验证阶段；3、已完成25款主流车型的智能识别和充电曲</td><td>1、为客户提供系列化全新一代超快充产品，功率覆盖60KW至1.44MW全功率段；2、支持多种矩阵策略，全矩阵实现功率可调用度100%。电网利用率提升10%；3、支持AI智能充电、数字化智能运维，极大提高客户的体验；4、支持MCS标准，单枪最大功率1.2MW；5、支持未来产</td><td>1、充电快（10分钟续航400KM）；2、支持AI智能充电，充电速度提升8%；3、全矩阵切换，功率利用率100%；4、兆瓦级充电技术；5、电池</td><td>1、全功率段直流超快充，可保障未来5年的充电产品技术要求，适配CCS、MCS、NACS、Chademo、GBT等任意标准的充电车型、包括乘用车、公交公司、商用电动卡车等各</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td>线预测；4、已完成枪线液冷系统设计，全面满足性能要求。</td><td>业务演进，光储充融合。</td><td>检测技术；6、并光并储技术。</td><td>类充电场景需求；2、解决用户充电慢的痛点需求，进一步加快充电效率；3、提升uptime至99%，解决充电导致的安全问题，解决产品运营和运维的高可靠需求；4、解决市电利用率低问题，提升电网利用率10%；5、可使用绿电，解决电力供应不足的场景化问题。</td></tr><tr><td>3</td><td>双向充电模块</td><td>12,450.53</td><td>2,690.01</td><td>4,571.01</td><td>完成技术样机第一轮调测</td><td>1、基于ISO15118-20全协议栈实现充放电协议；2、满载效率大于97%，峰值效率大于97.5%；3、高可靠，IP65，IK10，年失效率。</td><td>1、采用了定制化低阻碳化硅，满载效率高出业内约1%；2、业内最高的IP65防护，整机失效率更低，uptime高；3、集成并网、ISO15118-20等多种通信和控制技术。</td><td>基于ISO15118-20实现标准的充放电流程当前在行业内是空白，我司希望成为业内首发支持该标准协议的产品，支撑新能源车型新技术应用。</td></tr><tr><td>4</td><td>液冷充电模块</td><td>15,200.00</td><td>3,307.93</td><td>3,505.63</td><td>完成技术样机的设计和调测，从研发转入生产阶段。</td><td>1、极致可靠：高可靠性，失效率业界领先；2、低噪音：液冷低噪（模块实现&lt;50dB），助力整机实现超充低噪音的</td><td>1、适用于碳化硅器件的电路拓扑技术；2、适用于电力电</td><td>1、大功率支持更快的充电场景；2、噪音低、电网友好性，保证“环境友好”的</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td>充电体；3、高效：打造高效品牌，模块实现满载效率96.5%指标，降低客户运营电费成本。</td><td>子控制的功率控制技术；3、通过模块故障检测与故障树分析配合黑匣子、OTA升级等技术，实现模块的诊断与维护。</td><td>充电设备。</td></tr><tr><td>合计</td><td>/</td><td>61,355.34</td><td>15,393.88</td><td>27,374.32</td><td>/</td><td>/</td><td>/</td><td>/</td></tr></table>",
+            "block_bbox": [
+                130,
+                318,
+                1543,
+                1034
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 489,
+            "global_group_id": 489,
+            "block_polygon_points": [
+                [
+                    130,
+                    324
+                ],
+                [
+                    139,
+                    1033
+                ],
+                [
+                    1542,
+                    1033
+                ],
+                [
+                    1542,
+                    324
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "42 / 306",
+            "block_bbox": [
+                801,
+                1050,
+                875,
+                1070
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 490,
+            "global_group_id": 490,
+            "block_polygon_points": [
+                [
+                    801.0,
+                    1050.0
+                ],
+                [
+                    874.0,
+                    1050.0
+                ],
+                [
+                    874.0,
+                    1069.0
+                ],
+                [
+                    801.0,
+                    1069.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8810821771621704,
+                "coordinate": [
+                    645,
+                    86,
+                    1025,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        645.0,
+                        86.0
+                    ],
+                    [
+                        1025.0,
+                        86.0
+                    ],
+                    [
+                        1025.0,
+                        109.0
+                    ],
+                    [
+                        645.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8718374371528625,
+                "coordinate": [
+                    136,
+                    218,
+                    336,
+                    248
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        136.0,
+                        218.0
+                    ],
+                    [
+                        336.0,
+                        218.0
+                    ],
+                    [
+                        336.0,
+                        248.0
+                    ],
+                    [
+                        136.0,
+                        248.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7263951897621155,
+                "coordinate": [
+                    143,
+                    264,
+                    307,
+                    290
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        143.0,
+                        264.0
+                    ],
+                    [
+                        307.0,
+                        264.0
+                    ],
+                    [
+                        307.0,
+                        290.0
+                    ],
+                    [
+                        143.0,
+                        290.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8422734141349792,
+                "coordinate": [
+                    1386,
+                    292,
+                    1514,
+                    320
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        1386.0,
+                        292.0
+                    ],
+                    [
+                        1514.0,
+                        292.0
+                    ],
+                    [
+                        1514.0,
+                        320.0
+                    ],
+                    [
+                        1386.0,
+                        320.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9841274619102478,
+                "coordinate": [
+                    130,
+                    318,
+                    1543,
+                    1034
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        130,
+                        324
+                    ],
+                    [
+                        139,
+                        1033
+                    ],
+                    [
+                        1542,
+                        1033
+                    ],
+                    [
+                        1542,
+                        324
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8074958324432373,
+                "coordinate": [
+                    801,
+                    1050,
+                    875,
+                    1070
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        801.0,
+                        1050.0
+                    ],
+                    [
+                        874.0,
+                        1050.0
+                    ],
+                    [
+                        874.0,
+                        1069.0
+                    ],
+                    [
+                        801.0,
+                        1069.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

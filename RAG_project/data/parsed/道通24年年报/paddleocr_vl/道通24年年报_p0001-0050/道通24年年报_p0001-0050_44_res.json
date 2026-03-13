@@ -1,0 +1,979 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0001-0050.pdf",
+    "page_index": 44,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                87,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 499,
+            "global_group_id": 499,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    431.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "5、研发人员情况",
+            "block_bbox": [
+                173,
+                160,
+                370,
+                190
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 500,
+            "global_group_id": 500,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    160.0
+                ],
+                [
+                    370.0,
+                    160.0
+                ],
+                [
+                    370.0,
+                    190.0
+                ],
+                [
+                    173.0,
+                    190.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：万元 币种：人民币",
+            "block_bbox": [
+                772,
+                206,
+                1064,
+                234
+            ],
+            "block_id": 2,
+            "block_order": null,
+            "group_id": 2,
+            "global_block_id": 501,
+            "global_group_id": 501,
+            "block_polygon_points": [
+                [
+                    772.0,
+                    206.0
+                ],
+                [
+                    1064.0,
+                    206.0
+                ],
+                [
+                    1064.0,
+                    234.0
+                ],
+                [
+                    772.0,
+                    234.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td colspan=\"3\">基本情况</td></tr><tr><td></td><td>本期数</td><td>上期数</td></tr><tr><td>公司研发人员的数量（人）</td><td>995</td><td>887</td></tr><tr><td>研发人员数量占公司总人数的比例（%）</td><td>58.19</td><td>60.34</td></tr><tr><td>研发人员薪酬合计</td><td>42,933.54</td><td>31,675.56</td></tr><tr><td>研发人员平均薪酬</td><td>43.15</td><td>35.71</td></tr></table>",
+            "block_bbox": [
+                167,
+                234,
+                1075,
+                445
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3,
+            "global_block_id": 502,
+            "global_group_id": 502,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    234.0
+                ],
+                [
+                    1075.0,
+                    234.0
+                ],
+                [
+                    1075.0,
+                    445.0
+                ],
+                [
+                    167.0,
+                    445.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "注：以上研发人员占公司总人数的比例计算，公司总人数未包含报告期末公司生产人员。",
+            "block_bbox": [
+                174,
+                449,
+                991,
+                474
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 503,
+            "global_group_id": 503,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    449.0
+                ],
+                [
+                    991.0,
+                    449.0
+                ],
+                [
+                    991.0,
+                    474.0
+                ],
+                [
+                    174.0,
+                    474.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td colspan=\"2\">研发人员学历结构</td></tr><tr><td>学历结构类别</td><td>学历结构人数</td></tr><tr><td>博士研究生</td><td>9</td></tr><tr><td>硕士研究生</td><td>147</td></tr><tr><td>本科</td><td>781</td></tr><tr><td>专科</td><td>51</td></tr><tr><td>高中及以下</td><td>7</td></tr><tr><td colspan=\"2\">研发人员年龄结构</td></tr><tr><td>年龄结构类别</td><td>年龄结构人数</td></tr><tr><td>30岁以下（不含30岁）</td><td>279</td></tr><tr><td>30-40岁（含30岁，不含40岁）</td><td>585</td></tr><tr><td>40-50岁（含40岁，不含50岁）</td><td>127</td></tr><tr><td>50-60岁（含50岁，不含60岁）</td><td>4</td></tr><tr><td>60岁及以上</td><td>0</td></tr></table>",
+            "block_bbox": [
+                166,
+                499,
+                1075,
+                992
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 504,
+            "global_group_id": 504,
+            "block_polygon_points": [
+                [
+                    166.0,
+                    499.0
+                ],
+                [
+                    1075.0,
+                    499.0
+                ],
+                [
+                    1075.0,
+                    992.0
+                ],
+                [
+                    166.0,
+                    992.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "研发人员构成发生重大变化的原因及对公司未来发展的影响",
+            "block_bbox": [
+                174,
+                1031,
+                807,
+                1060
+            ],
+            "block_id": 6,
+            "block_order": 2,
+            "group_id": 6,
+            "global_block_id": 505,
+            "global_group_id": 505,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1031.0
+                ],
+                [
+                    807.0,
+                    1031.0
+                ],
+                [
+                    807.0,
+                    1060.0
+                ],
+                [
+                    174.0,
+                    1060.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "□适用 √不适用",
+            "block_bbox": [
+                177,
+                1068,
+                364,
+                1097
+            ],
+            "block_id": 7,
+            "block_order": 3,
+            "group_id": 7,
+            "global_block_id": 506,
+            "global_group_id": 506,
+            "block_polygon_points": [
+                [
+                    177.0,
+                    1068.0
+                ],
+                [
+                    364.0,
+                    1068.0
+                ],
+                [
+                    364.0,
+                    1097.0
+                ],
+                [
+                    177.0,
+                    1097.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "6、其他说明",
+            "block_bbox": [
+                174,
+                1142,
+                322,
+                1172
+            ],
+            "block_id": 8,
+            "block_order": 4,
+            "group_id": 8,
+            "global_block_id": 507,
+            "global_group_id": 507,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1142.0
+                ],
+                [
+                    322.0,
+                    1142.0
+                ],
+                [
+                    322.0,
+                    1172.0
+                ],
+                [
+                    174.0,
+                    1172.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "□适用 √不适用",
+            "block_bbox": [
+                177,
+                1189,
+                362,
+                1218
+            ],
+            "block_id": 9,
+            "block_order": 5,
+            "group_id": 9,
+            "global_block_id": 508,
+            "global_group_id": 508,
+            "block_polygon_points": [
+                [
+                    177.0,
+                    1189.0
+                ],
+                [
+                    362.0,
+                    1189.0
+                ],
+                [
+                    362.0,
+                    1218.0
+                ],
+                [
+                    177.0,
+                    1218.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "三、报告期内核心竞争力分析",
+            "block_bbox": [
+                175,
+                1257,
+                496,
+                1288
+            ],
+            "block_id": 10,
+            "block_order": 6,
+            "group_id": 10,
+            "global_block_id": 509,
+            "global_group_id": 509,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    1257.0
+                ],
+                [
+                    496.0,
+                    1257.0
+                ],
+                [
+                    496.0,
+                    1288.0
+                ],
+                [
+                    175.0,
+                    1288.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(一)核心竞争力分析",
+            "block_bbox": [
+                175,
+                1310,
+                395,
+                1341
+            ],
+            "block_id": 11,
+            "block_order": 7,
+            "group_id": 11,
+            "global_block_id": 510,
+            "global_group_id": 510,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    1310.0
+                ],
+                [
+                    395.0,
+                    1310.0
+                ],
+                [
+                    395.0,
+                    1341.0
+                ],
+                [
+                    175.0,
+                    1341.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                181,
+                1357,
+                364,
+                1384
+            ],
+            "block_id": 12,
+            "block_order": 8,
+            "group_id": 12,
+            "global_block_id": 511,
+            "global_group_id": 511,
+            "block_polygon_points": [
+                [
+                    181.0,
+                    1357.0
+                ],
+                [
+                    364.0,
+                    1357.0
+                ],
+                [
+                    364.0,
+                    1384.0
+                ],
+                [
+                    181.0,
+                    1384.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "1、技术创新优势",
+            "block_bbox": [
+                223,
+                1389,
+                412,
+                1417
+            ],
+            "block_id": 13,
+            "block_order": 9,
+            "group_id": 13,
+            "global_block_id": 512,
+            "global_group_id": 512,
+            "block_polygon_points": [
+                [
+                    223.0,
+                    1389.0
+                ],
+                [
+                    412.0,
+                    1389.0
+                ],
+                [
+                    412.0,
+                    1417.0
+                ],
+                [
+                    223.0,
+                    1417.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "45 / 306",
+            "block_bbox": [
+                586,
+                1543,
+                657,
+                1564
+            ],
+            "block_id": 14,
+            "block_order": null,
+            "group_id": 14,
+            "global_block_id": 513,
+            "global_group_id": 513,
+            "block_polygon_points": [
+                [
+                    586.0,
+                    1543.0
+                ],
+                [
+                    656.0,
+                    1543.0
+                ],
+                [
+                    656.0,
+                    1563.0
+                ],
+                [
+                    586.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8688825964927673,
+                "coordinate": [
+                    431,
+                    87,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        431.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8708191514015198,
+                "coordinate": [
+                    173,
+                    160,
+                    370,
+                    190
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        173.0,
+                        160.0
+                    ],
+                    [
+                        370.0,
+                        160.0
+                    ],
+                    [
+                        370.0,
+                        190.0
+                    ],
+                    [
+                        173.0,
+                        190.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.874053418636322,
+                "coordinate": [
+                    772,
+                    206,
+                    1064,
+                    234
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        772.0,
+                        206.0
+                    ],
+                    [
+                        1064.0,
+                        206.0
+                    ],
+                    [
+                        1064.0,
+                        234.0
+                    ],
+                    [
+                        772.0,
+                        234.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.951603353023529,
+                "coordinate": [
+                    167,
+                    234,
+                    1075,
+                    445
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        234.0
+                    ],
+                    [
+                        1075.0,
+                        234.0
+                    ],
+                    [
+                        1075.0,
+                        445.0
+                    ],
+                    [
+                        167.0,
+                        445.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8005290627479553,
+                "coordinate": [
+                    174,
+                    449,
+                    991,
+                    474
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        174.0,
+                        449.0
+                    ],
+                    [
+                        991.0,
+                        449.0
+                    ],
+                    [
+                        991.0,
+                        474.0
+                    ],
+                    [
+                        174.0,
+                        474.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9758349657058716,
+                "coordinate": [
+                    166,
+                    499,
+                    1075,
+                    992
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        166.0,
+                        499.0
+                    ],
+                    [
+                        1075.0,
+                        499.0
+                    ],
+                    [
+                        1075.0,
+                        992.0
+                    ],
+                    [
+                        166.0,
+                        992.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8183818459510803,
+                "coordinate": [
+                    174,
+                    1031,
+                    807,
+                    1060
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1031.0
+                    ],
+                    [
+                        807.0,
+                        1031.0
+                    ],
+                    [
+                        807.0,
+                        1060.0
+                    ],
+                    [
+                        174.0,
+                        1060.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.749801754951477,
+                "coordinate": [
+                    177,
+                    1068,
+                    364,
+                    1097
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        177.0,
+                        1068.0
+                    ],
+                    [
+                        364.0,
+                        1068.0
+                    ],
+                    [
+                        364.0,
+                        1097.0
+                    ],
+                    [
+                        177.0,
+                        1097.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8340168595314026,
+                "coordinate": [
+                    174,
+                    1142,
+                    322,
+                    1172
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1142.0
+                    ],
+                    [
+                        322.0,
+                        1142.0
+                    ],
+                    [
+                        322.0,
+                        1172.0
+                    ],
+                    [
+                        174.0,
+                        1172.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8088096976280212,
+                "coordinate": [
+                    177,
+                    1189,
+                    362,
+                    1218
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        177.0,
+                        1189.0
+                    ],
+                    [
+                        362.0,
+                        1189.0
+                    ],
+                    [
+                        362.0,
+                        1218.0
+                    ],
+                    [
+                        177.0,
+                        1218.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8647674918174744,
+                "coordinate": [
+                    175,
+                    1257,
+                    496,
+                    1288
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        175.0,
+                        1257.0
+                    ],
+                    [
+                        496.0,
+                        1257.0
+                    ],
+                    [
+                        496.0,
+                        1288.0
+                    ],
+                    [
+                        175.0,
+                        1288.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.5551223158836365,
+                "coordinate": [
+                    175,
+                    1310,
+                    395,
+                    1341
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        175.0,
+                        1310.0
+                    ],
+                    [
+                        395.0,
+                        1310.0
+                    ],
+                    [
+                        395.0,
+                        1341.0
+                    ],
+                    [
+                        175.0,
+                        1341.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8125478029251099,
+                "coordinate": [
+                    181,
+                    1357,
+                    364,
+                    1384
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        181.0,
+                        1357.0
+                    ],
+                    [
+                        364.0,
+                        1357.0
+                    ],
+                    [
+                        364.0,
+                        1384.0
+                    ],
+                    [
+                        181.0,
+                        1384.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7673905491828918,
+                "coordinate": [
+                    223,
+                    1389,
+                    412,
+                    1417
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        223.0,
+                        1389.0
+                    ],
+                    [
+                        412.0,
+                        1389.0
+                    ],
+                    [
+                        412.0,
+                        1417.0
+                    ],
+                    [
+                        223.0,
+                        1417.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7610623836517334,
+                "coordinate": [
+                    586,
+                    1543,
+                    657,
+                    1564
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        586.0,
+                        1543.0
+                    ],
+                    [
+                        656.0,
+                        1543.0
+                    ],
+                    [
+                        656.0,
+                        1563.0
+                    ],
+                    [
+                        586.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

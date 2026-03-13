@@ -1,0 +1,1231 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0251-0300.pdf",
+    "page_index": 24,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                430,
+                86,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 374,
+            "global_group_id": 374,
+            "block_polygon_points": [
+                [
+                    430.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    430.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "当金融工具符合以下一项或多项条件时，公司将该金融资产界定为已发生违约，其标准与已发生信用减值的定义一致：",
+            "block_bbox": [
+                173,
+                154,
+                1058,
+                232
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 375,
+            "global_group_id": 375,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    154.0
+                ],
+                [
+                    1058.0,
+                    154.0
+                ],
+                [
+                    1058.0,
+                    232.0
+                ],
+                [
+                    173.0,
+                    232.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "1) 债务人发生重大财务困难；",
+            "block_bbox": [
+                223,
+                247,
+                528,
+                278
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 376,
+            "global_group_id": 376,
+            "block_polygon_points": [
+                [
+                    223.0,
+                    247.0
+                ],
+                [
+                    528.0,
+                    247.0
+                ],
+                [
+                    528.0,
+                    278.0
+                ],
+                [
+                    223.0,
+                    278.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "2)债务人违反合同中对债务人的约束条款；",
+            "block_bbox": [
+                220,
+                294,
+                671,
+                325
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 377,
+            "global_group_id": 377,
+            "block_polygon_points": [
+                [
+                    220.0,
+                    294.0
+                ],
+                [
+                    671.0,
+                    294.0
+                ],
+                [
+                    671.0,
+                    325.0
+                ],
+                [
+                    220.0,
+                    325.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "3)债务人很可能破产或进行其他财务重组；",
+            "block_bbox": [
+                222,
+                341,
+                671,
+                372
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 378,
+            "global_group_id": 378,
+            "block_polygon_points": [
+                [
+                    222.0,
+                    341.0
+                ],
+                [
+                    671.0,
+                    341.0
+                ],
+                [
+                    671.0,
+                    372.0
+                ],
+                [
+                    222.0,
+                    372.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "4)债权人出于与债务人财务困难有关的经济或合同考虑，给予债务人在任何其他情况下都不会做出的让步。",
+            "block_bbox": [
+                173,
+                387,
+                1066,
+                465
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 379,
+            "global_group_id": 379,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    387.0
+                ],
+                [
+                    1066.0,
+                    387.0
+                ],
+                [
+                    1066.0,
+                    465.0
+                ],
+                [
+                    173.0,
+                    465.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "2. 预期信用损失的计量",
+            "block_bbox": [
+                222,
+                480,
+                470,
+                510
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 380,
+            "global_group_id": 380,
+            "block_polygon_points": [
+                [
+                    222.0,
+                    480.0
+                ],
+                [
+                    470.0,
+                    480.0
+                ],
+                [
+                    470.0,
+                    510.0
+                ],
+                [
+                    222.0,
+                    510.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "预期信用损失计量的关键参数包括违约概率、违约损失率和违约风险敞口。公司考虑历史统计数据（如交易对手评级、担保方式及抵质押物类别、还款方式等）的定量分析及前瞻性信息，建立违约概率、违约损失率及违约风险敞口模型。",
+            "block_bbox": [
+                173,
+                528,
+                1067,
+                653
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 381,
+            "global_group_id": 381,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    528.0
+                ],
+                [
+                    1067.0,
+                    528.0
+                ],
+                [
+                    1067.0,
+                    653.0
+                ],
+                [
+                    173.0,
+                    653.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "3. 金融工具损失准备期初余额与期末余额调节表详见本财务报表附注七(5)、七(9)之说明。",
+            "block_bbox": [
+                174,
+                668,
+                1066,
+                744
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 382,
+            "global_group_id": 382,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    668.0
+                ],
+                [
+                    1066.0,
+                    668.0
+                ],
+                [
+                    1066.0,
+                    744.0
+                ],
+                [
+                    174.0,
+                    744.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "4. 信用风险敞口及信用风险集中度",
+            "block_bbox": [
+                221,
+                762,
+                589,
+                791
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9,
+            "global_block_id": 383,
+            "global_group_id": 383,
+            "block_polygon_points": [
+                [
+                    221.0,
+                    762.0
+                ],
+                [
+                    589.0,
+                    762.0
+                ],
+                [
+                    589.0,
+                    791.0
+                ],
+                [
+                    221.0,
+                    791.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本公司的信用风险主要来自货币资金和应收款项。为控制上述相关风险，本公司分别采取了以下措施。",
+            "block_bbox": [
+                173,
+                807,
+                1065,
+                885
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10,
+            "global_block_id": 384,
+            "global_group_id": 384,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    807.0
+                ],
+                [
+                    1065.0,
+                    807.0
+                ],
+                [
+                    1065.0,
+                    885.0
+                ],
+                [
+                    173.0,
+                    885.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(1)货币资金",
+            "block_bbox": [
+                223,
+                902,
+                359,
+                933
+            ],
+            "block_id": 11,
+            "block_order": 11,
+            "group_id": 11,
+            "global_block_id": 385,
+            "global_group_id": 385,
+            "block_polygon_points": [
+                [
+                    223.0,
+                    902.0
+                ],
+                [
+                    359.0,
+                    902.0
+                ],
+                [
+                    359.0,
+                    933.0
+                ],
+                [
+                    223.0,
+                    933.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本公司将银行存款和其他货币资金存放于信用评级较高的金融机构，故其信用风险较低。",
+            "block_bbox": [
+                174,
+                947,
+                1066,
+                1025
+            ],
+            "block_id": 12,
+            "block_order": 12,
+            "group_id": 12,
+            "global_block_id": 386,
+            "global_group_id": 386,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    947.0
+                ],
+                [
+                    1066.0,
+                    947.0
+                ],
+                [
+                    1066.0,
+                    1025.0
+                ],
+                [
+                    174.0,
+                    1025.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(2)应收款项",
+            "block_bbox": [
+                223,
+                1041,
+                359,
+                1073
+            ],
+            "block_id": 13,
+            "block_order": 13,
+            "group_id": 13,
+            "global_block_id": 387,
+            "global_group_id": 387,
+            "block_polygon_points": [
+                [
+                    223.0,
+                    1041.0
+                ],
+                [
+                    359.0,
+                    1041.0
+                ],
+                [
+                    359.0,
+                    1073.0
+                ],
+                [
+                    223.0,
+                    1073.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本公司持续对采用信用方式交易的客户进行信用评估。根据信用评估结果，本公司选择与经认可的且信用良好的客户进行交易，并对其应收款项余额进行监控，以确保本公司不会面临重大坏账风险。",
+            "block_bbox": [
+                174,
+                1088,
+                1067,
+                1213
+            ],
+            "block_id": 14,
+            "block_order": 14,
+            "group_id": 14,
+            "global_block_id": 388,
+            "global_group_id": 388,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1088.0
+                ],
+                [
+                    1067.0,
+                    1088.0
+                ],
+                [
+                    1067.0,
+                    1213.0
+                ],
+                [
+                    174.0,
+                    1213.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "由于本公司仅与经认可的且信用良好的第三方进行交易，所以无需担保物。信用风险集中按照客户进行管理。截至2024年12月31日，本公司存在一定的信用集中风险，本公司应收账款的25.13%（2023年12月31日：30.42%）源于余额前五名客户。本公司对应收账款余额未持有任何担保物或其他信用增级。",
+            "block_bbox": [
+                173,
+                1228,
+                1067,
+                1400
+            ],
+            "block_id": 15,
+            "block_order": 15,
+            "group_id": 15,
+            "global_block_id": 389,
+            "global_group_id": 389,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    1228.0
+                ],
+                [
+                    1067.0,
+                    1228.0
+                ],
+                [
+                    1067.0,
+                    1400.0
+                ],
+                [
+                    173.0,
+                    1400.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本公司所承受的最大信用风险敞口为资产负债表中每项金融资产的账面价值。",
+            "block_bbox": [
+                220,
+                1414,
+                1035,
+                1445
+            ],
+            "block_id": 16,
+            "block_order": 16,
+            "group_id": 16,
+            "global_block_id": 390,
+            "global_group_id": 390,
+            "block_polygon_points": [
+                [
+                    220.0,
+                    1414.0
+                ],
+                [
+                    1035.0,
+                    1414.0
+                ],
+                [
+                    1035.0,
+                    1445.0
+                ],
+                [
+                    220.0,
+                    1445.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(二)流动性风险",
+            "block_bbox": [
+                222,
+                1461,
+                395,
+                1493
+            ],
+            "block_id": 17,
+            "block_order": 17,
+            "group_id": 17,
+            "global_block_id": 391,
+            "global_group_id": 391,
+            "block_polygon_points": [
+                [
+                    222.0,
+                    1461.0
+                ],
+                [
+                    395.0,
+                    1461.0
+                ],
+                [
+                    395.0,
+                    1493.0
+                ],
+                [
+                    222.0,
+                    1493.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "275 / 306",
+            "block_bbox": [
+                580,
+                1542,
+                663,
+                1564
+            ],
+            "block_id": 18,
+            "block_order": null,
+            "group_id": 18,
+            "global_block_id": 392,
+            "global_group_id": 392,
+            "block_polygon_points": [
+                [
+                    579.9999389648438,
+                    1542.0
+                ],
+                [
+                    661.9999389648438,
+                    1542.0
+                ],
+                [
+                    661.9999389648438,
+                    1563.0
+                ],
+                [
+                    579.9999389648438,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8748103380203247,
+                "coordinate": [
+                    430,
+                    86,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        430.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        430.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9268712997436523,
+                "coordinate": [
+                    173,
+                    154,
+                    1058,
+                    232
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        173.0,
+                        154.0
+                    ],
+                    [
+                        1058.0,
+                        154.0
+                    ],
+                    [
+                        1058.0,
+                        232.0
+                    ],
+                    [
+                        173.0,
+                        232.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6864393949508667,
+                "coordinate": [
+                    223,
+                    247,
+                    528,
+                    278
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        223.0,
+                        247.0
+                    ],
+                    [
+                        528.0,
+                        247.0
+                    ],
+                    [
+                        528.0,
+                        278.0
+                    ],
+                    [
+                        223.0,
+                        278.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8536577820777893,
+                "coordinate": [
+                    220,
+                    294,
+                    671,
+                    325
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        220.0,
+                        294.0
+                    ],
+                    [
+                        671.0,
+                        294.0
+                    ],
+                    [
+                        671.0,
+                        325.0
+                    ],
+                    [
+                        220.0,
+                        325.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.84002286195755,
+                "coordinate": [
+                    222,
+                    341,
+                    671,
+                    372
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        222.0,
+                        341.0
+                    ],
+                    [
+                        671.0,
+                        341.0
+                    ],
+                    [
+                        671.0,
+                        372.0
+                    ],
+                    [
+                        222.0,
+                        372.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.932966947555542,
+                "coordinate": [
+                    173,
+                    387,
+                    1066,
+                    465
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        173.0,
+                        387.0
+                    ],
+                    [
+                        1066.0,
+                        387.0
+                    ],
+                    [
+                        1066.0,
+                        465.0
+                    ],
+                    [
+                        173.0,
+                        465.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8490229845046997,
+                "coordinate": [
+                    222,
+                    480,
+                    470,
+                    510
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        222.0,
+                        480.0
+                    ],
+                    [
+                        470.0,
+                        480.0
+                    ],
+                    [
+                        470.0,
+                        510.0
+                    ],
+                    [
+                        222.0,
+                        510.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9485981464385986,
+                "coordinate": [
+                    173,
+                    528,
+                    1067,
+                    653
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        173.0,
+                        528.0
+                    ],
+                    [
+                        1067.0,
+                        528.0
+                    ],
+                    [
+                        1067.0,
+                        653.0
+                    ],
+                    [
+                        173.0,
+                        653.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9185973405838013,
+                "coordinate": [
+                    174,
+                    668,
+                    1066,
+                    744
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        174.0,
+                        668.0
+                    ],
+                    [
+                        1066.0,
+                        668.0
+                    ],
+                    [
+                        1066.0,
+                        744.0
+                    ],
+                    [
+                        174.0,
+                        744.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.850416362285614,
+                "coordinate": [
+                    221,
+                    762,
+                    589,
+                    791
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        221.0,
+                        762.0
+                    ],
+                    [
+                        589.0,
+                        762.0
+                    ],
+                    [
+                        589.0,
+                        791.0
+                    ],
+                    [
+                        221.0,
+                        791.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9221285581588745,
+                "coordinate": [
+                    173,
+                    807,
+                    1065,
+                    885
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        173.0,
+                        807.0
+                    ],
+                    [
+                        1065.0,
+                        807.0
+                    ],
+                    [
+                        1065.0,
+                        885.0
+                    ],
+                    [
+                        173.0,
+                        885.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8099004030227661,
+                "coordinate": [
+                    223,
+                    902,
+                    359,
+                    933
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        223.0,
+                        902.0
+                    ],
+                    [
+                        359.0,
+                        902.0
+                    ],
+                    [
+                        359.0,
+                        933.0
+                    ],
+                    [
+                        223.0,
+                        933.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9161377549171448,
+                "coordinate": [
+                    174,
+                    947,
+                    1066,
+                    1025
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        174.0,
+                        947.0
+                    ],
+                    [
+                        1066.0,
+                        947.0
+                    ],
+                    [
+                        1066.0,
+                        1025.0
+                    ],
+                    [
+                        174.0,
+                        1025.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8172265887260437,
+                "coordinate": [
+                    223,
+                    1041,
+                    359,
+                    1073
+                ],
+                "order": 13,
+                "polygon_points": [
+                    [
+                        223.0,
+                        1041.0
+                    ],
+                    [
+                        359.0,
+                        1041.0
+                    ],
+                    [
+                        359.0,
+                        1073.0
+                    ],
+                    [
+                        223.0,
+                        1073.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9485692977905273,
+                "coordinate": [
+                    174,
+                    1088,
+                    1067,
+                    1213
+                ],
+                "order": 14,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1088.0
+                    ],
+                    [
+                        1067.0,
+                        1088.0
+                    ],
+                    [
+                        1067.0,
+                        1213.0
+                    ],
+                    [
+                        174.0,
+                        1213.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9373492002487183,
+                "coordinate": [
+                    173,
+                    1228,
+                    1067,
+                    1400
+                ],
+                "order": 15,
+                "polygon_points": [
+                    [
+                        173.0,
+                        1228.0
+                    ],
+                    [
+                        1067.0,
+                        1228.0
+                    ],
+                    [
+                        1067.0,
+                        1400.0
+                    ],
+                    [
+                        173.0,
+                        1400.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7781007885932922,
+                "coordinate": [
+                    220,
+                    1414,
+                    1035,
+                    1445
+                ],
+                "order": 16,
+                "polygon_points": [
+                    [
+                        220.0,
+                        1414.0
+                    ],
+                    [
+                        1035.0,
+                        1414.0
+                    ],
+                    [
+                        1035.0,
+                        1445.0
+                    ],
+                    [
+                        220.0,
+                        1445.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.809035062789917,
+                "coordinate": [
+                    222,
+                    1461,
+                    395,
+                    1493
+                ],
+                "order": 17,
+                "polygon_points": [
+                    [
+                        222.0,
+                        1461.0
+                    ],
+                    [
+                        395.0,
+                        1461.0
+                    ],
+                    [
+                        395.0,
+                        1493.0
+                    ],
+                    [
+                        222.0,
+                        1493.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7759018540382385,
+                "coordinate": [
+                    580,
+                    1542,
+                    663,
+                    1564
+                ],
+                "order": 18,
+                "polygon_points": [
+                    [
+                        579.9999389648438,
+                        1542.0
+                    ],
+                    [
+                        661.9999389648438,
+                        1542.0
+                    ],
+                    [
+                        661.9999389648438,
+                        1563.0
+                    ],
+                    [
+                        579.9999389648438,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,475 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0251-0300.pdf",
+    "page_index": 19,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                86,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 283,
+            "global_group_id": 283,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    431.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "十、在其他主体中的权益",
+            "block_bbox": [
+                176,
+                159,
+                484,
+                190
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 284,
+            "global_group_id": 284,
+            "block_polygon_points": [
+                [
+                    176.0,
+                    159.0
+                ],
+                [
+                    484.0,
+                    159.0
+                ],
+                [
+                    484.0,
+                    190.0
+                ],
+                [
+                    176.0,
+                    190.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1、在子公司中的权益",
+            "block_bbox": [
+                175,
+                212,
+                419,
+                242
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 285,
+            "global_group_id": 285,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    212.0
+                ],
+                [
+                    419.0,
+                    212.0
+                ],
+                [
+                    419.0,
+                    242.0
+                ],
+                [
+                    175.0,
+                    242.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(1). 企业集团的构成",
+            "block_bbox": [
+                176,
+                265,
+                402,
+                296
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 286,
+            "global_group_id": 286,
+            "block_polygon_points": [
+                [
+                    176.0,
+                    265.0
+                ],
+                [
+                    402.0,
+                    265.0
+                ],
+                [
+                    402.0,
+                    296.0
+                ],
+                [
+                    176.0,
+                    296.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                181,
+                312,
+                362,
+                342
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 287,
+            "global_group_id": 287,
+            "block_polygon_points": [
+                [
+                    181.0,
+                    312.0
+                ],
+                [
+                    362.0,
+                    312.0
+                ],
+                [
+                    362.0,
+                    342.0
+                ],
+                [
+                    181.0,
+                    342.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td rowspan=\"2\">子公司名称</td><td rowspan=\"2\">主要经营地</td><td rowspan=\"2\">注册地</td><td rowspan=\"2\">业务性质</td><td colspan=\"2\">持股比例（%）</td><td rowspan=\"2\">取得方式</td></tr><tr><td>直接</td><td>间接</td></tr><tr><td>道通加州</td><td>美国加利福尼亚</td><td>美国加利福尼亚</td><td>控股公司</td><td>100</td><td>/</td><td>设立</td></tr><tr><td>道通纽约</td><td>美国纽约</td><td>美国纽约</td><td>商业贸易</td><td></td><td>100</td><td>设立</td></tr><tr><td>道通德国</td><td>德国伊斯马宁</td><td>德国伊斯马宁</td><td>商业贸易</td><td>100</td><td>/</td><td>设立</td></tr><tr><td>湖南道通</td><td>长沙市</td><td>长沙市</td><td>软件开发</td><td>100</td><td>/</td><td>同一控制下的企业合并取得</td></tr><tr><td>道通合创</td><td>深圳市</td><td>深圳市</td><td>制造业</td><td>81.5</td><td>/</td><td>设立</td></tr><tr><td>道通合盛</td><td>深圳市</td><td>深圳市</td><td>软件开发</td><td>100</td><td>/</td><td>设立</td></tr><tr><td>道通香港</td><td>中国香港</td><td>中国香港</td><td>控股公司</td><td>100</td><td>/</td><td>设立</td></tr><tr><td>道通越南</td><td>越南海防</td><td>越南海防</td><td>制造业</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>西安道通</td><td>西安市</td><td>西安市</td><td>软件开发</td><td>100</td><td>/</td><td>设立</td></tr><tr><td>道通迪拜</td><td>迪拜</td><td>迪拜</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通日本</td><td>日本</td><td>日本</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通意大利</td><td>意大利</td><td>意大利</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通墨西哥</td><td>墨西哥</td><td>墨西哥</td><td>商业贸易</td><td>10</td><td>90</td><td>设立</td></tr><tr><td>彩虹科技</td><td>深圳市</td><td>深圳市</td><td>控股公司</td><td>100</td><td>/</td><td>非同一控制下企业合并</td></tr><tr><td>彩虹信息咨询</td><td>深圳市</td><td>深圳市</td><td>租赁服务</td><td>/</td><td>100</td><td>非同一控制下企业合并</td></tr><tr><td>海南道通</td><td>海口市</td><td>海口市</td><td>技术服务</td><td>100</td><td>/</td><td>设立</td></tr><tr><td>道通英国</td><td>英国伦敦</td><td>英国伦敦</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通巴西</td><td>巴西圣保罗</td><td>巴西圣保罗</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通荷兰</td><td>荷兰沃尔堡</td><td>荷兰沃尔堡</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通合达</td><td>深圳市</td><td>深圳市</td><td>商业贸易</td><td>100</td><td>/</td><td>设立</td></tr><tr><td>道通越南新能源</td><td>越南海防</td><td>越南海防</td><td>制造业</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通法国</td><td>法国楠泰尔</td><td>法国楠泰尔</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通美国新能源</td><td>美国纽约</td><td>美国纽约</td><td>制造业</td><td>/</td><td>81.50</td><td>设立</td></tr><tr><td>道通美国新能源电商</td><td>美国纽约</td><td>美国纽约</td><td>制造业</td><td>/</td><td>81.50</td><td>设立</td></tr><tr><td>道通美国电商</td><td>美国纽约</td><td>美国纽约</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通澳大</td><td>澳大利亚悉</td><td>澳大利亚悉</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>利亚</td><td>尼</td><td>尼</td><td></td><td></td><td></td><td></td></tr><tr><td>道通瑞典</td><td>瑞典斯德哥尔摩</td><td>瑞典斯德哥尔摩</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通西班牙</td><td>西班牙</td><td>西班牙</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>盈通物业</td><td>深圳市</td><td>深圳市</td><td>物业服务</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道通合新</td><td>深圳市</td><td>深圳市</td><td>软件开发</td><td>/</td><td>81.50</td><td>设立</td></tr><tr><td>海南驰卓</td><td>海口市</td><td>海口市</td><td>商业贸易</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>英国智能</td><td>英格兰</td><td>英格兰</td><td>AI 智能</td><td>/</td><td>100</td><td>设立</td></tr><tr><td>道和通泰</td><td>深圳市</td><td>深圳市</td><td>AI 智能</td><td>100</td><td>/</td><td>设立</td></tr></table>",
+            "block_bbox": [
+                167,
+                372,
+                1077,
+                1519
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 288,
+            "global_group_id": 288,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    372.0
+                ],
+                [
+                    1077.0,
+                    372.0
+                ],
+                [
+                    1077.0,
+                    1519.0
+                ],
+                [
+                    167.0,
+                    1519.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "270 / 306",
+            "block_bbox": [
+                581,
+                1542,
+                662,
+                1564
+            ],
+            "block_id": 6,
+            "block_order": null,
+            "group_id": 6,
+            "global_block_id": 289,
+            "global_group_id": 289,
+            "block_polygon_points": [
+                [
+                    581.0,
+                    1542.0
+                ],
+                [
+                    661.0,
+                    1542.0
+                ],
+                [
+                    661.0,
+                    1563.0
+                ],
+                [
+                    581.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8667296171188354,
+                "coordinate": [
+                    431,
+                    86,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        431.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8757203817367554,
+                "coordinate": [
+                    176,
+                    159,
+                    484,
+                    190
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        176.0,
+                        159.0
+                    ],
+                    [
+                        484.0,
+                        159.0
+                    ],
+                    [
+                        484.0,
+                        190.0
+                    ],
+                    [
+                        176.0,
+                        190.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.841182291507721,
+                "coordinate": [
+                    175,
+                    212,
+                    419,
+                    242
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        175.0,
+                        212.0
+                    ],
+                    [
+                        419.0,
+                        212.0
+                    ],
+                    [
+                        419.0,
+                        242.0
+                    ],
+                    [
+                        175.0,
+                        242.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8440479636192322,
+                "coordinate": [
+                    176,
+                    265,
+                    402,
+                    296
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        176.0,
+                        265.0
+                    ],
+                    [
+                        402.0,
+                        265.0
+                    ],
+                    [
+                        402.0,
+                        296.0
+                    ],
+                    [
+                        176.0,
+                        296.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7816506624221802,
+                "coordinate": [
+                    181,
+                    312,
+                    362,
+                    342
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        181.0,
+                        312.0
+                    ],
+                    [
+                        362.0,
+                        312.0
+                    ],
+                    [
+                        362.0,
+                        342.0
+                    ],
+                    [
+                        181.0,
+                        342.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9855719804763794,
+                "coordinate": [
+                    167,
+                    372,
+                    1077,
+                    1519
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        372.0
+                    ],
+                    [
+                        1077.0,
+                        372.0
+                    ],
+                    [
+                        1077.0,
+                        1519.0
+                    ],
+                    [
+                        167.0,
+                        1519.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8049854636192322,
+                "coordinate": [
+                    581,
+                    1542,
+                    662,
+                    1564
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        581.0,
+                        1542.0
+                    ],
+                    [
+                        661.0,
+                        1542.0
+                    ],
+                    [
+                        661.0,
+                        1563.0
+                    ],
+                    [
+                        581.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

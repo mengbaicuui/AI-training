@@ -1,0 +1,790 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 24,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                379,
+                86,
+                754,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 204,
+            "global_group_id": 204,
+            "block_polygon_points": [
+                [
+                    379.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    110.0
+                ],
+                [
+                    379.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "预期信用损失，是指以发生违约的风险为权重的金融工具信用损失的加权平均值。信用损失，是指公司按照原实际利率折现的、根据合同应收的所有合同现金流量与预期收取的所有现金流量之间的差额，即全部现金短缺的现值。其中，对于公司购买或源生的已发生信用减值的金融资产，按照该金融资产经信用调整的实际利率折现。",
+            "block_bbox": [
+                121,
+                146,
+                1023,
+                317
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 205,
+            "global_group_id": 205,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    146.0
+                ],
+                [
+                    1023.0,
+                    146.0
+                ],
+                [
+                    1023.0,
+                    317.0
+                ],
+                [
+                    121.0,
+                    317.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "对于购买或源生的已发生信用减值的金融资产，公司在资产负债表日仅将自初始确认后整个存续期内预期信用损失的累计变动确认为损失准备。",
+            "block_bbox": [
+                122,
+                333,
+                1015,
+                410
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 206,
+            "global_group_id": 206,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    333.0
+                ],
+                [
+                    1015.0,
+                    333.0
+                ],
+                [
+                    1015.0,
+                    410.0
+                ],
+                [
+                    122.0,
+                    410.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "对于租赁应收款、由《企业会计准则第 14 号——收入》规范的交易形成的应收款项及合同资产，公司运用简化计量方法，按照相当于整个存续期内的预期信用损失金额计量损失准备。",
+            "block_bbox": [
+                122,
+                426,
+                1016,
+                550
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 207,
+            "global_group_id": 207,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    426.0
+                ],
+                [
+                    1016.0,
+                    426.0
+                ],
+                [
+                    1016.0,
+                    550.0
+                ],
+                [
+                    122.0,
+                    550.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "除上述计量方法以外的金融资产，公司在每个资产负债表日评估其信用风险自初始确认后是否已经显著增加。如果信用风险自初始确认后已显著增加，公司按照整个存续期内预期信用损失的金额计量损失准备；如果信用风险自初始确认后未显著增加，公司按照该金融工具未来12个月内预期信用损失的金额计量损失准备。",
+            "block_bbox": [
+                121,
+                565,
+                1024,
+                739
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 208,
+            "global_group_id": 208,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    565.0
+                ],
+                [
+                    1024.0,
+                    565.0
+                ],
+                [
+                    1024.0,
+                    739.0
+                ],
+                [
+                    121.0,
+                    739.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司利用可获得的合理且有依据的信息，包括前瞻性信息，通过比较金融工具在资产负债表日发生违约的风险与在初始确认日发生违约的风险，以确定金融工具的信用风险自初始确认后是否已显著增加。",
+            "block_bbox": [
+                121,
+                753,
+                1016,
+                878
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 209,
+            "global_group_id": 209,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    753.0
+                ],
+                [
+                    1016.0,
+                    753.0
+                ],
+                [
+                    1016.0,
+                    878.0
+                ],
+                [
+                    121.0,
+                    878.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "于资产负债表日，若公司判断金融工具只具有较低的信用风险，则假定该金融工具的信用风险自初始确认后并未显著增加。",
+            "block_bbox": [
+                123,
+                893,
+                1015,
+                971
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 210,
+            "global_group_id": 210,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    893.0
+                ],
+                [
+                    1015.0,
+                    893.0
+                ],
+                [
+                    1015.0,
+                    971.0
+                ],
+                [
+                    123.0,
+                    971.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司以单项金融工具或金融工具组合为基础评估预期信用风险和计量预期信用损失。当以金融工具组合为基础时，公司以共同风险特征为依据，将金融工具划分为不同组合。",
+            "block_bbox": [
+                121,
+                987,
+                1016,
+                1111
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 211,
+            "global_group_id": 211,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    987.0
+                ],
+                [
+                    1016.0,
+                    987.0
+                ],
+                [
+                    1016.0,
+                    1111.0
+                ],
+                [
+                    121.0,
+                    1111.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司在每个资产负债表日重新计量预期信用损失，由此形成的损失准备的增加或转回金额，作为减值损失或利得计入当期损益。对于以摊余成本计量的金融资产，损失准备抵减该金融资产在资产负债表中列示的账面价值；对于以公允价值计量且其变动计入其他综合收益的债权投资，公司在其他综合收益中确认其损失准备，不抵减该金融资产的账面价值。",
+            "block_bbox": [
+                121,
+                1127,
+                1017,
+                1343
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 212,
+            "global_group_id": 212,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1127.0
+                ],
+                [
+                    1017.0,
+                    1127.0
+                ],
+                [
+                    1017.0,
+                    1343.0
+                ],
+                [
+                    121.0,
+                    1343.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "6. 金融资产和金融负债的抵销",
+            "block_bbox": [
+                169,
+                1359,
+                489,
+                1389
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9,
+            "global_block_id": 213,
+            "global_group_id": 213,
+            "block_polygon_points": [
+                [
+                    169.0,
+                    1359.0
+                ],
+                [
+                    489.0,
+                    1359.0
+                ],
+                [
+                    489.0,
+                    1389.0
+                ],
+                [
+                    169.0,
+                    1389.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "金融资产和金融负债在资产负债表内分别列示，不相互抵销。但同时满足下列条件的，公司以相互抵销后的净额在资产负债表内列示：(1)公司具有抵销已确认金额的法定权利，且该种法定权利是当前可执行的；(2)公司计划以净额结算，或同时变现该",
+            "block_bbox": [
+                121,
+                1407,
+                1017,
+                1531
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10,
+            "global_block_id": 214,
+            "global_group_id": 214,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1407.0
+                ],
+                [
+                    1017.0,
+                    1407.0
+                ],
+                [
+                    1017.0,
+                    1531.0
+                ],
+                [
+                    121.0,
+                    1531.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "175 / 306",
+            "block_bbox": [
+                530,
+                1542,
+                611,
+                1564
+            ],
+            "block_id": 11,
+            "block_order": null,
+            "group_id": 11,
+            "global_block_id": 215,
+            "global_group_id": 215,
+            "block_polygon_points": [
+                [
+                    530.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1563.0
+                ],
+                [
+                    530.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8646805882453918,
+                "coordinate": [
+                    379,
+                    86,
+                    754,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        379.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        110.0
+                    ],
+                    [
+                        379.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9490312933921814,
+                "coordinate": [
+                    121,
+                    146,
+                    1023,
+                    317
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        121.0,
+                        146.0
+                    ],
+                    [
+                        1023.0,
+                        146.0
+                    ],
+                    [
+                        1023.0,
+                        317.0
+                    ],
+                    [
+                        121.0,
+                        317.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.916037380695343,
+                "coordinate": [
+                    122,
+                    333,
+                    1015,
+                    410
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        122.0,
+                        333.0
+                    ],
+                    [
+                        1015.0,
+                        333.0
+                    ],
+                    [
+                        1015.0,
+                        410.0
+                    ],
+                    [
+                        122.0,
+                        410.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9418801665306091,
+                "coordinate": [
+                    122,
+                    426,
+                    1016,
+                    550
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        122.0,
+                        426.0
+                    ],
+                    [
+                        1016.0,
+                        426.0
+                    ],
+                    [
+                        1016.0,
+                        550.0
+                    ],
+                    [
+                        122.0,
+                        550.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9495493769645691,
+                "coordinate": [
+                    121,
+                    565,
+                    1024,
+                    739
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        121.0,
+                        565.0
+                    ],
+                    [
+                        1024.0,
+                        565.0
+                    ],
+                    [
+                        1024.0,
+                        739.0
+                    ],
+                    [
+                        121.0,
+                        739.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9437465071678162,
+                "coordinate": [
+                    121,
+                    753,
+                    1016,
+                    878
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        121.0,
+                        753.0
+                    ],
+                    [
+                        1016.0,
+                        753.0
+                    ],
+                    [
+                        1016.0,
+                        878.0
+                    ],
+                    [
+                        121.0,
+                        878.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9224751591682434,
+                "coordinate": [
+                    123,
+                    893,
+                    1015,
+                    971
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        123.0,
+                        893.0
+                    ],
+                    [
+                        1015.0,
+                        893.0
+                    ],
+                    [
+                        1015.0,
+                        971.0
+                    ],
+                    [
+                        123.0,
+                        971.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9395617842674255,
+                "coordinate": [
+                    121,
+                    987,
+                    1016,
+                    1111
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        121.0,
+                        987.0
+                    ],
+                    [
+                        1016.0,
+                        987.0
+                    ],
+                    [
+                        1016.0,
+                        1111.0
+                    ],
+                    [
+                        121.0,
+                        1111.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9561840295791626,
+                "coordinate": [
+                    121,
+                    1127,
+                    1017,
+                    1343
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1127.0
+                    ],
+                    [
+                        1017.0,
+                        1127.0
+                    ],
+                    [
+                        1017.0,
+                        1343.0
+                    ],
+                    [
+                        121.0,
+                        1343.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8147977590560913,
+                "coordinate": [
+                    169,
+                    1359,
+                    489,
+                    1389
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        169.0,
+                        1359.0
+                    ],
+                    [
+                        489.0,
+                        1359.0
+                    ],
+                    [
+                        489.0,
+                        1389.0
+                    ],
+                    [
+                        169.0,
+                        1389.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9369106292724609,
+                "coordinate": [
+                    121,
+                    1407,
+                    1017,
+                    1531
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1407.0
+                    ],
+                    [
+                        1017.0,
+                        1407.0
+                    ],
+                    [
+                        1017.0,
+                        1531.0
+                    ],
+                    [
+                        121.0,
+                        1531.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7266852855682373,
+                "coordinate": [
+                    530,
+                    1542,
+                    611,
+                    1564
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        530.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1563.0
+                    ],
+                    [
+                        530.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

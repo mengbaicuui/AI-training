@@ -1,0 +1,1042 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 45,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                380,
+                87,
+                754,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 544,
+            "global_group_id": 544,
+            "block_polygon_points": [
+                [
+                    380.0,
+                    87.0
+                ],
+                [
+                    754.0,
+                    87.0
+                ],
+                [
+                    754.0,
+                    109.0
+                ],
+                [
+                    380.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "",
+            "block_bbox": [
+                114,
+                142,
+                1023,
+                320
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1,
+            "global_block_id": 545,
+            "global_group_id": 542,
+            "block_polygon_points": [
+                [
+                    114.0,
+                    142.0
+                ],
+                [
+                    1023.0,
+                    142.0
+                ],
+                [
+                    1023.0,
+                    320.0
+                ],
+                [
+                    114.0,
+                    320.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "2、税收优惠",
+            "block_bbox": [
+                122,
+                361,
+                271,
+                390
+            ],
+            "block_id": 2,
+            "block_order": 1,
+            "group_id": 2,
+            "global_block_id": 546,
+            "global_group_id": 546,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    361.0
+                ],
+                [
+                    271.0,
+                    361.0
+                ],
+                [
+                    271.0,
+                    390.0
+                ],
+                [
+                    122.0,
+                    390.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                128,
+                408,
+                324,
+                435
+            ],
+            "block_id": 3,
+            "block_order": 2,
+            "group_id": 3,
+            "global_block_id": 547,
+            "global_group_id": 547,
+            "block_polygon_points": [
+                [
+                    128.0,
+                    408.0
+                ],
+                [
+                    324.0,
+                    408.0
+                ],
+                [
+                    324.0,
+                    435.0
+                ],
+                [
+                    128.0,
+                    435.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1. 增值税",
+            "block_bbox": [
+                173,
+                440,
+                273,
+                468
+            ],
+            "block_id": 4,
+            "block_order": 3,
+            "group_id": 4,
+            "global_block_id": 548,
+            "global_group_id": 548,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    440.0
+                ],
+                [
+                    273.0,
+                    440.0
+                ],
+                [
+                    273.0,
+                    468.0
+                ],
+                [
+                    173.0,
+                    468.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(1)软件企业税收优惠",
+            "block_bbox": [
+                172,
+                485,
+                401,
+                516
+            ],
+            "block_id": 5,
+            "block_order": 4,
+            "group_id": 5,
+            "global_block_id": 549,
+            "global_group_id": 549,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    485.0
+                ],
+                [
+                    401.0,
+                    485.0
+                ],
+                [
+                    401.0,
+                    516.0
+                ],
+                [
+                    172.0,
+                    516.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "根据《关于软件产品增值税政策的通知》（财税〔2011〕100号）及《关于调整增值税税率的通知》（财税〔2018〕32号）文件规定，子公司道通合盛销售自行开发的软件产品，按规定税率征收增值税后，对增值税实际税负超过3%的部分，享受即征即退政策。",
+            "block_bbox": [
+                121,
+                532,
+                1016,
+                703
+            ],
+            "block_id": 6,
+            "block_order": 5,
+            "group_id": 6,
+            "global_block_id": 550,
+            "global_group_id": 550,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    532.0
+                ],
+                [
+                    1016.0,
+                    532.0
+                ],
+                [
+                    1016.0,
+                    703.0
+                ],
+                [
+                    121.0,
+                    703.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "(2)根据《关于全面推开营业税改征增值税试点的通知》（财税〔2016〕36号）文件规定，子公司湖南道通和西安道通技术开发服务收入享受增值税免税的优惠政策。",
+            "block_bbox": [
+                122,
+                718,
+                1024,
+                797
+            ],
+            "block_id": 7,
+            "block_order": 6,
+            "group_id": 7,
+            "global_block_id": 551,
+            "global_group_id": 551,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    718.0
+                ],
+                [
+                    1024.0,
+                    718.0
+                ],
+                [
+                    1024.0,
+                    797.0
+                ],
+                [
+                    122.0,
+                    797.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "2. 企业所得税",
+            "block_bbox": [
+                169,
+                813,
+                321,
+                842
+            ],
+            "block_id": 8,
+            "block_order": 7,
+            "group_id": 8,
+            "global_block_id": 552,
+            "global_group_id": 552,
+            "block_polygon_points": [
+                [
+                    169.0,
+                    813.0
+                ],
+                [
+                    321.0,
+                    813.0
+                ],
+                [
+                    321.0,
+                    842.0
+                ],
+                [
+                    169.0,
+                    842.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(1)高新技术企业税收优惠",
+            "block_bbox": [
+                170,
+                858,
+                450,
+                890
+            ],
+            "block_id": 9,
+            "block_order": 8,
+            "group_id": 9,
+            "global_block_id": 553,
+            "global_group_id": 553,
+            "block_polygon_points": [
+                [
+                    170.0,
+                    858.0
+                ],
+                [
+                    450.0,
+                    858.0
+                ],
+                [
+                    450.0,
+                    890.0
+                ],
+                [
+                    170.0,
+                    890.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "根据高新技术企业认定管理的有关办法，本公司于 2023 年通过高新技术企业认定，享受企业所得税优惠政策，2023 年度至 2025 年度按 15% 的税率计缴企业所得税。",
+            "block_bbox": [
+                121,
+                905,
+                1012,
+                1029
+            ],
+            "block_id": 10,
+            "block_order": 9,
+            "group_id": 10,
+            "global_block_id": 554,
+            "global_group_id": 554,
+            "block_polygon_points": [
+                [
+                    119.91767120361328,
+                    907.5715942382812
+                ],
+                [
+                    1009.9176635742188,
+                    899.5715942382812
+                ],
+                [
+                    1011.0001831054688,
+                    1020.0000610351562
+                ],
+                [
+                    121.00018310546875,
+                    1028.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "子公司道通合创于 2022 年通过高新技术企业认定，享受企业所得税优惠政策，2022 年度至 2024 年度按 15% 的税率计缴企业所得税。",
+            "block_bbox": [
+                121,
+                1045,
+                999,
+                1123
+            ],
+            "block_id": 11,
+            "block_order": 10,
+            "group_id": 11,
+            "global_block_id": 555,
+            "global_group_id": 555,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1045.0
+                ],
+                [
+                    999.0,
+                    1045.0
+                ],
+                [
+                    999.0,
+                    1123.0
+                ],
+                [
+                    121.0,
+                    1123.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(2)软件企业税收优惠",
+            "block_bbox": [
+                171,
+                1139,
+                403,
+                1170
+            ],
+            "block_id": 12,
+            "block_order": 11,
+            "group_id": 12,
+            "global_block_id": 556,
+            "global_group_id": 556,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    1139.0
+                ],
+                [
+                    403.0,
+                    1139.0
+                ],
+                [
+                    403.0,
+                    1170.0
+                ],
+                [
+                    171.0,
+                    1170.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "根据《关于促进集成电路产业和软件产业高质量发展企业所得税政策的公告》（财政部税务总局发展改革委工业和信息化部公告2020年第45号）文件规定，国家鼓励的重点软件企业享受自获利年度起,第一年至第五年免征企业所得税,接续年度减按10%的税率征收企业所得税的税收优惠政策。子公司道通合盛2024年已通过国家鼓励的重点软件企业认定，故2024年按10%税率计缴企业所得税。",
+            "block_bbox": [
+                121,
+                1186,
+                1016,
+                1405
+            ],
+            "block_id": 13,
+            "block_order": 12,
+            "group_id": 13,
+            "global_block_id": 557,
+            "global_group_id": 557,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1186.0
+                ],
+                [
+                    1016.0,
+                    1186.0
+                ],
+                [
+                    1016.0,
+                    1405.0
+                ],
+                [
+                    121.0,
+                    1405.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(3)小微企业税收优惠",
+            "block_bbox": [
+                171,
+                1419,
+                402,
+                1450
+            ],
+            "block_id": 14,
+            "block_order": 13,
+            "group_id": 14,
+            "global_block_id": 558,
+            "global_group_id": 558,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    1419.0
+                ],
+                [
+                    402.0,
+                    1419.0
+                ],
+                [
+                    402.0,
+                    1450.0
+                ],
+                [
+                    171.0,
+                    1450.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "196 / 306",
+            "block_bbox": [
+                529,
+                1542,
+                611,
+                1564
+            ],
+            "block_id": 15,
+            "block_order": null,
+            "group_id": 15,
+            "global_block_id": 559,
+            "global_group_id": 559,
+            "block_polygon_points": [
+                [
+                    529.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1563.0
+                ],
+                [
+                    529.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8760612607002258,
+                "coordinate": [
+                    380,
+                    87,
+                    754,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        380.0,
+                        87.0
+                    ],
+                    [
+                        754.0,
+                        87.0
+                    ],
+                    [
+                        754.0,
+                        109.0
+                    ],
+                    [
+                        380.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.962914764881134,
+                "coordinate": [
+                    114,
+                    142,
+                    1023,
+                    320
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        114.0,
+                        142.0
+                    ],
+                    [
+                        1023.0,
+                        142.0
+                    ],
+                    [
+                        1023.0,
+                        320.0
+                    ],
+                    [
+                        114.0,
+                        320.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8596283793449402,
+                "coordinate": [
+                    122,
+                    361,
+                    271,
+                    390
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        122.0,
+                        361.0
+                    ],
+                    [
+                        271.0,
+                        361.0
+                    ],
+                    [
+                        271.0,
+                        390.0
+                    ],
+                    [
+                        122.0,
+                        390.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8247122764587402,
+                "coordinate": [
+                    128,
+                    408,
+                    324,
+                    435
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        128.0,
+                        408.0
+                    ],
+                    [
+                        324.0,
+                        408.0
+                    ],
+                    [
+                        324.0,
+                        435.0
+                    ],
+                    [
+                        128.0,
+                        435.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7693382501602173,
+                "coordinate": [
+                    173,
+                    440,
+                    273,
+                    468
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        173.0,
+                        440.0
+                    ],
+                    [
+                        273.0,
+                        440.0
+                    ],
+                    [
+                        273.0,
+                        468.0
+                    ],
+                    [
+                        173.0,
+                        468.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8407610058784485,
+                "coordinate": [
+                    172,
+                    485,
+                    401,
+                    516
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        172.0,
+                        485.0
+                    ],
+                    [
+                        401.0,
+                        485.0
+                    ],
+                    [
+                        401.0,
+                        516.0
+                    ],
+                    [
+                        172.0,
+                        516.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9552524089813232,
+                "coordinate": [
+                    121,
+                    532,
+                    1016,
+                    703
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        121.0,
+                        532.0
+                    ],
+                    [
+                        1016.0,
+                        532.0
+                    ],
+                    [
+                        1016.0,
+                        703.0
+                    ],
+                    [
+                        121.0,
+                        703.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9334524869918823,
+                "coordinate": [
+                    122,
+                    718,
+                    1024,
+                    797
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        122.0,
+                        718.0
+                    ],
+                    [
+                        1024.0,
+                        718.0
+                    ],
+                    [
+                        1024.0,
+                        797.0
+                    ],
+                    [
+                        122.0,
+                        797.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8262315988540649,
+                "coordinate": [
+                    169,
+                    813,
+                    321,
+                    842
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        169.0,
+                        813.0
+                    ],
+                    [
+                        321.0,
+                        813.0
+                    ],
+                    [
+                        321.0,
+                        842.0
+                    ],
+                    [
+                        169.0,
+                        842.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8356413245201111,
+                "coordinate": [
+                    170,
+                    858,
+                    450,
+                    890
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        170.0,
+                        858.0
+                    ],
+                    [
+                        450.0,
+                        858.0
+                    ],
+                    [
+                        450.0,
+                        890.0
+                    ],
+                    [
+                        170.0,
+                        890.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9464312195777893,
+                "coordinate": [
+                    121,
+                    905,
+                    1012,
+                    1029
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        119.91767120361328,
+                        907.5715942382812
+                    ],
+                    [
+                        1009.9176635742188,
+                        899.5715942382812
+                    ],
+                    [
+                        1011.0001831054688,
+                        1020.0000610351562
+                    ],
+                    [
+                        121.00018310546875,
+                        1028.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9327794909477234,
+                "coordinate": [
+                    121,
+                    1045,
+                    999,
+                    1123
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1045.0
+                    ],
+                    [
+                        999.0,
+                        1045.0
+                    ],
+                    [
+                        999.0,
+                        1123.0
+                    ],
+                    [
+                        121.0,
+                        1123.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8617469668388367,
+                "coordinate": [
+                    171,
+                    1139,
+                    403,
+                    1170
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        171.0,
+                        1139.0
+                    ],
+                    [
+                        403.0,
+                        1139.0
+                    ],
+                    [
+                        403.0,
+                        1170.0
+                    ],
+                    [
+                        171.0,
+                        1170.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9646124243736267,
+                "coordinate": [
+                    121,
+                    1186,
+                    1016,
+                    1405
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1186.0
+                    ],
+                    [
+                        1016.0,
+                        1186.0
+                    ],
+                    [
+                        1016.0,
+                        1405.0
+                    ],
+                    [
+                        121.0,
+                        1405.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.847172737121582,
+                "coordinate": [
+                    171,
+                    1419,
+                    402,
+                    1450
+                ],
+                "order": 13,
+                "polygon_points": [
+                    [
+                        171.0,
+                        1419.0
+                    ],
+                    [
+                        402.0,
+                        1419.0
+                    ],
+                    [
+                        402.0,
+                        1450.0
+                    ],
+                    [
+                        171.0,
+                        1450.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.765704870223999,
+                "coordinate": [
+                    529,
+                    1542,
+                    611,
+                    1564
+                ],
+                "order": 14,
+                "polygon_points": [
+                    [
+                        529.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1563.0
+                    ],
+                    [
+                        529.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

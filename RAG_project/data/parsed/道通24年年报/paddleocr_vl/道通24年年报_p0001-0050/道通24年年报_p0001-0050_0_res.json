@@ -1,0 +1,366 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0001-0050.pdf",
+    "page_index": 0,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header_image",
+            "block_content": "",
+            "block_bbox": [
+                721,
+                81,
+                1106,
+                194
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 0,
+            "global_group_id": 0,
+            "block_polygon_points": [
+                [
+                    721,
+                    81
+                ],
+                [
+                    721,
+                    193
+                ],
+                [
+                    1100,
+                    193
+                ],
+                [
+                    1105,
+                    176
+                ],
+                [
+                    1105,
+                    160
+                ],
+                [
+                    1105,
+                    81
+                ]
+            ]
+        },
+        {
+            "block_label": "doc_title",
+            "block_content": "2024 年度报告",
+            "block_bbox": [
+                92,
+                304,
+                901,
+                497
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 1,
+            "global_group_id": 1,
+            "block_polygon_points": [
+                [
+                    92.0,
+                    304.0
+                ],
+                [
+                    901.0,
+                    304.0
+                ],
+                [
+                    901.0,
+                    497.0
+                ],
+                [
+                    92.0,
+                    497.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "深圳市道通科技股份有限公司",
+            "block_bbox": [
+                93,
+                511,
+                539,
+                547
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 2,
+            "global_group_id": 2,
+            "block_polygon_points": [
+                [
+                    93.0,
+                    511.0
+                ],
+                [
+                    539.0,
+                    511.0
+                ],
+                [
+                    539.0,
+                    547.0
+                ],
+                [
+                    93.0,
+                    547.0
+                ]
+            ]
+        },
+        {
+            "block_label": "image",
+            "block_content": "",
+            "block_bbox": [
+                4,
+                608,
+                1191,
+                1678
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3,
+            "global_block_id": 3,
+            "global_group_id": 3,
+            "block_polygon_points": [
+                [
+                    4.0,
+                    608.0
+                ],
+                [
+                    1195.0,
+                    608.0
+                ],
+                [
+                    1195.0,
+                    1678.0
+                ],
+                [
+                    4.0,
+                    1678.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 13,
+                "label": "header_image",
+                "score": 0.334104984998703,
+                "coordinate": [
+                    724,
+                    81,
+                    1104,
+                    138
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        724.0,
+                        81.0
+                    ],
+                    [
+                        1104.0,
+                        81.0
+                    ],
+                    [
+                        1104.0,
+                        138.0
+                    ],
+                    [
+                        724.0,
+                        138.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 13,
+                "label": "header_image",
+                "score": 0.5103642344474792,
+                "coordinate": [
+                    721,
+                    81,
+                    1106,
+                    194
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        721,
+                        81
+                    ],
+                    [
+                        721,
+                        193
+                    ],
+                    [
+                        1100,
+                        193
+                    ],
+                    [
+                        1105,
+                        176
+                    ],
+                    [
+                        1105,
+                        160
+                    ],
+                    [
+                        1105,
+                        81
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3073793351650238,
+                "coordinate": [
+                    777,
+                    154,
+                    1050,
+                    193
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        777,
+                        178
+                    ],
+                    [
+                        777,
+                        192
+                    ],
+                    [
+                        1049,
+                        192
+                    ],
+                    [
+                        1049,
+                        154
+                    ],
+                    [
+                        783,
+                        154
+                    ]
+                ]
+            },
+            {
+                "cls_id": 6,
+                "label": "doc_title",
+                "score": 0.38115230202674866,
+                "coordinate": [
+                    92,
+                    304,
+                    901,
+                    497
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        92.0,
+                        304.0
+                    ],
+                    [
+                        901.0,
+                        304.0
+                    ],
+                    [
+                        901.0,
+                        497.0
+                    ],
+                    [
+                        92.0,
+                        497.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7116908431053162,
+                "coordinate": [
+                    93,
+                    511,
+                    539,
+                    547
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        93.0,
+                        511.0
+                    ],
+                    [
+                        539.0,
+                        511.0
+                    ],
+                    [
+                        539.0,
+                        547.0
+                    ],
+                    [
+                        93.0,
+                        547.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 14,
+                "label": "image",
+                "score": 0.8772751092910767,
+                "coordinate": [
+                    4,
+                    608,
+                    1191,
+                    1678
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        4.0,
+                        608.0
+                    ],
+                    [
+                        1195.0,
+                        608.0
+                    ],
+                    [
+                        1195.0,
+                        1678.0
+                    ],
+                    [
+                        4.0,
+                        1678.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,853 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0001-0050.pdf",
+    "page_index": 16,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                86,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 183,
+            "global_group_id": 183,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    431.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "产品解决方案包含“直流超快充、交流家商一体”等系列充电桩平台，以及智能运营、智能运维、充电支付等综合云服务平台。公司凭借深厚的电力电子技术积累和AI技术创新突破，精心打造系列“场站 Agents”，构筑“5i智能”差异化竞争优势，实现“iSafe 三层防护智能安全”、“iCharge 即插即充智能体验”、“iManage 自优自愈智能运维”、“iRevenue 池化调度智能增收”和“iEMS 叠光叠储智能协同”，建立起更智能、更易用、更可靠、更绿色的车桩云生态系统。",
+            "block_bbox": [
+                172,
+                155,
+                1066,
+                419
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 184,
+            "global_group_id": 184,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    155.0
+                ],
+                [
+                    1066.0,
+                    155.0
+                ],
+                [
+                    1066.0,
+                    419.0
+                ],
+                [
+                    172.0,
+                    419.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "基于公司自主研发的数智能源行业大模型，公司分别在用户端和客户端分别开发了APP语音助手、CSMS（充电桩管理平台）智能助手。",
+            "block_bbox": [
+                175,
+                435,
+                1067,
+                510
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 185,
+            "global_group_id": 185,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    435.0
+                ],
+                [
+                    1067.0,
+                    435.0
+                ],
+                [
+                    1067.0,
+                    510.0
+                ],
+                [
+                    175.0,
+                    510.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "● 在用户端，公司成功发布行业内首个充电 APP 智能语音助手——Max，可基于用户行为习惯提供个性化的智能充电操作，使用户能够通过自然语言、语音指令完成充电启停、数据查询、问题反馈等 APP90% 以上的操作，为用户提供了更便捷、更智能化的操作体验。",
+            "block_bbox": [
+                215,
+                528,
+                1067,
+                698
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 186,
+            "global_group_id": 186,
+            "block_polygon_points": [
+                [
+                    215.0,
+                    528.0
+                ],
+                [
+                    1067.0,
+                    528.0
+                ],
+                [
+                    1067.0,
+                    698.0
+                ],
+                [
+                    215.0,
+                    698.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "● 在客户端，公司推出了基于行业大模型的 CSMS 智能化助手，为充电站运营者提供更高效的管理工具。在智能助手引导下，通过自然语言对话，5 分钟即可完成充电站的线上管理系统搭建，并具备智能分析、智能报告、智能问答等功能，该助手可以利用 AI 算法，对充电站的能耗数据、设备运行状况、用户充电需求等进行主动分析汇报，优化充电站运营调度，提升整体效率。",
+            "block_bbox": [
+                215,
+                715,
+                1067,
+                933
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 187,
+            "global_group_id": 187,
+            "block_polygon_points": [
+                [
+                    215.0,
+                    715.0
+                ],
+                [
+                    1067.0,
+                    715.0
+                ],
+                [
+                    1067.0,
+                    933.0
+                ],
+                [
+                    215.0,
+                    933.0
+                ]
+            ]
+        },
+        {
+            "block_label": "image",
+            "block_content": "",
+            "block_bbox": [
+                194,
+                947,
+                506,
+                1189
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 188,
+            "global_group_id": 188,
+            "block_polygon_points": [
+                [
+                    194.0,
+                    947.0
+                ],
+                [
+                    506.0,
+                    947.0
+                ],
+                [
+                    506.0,
+                    1189.0
+                ],
+                [
+                    194.0,
+                    1189.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "充电 APP 智能语音助手",
+            "block_bbox": [
+                248,
+                1204,
+                444,
+                1225
+            ],
+            "block_id": 6,
+            "block_order": null,
+            "group_id": 6,
+            "global_block_id": 189,
+            "global_group_id": 189,
+            "block_polygon_points": [
+                [
+                    248.0,
+                    1204.0
+                ],
+                [
+                    443.0,
+                    1204.0
+                ],
+                [
+                    443.0,
+                    1224.0
+                ],
+                [
+                    248.0,
+                    1224.0
+                ]
+            ]
+        },
+        {
+            "block_label": "image",
+            "block_content": "",
+            "block_bbox": [
+                543,
+                945,
+                1025,
+                1185
+            ],
+            "block_id": 7,
+            "block_order": null,
+            "group_id": 7,
+            "global_block_id": 190,
+            "global_group_id": 190,
+            "block_polygon_points": [
+                [
+                    543.0,
+                    945.0
+                ],
+                [
+                    1025.0,
+                    945.0
+                ],
+                [
+                    1025.0,
+                    1185.0
+                ],
+                [
+                    543.0,
+                    1185.0
+                ]
+            ]
+        },
+        {
+            "block_label": "figure_title",
+            "block_content": "CSMS 助手智能分析操作页面",
+            "block_bbox": [
+                666,
+                1204,
+                908,
+                1225
+            ],
+            "block_id": 8,
+            "block_order": null,
+            "group_id": 8,
+            "global_block_id": 191,
+            "global_group_id": 191,
+            "block_polygon_points": [
+                [
+                    666.0,
+                    1204.0
+                ],
+                [
+                    907.0,
+                    1204.0
+                ],
+                [
+                    907.0,
+                    1224.0
+                ],
+                [
+                    666.0,
+                    1224.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "（2）垂域大模型赋能，构建一站式光储充能源管理解决方案",
+            "block_bbox": [
+                234,
+                1241,
+                873,
+                1269
+            ],
+            "block_id": 9,
+            "block_order": 5,
+            "group_id": 9,
+            "global_block_id": 192,
+            "global_group_id": 192,
+            "block_polygon_points": [
+                [
+                    234.0,
+                    1241.0
+                ],
+                [
+                    873.0,
+                    1241.0
+                ],
+                [
+                    873.0,
+                    1269.0
+                ],
+                [
+                    234.0,
+                    1269.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "随着新能源车充电需求的日益增长，充电场站正面临电力供应不足，电网扩容成本高，能源运营成本高，充电服务能力弱、充电利用率低等痛点。",
+            "block_bbox": [
+                175,
+                1288,
+                1066,
+                1364
+            ],
+            "block_id": 10,
+            "block_order": 6,
+            "group_id": 10,
+            "global_block_id": 193,
+            "global_group_id": 193,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    1288.0
+                ],
+                [
+                    1066.0,
+                    1288.0
+                ],
+                [
+                    1066.0,
+                    1364.0
+                ],
+                [
+                    175.0,
+                    1364.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司打造极致安全、极致经济、极致高效的一站式光储充能源管理解决方案。以充电为切入点，以智能化能源管理为核心，融合“光、储、充、边、云”，基于发电和负载预测，结合能源优化、智能充电、智能调度和电池检测等算法，实现充电侧需",
+            "block_bbox": [
+                175,
+                1381,
+                1068,
+                1504
+            ],
+            "block_id": 11,
+            "block_order": 7,
+            "group_id": 11,
+            "global_block_id": 194,
+            "global_group_id": 194,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    1381.0
+                ],
+                [
+                    1068.0,
+                    1381.0
+                ],
+                [
+                    1068.0,
+                    1504.0
+                ],
+                [
+                    175.0,
+                    1504.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "17 / 306",
+            "block_bbox": [
+                586,
+                1542,
+                658,
+                1564
+            ],
+            "block_id": 12,
+            "block_order": null,
+            "group_id": 12,
+            "global_block_id": 195,
+            "global_group_id": 195,
+            "block_polygon_points": [
+                [
+                    586.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1563.0
+                ],
+                [
+                    586.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8705023527145386,
+                "coordinate": [
+                    431,
+                    86,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        431.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9631630778312683,
+                "coordinate": [
+                    172,
+                    155,
+                    1066,
+                    419
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        172.0,
+                        155.0
+                    ],
+                    [
+                        1066.0,
+                        155.0
+                    ],
+                    [
+                        1066.0,
+                        419.0
+                    ],
+                    [
+                        172.0,
+                        419.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9296156167984009,
+                "coordinate": [
+                    175,
+                    435,
+                    1067,
+                    510
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        175.0,
+                        435.0
+                    ],
+                    [
+                        1067.0,
+                        435.0
+                    ],
+                    [
+                        1067.0,
+                        510.0
+                    ],
+                    [
+                        175.0,
+                        510.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9538846015930176,
+                "coordinate": [
+                    215,
+                    528,
+                    1067,
+                    698
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        215.0,
+                        528.0
+                    ],
+                    [
+                        1067.0,
+                        528.0
+                    ],
+                    [
+                        1067.0,
+                        698.0
+                    ],
+                    [
+                        215.0,
+                        698.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9569987654685974,
+                "coordinate": [
+                    215,
+                    715,
+                    1067,
+                    933
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        215.0,
+                        715.0
+                    ],
+                    [
+                        1067.0,
+                        715.0
+                    ],
+                    [
+                        1067.0,
+                        933.0
+                    ],
+                    [
+                        215.0,
+                        933.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 14,
+                "label": "image",
+                "score": 0.8916699290275574,
+                "coordinate": [
+                    194,
+                    947,
+                    506,
+                    1189
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        194.0,
+                        947.0
+                    ],
+                    [
+                        506.0,
+                        947.0
+                    ],
+                    [
+                        506.0,
+                        1189.0
+                    ],
+                    [
+                        194.0,
+                        1189.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.5194178819656372,
+                "coordinate": [
+                    248,
+                    1204,
+                    444,
+                    1225
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        248.0,
+                        1204.0
+                    ],
+                    [
+                        443.0,
+                        1204.0
+                    ],
+                    [
+                        443.0,
+                        1224.0
+                    ],
+                    [
+                        248.0,
+                        1224.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 14,
+                "label": "image",
+                "score": 0.9475719332695007,
+                "coordinate": [
+                    543,
+                    945,
+                    1025,
+                    1185
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        543.0,
+                        945.0
+                    ],
+                    [
+                        1025.0,
+                        945.0
+                    ],
+                    [
+                        1025.0,
+                        1185.0
+                    ],
+                    [
+                        543.0,
+                        1185.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 7,
+                "label": "figure_title",
+                "score": 0.6188587546348572,
+                "coordinate": [
+                    666,
+                    1204,
+                    908,
+                    1225
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        666.0,
+                        1204.0
+                    ],
+                    [
+                        907.0,
+                        1204.0
+                    ],
+                    [
+                        907.0,
+                        1224.0
+                    ],
+                    [
+                        666.0,
+                        1224.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8417449593544006,
+                "coordinate": [
+                    234,
+                    1241,
+                    873,
+                    1269
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        234.0,
+                        1241.0
+                    ],
+                    [
+                        873.0,
+                        1241.0
+                    ],
+                    [
+                        873.0,
+                        1269.0
+                    ],
+                    [
+                        234.0,
+                        1269.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9289449453353882,
+                "coordinate": [
+                    175,
+                    1288,
+                    1066,
+                    1364
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        175.0,
+                        1288.0
+                    ],
+                    [
+                        1066.0,
+                        1288.0
+                    ],
+                    [
+                        1066.0,
+                        1364.0
+                    ],
+                    [
+                        175.0,
+                        1364.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9495101571083069,
+                "coordinate": [
+                    175,
+                    1381,
+                    1068,
+                    1504
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        175.0,
+                        1381.0
+                    ],
+                    [
+                        1068.0,
+                        1381.0
+                    ],
+                    [
+                        1068.0,
+                        1504.0
+                    ],
+                    [
+                        175.0,
+                        1504.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7941343784332275,
+                "coordinate": [
+                    586,
+                    1542,
+                    658,
+                    1564
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        586.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1563.0
+                    ],
+                    [
+                        586.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

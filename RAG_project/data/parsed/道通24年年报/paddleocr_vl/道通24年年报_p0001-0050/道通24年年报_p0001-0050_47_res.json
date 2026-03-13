@@ -1,0 +1,1118 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0001-0050.pdf",
+    "page_index": 47,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                430,
+                86,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 537,
+            "global_group_id": 537,
+            "block_polygon_points": [
+                [
+                    430.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    430.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司高度重视并持续强化人才队伍建设，致力于打造“极致效率、极致追求”的卓越组织，利用 AI 技术赋能组织数智化变革，全面优化研发、营销服、供应链、IT 及职能等全业务链条。",
+            "block_bbox": [
+                174,
+                154,
+                1067,
+                278
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 538,
+            "global_group_id": 538,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    154.0
+                ],
+                [
+                    1067.0,
+                    154.0
+                ],
+                [
+                    1067.0,
+                    278.0
+                ],
+                [
+                    174.0,
+                    278.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司全面升级管理者角色，建立各级合伙人打造机制，升级领导力变革与发展。完善合伙人角色与画像，提升选人决策精准性，提升系统思考、创新破局、带领团队打胜仗的能力，发挥合伙人“火车头”作用；建立激励分享机制，最大限度激发合伙人动力；同时，优化选育用留全链路机制，建立科学的领导力评估和发展体系，完善职业发展通道，持续强化管理团队的创新意识、文化张力和团队协作能力，为公司发展注入强劲驱动力。",
+            "block_bbox": [
+                172,
+                294,
+                1068,
+                559
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 539,
+            "global_group_id": 539,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    294.0
+                ],
+                [
+                    1068.0,
+                    294.0
+                ],
+                [
+                    1068.0,
+                    559.0
+                ],
+                [
+                    172.0,
+                    559.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "在激励体系方面，公司不断丰富激励工具，实施了长期激励、项目中短期激励等多元化措施，确保激励精准触达团队核心需求。通过事业合伙人计划、技术/项目特别突破奖励等创新策略，进一步激发了员工的积极性和创造力，显著提升了团队士气和工作动能，形成了“个人与公司共创价值、共享收益”的良性循环。",
+            "block_bbox": [
+                173,
+                574,
+                1068,
+                745
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 540,
+            "global_group_id": 540,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    574.0
+                ],
+                [
+                    1068.0,
+                    574.0
+                ],
+                [
+                    1068.0,
+                    745.0
+                ],
+                [
+                    173.0,
+                    745.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司建立了完善的 IPD 研发管理体系和质量安全管理机制，构建了贯穿研发、生产、销售、服务的全价值链支撑体系，内外部运营效率显著优化，进一步巩固了公司在全球市场的竞争力。",
+            "block_bbox": [
+                172,
+                761,
+                1066,
+                885
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 541,
+            "global_group_id": 541,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    761.0
+                ],
+                [
+                    1066.0,
+                    761.0
+                ],
+                [
+                    1066.0,
+                    885.0
+                ],
+                [
+                    172.0,
+                    885.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "(二)报告期内发生的导致公司核心竞争力受到严重影响的事件、影响分析及应对措施 □适用 √不适用",
+            "block_bbox": [
+                172,
+                906,
+                1065,
+                983
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 542,
+            "global_group_id": 542,
+            "block_polygon_points": [
+                [
+                    172,
+                    906
+                ],
+                [
+                    172,
+                    940
+                ],
+                [
+                    178,
+                    949
+                ],
+                [
+                    178,
+                    982
+                ],
+                [
+                    1064,
+                    974
+                ],
+                [
+                    1064,
+                    906
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "四、风险因素",
+            "block_bbox": [
+                176,
+                1021,
+                330,
+                1052
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 543,
+            "global_group_id": 543,
+            "block_polygon_points": [
+                [
+                    176.0,
+                    1021.0
+                ],
+                [
+                    330.0,
+                    1021.0
+                ],
+                [
+                    330.0,
+                    1052.0
+                ],
+                [
+                    176.0,
+                    1052.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(一) 尚未盈利的风险",
+            "block_bbox": [
+                178,
+                1074,
+                414,
+                1105
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 544,
+            "global_group_id": 544,
+            "block_polygon_points": [
+                [
+                    178.0,
+                    1074.0
+                ],
+                [
+                    414.0,
+                    1074.0
+                ],
+                [
+                    414.0,
+                    1105.0
+                ],
+                [
+                    178.0,
+                    1105.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "□适用 √不适用",
+            "block_bbox": [
+                177,
+                1121,
+                364,
+                1151
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 545,
+            "global_group_id": 545,
+            "block_polygon_points": [
+                [
+                    177.0,
+                    1121.0
+                ],
+                [
+                    364.0,
+                    1121.0
+                ],
+                [
+                    364.0,
+                    1151.0
+                ],
+                [
+                    177.0,
+                    1151.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(二) 业绩大幅下滑或亏损的风险",
+            "block_bbox": [
+                178,
+                1189,
+                533,
+                1219
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9,
+            "global_block_id": 546,
+            "global_group_id": 546,
+            "block_polygon_points": [
+                [
+                    178.0,
+                    1189.0
+                ],
+                [
+                    533.0,
+                    1189.0
+                ],
+                [
+                    533.0,
+                    1219.0
+                ],
+                [
+                    178.0,
+                    1219.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "□适用 √不适用",
+            "block_bbox": [
+                177,
+                1236,
+                364,
+                1265
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10,
+            "global_block_id": 547,
+            "global_group_id": 547,
+            "block_polygon_points": [
+                [
+                    177.0,
+                    1236.0
+                ],
+                [
+                    364.0,
+                    1236.0
+                ],
+                [
+                    364.0,
+                    1265.0
+                ],
+                [
+                    177.0,
+                    1265.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(三) 核心竞争力风险",
+            "block_bbox": [
+                178,
+                1304,
+                414,
+                1334
+            ],
+            "block_id": 11,
+            "block_order": 11,
+            "group_id": 11,
+            "global_block_id": 548,
+            "global_group_id": 548,
+            "block_polygon_points": [
+                [
+                    178.0,
+                    1304.0
+                ],
+                [
+                    414.0,
+                    1304.0
+                ],
+                [
+                    414.0,
+                    1334.0
+                ],
+                [
+                    178.0,
+                    1334.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                181,
+                1352,
+                365,
+                1379
+            ],
+            "block_id": 12,
+            "block_order": 12,
+            "group_id": 12,
+            "global_block_id": 549,
+            "global_group_id": 549,
+            "block_polygon_points": [
+                [
+                    181.0,
+                    1352.0
+                ],
+                [
+                    365.0,
+                    1352.0
+                ],
+                [
+                    365.0,
+                    1379.0
+                ],
+                [
+                    181.0,
+                    1379.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "1、技术革命性迭代的风险",
+            "block_bbox": [
+                224,
+                1383,
+                512,
+                1412
+            ],
+            "block_id": 13,
+            "block_order": 13,
+            "group_id": 13,
+            "global_block_id": 550,
+            "global_group_id": 550,
+            "block_polygon_points": [
+                [
+                    224.0,
+                    1383.0
+                ],
+                [
+                    512.0,
+                    1383.0
+                ],
+                [
+                    512.0,
+                    1412.0
+                ],
+                [
+                    224.0,
+                    1412.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司产品主要服务于汽车行业。随着 5G、物联网、云计算、人工智能、新能源等各项新兴技术加快与汽车行业融合，催生汽车行业不断向智能化、网联化、新能源",
+            "block_bbox": [
+                174,
+                1430,
+                1069,
+                1506
+            ],
+            "block_id": 14,
+            "block_order": 14,
+            "group_id": 14,
+            "global_block_id": 551,
+            "global_group_id": 551,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1430.0
+                ],
+                [
+                    1069.0,
+                    1430.0
+                ],
+                [
+                    1069.0,
+                    1506.0
+                ],
+                [
+                    174.0,
+                    1506.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "48 / 306",
+            "block_bbox": [
+                585,
+                1542,
+                658,
+                1564
+            ],
+            "block_id": 15,
+            "block_order": null,
+            "group_id": 15,
+            "global_block_id": 552,
+            "global_group_id": 552,
+            "block_polygon_points": [
+                [
+                    585.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1563.0
+                ],
+                [
+                    585.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8718372583389282,
+                "coordinate": [
+                    430,
+                    86,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        430.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        430.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9488933086395264,
+                "coordinate": [
+                    174,
+                    154,
+                    1067,
+                    278
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        174.0,
+                        154.0
+                    ],
+                    [
+                        1067.0,
+                        154.0
+                    ],
+                    [
+                        1067.0,
+                        278.0
+                    ],
+                    [
+                        174.0,
+                        278.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9607057571411133,
+                "coordinate": [
+                    172,
+                    294,
+                    1068,
+                    559
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        172.0,
+                        294.0
+                    ],
+                    [
+                        1068.0,
+                        294.0
+                    ],
+                    [
+                        1068.0,
+                        559.0
+                    ],
+                    [
+                        172.0,
+                        559.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9529471397399902,
+                "coordinate": [
+                    173,
+                    574,
+                    1068,
+                    745
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        173.0,
+                        574.0
+                    ],
+                    [
+                        1068.0,
+                        574.0
+                    ],
+                    [
+                        1068.0,
+                        745.0
+                    ],
+                    [
+                        173.0,
+                        745.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9410889148712158,
+                "coordinate": [
+                    172,
+                    761,
+                    1066,
+                    885
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        172.0,
+                        761.0
+                    ],
+                    [
+                        1066.0,
+                        761.0
+                    ],
+                    [
+                        1066.0,
+                        885.0
+                    ],
+                    [
+                        172.0,
+                        885.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.30813997983932495,
+                "coordinate": [
+                    172,
+                    906,
+                    1067,
+                    938
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        172.0,
+                        906.0
+                    ],
+                    [
+                        1067.0,
+                        906.0
+                    ],
+                    [
+                        1067.0,
+                        938.0
+                    ],
+                    [
+                        172.0,
+                        938.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.44828248023986816,
+                "coordinate": [
+                    172,
+                    906,
+                    1065,
+                    983
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        172,
+                        906
+                    ],
+                    [
+                        172,
+                        940
+                    ],
+                    [
+                        178,
+                        949
+                    ],
+                    [
+                        178,
+                        982
+                    ],
+                    [
+                        1064,
+                        974
+                    ],
+                    [
+                        1064,
+                        906
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.42739158868789673,
+                "coordinate": [
+                    176,
+                    953,
+                    363,
+                    983
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        176,
+                        953
+                    ],
+                    [
+                        176,
+                        982
+                    ],
+                    [
+                        362,
+                        982
+                    ],
+                    [
+                        362,
+                        953
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8166487812995911,
+                "coordinate": [
+                    176,
+                    1021,
+                    330,
+                    1052
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        176.0,
+                        1021.0
+                    ],
+                    [
+                        330.0,
+                        1021.0
+                    ],
+                    [
+                        330.0,
+                        1052.0
+                    ],
+                    [
+                        176.0,
+                        1052.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7137685418128967,
+                "coordinate": [
+                    178,
+                    1074,
+                    414,
+                    1105
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        178.0,
+                        1074.0
+                    ],
+                    [
+                        414.0,
+                        1074.0
+                    ],
+                    [
+                        414.0,
+                        1105.0
+                    ],
+                    [
+                        178.0,
+                        1105.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7674671411514282,
+                "coordinate": [
+                    177,
+                    1121,
+                    364,
+                    1151
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        177.0,
+                        1121.0
+                    ],
+                    [
+                        364.0,
+                        1121.0
+                    ],
+                    [
+                        364.0,
+                        1151.0
+                    ],
+                    [
+                        177.0,
+                        1151.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7795084118843079,
+                "coordinate": [
+                    178,
+                    1189,
+                    533,
+                    1219
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        178.0,
+                        1189.0
+                    ],
+                    [
+                        533.0,
+                        1189.0
+                    ],
+                    [
+                        533.0,
+                        1219.0
+                    ],
+                    [
+                        178.0,
+                        1219.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8105940818786621,
+                "coordinate": [
+                    177,
+                    1236,
+                    364,
+                    1265
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        177.0,
+                        1236.0
+                    ],
+                    [
+                        364.0,
+                        1236.0
+                    ],
+                    [
+                        364.0,
+                        1265.0
+                    ],
+                    [
+                        177.0,
+                        1265.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8045933246612549,
+                "coordinate": [
+                    178,
+                    1304,
+                    414,
+                    1334
+                ],
+                "order": 13,
+                "polygon_points": [
+                    [
+                        178.0,
+                        1304.0
+                    ],
+                    [
+                        414.0,
+                        1304.0
+                    ],
+                    [
+                        414.0,
+                        1334.0
+                    ],
+                    [
+                        178.0,
+                        1334.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7295544147491455,
+                "coordinate": [
+                    181,
+                    1352,
+                    365,
+                    1379
+                ],
+                "order": 14,
+                "polygon_points": [
+                    [
+                        181.0,
+                        1352.0
+                    ],
+                    [
+                        365.0,
+                        1352.0
+                    ],
+                    [
+                        365.0,
+                        1379.0
+                    ],
+                    [
+                        181.0,
+                        1379.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.625202476978302,
+                "coordinate": [
+                    224,
+                    1383,
+                    512,
+                    1412
+                ],
+                "order": 15,
+                "polygon_points": [
+                    [
+                        224.0,
+                        1383.0
+                    ],
+                    [
+                        512.0,
+                        1383.0
+                    ],
+                    [
+                        512.0,
+                        1412.0
+                    ],
+                    [
+                        224.0,
+                        1412.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9215189218521118,
+                "coordinate": [
+                    174,
+                    1430,
+                    1069,
+                    1506
+                ],
+                "order": 16,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1430.0
+                    ],
+                    [
+                        1069.0,
+                        1430.0
+                    ],
+                    [
+                        1069.0,
+                        1506.0
+                    ],
+                    [
+                        174.0,
+                        1506.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7878629565238953,
+                "coordinate": [
+                    585,
+                    1542,
+                    658,
+                    1564
+                ],
+                "order": 17,
+                "polygon_points": [
+                    [
+                        585.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1563.0
+                    ],
+                    [
+                        585.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

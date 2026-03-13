@@ -1,0 +1,853 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0051-0100.pdf",
+    "page_index": 14,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                86,
+                808,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 199,
+            "global_group_id": 199,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    86.0
+                ],
+                [
+                    808.0,
+                    86.0
+                ],
+                [
+                    808.0,
+                    110.0
+                ],
+                [
+                    431.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "六、公司关于公司未来发展的讨论与分析",
+            "block_bbox": [
+                173,
+                191,
+                618,
+                221
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 200,
+            "global_group_id": 200,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    191.0
+                ],
+                [
+                    618.0,
+                    191.0
+                ],
+                [
+                    618.0,
+                    221.0
+                ],
+                [
+                    173.0,
+                    221.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(一) 行业格局和趋势",
+            "block_bbox": [
+                178,
+                243,
+                414,
+                274
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 201,
+            "global_group_id": 201,
+            "block_polygon_points": [
+                [
+                    178.0,
+                    243.0
+                ],
+                [
+                    414.0,
+                    243.0
+                ],
+                [
+                    414.0,
+                    274.0
+                ],
+                [
+                    178.0,
+                    274.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                181,
+                291,
+                377,
+                318
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 202,
+            "global_group_id": 202,
+            "block_polygon_points": [
+                [
+                    181.0,
+                    291.0
+                ],
+                [
+                    377.0,
+                    291.0
+                ],
+                [
+                    377.0,
+                    318.0
+                ],
+                [
+                    181.0,
+                    318.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "详见 “第三节管理层讨论与分析” 中 “二、报告期内公司所从事的主要业务、经营模式、行业情况及研发情况说明” 的 “（三）所处行业情况。”",
+            "block_bbox": [
+                174,
+                321,
+                1066,
+                400
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 203,
+            "global_group_id": 203,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    321.0
+                ],
+                [
+                    1066.0,
+                    321.0
+                ],
+                [
+                    1066.0,
+                    400.0
+                ],
+                [
+                    174.0,
+                    400.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(二) 公司发展战略",
+            "block_bbox": [
+                178,
+                451,
+                389,
+                482
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 204,
+            "global_group_id": 204,
+            "block_polygon_points": [
+                [
+                    178.0,
+                    451.0
+                ],
+                [
+                    389.0,
+                    451.0
+                ],
+                [
+                    389.0,
+                    482.0
+                ],
+                [
+                    178.0,
+                    482.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                180,
+                498,
+                377,
+                526
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 205,
+            "global_group_id": 205,
+            "block_polygon_points": [
+                [
+                    180.0,
+                    498.0
+                ],
+                [
+                    377.0,
+                    498.0
+                ],
+                [
+                    377.0,
+                    526.0
+                ],
+                [
+                    180.0,
+                    526.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "随着 AI 技术推动第四次工业革命，各行各业迎来发展新机遇，社会生产效率大幅提升。",
+            "block_bbox": [
+                173,
+                531,
+                1060,
+                607
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 206,
+            "global_group_id": 206,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    531.0
+                ],
+                [
+                    1060.0,
+                    531.0
+                ],
+                [
+                    1060.0,
+                    607.0
+                ],
+                [
+                    173.0,
+                    607.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "一直以来，公司以 AI 为核心驱动力，坚定围绕 “智能化” 战略布局。公司将 AI 作为当前及未来五年最核心的战略，定位 “全面 AI” 化，以 AI 技术为核心驱动引擎，构建生成式 AI 平台与行业大模型，持续研发多种形态的 AI Agents，推动生成式 AI 技术与行业应用场景深度融合，加速其在各行业的落地应用，引领业务生态的革命性变革，持续巩固数字维修全球领导者的地位，致力于成为光储充数智能源领域的全球领军企业、以及空地一体集群智慧解决方案全球领导者，努力打造 AI 行业大模型商业化应用龙头企业。",
+            "block_bbox": [
+                172,
+                624,
+                1067,
+                935
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 207,
+            "global_group_id": 207,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    624.0
+                ],
+                [
+                    1067.0,
+                    624.0
+                ],
+                [
+                    1067.0,
+                    935.0
+                ],
+                [
+                    172.0,
+                    935.0
+                ]
+            ]
+        },
+        {
+            "block_label": "image",
+            "block_content": "",
+            "block_bbox": [
+                191,
+                958,
+                1056,
+                1361
+            ],
+            "block_id": 9,
+            "block_order": null,
+            "group_id": 9,
+            "global_block_id": 208,
+            "global_group_id": 208,
+            "block_polygon_points": [
+                [
+                    191.0,
+                    958.0
+                ],
+                [
+                    1056.0,
+                    958.0
+                ],
+                [
+                    1056.0,
+                    1361.0
+                ],
+                [
+                    191.0,
+                    1361.0
+                ]
+            ]
+        },
+        {
+            "block_label": "figure_title",
+            "block_content": "道通 AI 战略全景",
+            "block_bbox": [
+                550,
+                1380,
+                692,
+                1403
+            ],
+            "block_id": 10,
+            "block_order": null,
+            "group_id": 10,
+            "global_block_id": 209,
+            "global_group_id": 209,
+            "block_polygon_points": [
+                [
+                    549.9999389648438,
+                    1379.9998779296875
+                ],
+                [
+                    690.9999389648438,
+                    1379.9998779296875
+                ],
+                [
+                    690.9999389648438,
+                    1401.9998779296875
+                ],
+                [
+                    549.9999389648438,
+                    1401.9998779296875
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "面对新能源绿色革命和人工智能大浪潮，道通将积极拥抱变化，深入贯彻“价值创新，孜孜以求”的经营理念，目标高远，以超越客户期望为标准；行动高效，全面加速AI创新步伐；价值高维，形成新质生产力，持续追求卓越；以更加宽广的视野",
+            "block_bbox": [
+                174,
+                1417,
+                1068,
+                1541
+            ],
+            "block_id": 11,
+            "block_order": 9,
+            "group_id": 11,
+            "global_block_id": 210,
+            "global_group_id": 210,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1417.0
+                ],
+                [
+                    1068.0,
+                    1417.0
+                ],
+                [
+                    1068.0,
+                    1541.0
+                ],
+                [
+                    174.0,
+                    1541.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "65 / 306",
+            "block_bbox": [
+                586,
+                1543,
+                658,
+                1564
+            ],
+            "block_id": 12,
+            "block_order": null,
+            "group_id": 12,
+            "global_block_id": 211,
+            "global_group_id": 211,
+            "block_polygon_points": [
+                [
+                    586.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1563.0
+                ],
+                [
+                    586.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8748708963394165,
+                "coordinate": [
+                    431,
+                    86,
+                    808,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        86.0
+                    ],
+                    [
+                        808.0,
+                        86.0
+                    ],
+                    [
+                        808.0,
+                        110.0
+                    ],
+                    [
+                        431.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8968337774276733,
+                "coordinate": [
+                    173,
+                    191,
+                    618,
+                    221
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        173.0,
+                        191.0
+                    ],
+                    [
+                        618.0,
+                        191.0
+                    ],
+                    [
+                        618.0,
+                        221.0
+                    ],
+                    [
+                        173.0,
+                        221.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8687825202941895,
+                "coordinate": [
+                    178,
+                    243,
+                    414,
+                    274
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        178.0,
+                        243.0
+                    ],
+                    [
+                        414.0,
+                        243.0
+                    ],
+                    [
+                        414.0,
+                        274.0
+                    ],
+                    [
+                        178.0,
+                        274.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8082111477851868,
+                "coordinate": [
+                    181,
+                    291,
+                    377,
+                    318
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        181.0,
+                        291.0
+                    ],
+                    [
+                        377.0,
+                        291.0
+                    ],
+                    [
+                        377.0,
+                        318.0
+                    ],
+                    [
+                        181.0,
+                        318.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9249528050422668,
+                "coordinate": [
+                    174,
+                    321,
+                    1066,
+                    400
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        174.0,
+                        321.0
+                    ],
+                    [
+                        1066.0,
+                        321.0
+                    ],
+                    [
+                        1066.0,
+                        400.0
+                    ],
+                    [
+                        174.0,
+                        400.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8651763796806335,
+                "coordinate": [
+                    178,
+                    451,
+                    389,
+                    482
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        178.0,
+                        451.0
+                    ],
+                    [
+                        389.0,
+                        451.0
+                    ],
+                    [
+                        389.0,
+                        482.0
+                    ],
+                    [
+                        178.0,
+                        482.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8247461915016174,
+                "coordinate": [
+                    180,
+                    498,
+                    377,
+                    526
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        180.0,
+                        498.0
+                    ],
+                    [
+                        377.0,
+                        498.0
+                    ],
+                    [
+                        377.0,
+                        526.0
+                    ],
+                    [
+                        180.0,
+                        526.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9246779680252075,
+                "coordinate": [
+                    173,
+                    531,
+                    1060,
+                    607
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        173.0,
+                        531.0
+                    ],
+                    [
+                        1060.0,
+                        531.0
+                    ],
+                    [
+                        1060.0,
+                        607.0
+                    ],
+                    [
+                        173.0,
+                        607.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.964579701423645,
+                "coordinate": [
+                    172,
+                    624,
+                    1067,
+                    935
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        172.0,
+                        624.0
+                    ],
+                    [
+                        1067.0,
+                        624.0
+                    ],
+                    [
+                        1067.0,
+                        935.0
+                    ],
+                    [
+                        172.0,
+                        935.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 14,
+                "label": "image",
+                "score": 0.9744145274162292,
+                "coordinate": [
+                    191,
+                    958,
+                    1056,
+                    1361
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        191.0,
+                        958.0
+                    ],
+                    [
+                        1056.0,
+                        958.0
+                    ],
+                    [
+                        1056.0,
+                        1361.0
+                    ],
+                    [
+                        191.0,
+                        1361.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 7,
+                "label": "figure_title",
+                "score": 0.8274427652359009,
+                "coordinate": [
+                    550,
+                    1380,
+                    692,
+                    1403
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        549.9999389648438,
+                        1379.9998779296875
+                    ],
+                    [
+                        690.9999389648438,
+                        1379.9998779296875
+                    ],
+                    [
+                        690.9999389648438,
+                        1401.9998779296875
+                    ],
+                    [
+                        549.9999389648438,
+                        1401.9998779296875
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9476267695426941,
+                "coordinate": [
+                    174,
+                    1417,
+                    1068,
+                    1541
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1417.0
+                    ],
+                    [
+                        1068.0,
+                        1417.0
+                    ],
+                    [
+                        1068.0,
+                        1541.0
+                    ],
+                    [
+                        174.0,
+                        1541.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8121882677078247,
+                "coordinate": [
+                    586,
+                    1543,
+                    658,
+                    1564
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        586.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1563.0
+                    ],
+                    [
+                        586.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

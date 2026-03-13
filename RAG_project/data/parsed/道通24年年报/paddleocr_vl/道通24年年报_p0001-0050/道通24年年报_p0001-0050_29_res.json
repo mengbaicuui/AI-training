@@ -1,0 +1,790 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0001-0050.pdf",
+    "page_index": 29,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                86,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 318,
+            "global_group_id": 318,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    431.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "寿命到期后车辆报警需替换新的 TPMS Sensor，存量汽车的 TPMS Sensor 替换需求市场空间巨大。",
+            "block_bbox": [
+                173,
+                155,
+                1058,
+                230
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 319,
+            "global_group_id": 319,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    155.0
+                ],
+                [
+                    1058.0,
+                    155.0
+                ],
+                [
+                    1058.0,
+                    230.0
+                ],
+                [
+                    173.0,
+                    230.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "根据 Canalys 报告，2023 年第三季度，全球配备 L2+ 高级驾驶辅助（ADAS）功能的轻型车出货量达到 63 万辆，占整体轻型车市场的 3.1%，预计 2024 年的渗透率将达到 5.5%。装配了 ADAS 系统的车辆，只要拆卸或维修过前杠、后杠、前档玻璃、倒视镜等易损部件，就需要对 ADAS 传感器进行重新标定，否则 ADAS 系统将无法正常工作或产生误报，影响驾驶安全。随着汽车智能化程度的提升，ADAS 系统的装配率持续提高，汽车后市场对 ADAS 系统的检测与标定需求也将持续强化。",
+            "block_bbox": [
+                173,
+                248,
+                1069,
+                513
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 320,
+            "global_group_id": 320,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    248.0
+                ],
+                [
+                    1069.0,
+                    248.0
+                ],
+                [
+                    1069.0,
+                    513.0
+                ],
+                [
+                    173.0,
+                    513.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "②主要技术门槛",
+            "block_bbox": [
+                223,
+                528,
+                403,
+                557
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 321,
+            "global_group_id": 321,
+            "block_polygon_points": [
+                [
+                    223.0,
+                    528.0
+                ],
+                [
+                    403.0,
+                    528.0
+                ],
+                [
+                    403.0,
+                    557.0
+                ],
+                [
+                    223.0,
+                    557.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "现代汽车实现了高度电子化，对行业参与者要求必须有长期的技术研发和数据积累以及较强的研发创新能力，这样才能面对不断进化的汽车电子系统时开发出与之相适应的、具备全方位的诊断功能的产品，因而汽车诊断行业具有较强的行业属性和较高的技术壁垒。产品的车型覆盖面、诊断检测结果准确性、功能完整性、使用智能便利性、软件更新速度等方面是汽车综合诊断、检测行业中的公司参与市场竞争的关键技术因素。",
+            "block_bbox": [
+                173,
+                575,
+                1068,
+                839
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 322,
+            "global_group_id": 322,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    575.0
+                ],
+                [
+                    1068.0,
+                    575.0
+                ],
+                [
+                    1068.0,
+                    839.0
+                ],
+                [
+                    173.0,
+                    839.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "另外，由于行业参与者在全球市场竞争中需要对各类汽车品牌、车型等各类通讯协议和相关数据进行长期的积累和优化，形成自身独有的信息数据库和核心算法库，以确保在诊断准确度、反馈响应度等方面能够很好地满足市场的需求，同时并不依赖于汽车原厂和第三方的技术许可，因而具有很强的知识产权壁垒。",
+            "block_bbox": [
+                174,
+                855,
+                1068,
+                1026
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 323,
+            "global_group_id": 323,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    855.0
+                ],
+                [
+                    1068.0,
+                    855.0
+                ],
+                [
+                    1068.0,
+                    1026.0
+                ],
+                [
+                    174.0,
+                    1026.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "(2) 新能源行业蓬勃发展",
+            "block_bbox": [
+                234,
+                1041,
+                512,
+                1071
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 324,
+            "global_group_id": 324,
+            "block_polygon_points": [
+                [
+                    234.0,
+                    1041.0
+                ],
+                [
+                    512.0,
+                    1041.0
+                ],
+                [
+                    512.0,
+                    1071.0
+                ],
+                [
+                    234.0,
+                    1071.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "①行业发展阶段、基本特点",
+            "block_bbox": [
+                222,
+                1088,
+                521,
+                1118
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 325,
+            "global_group_id": 325,
+            "block_polygon_points": [
+                [
+                    222.0,
+                    1088.0
+                ],
+                [
+                    521.0,
+                    1088.0
+                ],
+                [
+                    521.0,
+                    1118.0
+                ],
+                [
+                    222.0,
+                    1118.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "近年来，全球多个国家和地区将发展新能源汽车作为应对气候变化、优化能源结构的重要战略举措，全面制定了新能源汽车替代传统燃油汽车的战略规划。随着电动汽车在全球范围内的普及率不断提升，汽车电动化趋势已不可逆转，各国的加速布局为充电基础设施在全球市场的建设带来巨大的发展机遇。根据权威机构预测，2025年，海外充电市场规模预计将达到约800亿元人民币/年，并有望在2030年增长至约1200亿元人民币/年，具有极为广阔的市场前景。",
+            "block_bbox": [
+                173,
+                1135,
+                1066,
+                1400
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 326,
+            "global_group_id": 326,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    1135.0
+                ],
+                [
+                    1066.0,
+                    1135.0
+                ],
+                [
+                    1066.0,
+                    1400.0
+                ],
+                [
+                    173.0,
+                    1400.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "● 目前，美国 NEVI 和 CFI 法案（累计 75 亿美元）补贴资金已有相当大比例被分配，未分配部分受多项法律措施约束，受特朗普政府的影响预计不大。",
+            "block_bbox": [
+                216,
+                1414,
+                1066,
+                1492
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9,
+            "global_block_id": 327,
+            "global_group_id": 327,
+            "block_polygon_points": [
+                [
+                    216.0,
+                    1414.0
+                ],
+                [
+                    1066.0,
+                    1414.0
+                ],
+                [
+                    1066.0,
+                    1492.0
+                ],
+                [
+                    216.0,
+                    1492.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "● 欧盟层面的《替代燃料基础设施条例》（AFIR）已于2024年4月正式生效，",
+            "block_bbox": [
+                216,
+                1508,
+                1058,
+                1538
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10,
+            "global_block_id": 328,
+            "global_group_id": 328,
+            "block_polygon_points": [
+                [
+                    216.0,
+                    1508.0
+                ],
+                [
+                    1058.0,
+                    1508.0
+                ],
+                [
+                    1058.0,
+                    1538.0
+                ],
+                [
+                    216.0,
+                    1538.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "30 / 306",
+            "block_bbox": [
+                586,
+                1543,
+                658,
+                1563
+            ],
+            "block_id": 11,
+            "block_order": null,
+            "group_id": 11,
+            "global_block_id": 329,
+            "global_group_id": 329,
+            "block_polygon_points": [
+                [
+                    586.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1543.0
+                ],
+                [
+                    657.0,
+                    1562.0
+                ],
+                [
+                    586.0,
+                    1562.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8679602742195129,
+                "coordinate": [
+                    431,
+                    86,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        431.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7791135907173157,
+                "coordinate": [
+                    173,
+                    155,
+                    1058,
+                    230
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        173.0,
+                        155.0
+                    ],
+                    [
+                        1058.0,
+                        155.0
+                    ],
+                    [
+                        1058.0,
+                        230.0
+                    ],
+                    [
+                        173.0,
+                        230.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9620934128761292,
+                "coordinate": [
+                    173,
+                    248,
+                    1069,
+                    513
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        173.0,
+                        248.0
+                    ],
+                    [
+                        1069.0,
+                        248.0
+                    ],
+                    [
+                        1069.0,
+                        513.0
+                    ],
+                    [
+                        173.0,
+                        513.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8450949788093567,
+                "coordinate": [
+                    223,
+                    528,
+                    403,
+                    557
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        223.0,
+                        528.0
+                    ],
+                    [
+                        403.0,
+                        528.0
+                    ],
+                    [
+                        403.0,
+                        557.0
+                    ],
+                    [
+                        223.0,
+                        557.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9611538052558899,
+                "coordinate": [
+                    173,
+                    575,
+                    1068,
+                    839
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        173.0,
+                        575.0
+                    ],
+                    [
+                        1068.0,
+                        575.0
+                    ],
+                    [
+                        1068.0,
+                        839.0
+                    ],
+                    [
+                        173.0,
+                        839.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9542279243469238,
+                "coordinate": [
+                    174,
+                    855,
+                    1068,
+                    1026
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        174.0,
+                        855.0
+                    ],
+                    [
+                        1068.0,
+                        855.0
+                    ],
+                    [
+                        1068.0,
+                        1026.0
+                    ],
+                    [
+                        174.0,
+                        1026.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8303403258323669,
+                "coordinate": [
+                    234,
+                    1041,
+                    512,
+                    1071
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        234.0,
+                        1041.0
+                    ],
+                    [
+                        512.0,
+                        1041.0
+                    ],
+                    [
+                        512.0,
+                        1071.0
+                    ],
+                    [
+                        234.0,
+                        1071.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8217363357543945,
+                "coordinate": [
+                    222,
+                    1088,
+                    521,
+                    1118
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        222.0,
+                        1088.0
+                    ],
+                    [
+                        521.0,
+                        1088.0
+                    ],
+                    [
+                        521.0,
+                        1118.0
+                    ],
+                    [
+                        222.0,
+                        1118.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9632545113563538,
+                "coordinate": [
+                    173,
+                    1135,
+                    1066,
+                    1400
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        173.0,
+                        1135.0
+                    ],
+                    [
+                        1066.0,
+                        1135.0
+                    ],
+                    [
+                        1066.0,
+                        1400.0
+                    ],
+                    [
+                        173.0,
+                        1400.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9109011292457581,
+                "coordinate": [
+                    216,
+                    1414,
+                    1066,
+                    1492
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        216.0,
+                        1414.0
+                    ],
+                    [
+                        1066.0,
+                        1414.0
+                    ],
+                    [
+                        1066.0,
+                        1492.0
+                    ],
+                    [
+                        216.0,
+                        1492.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8091502785682678,
+                "coordinate": [
+                    216,
+                    1508,
+                    1058,
+                    1538
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        216.0,
+                        1508.0
+                    ],
+                    [
+                        1058.0,
+                        1508.0
+                    ],
+                    [
+                        1058.0,
+                        1538.0
+                    ],
+                    [
+                        216.0,
+                        1538.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7637299299240112,
+                "coordinate": [
+                    586,
+                    1543,
+                    658,
+                    1563
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        586.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1543.0
+                    ],
+                    [
+                        657.0,
+                        1562.0
+                    ],
+                    [
+                        586.0,
+                        1562.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

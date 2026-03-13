@@ -1,0 +1,913 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0051-0100.pdf",
+    "page_index": 2,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                87,
+                807,
+                110
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 30,
+            "global_group_id": 30,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    110.0
+                ],
+                [
+                    431.0,
+                    110.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>科目</td><td>本期数</td><td>上年同期数</td><td>变动比例（%）</td></tr><tr><td>营业收入</td><td>3,932,256,447.46</td><td>3,251,152,240.25</td><td>20.95</td></tr><tr><td>营业成本</td><td>1,757,168,323.58</td><td>1,473,283,201.21</td><td>19.27</td></tr><tr><td>销售费用</td><td>559,013,309.44</td><td>481,305,675.57</td><td>16.15</td></tr><tr><td>管理费用</td><td>323,794,075.80</td><td>283,247,804.55</td><td>14.31</td></tr><tr><td>财务费用</td><td>21,877,567.43</td><td>-3,793,596.11</td><td>676.70</td></tr><tr><td>研发费用</td><td>635,783,425.06</td><td>535,095,824.97</td><td>18.82</td></tr><tr><td>经营活动产生的现金流量净额</td><td>747,517,485.85</td><td>434,056,417.87</td><td>72.22</td></tr><tr><td>投资活动产生的现金流量净额</td><td>-205,668,017.11</td><td>-227,784,780.16</td><td>9.71</td></tr><tr><td>筹资活动产生的现金流量净额</td><td>-328,610,891.25</td><td>-177,429,035.36</td><td>-85.21</td></tr></table>",
+            "block_bbox": [
+                167,
+                152,
+                1074,
+                501
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1,
+            "global_block_id": 31,
+            "global_group_id": 31,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    152.0
+                ],
+                [
+                    1074.0,
+                    152.0
+                ],
+                [
+                    1074.0,
+                    501.0
+                ],
+                [
+                    167.0,
+                    501.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "营业收入变动原因说明：较上年同期增加 20.95%，主要系公司持续巩固在产品、技术、品牌、市场、服务及全球供应链等方面的系统性优势，数字维修、数智能源销售收入大幅增加所致。",
+            "block_bbox": [
+                172,
+                506,
+                1067,
+                629
+            ],
+            "block_id": 2,
+            "block_order": 1,
+            "group_id": 2,
+            "global_block_id": 32,
+            "global_group_id": 32,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    506.0
+                ],
+                [
+                    1067.0,
+                    506.0
+                ],
+                [
+                    1067.0,
+                    629.0
+                ],
+                [
+                    172.0,
+                    629.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "营业成本变动原因说明：较上年同期增加 19.27%，主要系销售收入增加带动成本同步增长。",
+            "block_bbox": [
+                174,
+                645,
+                1064,
+                721
+            ],
+            "block_id": 3,
+            "block_order": 2,
+            "group_id": 3,
+            "global_block_id": 33,
+            "global_group_id": 33,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    645.0
+                ],
+                [
+                    1064.0,
+                    645.0
+                ],
+                [
+                    1064.0,
+                    721.0
+                ],
+                [
+                    174.0,
+                    721.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "销售费用变动原因说明：较上年同期增加 16.15%，主要系销售收入增加带动销售人员薪酬、仓储及咨询服务费相应增加所致。",
+            "block_bbox": [
+                174,
+                738,
+                1064,
+                815
+            ],
+            "block_id": 4,
+            "block_order": 3,
+            "group_id": 4,
+            "global_block_id": 34,
+            "global_group_id": 34,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    738.0
+                ],
+                [
+                    1064.0,
+                    738.0
+                ],
+                [
+                    1064.0,
+                    815.0
+                ],
+                [
+                    174.0,
+                    815.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "管理费用变动原因说明：较上年同期增加 14.31%，主要系公司发展势头良好，本期对管理人员实施激励所致。",
+            "block_bbox": [
+                173,
+                833,
+                1053,
+                909
+            ],
+            "block_id": 5,
+            "block_order": 4,
+            "group_id": 5,
+            "global_block_id": 35,
+            "global_group_id": 35,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    833.0
+                ],
+                [
+                    1053.0,
+                    833.0
+                ],
+                [
+                    1053.0,
+                    909.0
+                ],
+                [
+                    173.0,
+                    909.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "财务费用变动原因说明：较上年同期大幅变动增加，主要系本期汇兑收益较上期减少所致。",
+            "block_bbox": [
+                173,
+                925,
+                1067,
+                1002
+            ],
+            "block_id": 6,
+            "block_order": 5,
+            "group_id": 6,
+            "global_block_id": 36,
+            "global_group_id": 36,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    925.0
+                ],
+                [
+                    1067.0,
+                    925.0
+                ],
+                [
+                    1067.0,
+                    1002.0
+                ],
+                [
+                    173.0,
+                    1002.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "研发费用变动原因说明：较上年增加 18.82%，主要系研发人员增加及专业服务费、研发物料消耗有所增加所致。",
+            "block_bbox": [
+                174,
+                1018,
+                1061,
+                1096
+            ],
+            "block_id": 7,
+            "block_order": 6,
+            "group_id": 7,
+            "global_block_id": 37,
+            "global_group_id": 37,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1018.0
+                ],
+                [
+                    1061.0,
+                    1018.0
+                ],
+                [
+                    1061.0,
+                    1096.0
+                ],
+                [
+                    174.0,
+                    1096.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "经营活动产生的现金流量净额变动原因说明：较上年增加 72.22%，系销售商品收到的现金流量增加所致。",
+            "block_bbox": [
+                174,
+                1113,
+                1063,
+                1189
+            ],
+            "block_id": 8,
+            "block_order": 7,
+            "group_id": 8,
+            "global_block_id": 38,
+            "global_group_id": 38,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1113.0
+                ],
+                [
+                    1063.0,
+                    1113.0
+                ],
+                [
+                    1063.0,
+                    1189.0
+                ],
+                [
+                    174.0,
+                    1189.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "投资活动产生的现金流量净额变动原因说明：现金净流出较上年有所减少，主要系上年开展部分远期结售汇业务，本期未开展相关业务所致。",
+            "block_bbox": [
+                175,
+                1206,
+                1066,
+                1283
+            ],
+            "block_id": 9,
+            "block_order": 8,
+            "group_id": 9,
+            "global_block_id": 39,
+            "global_group_id": 39,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    1206.0
+                ],
+                [
+                    1066.0,
+                    1206.0
+                ],
+                [
+                    1066.0,
+                    1283.0
+                ],
+                [
+                    175.0,
+                    1283.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "筹资活动产生的现金流量净额变动原因说明：较上年下降 85.21%，主要系本期回购股票所致。",
+            "block_bbox": [
+                174,
+                1298,
+                1064,
+                1375
+            ],
+            "block_id": 10,
+            "block_order": 9,
+            "group_id": 10,
+            "global_block_id": 40,
+            "global_group_id": 40,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1298.0
+                ],
+                [
+                    1064.0,
+                    1298.0
+                ],
+                [
+                    1064.0,
+                    1375.0
+                ],
+                [
+                    174.0,
+                    1375.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "本期公司业务类型、利润构成或利润来源发生重大变动的详细说明 □适用 √不适用",
+            "block_bbox": [
+                173,
+                1422,
+                879,
+                1484
+            ],
+            "block_id": 11,
+            "block_order": 10,
+            "group_id": 11,
+            "global_block_id": 41,
+            "global_group_id": 41,
+            "block_polygon_points": [
+                [
+                    173,
+                    1422
+                ],
+                [
+                    173,
+                    1483
+                ],
+                [
+                    878,
+                    1483
+                ],
+                [
+                    878,
+                    1422
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "53 / 306",
+            "block_bbox": [
+                585,
+                1542,
+                658,
+                1564
+            ],
+            "block_id": 12,
+            "block_order": null,
+            "group_id": 12,
+            "global_block_id": 42,
+            "global_group_id": 42,
+            "block_polygon_points": [
+                [
+                    585.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1563.0
+                ],
+                [
+                    585.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8690547347068787,
+                "coordinate": [
+                    431,
+                    87,
+                    807,
+                    110
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        110.0
+                    ],
+                    [
+                        431.0,
+                        110.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9733085036277771,
+                "coordinate": [
+                    167,
+                    152,
+                    1074,
+                    501
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        152.0
+                    ],
+                    [
+                        1074.0,
+                        152.0
+                    ],
+                    [
+                        1074.0,
+                        501.0
+                    ],
+                    [
+                        167.0,
+                        501.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9356332421302795,
+                "coordinate": [
+                    172,
+                    506,
+                    1067,
+                    629
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        172.0,
+                        506.0
+                    ],
+                    [
+                        1067.0,
+                        506.0
+                    ],
+                    [
+                        1067.0,
+                        629.0
+                    ],
+                    [
+                        172.0,
+                        629.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9298264384269714,
+                "coordinate": [
+                    174,
+                    645,
+                    1064,
+                    721
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        174.0,
+                        645.0
+                    ],
+                    [
+                        1064.0,
+                        645.0
+                    ],
+                    [
+                        1064.0,
+                        721.0
+                    ],
+                    [
+                        174.0,
+                        721.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9339389801025391,
+                "coordinate": [
+                    174,
+                    738,
+                    1064,
+                    815
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        174.0,
+                        738.0
+                    ],
+                    [
+                        1064.0,
+                        738.0
+                    ],
+                    [
+                        1064.0,
+                        815.0
+                    ],
+                    [
+                        174.0,
+                        815.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9184688329696655,
+                "coordinate": [
+                    173,
+                    833,
+                    1053,
+                    909
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        173.0,
+                        833.0
+                    ],
+                    [
+                        1053.0,
+                        833.0
+                    ],
+                    [
+                        1053.0,
+                        909.0
+                    ],
+                    [
+                        173.0,
+                        909.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9290809631347656,
+                "coordinate": [
+                    173,
+                    925,
+                    1067,
+                    1002
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        173.0,
+                        925.0
+                    ],
+                    [
+                        1067.0,
+                        925.0
+                    ],
+                    [
+                        1067.0,
+                        1002.0
+                    ],
+                    [
+                        173.0,
+                        1002.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9212661981582642,
+                "coordinate": [
+                    174,
+                    1018,
+                    1061,
+                    1096
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1018.0
+                    ],
+                    [
+                        1061.0,
+                        1018.0
+                    ],
+                    [
+                        1061.0,
+                        1096.0
+                    ],
+                    [
+                        174.0,
+                        1096.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9240437746047974,
+                "coordinate": [
+                    174,
+                    1113,
+                    1063,
+                    1189
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1113.0
+                    ],
+                    [
+                        1063.0,
+                        1113.0
+                    ],
+                    [
+                        1063.0,
+                        1189.0
+                    ],
+                    [
+                        174.0,
+                        1189.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9259853959083557,
+                "coordinate": [
+                    175,
+                    1206,
+                    1066,
+                    1283
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        175.0,
+                        1206.0
+                    ],
+                    [
+                        1066.0,
+                        1206.0
+                    ],
+                    [
+                        1066.0,
+                        1283.0
+                    ],
+                    [
+                        175.0,
+                        1283.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9206469058990479,
+                "coordinate": [
+                    174,
+                    1298,
+                    1064,
+                    1375
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1298.0
+                    ],
+                    [
+                        1064.0,
+                        1298.0
+                    ],
+                    [
+                        1064.0,
+                        1375.0
+                    ],
+                    [
+                        174.0,
+                        1375.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5996909737586975,
+                "coordinate": [
+                    174,
+                    1423,
+                    879,
+                    1452
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1423.0
+                    ],
+                    [
+                        879.0,
+                        1423.0
+                    ],
+                    [
+                        879.0,
+                        1452.0
+                    ],
+                    [
+                        174.0,
+                        1452.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.33514341711997986,
+                "coordinate": [
+                    173,
+                    1422,
+                    879,
+                    1484
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        173,
+                        1422
+                    ],
+                    [
+                        173,
+                        1483
+                    ],
+                    [
+                        878,
+                        1483
+                    ],
+                    [
+                        878,
+                        1422
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.42659661173820496,
+                "coordinate": [
+                    176,
+                    1455,
+                    364,
+                    1483
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        176,
+                        1455
+                    ],
+                    [
+                        176,
+                        1482
+                    ],
+                    [
+                        363,
+                        1482
+                    ],
+                    [
+                        363,
+                        1455
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7986245155334473,
+                "coordinate": [
+                    585,
+                    1542,
+                    658,
+                    1564
+                ],
+                "order": 13,
+                "polygon_points": [
+                    [
+                        585.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1563.0
+                    ],
+                    [
+                        585.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,664 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 23,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                379,
+                86,
+                754,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 194,
+            "global_group_id": 194,
+            "block_polygon_points": [
+                [
+                    379.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    86.0
+                ],
+                [
+                    754.0,
+                    109.0
+                ],
+                [
+                    379.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "金融资产整体转移满足终止确认条件的，将下列两项金额的差额计入当期损益：(1)所转移金融资产在终止确认日的账面价值；(2)因转移金融资产而收到的对价，与原直接计入其他综合收益的公允价值变动累计额中对应终止确认部分的金额（涉及转移的金融资产为以公允价值计量且其变动计入其他综合收益的债务工具投资）之和。转移了金融资产的一部分，且该被转移部分整体满足终止确认条件的，将转移前金融资产整体的账面价值，在终止确认部分和继续确认部分之间，按照转移日各自的相对公允价值进行分摊，并将下列两项金额的差额计入当期损益：(1)终止确认部分的账面价值；(2)终止确认部分的对价，与原直接计入其他综合收益的公允价值变动累计额中对应终止确认部分的金额（涉及转移的金融资产为以公允价值计量且其变动计入其他综合收益的债务工具投资）之和。",
+            "block_bbox": [
+                121,
+                145,
+                1017,
+                597
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 195,
+            "global_group_id": 195,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    145.0
+                ],
+                [
+                    1017.0,
+                    145.0
+                ],
+                [
+                    1017.0,
+                    597.0
+                ],
+                [
+                    121.0,
+                    597.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "4. 金融资产和金融负债的公允价值确定方法",
+            "block_bbox": [
+                168,
+                613,
+                634,
+                642
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 196,
+            "global_group_id": 196,
+            "block_polygon_points": [
+                [
+                    168.0,
+                    613.0
+                ],
+                [
+                    634.0,
+                    613.0
+                ],
+                [
+                    634.0,
+                    642.0
+                ],
+                [
+                    168.0,
+                    642.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司采用在当前情况下适用并且有足够可利用数据和其他信息支持的估值技术确定相关金融资产和金融负债的公允价值。公司将估值技术使用的输入值分以下层级，并依次使用：",
+            "block_bbox": [
+                123,
+                660,
+                1023,
+                783
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 197,
+            "global_group_id": 197,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    660.0
+                ],
+                [
+                    1023.0,
+                    660.0
+                ],
+                [
+                    1023.0,
+                    783.0
+                ],
+                [
+                    123.0,
+                    783.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "(1)第一层次输入值是在计量日能够取得的相同资产或负债在活跃市场上未经调整的报价；",
+            "block_bbox": [
+                123,
+                800,
+                1002,
+                877
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4,
+            "global_block_id": 198,
+            "global_group_id": 198,
+            "block_polygon_points": [
+                [
+                    123.0,
+                    800.0
+                ],
+                [
+                    1002.0,
+                    800.0
+                ],
+                [
+                    1002.0,
+                    877.0
+                ],
+                [
+                    123.0,
+                    877.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "(2)第二层次输入值是除第一层次输入值外相关资产或负债直接或间接可观察的输入值，包括：活跃市场中类似资产或负债的报价；非活跃市场中相同或类似资产或负债的报价；除报价以外的其他可观察输入值，如在正常报价间隔期间可观察的利率和收益率曲线等；市场验证的输入值等；",
+            "block_bbox": [
+                121,
+                894,
+                1016,
+                1064
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5,
+            "global_block_id": 199,
+            "global_group_id": 199,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    894.0
+                ],
+                [
+                    1016.0,
+                    894.0
+                ],
+                [
+                    1016.0,
+                    1064.0
+                ],
+                [
+                    121.0,
+                    1064.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "(3)第三层次输入值是相关资产或负债的不可观察输入值，包括不能直接观察或无法由可观察市场数据验证的利率、股票波动率、企业合并中承担的弃置义务的未来现金流量、使用自身数据作出的财务预测等。",
+            "block_bbox": [
+                122,
+                1080,
+                1016,
+                1204
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6,
+            "global_block_id": 200,
+            "global_group_id": 200,
+            "block_polygon_points": [
+                [
+                    122.0,
+                    1080.0
+                ],
+                [
+                    1016.0,
+                    1080.0
+                ],
+                [
+                    1016.0,
+                    1204.0
+                ],
+                [
+                    122.0,
+                    1204.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "5. 金融工具减值",
+            "block_bbox": [
+                171,
+                1220,
+                346,
+                1249
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7,
+            "global_block_id": 201,
+            "global_group_id": 201,
+            "block_polygon_points": [
+                [
+                    171.0,
+                    1220.0
+                ],
+                [
+                    346.0,
+                    1220.0
+                ],
+                [
+                    346.0,
+                    1249.0
+                ],
+                [
+                    171.0,
+                    1249.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司以预期信用损失为基础，对以摊余成本计量的金融资产、以公允价值计量且其变动计入其他综合收益的债务工具投资、合同资产、租赁应收款、分类为以公允价值计量且其变动计入当期损益的金融负债以外的贷款承诺、不属于以公允价值计量且其变动计入当期损益的金融负债或不属于金融资产转移不符合终止确认条件或继续涉入被转移金融资产所形成的金融负债的财务担保合同进行减值处理并确认损失准备。",
+            "block_bbox": [
+                121,
+                1267,
+                1015,
+                1529
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8,
+            "global_block_id": 202,
+            "global_group_id": 202,
+            "block_polygon_points": [
+                [
+                    121.0,
+                    1267.0
+                ],
+                [
+                    1015.0,
+                    1267.0
+                ],
+                [
+                    1015.0,
+                    1529.0
+                ],
+                [
+                    121.0,
+                    1529.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "174 / 306",
+            "block_bbox": [
+                529,
+                1542,
+                611,
+                1564
+            ],
+            "block_id": 9,
+            "block_order": null,
+            "group_id": 9,
+            "global_block_id": 203,
+            "global_group_id": 203,
+            "block_polygon_points": [
+                [
+                    529.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1542.0
+                ],
+                [
+                    610.0,
+                    1563.0
+                ],
+                [
+                    529.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8585603833198547,
+                "coordinate": [
+                    379,
+                    86,
+                    754,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        379.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        86.0
+                    ],
+                    [
+                        754.0,
+                        109.0
+                    ],
+                    [
+                        379.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9622355699539185,
+                "coordinate": [
+                    121,
+                    145,
+                    1017,
+                    597
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        121.0,
+                        145.0
+                    ],
+                    [
+                        1017.0,
+                        145.0
+                    ],
+                    [
+                        1017.0,
+                        597.0
+                    ],
+                    [
+                        121.0,
+                        597.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8313393592834473,
+                "coordinate": [
+                    168,
+                    613,
+                    634,
+                    642
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        168.0,
+                        613.0
+                    ],
+                    [
+                        634.0,
+                        613.0
+                    ],
+                    [
+                        634.0,
+                        642.0
+                    ],
+                    [
+                        168.0,
+                        642.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9391207695007324,
+                "coordinate": [
+                    123,
+                    660,
+                    1023,
+                    783
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        123.0,
+                        660.0
+                    ],
+                    [
+                        1023.0,
+                        660.0
+                    ],
+                    [
+                        1023.0,
+                        783.0
+                    ],
+                    [
+                        123.0,
+                        783.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9202743172645569,
+                "coordinate": [
+                    123,
+                    800,
+                    1002,
+                    877
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        123.0,
+                        800.0
+                    ],
+                    [
+                        1002.0,
+                        800.0
+                    ],
+                    [
+                        1002.0,
+                        877.0
+                    ],
+                    [
+                        123.0,
+                        877.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9515470862388611,
+                "coordinate": [
+                    121,
+                    894,
+                    1016,
+                    1064
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        121.0,
+                        894.0
+                    ],
+                    [
+                        1016.0,
+                        894.0
+                    ],
+                    [
+                        1016.0,
+                        1064.0
+                    ],
+                    [
+                        121.0,
+                        1064.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9407671689987183,
+                "coordinate": [
+                    122,
+                    1080,
+                    1016,
+                    1204
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        122.0,
+                        1080.0
+                    ],
+                    [
+                        1016.0,
+                        1080.0
+                    ],
+                    [
+                        1016.0,
+                        1204.0
+                    ],
+                    [
+                        122.0,
+                        1204.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7854915261268616,
+                "coordinate": [
+                    171,
+                    1220,
+                    346,
+                    1249
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        171.0,
+                        1220.0
+                    ],
+                    [
+                        346.0,
+                        1220.0
+                    ],
+                    [
+                        346.0,
+                        1249.0
+                    ],
+                    [
+                        171.0,
+                        1249.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9526933431625366,
+                "coordinate": [
+                    121,
+                    1267,
+                    1015,
+                    1529
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        121.0,
+                        1267.0
+                    ],
+                    [
+                        1015.0,
+                        1267.0
+                    ],
+                    [
+                        1015.0,
+                        1529.0
+                    ],
+                    [
+                        121.0,
+                        1529.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7896261811256409,
+                "coordinate": [
+                    529,
+                    1542,
+                    611,
+                    1564
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        529.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1542.0
+                    ],
+                    [
+                        610.0,
+                        1563.0
+                    ],
+                    [
+                        529.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

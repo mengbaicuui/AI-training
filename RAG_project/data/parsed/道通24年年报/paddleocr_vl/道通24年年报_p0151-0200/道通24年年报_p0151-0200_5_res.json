@@ -1,0 +1,412 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 5,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                432,
+                86,
+                807,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 27,
+            "global_group_id": 27,
+            "block_polygon_points": [
+                [
+                    432.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    86.0
+                ],
+                [
+                    807.0,
+                    109.0
+                ],
+                [
+                    432.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "母公司利润表",
+            "block_bbox": [
+                545,
+                154,
+                698,
+                183
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 28,
+            "global_group_id": 28,
+            "block_polygon_points": [
+                [
+                    545.0,
+                    154.0
+                ],
+                [
+                    698.0,
+                    154.0
+                ],
+                [
+                    698.0,
+                    183.0
+                ],
+                [
+                    545.0,
+                    183.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "2024年1—12月",
+            "block_bbox": [
+                525,
+                201,
+                713,
+                228
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 29,
+            "global_group_id": 29,
+            "block_polygon_points": [
+                [
+                    525.0,
+                    201.0
+                ],
+                [
+                    713.0,
+                    201.0
+                ],
+                [
+                    713.0,
+                    228.0
+                ],
+                [
+                    525.0,
+                    228.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元币种：人民币",
+            "block_bbox": [
+                821,
+                232,
+                1064,
+                259
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3,
+            "global_block_id": 30,
+            "global_group_id": 30,
+            "block_polygon_points": [
+                [
+                    821.0,
+                    232.0
+                ],
+                [
+                    1064.0,
+                    232.0
+                ],
+                [
+                    1064.0,
+                    259.0
+                ],
+                [
+                    821.0,
+                    259.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>项目</td><td>附注</td><td>2024年度</td><td>2023年度</td></tr><tr><td>一、营业收入</td><td>十九（4）</td><td>2,215,884,866.92</td><td>1,446,297,170.75</td></tr><tr><td>减：营业成本</td><td>十九（4）</td><td>1,614,189,598.57</td><td>1,263,834,164.56</td></tr><tr><td>税金及附加</td><td></td><td>1,678,895.85</td><td>1,280,996.13</td></tr><tr><td>销售费用</td><td></td><td>89,384,895.46</td><td>67,759,316.14</td></tr><tr><td>管理费用</td><td></td><td>212,195,799.31</td><td>192,030,508.19</td></tr><tr><td>研发费用</td><td></td><td>118,837,553.35</td><td>94,514,967.81</td></tr><tr><td>财务费用</td><td></td><td>-3,713,416.76</td><td>-11,169,420.75</td></tr><tr><td>其中：利息费用</td><td></td><td>47,256,939.13</td><td>48,817,303.41</td></tr><tr><td>利息收入</td><td></td><td>37,187,966.59</td><td>29,410,992.12</td></tr><tr><td>加：其他收益</td><td></td><td>2,606,487.42</td><td>15,945,480.82</td></tr><tr><td>投资收益（损失以“－”号填列）</td><td>十九（5）</td><td>1,226,014.15</td><td>277,414,357.39</td></tr><tr><td>其中：对联营企业和合营企业的投资收益</td><td></td><td></td><td></td></tr><tr><td>以摊余成本计量的金融资产终止确认收益</td><td></td><td></td><td></td></tr><tr><td>净敞口套期收益（损失以“-”号填列）</td><td></td><td></td><td></td></tr><tr><td>公允价值变动收益（损失以“－”号填列）</td><td></td><td>-8,076,897.07</td><td>-14,851,581.32</td></tr><tr><td>信用减值损失（损失以“-”号填列）</td><td></td><td>4,552,568.91</td><td>-2,966,816.97</td></tr><tr><td>资产减值损失（损失以“-”号填列）</td><td></td><td>22,941,962.83</td><td>-48,121,596.89</td></tr><tr><td>资产处置收益（损失以“－”号填列）</td><td></td><td>-416,147.58</td><td>73,844.73</td></tr><tr><td>二、营业利润（亏损以“－”号填列）</td><td></td><td>206,145,529.80</td><td>65,540,326.43</td></tr><tr><td>加：营业外收入</td><td></td><td>2,139,861.95</td><td>125,531.78</td></tr><tr><td>减：营业外支出</td><td></td><td>492,624.00</td><td>98,001,096.15</td></tr><tr><td>三、利润总额（亏损总额以“－”号填列）</td><td></td><td>207,792,767.75</td><td>-32,335,237.94</td></tr><tr><td>减：所得税费用</td><td></td><td>16,742,335.92</td><td>-56,686,802.69</td></tr><tr><td>四、净利润（净亏损以“－”号填列）</td><td></td><td>191,050,431.83</td><td>24,351,564.75</td></tr><tr><td>（一）持续经营净利润（净亏损以“－”号填列）</td><td></td><td>191,050,431.83</td><td>24,351,564.75</td></tr><tr><td>（二）终止经营净利润（净亏损以“－”号填列）</td><td></td><td></td><td></td></tr><tr><td>五、其他综合收益的税后净额</td><td></td><td></td><td></td></tr><tr><td>（一）不能重分类进损益的其他综合收益</td><td></td><td></td><td></td></tr><tr><td>1.重新计量设定受益计划变动额</td><td></td><td></td><td></td></tr><tr><td>2.权益法下不能转损益的其他综合收益</td><td></td><td></td><td></td></tr><tr><td>3.其他权益工具投资公允价值变动</td><td></td><td></td><td></td></tr><tr><td>4.企业自身信用风险公允价值变动</td><td></td><td></td><td></td></tr><tr><td>（二）将重分类进损益的其他综合收益</td><td></td><td></td><td></td></tr><tr><td>1.权益法下可转损益的其他综合收益</td><td></td><td></td><td></td></tr><tr><td>2.其他债权投资公允价值变动</td><td></td><td></td><td></td></tr><tr><td>3.金融资产重分类计入其他综合收益的金额</td><td></td><td></td><td></td></tr><tr><td>4.其他债权投资信用减值准备</td><td></td><td></td><td></td></tr><tr><td>5.现金流量套期储备</td><td></td><td></td><td></td></tr><tr><td>6.外币财务报表折算差额</td><td></td><td></td><td></td></tr><tr><td>7.其他</td><td></td><td></td><td></td></tr><tr><td>六、综合收益总额</td><td></td><td>191,050,431.83</td><td>24,351,564.75</td></tr><tr><td colspan=\"4\">七、每股收益：</td></tr><tr><td>（一）基本每股收益（元/股）</td><td></td><td></td><td></td></tr><tr><td>（二）稀释每股收益（元/股）</td><td></td><td></td><td></td></tr></table>",
+            "block_bbox": [
+                167,
+                263,
+                1076,
+                1518
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 31,
+            "global_group_id": 31,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    263.0
+                ],
+                [
+                    1076.0,
+                    263.0
+                ],
+                [
+                    1076.0,
+                    1518.0
+                ],
+                [
+                    167.0,
+                    1518.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "156 / 306",
+            "block_bbox": [
+                581,
+                1542,
+                663,
+                1564
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 32,
+            "global_group_id": 32,
+            "block_polygon_points": [
+                [
+                    581.0,
+                    1542.0
+                ],
+                [
+                    662.0,
+                    1542.0
+                ],
+                [
+                    662.0,
+                    1563.0
+                ],
+                [
+                    581.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8530993461608887,
+                "coordinate": [
+                    432,
+                    86,
+                    807,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        432.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        86.0
+                    ],
+                    [
+                        807.0,
+                        109.0
+                    ],
+                    [
+                        432.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.639314591884613,
+                "coordinate": [
+                    545,
+                    154,
+                    698,
+                    183
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        545.0,
+                        154.0
+                    ],
+                    [
+                        698.0,
+                        154.0
+                    ],
+                    [
+                        698.0,
+                        183.0
+                    ],
+                    [
+                        545.0,
+                        183.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.4955112934112549,
+                "coordinate": [
+                    525,
+                    201,
+                    713,
+                    228
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        525.0,
+                        201.0
+                    ],
+                    [
+                        713.0,
+                        201.0
+                    ],
+                    [
+                        713.0,
+                        228.0
+                    ],
+                    [
+                        525.0,
+                        228.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8247451782226562,
+                "coordinate": [
+                    821,
+                    232,
+                    1064,
+                    259
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        821.0,
+                        232.0
+                    ],
+                    [
+                        1064.0,
+                        232.0
+                    ],
+                    [
+                        1064.0,
+                        259.0
+                    ],
+                    [
+                        821.0,
+                        259.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9828997254371643,
+                "coordinate": [
+                    167,
+                    263,
+                    1076,
+                    1518
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        263.0
+                    ],
+                    [
+                        1076.0,
+                        263.0
+                    ],
+                    [
+                        1076.0,
+                        1518.0
+                    ],
+                    [
+                        167.0,
+                        1518.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8070486187934875,
+                "coordinate": [
+                    581,
+                    1542,
+                    663,
+                    1564
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        581.0,
+                        1542.0
+                    ],
+                    [
+                        662.0,
+                        1542.0
+                    ],
+                    [
+                        662.0,
+                        1563.0
+                    ],
+                    [
+                        581.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

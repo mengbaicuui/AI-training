@@ -1,0 +1,475 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0151-0200.pdf",
+    "page_index": 0,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                432,
+                87,
+                807,
+                109
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 0,
+            "global_group_id": 0,
+            "block_polygon_points": [
+                [
+                    432.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    87.0
+                ],
+                [
+                    807.0,
+                    109.0
+                ],
+                [
+                    432.0,
+                    109.0
+                ]
+            ]
+        },
+        {
+            "block_label": "doc_title",
+            "block_content": "母公司资产负债表",
+            "block_bbox": [
+                521,
+                154,
+                721,
+                182
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1,
+            "global_block_id": 1,
+            "global_group_id": 1,
+            "block_polygon_points": [
+                [
+                    521.0,
+                    154.0
+                ],
+                [
+                    721.0,
+                    154.0
+                ],
+                [
+                    721.0,
+                    182.0
+                ],
+                [
+                    521.0,
+                    182.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "2024年12月31日",
+            "block_bbox": [
+                514,
+                202,
+                726,
+                228
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2,
+            "global_block_id": 2,
+            "global_group_id": 2,
+            "block_polygon_points": [
+                [
+                    514.0,
+                    202.0
+                ],
+                [
+                    726.0,
+                    202.0
+                ],
+                [
+                    726.0,
+                    228.0
+                ],
+                [
+                    514.0,
+                    228.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "编制单位：深圳市道通科技股份有限公司",
+            "block_bbox": [
+                175,
+                233,
+                613,
+                260
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3,
+            "global_block_id": 3,
+            "global_group_id": 3,
+            "block_polygon_points": [
+                [
+                    175.0,
+                    233.0
+                ],
+                [
+                    613.0,
+                    233.0
+                ],
+                [
+                    613.0,
+                    260.0
+                ],
+                [
+                    175.0,
+                    260.0
+                ]
+            ]
+        },
+        {
+            "block_label": "vision_footnote",
+            "block_content": "单位：元币种：人民币",
+            "block_bbox": [
+                822,
+                264,
+                1064,
+                290
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4,
+            "global_block_id": 4,
+            "global_group_id": 4,
+            "block_polygon_points": [
+                [
+                    822.0,
+                    264.0
+                ],
+                [
+                    1064.0,
+                    264.0
+                ],
+                [
+                    1064.0,
+                    290.0
+                ],
+                [
+                    822.0,
+                    290.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "<table><tr><td>项目</td><td>附注</td><td>2024年12月31日</td><td>2023年12月31日</td></tr><tr><td colspan=\"4\">流动资产:</td></tr><tr><td>货币资金</td><td></td><td>1,112,631,694.31</td><td>807,833,355.15</td></tr><tr><td>交易性金融资产</td><td></td><td></td><td></td></tr><tr><td>衍生金融资产</td><td></td><td></td><td></td></tr><tr><td>应收票据</td><td></td><td>4,926,365.63</td><td>5,583,852.00</td></tr><tr><td>应收账款</td><td>十九（1）</td><td>1,008,251,386.40</td><td>895,417,189.08</td></tr><tr><td>应收款项融资</td><td></td><td></td><td></td></tr><tr><td>预付款项</td><td></td><td>311,853,424.79</td><td>306,312,669.26</td></tr><tr><td>其他应收款</td><td>十九（2）</td><td>1,155,928,917.31</td><td>1,125,412,948.04</td></tr><tr><td>其中:应收利息</td><td></td><td></td><td></td></tr><tr><td>应收股利</td><td></td><td></td><td></td></tr><tr><td>存货</td><td></td><td>122,170,387.56</td><td>246,758,104.44</td></tr><tr><td>其中:数据资源</td><td></td><td></td><td></td></tr><tr><td>合同资产</td><td></td><td></td><td></td></tr><tr><td>持有待售资产</td><td></td><td></td><td></td></tr><tr><td>一年内到期的非流动资产</td><td></td><td></td><td></td></tr><tr><td>其他流动资产</td><td></td><td>34,256,325.31</td><td>54,136,330.31</td></tr><tr><td>流动资产合计</td><td></td><td>3,750,018,501.31</td><td>3,441,454,448.28</td></tr><tr><td colspan=\"4\">非流动资产:</td></tr><tr><td>债权投资</td><td></td><td></td><td></td></tr><tr><td>其他债权投资</td><td></td><td></td><td></td></tr><tr><td>长期应收款</td><td></td><td></td><td></td></tr><tr><td>长期股权投资</td><td>十九（3）</td><td>1,390,081,403.67</td><td>1,505,558,197.54</td></tr><tr><td>其他权益工具投资</td><td></td><td></td><td></td></tr><tr><td>其他非流动金融资产</td><td></td><td>7,021,284.08</td><td>23,605,977.77</td></tr><tr><td>投资性房地产</td><td></td><td></td><td></td></tr><tr><td>固定资产</td><td></td><td>193,777,588.89</td><td>179,774,132.60</td></tr><tr><td>在建工程</td><td></td><td></td><td>384,000.00</td></tr><tr><td>生产性生物资产</td><td></td><td></td><td></td></tr><tr><td>油气资产</td><td></td><td></td><td></td></tr><tr><td>使用权资产</td><td></td><td>47,473,783.60</td><td>74,163,151.80</td></tr><tr><td>无形资产</td><td></td><td>105,313,713.66</td><td>49,304,193.05</td></tr><tr><td>其中:数据资源</td><td></td><td></td><td></td></tr><tr><td>开发支出</td><td></td><td>23,991,430.53</td><td>3,144,522.82</td></tr><tr><td>其中:数据资源</td><td></td><td></td><td></td></tr><tr><td>商誉</td><td></td><td></td><td></td></tr><tr><td>长期待摊费用</td><td></td><td>6,016,649.24</td><td>33,379,454.43</td></tr><tr><td>递延所得税资产</td><td></td><td>133,436,737.48</td><td>150,179,073.40</td></tr><tr><td>其他非流动资产</td><td></td><td>128,304,686.03</td><td>12,014,175.61</td></tr><tr><td>非流动资产合计</td><td></td><td>2,035,417,277.18</td><td>2,031,506,879.02</td></tr><tr><td>资产总计</td><td></td><td>5,785,435,778.49</td><td>5,472,961,327.30</td></tr><tr><td colspan=\"4\">流动负债:</td></tr><tr><td>短期借款</td><td></td><td></td><td></td></tr><tr><td>交易性金融负债</td><td></td><td></td><td></td></tr><tr><td>衍生金融负债</td><td></td><td></td><td></td></tr><tr><td>应付票据</td><td></td><td>149,368,685.23</td><td></td></tr><tr><td>应付账款</td><td></td><td>1,336,952,851.79</td><td>890,687,724.43</td></tr><tr><td>预收款项</td><td></td><td></td><td></td></tr><tr><td>合同负债</td><td></td><td>106,410,984.43</td><td>52,622,052.57</td></tr><tr><td>应付职工薪酬</td><td></td><td>82,166,983.29</td><td>36,468,631.19</td></tr><tr><td>应交税费</td><td></td><td>372,897.27</td><td>252,908.27</td></tr><tr><td>其他应付款</td><td></td><td>45,751,385.54</td><td>218,251,986.65</td></tr><tr><td>其中：应付利息</td><td></td><td></td><td></td></tr><tr><td>应付股利</td><td></td><td></td><td></td></tr><tr><td>持有待售负债</td><td></td><td></td><td></td></tr><tr><td>一年内到期的非流动负债</td><td></td><td>26,749,882.02</td><td>28,014,622.57</td></tr><tr><td>其他流动负债</td><td></td><td>18,567,217.71</td><td>392,894.97</td></tr><tr><td>流动负债合计</td><td></td><td>1,766,340,887.28</td><td>1,226,690,820.65</td></tr><tr><td colspan=\"4\">非流动负债：</td></tr><tr><td>长期借款</td><td></td><td></td><td></td></tr><tr><td>应付债券</td><td></td><td>1,175,814,692.17</td><td>1,134,987,458.10</td></tr><tr><td>其中：优先股</td><td></td><td></td><td></td></tr><tr><td>永续债</td><td></td><td></td><td></td></tr><tr><td>租赁负债</td><td></td><td>77,289,566.23</td><td>92,652,767.61</td></tr><tr><td>长期应付款</td><td></td><td></td><td></td></tr><tr><td>长期应付职工薪酬</td><td></td><td></td><td></td></tr><tr><td>预计负债</td><td></td><td>24,789,450.64</td><td>43,488,177.16</td></tr><tr><td>递延收益</td><td></td><td>806,414.74</td><td>1,587,710.33</td></tr><tr><td>递延所得税负债</td><td></td><td></td><td></td></tr><tr><td>其他非流动负债</td><td></td><td>51,559,516.33</td><td>58,522,915.71</td></tr><tr><td>非流动负债合计</td><td></td><td>1,330,259,640.11</td><td>1,331,239,028.91</td></tr><tr><td>负债合计</td><td></td><td>3,096,600,527.39</td><td>2,557,929,849.56</td></tr><tr><td colspan=\"4\">所有者权益（或股东权益）：</td></tr><tr><td>实收资本（或股本）</td><td></td><td>451,878,028.00</td><td>451,877,086.00</td></tr><tr><td>其他权益工具</td><td></td><td>192,380,163.16</td><td>192,384,973.75</td></tr><tr><td>其中：优先股</td><td></td><td></td><td></td></tr><tr><td>永续债</td><td></td><td></td><td></td></tr><tr><td>资本公积</td><td></td><td>1,330,253,477.22</td><td>1,295,589,877.33</td></tr><tr><td>减：库存股</td><td></td><td>142,933,220.27</td><td>100,280,543.07</td></tr><tr><td>其他综合收益</td><td></td><td></td><td></td></tr><tr><td>专项储备</td><td></td><td></td><td></td></tr><tr><td>盈余公积</td><td></td><td>186,916,422.41</td><td>173,465,094.17</td></tr><tr><td>未分配利润</td><td></td><td>670,340,380.58</td><td>901,994,989.56</td></tr><tr><td>所有者权益（或股东权益）合计</td><td></td><td>2,688,835,251.10</td><td>2,915,031,477.74</td></tr><tr><td>负债和所有者权益（或股东权益）总计</td><td></td><td>5,785,435,778.49</td><td>5,472,961,327.30</td></tr></table>",
+            "block_bbox": [
+                167,
+                290,
+                1075,
+                1526
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5,
+            "global_block_id": 5,
+            "global_group_id": 5,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    290.0
+                ],
+                [
+                    1075.0,
+                    290.0
+                ],
+                [
+                    1075.0,
+                    1526.0
+                ],
+                [
+                    167.0,
+                    1526.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "151 / 306",
+            "block_bbox": [
+                582,
+                1543,
+                662,
+                1563
+            ],
+            "block_id": 6,
+            "block_order": null,
+            "group_id": 6,
+            "global_block_id": 6,
+            "global_group_id": 6,
+            "block_polygon_points": [
+                [
+                    582.0,
+                    1543.0
+                ],
+                [
+                    661.0,
+                    1543.0
+                ],
+                [
+                    661.0,
+                    1562.0
+                ],
+                [
+                    582.0,
+                    1562.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8619819283485413,
+                "coordinate": [
+                    432,
+                    87,
+                    807,
+                    109
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        432.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        87.0
+                    ],
+                    [
+                        807.0,
+                        109.0
+                    ],
+                    [
+                        432.0,
+                        109.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 6,
+                "label": "doc_title",
+                "score": 0.5370244383811951,
+                "coordinate": [
+                    521,
+                    154,
+                    721,
+                    182
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        521.0,
+                        154.0
+                    ],
+                    [
+                        721.0,
+                        154.0
+                    ],
+                    [
+                        721.0,
+                        182.0
+                    ],
+                    [
+                        521.0,
+                        182.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7488657236099243,
+                "coordinate": [
+                    514,
+                    202,
+                    726,
+                    228
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        514.0,
+                        202.0
+                    ],
+                    [
+                        726.0,
+                        202.0
+                    ],
+                    [
+                        726.0,
+                        228.0
+                    ],
+                    [
+                        514.0,
+                        228.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.62921142578125,
+                "coordinate": [
+                    175,
+                    233,
+                    613,
+                    260
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        175.0,
+                        233.0
+                    ],
+                    [
+                        613.0,
+                        233.0
+                    ],
+                    [
+                        613.0,
+                        260.0
+                    ],
+                    [
+                        175.0,
+                        260.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 24,
+                "label": "vision_footnote",
+                "score": 0.8310642242431641,
+                "coordinate": [
+                    822,
+                    264,
+                    1064,
+                    290
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        822.0,
+                        264.0
+                    ],
+                    [
+                        1064.0,
+                        264.0
+                    ],
+                    [
+                        1064.0,
+                        290.0
+                    ],
+                    [
+                        822.0,
+                        290.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9826098680496216,
+                "coordinate": [
+                    167,
+                    290,
+                    1075,
+                    1526
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        290.0
+                    ],
+                    [
+                        1075.0,
+                        290.0
+                    ],
+                    [
+                        1075.0,
+                        1526.0
+                    ],
+                    [
+                        167.0,
+                        1526.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.7977637052536011,
+                "coordinate": [
+                    582,
+                    1543,
+                    662,
+                    1563
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        582.0,
+                        1543.0
+                    ],
+                    [
+                        661.0,
+                        1543.0
+                    ],
+                    [
+                        661.0,
+                        1562.0
+                    ],
+                    [
+                        582.0,
+                        1562.0
+                    ]
+                ]
+            }
+        ]
+    }
+}

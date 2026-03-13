@@ -1,0 +1,916 @@
+{
+    "input_path": "/Users/mengbai/Documents/AI-training/RAG_project/data/parsed/道通24年年报/splits/道通24年年报_p0051-0100.pdf",
+    "page_index": 36,
+    "page_count": 50,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "深圳市道通科技股份有限公司2024年年度报告",
+            "block_bbox": [
+                431,
+                86,
+                808,
+                108
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "global_block_id": 429,
+            "global_group_id": 429,
+            "block_polygon_points": [
+                [
+                    431.0,
+                    86.0
+                ],
+                [
+                    808.0,
+                    86.0
+                ],
+                [
+                    808.0,
+                    108.0
+                ],
+                [
+                    431.0,
+                    108.0
+                ]
+            ]
+        },
+        {
+            "block_label": "table",
+            "block_content": "",
+            "block_bbox": [
+                167,
+                150,
+                1076,
+                437
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1,
+            "global_block_id": 430,
+            "global_group_id": 427,
+            "block_polygon_points": [
+                [
+                    167.0,
+                    150.0
+                ],
+                [
+                    1076.0,
+                    150.0
+                ],
+                [
+                    1076.0,
+                    437.0
+                ],
+                [
+                    167.0,
+                    437.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "（四）报告期内对高级管理人员的考评机制，以及激励机制的建立、实施情况",
+            "block_bbox": [
+                178,
+                476,
+                988,
+                506
+            ],
+            "block_id": 2,
+            "block_order": 1,
+            "group_id": 2,
+            "global_block_id": 431,
+            "global_group_id": 431,
+            "block_polygon_points": [
+                [
+                    178.0,
+                    476.0
+                ],
+                [
+                    988.0,
+                    476.0
+                ],
+                [
+                    988.0,
+                    506.0
+                ],
+                [
+                    178.0,
+                    506.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                180,
+                523,
+                377,
+                550
+            ],
+            "block_id": 3,
+            "block_order": 2,
+            "group_id": 3,
+            "global_block_id": 432,
+            "global_group_id": 432,
+            "block_polygon_points": [
+                [
+                    180.0,
+                    523.0
+                ],
+                [
+                    377.0,
+                    523.0
+                ],
+                [
+                    377.0,
+                    550.0
+                ],
+                [
+                    180.0,
+                    550.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "公司强化以责任结果为导向的价值评价体系，促进公司全体员工持续以客户需求为导向，创造客户价值。公司通过月度工作计划和工作成果管理以及半年度和年度绩效考核，实行包括但不限于薪酬调整、奖金分配倾斜、长期激励（股权分配）、职位晋升等多元化正向激励。",
+            "block_bbox": [
+                173,
+                555,
+                1069,
+                725
+            ],
+            "block_id": 4,
+            "block_order": 3,
+            "group_id": 4,
+            "global_block_id": 433,
+            "global_group_id": 433,
+            "block_polygon_points": [
+                [
+                    171.4901123046875,
+                    555.0670776367188
+                ],
+                [
+                    1066.4901123046875,
+                    547.0671997070312
+                ],
+                [
+                    1068.0001220703125,
+                    716.0000610351562
+                ],
+                [
+                    173.0001220703125,
+                    723.9999389648438
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "十四、报告期内的内部控制制度建设及实施情况",
+            "block_bbox": [
+                174,
+                778,
+                690,
+                808
+            ],
+            "block_id": 5,
+            "block_order": 4,
+            "group_id": 5,
+            "global_block_id": 434,
+            "global_group_id": 434,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    778.0
+                ],
+                [
+                    690.0,
+                    778.0
+                ],
+                [
+                    690.0,
+                    808.0
+                ],
+                [
+                    174.0,
+                    808.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                180,
+                825,
+                364,
+                851
+            ],
+            "block_id": 6,
+            "block_order": 5,
+            "group_id": 6,
+            "global_block_id": 435,
+            "global_group_id": 435,
+            "block_polygon_points": [
+                [
+                    180.0,
+                    825.0
+                ],
+                [
+                    364.0,
+                    825.0
+                ],
+                [
+                    364.0,
+                    851.0
+                ],
+                [
+                    180.0,
+                    851.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "报告期内，公司根据《企业内部控制基本规范》及其配套指引的规定，对公司内部控制制度体系进行持续优化，加大内控制度的覆盖面和执行力度，建立一套适合公司经营管理，支持公司战略达成的内部控制体系。同时，公司审计部也强化监督及评价，督促公司不断提高整体规范运作水平。",
+            "block_bbox": [
+                173,
+                857,
+                1068,
+                1028
+            ],
+            "block_id": 7,
+            "block_order": 6,
+            "group_id": 7,
+            "global_block_id": 436,
+            "global_group_id": 436,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    857.0
+                ],
+                [
+                    1068.0,
+                    857.0
+                ],
+                [
+                    1068.0,
+                    1028.0
+                ],
+                [
+                    173.0,
+                    1028.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "报告期内部控制存在重大缺陷情况的说明",
+            "block_bbox": [
+                173,
+                1073,
+                614,
+                1102
+            ],
+            "block_id": 8,
+            "block_order": 7,
+            "group_id": 8,
+            "global_block_id": 437,
+            "global_group_id": 437,
+            "block_polygon_points": [
+                [
+                    173.0,
+                    1073.0
+                ],
+                [
+                    614.0,
+                    1073.0
+                ],
+                [
+                    614.0,
+                    1102.0
+                ],
+                [
+                    173.0,
+                    1102.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "□适用 √不适用",
+            "block_bbox": [
+                177,
+                1107,
+                364,
+                1133
+            ],
+            "block_id": 9,
+            "block_order": 8,
+            "group_id": 9,
+            "global_block_id": 438,
+            "global_group_id": 438,
+            "block_polygon_points": [
+                [
+                    177.0,
+                    1107.0
+                ],
+                [
+                    364.0,
+                    1107.0
+                ],
+                [
+                    364.0,
+                    1133.0
+                ],
+                [
+                    177.0,
+                    1133.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "十五、报告期内对子公司的管理控制情况",
+            "block_bbox": [
+                174,
+                1173,
+                617,
+                1202
+            ],
+            "block_id": 10,
+            "block_order": 9,
+            "group_id": 10,
+            "global_block_id": 439,
+            "global_group_id": 439,
+            "block_polygon_points": [
+                [
+                    174.0,
+                    1173.0
+                ],
+                [
+                    617.0,
+                    1173.0
+                ],
+                [
+                    617.0,
+                    1202.0
+                ],
+                [
+                    174.0,
+                    1202.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "✓适用 ☐不适用",
+            "block_bbox": [
+                180,
+                1219,
+                365,
+                1247
+            ],
+            "block_id": 11,
+            "block_order": 10,
+            "group_id": 11,
+            "global_block_id": 440,
+            "global_group_id": 440,
+            "block_polygon_points": [
+                [
+                    180.0,
+                    1219.0
+                ],
+                [
+                    365.0,
+                    1219.0
+                ],
+                [
+                    365.0,
+                    1247.0
+                ],
+                [
+                    180.0,
+                    1247.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "报告期内，公司严格按照《公司章程》《上海证券交易所科创板股票上市规则》等制度和规定，对子公司的经营管理、投资决策、人事及薪酬与考核、财务制度、信息披露、监督审计等方面工作进行管理，并按时参加子公司重大经营管理决策会议，对子公司的经营做到及时了解、及时决策。同时，公司审计部定期或不定期对子公司经济业务活动的各个方面进行审计监督，督促其健全内部控制制度体系的建设并有效执行。",
+            "block_bbox": [
+                172,
+                1251,
+                1069,
+                1515
+            ],
+            "block_id": 12,
+            "block_order": 11,
+            "group_id": 12,
+            "global_block_id": 441,
+            "global_group_id": 441,
+            "block_polygon_points": [
+                [
+                    172.0,
+                    1251.0
+                ],
+                [
+                    1069.0,
+                    1251.0
+                ],
+                [
+                    1069.0,
+                    1515.0
+                ],
+                [
+                    172.0,
+                    1515.0
+                ]
+            ]
+        },
+        {
+            "block_label": "number",
+            "block_content": "87 / 306",
+            "block_bbox": [
+                585,
+                1542,
+                658,
+                1564
+            ],
+            "block_id": 13,
+            "block_order": null,
+            "group_id": 13,
+            "global_block_id": 442,
+            "global_group_id": 442,
+            "block_polygon_points": [
+                [
+                    585.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1542.0
+                ],
+                [
+                    657.0,
+                    1563.0
+                ],
+                [
+                    585.0,
+                    1563.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.8764848113059998,
+                "coordinate": [
+                    431,
+                    86,
+                    808,
+                    108
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        431.0,
+                        86.0
+                    ],
+                    [
+                        808.0,
+                        86.0
+                    ],
+                    [
+                        808.0,
+                        108.0
+                    ],
+                    [
+                        431.0,
+                        108.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 21,
+                "label": "table",
+                "score": 0.9722727537155151,
+                "coordinate": [
+                    167,
+                    150,
+                    1076,
+                    437
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        167.0,
+                        150.0
+                    ],
+                    [
+                        1076.0,
+                        150.0
+                    ],
+                    [
+                        1076.0,
+                        437.0
+                    ],
+                    [
+                        167.0,
+                        437.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8750268220901489,
+                "coordinate": [
+                    178,
+                    476,
+                    988,
+                    506
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        178.0,
+                        476.0
+                    ],
+                    [
+                        988.0,
+                        476.0
+                    ],
+                    [
+                        988.0,
+                        506.0
+                    ],
+                    [
+                        178.0,
+                        506.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.713994562625885,
+                "coordinate": [
+                    180,
+                    523,
+                    377,
+                    550
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        180.0,
+                        523.0
+                    ],
+                    [
+                        377.0,
+                        523.0
+                    ],
+                    [
+                        377.0,
+                        550.0
+                    ],
+                    [
+                        180.0,
+                        550.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.956873893737793,
+                "coordinate": [
+                    173,
+                    555,
+                    1069,
+                    725
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        171.4901123046875,
+                        555.0670776367188
+                    ],
+                    [
+                        1066.4901123046875,
+                        547.0671997070312
+                    ],
+                    [
+                        1068.0001220703125,
+                        716.0000610351562
+                    ],
+                    [
+                        173.0001220703125,
+                        723.9999389648438
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8589226603507996,
+                "coordinate": [
+                    174,
+                    778,
+                    690,
+                    808
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        174.0,
+                        778.0
+                    ],
+                    [
+                        690.0,
+                        778.0
+                    ],
+                    [
+                        690.0,
+                        808.0
+                    ],
+                    [
+                        174.0,
+                        808.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.6938307285308838,
+                "coordinate": [
+                    180,
+                    825,
+                    364,
+                    851
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        180.0,
+                        825.0
+                    ],
+                    [
+                        364.0,
+                        825.0
+                    ],
+                    [
+                        364.0,
+                        851.0
+                    ],
+                    [
+                        180.0,
+                        851.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.95694899559021,
+                "coordinate": [
+                    173,
+                    857,
+                    1068,
+                    1028
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        173.0,
+                        857.0
+                    ],
+                    [
+                        1068.0,
+                        857.0
+                    ],
+                    [
+                        1068.0,
+                        1028.0
+                    ],
+                    [
+                        173.0,
+                        1028.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6476730108261108,
+                "coordinate": [
+                    173,
+                    1073,
+                    614,
+                    1102
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        173.0,
+                        1073.0
+                    ],
+                    [
+                        614.0,
+                        1073.0
+                    ],
+                    [
+                        614.0,
+                        1102.0
+                    ],
+                    [
+                        173.0,
+                        1102.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.747901201248169,
+                "coordinate": [
+                    177,
+                    1107,
+                    364,
+                    1133
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        177.0,
+                        1107.0
+                    ],
+                    [
+                        364.0,
+                        1107.0
+                    ],
+                    [
+                        364.0,
+                        1133.0
+                    ],
+                    [
+                        177.0,
+                        1133.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.8480095267295837,
+                "coordinate": [
+                    174,
+                    1173,
+                    617,
+                    1202
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        174.0,
+                        1173.0
+                    ],
+                    [
+                        617.0,
+                        1173.0
+                    ],
+                    [
+                        617.0,
+                        1202.0
+                    ],
+                    [
+                        174.0,
+                        1202.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.695276141166687,
+                "coordinate": [
+                    180,
+                    1219,
+                    365,
+                    1247
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        180.0,
+                        1219.0
+                    ],
+                    [
+                        365.0,
+                        1219.0
+                    ],
+                    [
+                        365.0,
+                        1247.0
+                    ],
+                    [
+                        180.0,
+                        1247.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9630323648452759,
+                "coordinate": [
+                    172,
+                    1251,
+                    1069,
+                    1515
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        172.0,
+                        1251.0
+                    ],
+                    [
+                        1069.0,
+                        1251.0
+                    ],
+                    [
+                        1069.0,
+                        1515.0
+                    ],
+                    [
+                        172.0,
+                        1515.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 16,
+                "label": "number",
+                "score": 0.8138535022735596,
+                "coordinate": [
+                    585,
+                    1542,
+                    658,
+                    1564
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        585.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1542.0
+                    ],
+                    [
+                        657.0,
+                        1563.0
+                    ],
+                    [
+                        585.0,
+                        1563.0
+                    ]
+                ]
+            }
+        ]
+    }
+}
