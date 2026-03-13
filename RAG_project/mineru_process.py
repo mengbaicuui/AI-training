@@ -280,7 +280,7 @@ def main():
         profile_params: dict | None = None
         model = args.model
         if args.profile == "hsbc_en":
-            # 专门针对英文保险 PDF 的配置
+        
             model = "pipeline" if args.model == "vlm" else args.model
             profile_params = {
                 "is_ocr": False,
@@ -299,7 +299,7 @@ def main():
         out_path.write_text(content, encoding="utf-8")
         print(f"  Saved to {out_path}")
     else:
-        # 本地文件：OpenDataLab file_parse
+     
         pdf_path = Path(raw)
         if not pdf_path.is_file():
             print(f"Error: file not found: {pdf_path}")

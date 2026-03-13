@@ -108,13 +108,23 @@ const KnowledgePointModal = ({ point, onClose }) => {
         </div>
 
         <div className="highlight-box" style={{ marginTop: 'var(--spacing-lg)' }}>
-          <p className="content-text" style={{ margin: 0 }}>{point.summary}</p>
+          <p className="content-text" style={{ margin: 0 }} dangerouslySetInnerHTML={{ __html: point.summary
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/`(.*?)`/g, '<code style="background:var(--bg-tertiary);padding:1px 5px;border-radius:4px;font-size:0.88em">$1</code>')
+            .replace(/\n/g, '<br />')
+          }} />
         </div>
 
         {point.whyItMatters && (
           <div className="content-block" style={{ marginTop: 'var(--spacing-lg)', marginBottom: 0 }}>
             <h4 className="block-title">为什么重要</h4>
-            <p className="content-text" style={{ marginBottom: 0 }}>{point.whyItMatters}</p>
+            <p className="content-text" style={{ marginBottom: 0 }} dangerouslySetInnerHTML={{ __html: point.whyItMatters
+              .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+              .replace(/`(.*?)`/g, '<code style="background:var(--bg-tertiary);padding:1px 5px;border-radius:4px;font-size:0.88em">$1</code>')
+              .replace(/\n/g, '<br />')
+            }} />
           </div>
         )}
       </div>

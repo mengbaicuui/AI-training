@@ -144,7 +144,7 @@ training_args = SFTConfig(
     save_steps=50,
     save_total_limit=2,
     bf16=True,
-    report_to="none",
+    report_to="tensorboard",   # 启用 TensorBoard 看 loss
     seed=RANDOM_SEED,
     
     # SFT 特有配置

@@ -29,6 +29,47 @@ npm run dev
 | Graph RAG | 知识图谱增强检索 |
 | 生产部署 | 监控、灰度、安全护栏 |
 
+## 课件代码依赖（Python 环境）
+
+课件中的代码示例需要以下 Python 包：
+
+```bash
+# 1. 核心依赖（一次性安装）
+pip install langchain langchain-openai langchain-community \
+  pymupdf python-docx \
+  chromadb rank-bm25 \
+  ragas deepeval langsmith langfuse nemoguardrails \
+  jieba numpy pandas httpx
+```
+
+```bash
+# 2. 验证 ChromaDB
+python -c "
+import chromadb
+client = chromadb.Client()
+col = client.create_collection('test')
+col.add(documents=['hello'], ids=['1'])
+print('✅ ChromaDB ready')
+"
+```
+
+```bash
+# 3. 验证 API Key（Embedding / Rerank 走硅基流动等 API，无需本地模型）
+python -c "
+import os
+assert os.getenv('OPENAI_API_KEY'), '❌ 请设置 OPENAI_API_KEY'
+print('✅ OpenAI API Key ready')
+"
+```
+
+```bash
+# 4. 可选：PaddleOCR（多模态文档解析，安装较重）
+pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+pip install paddleocr
+```
+
+> PaddleOCR 需要 PaddlePaddle 框架，GPU 环境请参考 [官方安装文档](https://www.paddlepaddle.org.cn/install/quick)。课件中其他示例不依赖此包。
+
 ## 技术栈
 
 - **前端**：React + Vite

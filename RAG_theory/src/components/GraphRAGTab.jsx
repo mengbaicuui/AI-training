@@ -182,6 +182,18 @@ const renderContent = (blocks) =>
             </div>
           </div>
         );
+      case 'image':
+        return (
+          <div key={i} className="content-block">
+            {block.title && <h4 className="block-title">{block.title}</h4>}
+            <div style={{ background: 'var(--bg-tertiary)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-lg)', padding: 'var(--spacing-md)' }}>
+              <img src={block.src} alt={block.alt || block.title || 'diagram'} style={{ width: '100%', borderRadius: 'var(--radius-md)', display: 'block' }} />
+              {block.caption && (
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: 'var(--spacing-sm)', textAlign: 'center', lineHeight: 1.6 }}>{block.caption}</p>
+              )}
+            </div>
+          </div>
+        );
       case 'compare':
         return (
           <div key={i} className="content-block">
@@ -190,7 +202,7 @@ const renderContent = (blocks) =>
               {block.items.map((item, j) => (
                 <div key={j} className="compare-card">
                   <div className="compare-card-title">{item.name}</div>
-                  <div className="compare-card-body">{item.desc}</div>
+                  <div className="compare-card-body" dangerouslySetInnerHTML={{ __html: item.desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
                 </div>
               ))}
             </div>

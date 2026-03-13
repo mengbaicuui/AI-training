@@ -1,5 +1,74 @@
 export const graphSections = [
   {
+    id: 'definition',
+    icon: '📖',
+    title: 'GraphRAG 是什么',
+    content: [
+      {
+        type: 'text',
+        value: '**GraphRAG** 是在传统 RAG 的基础上，把文档中的**实体与关系**显式建模为图结构，再通过图遍历或社区分析来增强检索的方法。它的出发点很简单：向量相似度只能找"语义相近"的段落，但它找不到"A 和 B 之间跨文档的关联链路"。'
+      },
+      {
+        type: 'image',
+        title: 'GraphRAG 分类体系：普通 RAG / KG-GraphRAG / Community-based GraphRAG',
+        src: '/graphrag-taxonomy.png',
+        alt: 'GraphRAG taxonomy diagram',
+        caption: '三条路线的根本区别在于索引结构：普通 RAG 只建向量索引；KG-GraphRAG 在向量之上增加三元组图；Community-based GraphRAG 进一步做层级社区检测与摘要，支持 Global 和 Local 两种搜索模式。'
+      },
+      {
+        type: 'compare',
+        title: 'RAG vs GraphRAG：各自擅长什么',
+        items: [
+          {
+            name: '传统 RAG 擅长',
+            desc: '**单跳查询**：找具体细节、事实、段落。查询与答案在同一文档或相邻段落内。Embedding 相似度能直接命中。'
+          },
+          {
+            name: 'GraphRAG 擅长',
+            desc: '**多跳查询**：需要跨文档连接信息、理解复杂关系链、生成概括性全局洞察。图结构能保留跨段落的实体关联。'
+          }
+        ]
+      },
+      {
+        type: 'highlight',
+        value: '一句话总结：**RAG 擅长"点对点"的细节查找，GraphRAG 擅长"点对线"和"线对面"的复杂关联与全局总结。**（来源：《RAG vs. GraphRAG: A Systematic Evaluation》，Han et al.）'
+      },
+      {
+        type: 'list',
+        title: '两大 GraphRAG 实现路线',
+        items: [
+          '**KG-GraphRAG（三元组路线）**：从文本中提取实体-关系-实体三元组，查询时通过实体匹配在图上做路径遍历。代表方案：HippoRAG、传统 KGQA。优点：推理链路透明；缺点：三元组抽取质量参差不齐，关系类型爆炸难以维护。',
+          '**Community-based GraphRAG（社区摘要路线）**：在三元组基础上用图聚类算法（如 Leiden）划分社区，对每个社区生成 LLM 摘要，查询时分 Global Search（读社区摘要）和 Local Search（读实体邻居）两模式。代表方案：微软 GraphRAG、LazyGraphRAG。优点：全局理解能力强；缺点：建图成本极高。'
+        ]
+      },
+      {
+        type: 'list',
+        title: '微软 GraphRAG = Community-based，其核心四步',
+        items: [
+          '**① 图提取**：用 LLM 把文档里的实体（人、事、地）和关系找出来，建成一张大图',
+          '**② 社区检测**：用 Leiden 算法把紧密相关的实体划分为"社区"（Community）',
+          '**③ 层级化摘要**：对每个社区生成摘要——底层小社区有摘要，高层大社区也有摘要，形成"摘要树"',
+          '**④ 双模式查询**：Global Search 读高层社区摘要（宏观问题）；Local Search 聚焦实体邻居节点（具体问题）'
+        ]
+      },
+      {
+        type: 'table',
+        title: 'RAPTOR vs 微软 GraphRAG：同样做层级摘要，路径不同',
+        columns: ['特性', 'RAPTOR', '微软 GraphRAG'],
+        rows: [
+          ['基础单元', '纯文本块（Text Chunks）', '图节点与关系（Entities & Relations）'],
+          ['聚类方式', '向量嵌入 + GMM 聚类', '图算法（Leiden 社区检测）'],
+          ['理解深度', '基于语义相似度', '基于实体间逻辑链接'],
+          ['适用场景', '叙事性、长文档层级理解', '关系复杂、信息高度关联的知识库'],
+        ]
+      },
+      {
+        type: 'text',
+        value: '**没有万能方案**：GraphRAG 在复杂关系推理上很强，但简单事实检索上不如 RAG 高效。研究也发现两种优化路线：**选择策略**（事实问题走 RAG、推理问题走 GraphRAG）和**整合策略**（两路并行再融合），这正是后面讨论各轻量方案的工程出发点。'
+      }
+    ]
+  },
+  {
     id: 'why-expensive',
     icon: '💸',
     title: 'GraphRAG 为什么贵',
@@ -112,6 +181,13 @@ export const graphSections = [
         value: 'LightRAG（香港大学，arxiv:2410.05779，EMNLP 2025 Findings）是目前最务实的 GraphRAG 轻量替代方案之一。它用**双层检索**（实体层+主题层）+ 图向量混合检索，实现了 GraphRAG 的全局理解能力，但查询成本降低了几个数量级。'
       },
       {
+        type: 'image',
+        title: 'LightRAG 整体架构：Graph-based Text Indexing + Dual-level Retrieval Paradigm',
+        src: '/lightrag-architecture.png',
+        alt: 'LightRAG overall architecture diagram',
+        caption: '左侧索引阶段：对原始文本做实体与关系抽取（D/P/R 三类），去重后构建 Index Graph，每个节点存储 Entity Name、Type、Description 及原始 Chunk ID。右侧检索阶段：Query 同时触发 Low-level Keys（具体实体）和 High-level Keys（主题/关系），通过 Query + LLM 融合后召回实体、关系和原始文本，完成 Dual-level 双路检索。'
+      },
+      {
         type: 'list',
         title: '核心设计',
         items: [
@@ -198,6 +274,13 @@ return answer`
         value: 'LinearRAG（2025，ICLR 2026）代表的是另一条轻量知识增强路线：**尽量避免昂贵且不稳定的关系抽取**，改用更轻量的实体抽取 + 语义连接来构建层级图结构。它的目标不是做“最完整的知识图谱”，而是做一个能线性扩展、适合大规模语料的 graph retrieval 框架。'
       },
       {
+      {
+        type: 'image',
+        title: 'Naive RAG / GraphRAG / LinearRAG 流程对比',
+        src: '/linearrag-architecture.png',
+        alt: 'LinearRAG vs GraphRAG vs Naive RAG pipeline comparison',
+        caption: 'a) Naive RAG：Chunk → Embedding → 向量检索；b) GraphRAG：NER → 关系抓取 → Knowledge Graph → 子图检索；c) LinearRAG：NER → Semantic Linking → Tri-Graph → Passage 检索。LinearRAG 跳过了 b) 中昂贵的关系抓取步骤，用语义连接构建轻量 Tri-Graph，检索结果仍为 Passage，与普通 RAG 兼容。',
+      },
         type: 'list',
         title: '核心设计',
         items: [

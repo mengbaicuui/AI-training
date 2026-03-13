@@ -10,10 +10,40 @@ from pathlib import Path
 import argparse
 import os
 import re
+import sys
+import types
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REFERENCE_DIR = SCRIPT_DIR.parent / "reference"
 DEFAULT_OUT_DIR = SCRIPT_DIR.parent / "parsed"
+
+
+def _patch_langchain_compat():
+    """新版 langchain 移除了 paddleocr/paddlex 依赖的老路径，注入轻量兼容层。"""
+    lc = sys.modules.setdefault("langchain", types.ModuleType("langchain"))
+    try:
+        from langchain.docstore.document import Document as _D  # noqa: F401
+    except Exception:
+        try:
+            from langchain_core.documents import Document
+            ds = types.ModuleType("langchain.docstore")
+            dd = types.ModuleType("langchain.docstore.document")
+            dd.Document = Document; ds.document = dd; lc.docstore = ds
+            sys.modules["langchain.docstore"] = ds
+            sys.modules["langchain.docstore.document"] = dd
+        except Exception:
+            pass
+    try:
+        from langchain.text_splitter import RecursiveCharacterTextSplitter as _R  # noqa: F401
+    except Exception:
+        try:
+            from langchain_text_splitters import RecursiveCharacterTextSplitter
+            ts = types.ModuleType("langchain.text_splitter")
+            ts.RecursiveCharacterTextSplitter = RecursiveCharacterTextSplitter
+            lc.text_splitter = ts
+            sys.modules["langchain.text_splitter"] = ts
+        except Exception:
+            pass
 
 
 # ---------------------------------------------------------------------------
@@ -189,6 +219,8 @@ def main():
         help="PP-OCR version for --ocr-correct (default: PP-OCRv5).",
     )
     args = parser.parse_args()
+
+    _patch_langchain_compat()
 
     try:
         from paddleocr import PaddleOCRVL

@@ -194,9 +194,9 @@ load_best_model_at_end: true  # 加载最佳模型
 ### 精度
 bf16: true
 
-### 日志
+### 日志（启用 TensorBoard 看 loss）
 logging_steps: 50
-report_to: none
+report_to: tensorboard    # 改为 tensorboard，训练时会写日志到 output_dir/runs/
 """
 
 config_path = CONFIG_DIR / "qwen3_lora_sft.yaml"

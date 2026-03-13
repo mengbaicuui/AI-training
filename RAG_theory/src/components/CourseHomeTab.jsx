@@ -151,9 +151,6 @@ const CourseHomeTab = ({ tabs = [], onNavigate = () => {}, onOpenToolFramework =
         {/* Workshop Title & Overview */}
         <div className="content-block">
           <h2 className="section-title">RAG 生产实践工作坊</h2>
-          <p className="content-text" style={{ fontSize: '1.05rem', marginBottom: 'var(--spacing-sm)' }}>
-            一天密集实战，面向有经验的开发者
-          </p>
           <div className="highlight-box">
             <p className="content-text" style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600 }}>
               从 0 到生产级 RAG：一天掌握构建、调优、评估与上线

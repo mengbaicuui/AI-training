@@ -238,13 +238,13 @@ export const evolutionKnowledgePointDetails = {
   },
   LightRAG: {
     name: 'LightRAG',
-    summary: 'LightRAG 试图用更低的建图和查询成本，保留部分图增强 RAG 的好处。',
-    whyItMatters: '它代表 2025 之后更务实的知识增强路线，适合预算敏感团队。',
+    summary: 'LightRAG（HKUST, 2024）核心是**双层图索引**：从每个 chunk 中抓取实体与关系，构建实体级（细粒度）和文档级（粗粒度）两张图，实体描述和关系描述同时写入向量索引。\n\n查询时支持四种模式：\n• **Naive**：纯向量相似度，等同于普通 RAG\n• **Local**：检索直接相关实体及其邻居节点（一跳）\n• **Global**：在文档级图上做全局感知的检索\n• **Hybrid**：Local + Global 联合，兼顾细节与全局\n\n与 GraphRAG 最大的区别：LightRAG 跳过了昂贵的“社区摘要”步骤，只保留实体与关系抓取，建图成本约是 GraphRAG 的 1/5。同时支持增量更新，新文档进来只需抓取新实体，不用重建整图。',
+    whyItMatters: '在“不想做重型 GraphRAG”和“想要跨文档关联”之间提供务实折中。适合中小规模企业知识库（万级文档以内），既能处理多跳实体关联，又不需要完整社区摘要的建图成本。',
   },
   LinearRAG: {
     name: 'LinearRAG',
-    summary: 'LinearRAG 强调图检索框架应尽量线性扩展，避免重型关系抽取的高成本。',
-    whyItMatters: '它适合大规模语料场景，是“要图结构但不想做重 GraphRAG”的代表方案。',
+    summary: 'LinearRAG（2025, ICLR 2026）的核心洞察：图遍历可以被“线性展开”——大多数多跳问题都可分解为顺序检索链，不需要构建完整图结构。\n\n工作原理：\n1. **第一跳**：用原始 query 做向量检索，获得 seed chunks\n2. **扩展**：从 seed chunks 中抓取关键实体，形成 follow-up query\n3. **后续跳**：用 follow-up query 继续检索，把每一跳证据线性拼接\n4. **聚合**：将整条检索链组合成最终上下文\n\n与 LightRAG 的区别：LightRAG 需要预先建图；LinearRAG 在检索时动态展开，不需要离线图结构，建库成本几乎等于普通 RAG，适合亿级文档的超大规模语料。',
+    whyItMatters: '核心价值是“零图构建成本的多跳检索”：牺牲完整图结构带来的全局感知，换取接近普通 RAG 的索引成本。适合语料更新极为频繁或预算极度敏感的场景。',
   },
   'Lightweight Graph RAG': {
     name: 'Lightweight Graph RAG',
