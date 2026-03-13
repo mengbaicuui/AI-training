@@ -131,7 +131,14 @@ const PREP_CATEGORIES = [
   },
 ];
 
-const CourseHomeTab = ({ tabs = [], onNavigate = () => {} }) => {
+const TOOL_FRAMEWORK_CARDS = [
+  { id: 'langchain', icon: '🧱', title: 'LangChain & LangGraph', desc: 'RAG 管道组装 + Agent 状态编排' },
+  { id: 'langfuse', icon: '📈', title: 'Langfuse', desc: '看 trace、tool call、latency、agent 轨迹' },
+  { id: 'ocr', icon: '📄', title: 'MinerU & PaddleOCR', desc: '复杂 PDF / 表格 / 图文混排解析' },
+  { id: 'tools', icon: '🛠️', title: 'Tools', desc: 'Tavily、网页抓取、外部检索和业务接口' },
+];
+
+const CourseHomeTab = ({ tabs = [], onNavigate = () => {}, onOpenToolFramework = () => {} }) => {
   const [expandedPrep, setExpandedPrep] = useState({});
 
   const togglePrep = (idx) => {
@@ -157,7 +164,7 @@ const CourseHomeTab = ({ tabs = [], onNavigate = () => {} }) => {
         <div className="content-block">
           <div className="block-title">🗂️ 课程目录</div>
           <div className="compare-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
-            {tabs.filter((tab) => tab.id !== 'home').map((tab) => (
+            {tabs.filter((tab) => tab.id !== 'home' && tab.id !== 'tool-framework').map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => onNavigate(tab.id)}
@@ -175,6 +182,30 @@ const CourseHomeTab = ({ tabs = [], onNavigate = () => {} }) => {
                 <div className="compare-card-body">
                   {tab.phase ? `Phase ${tab.phase}` : '概览 / 参考材料'}
                 </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="content-block">
+          <div className="block-title">🧰 工具 / 框架介绍</div>
+          <div className="compare-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+            {TOOL_FRAMEWORK_CARDS.map((card) => (
+              <button
+                key={card.id}
+                onClick={() => onOpenToolFramework(card.id)}
+                className="compare-card"
+                style={{
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  background: 'var(--bg-secondary)',
+                }}
+              >
+                <div className="compare-card-title">
+                  <span style={{ fontSize: '1.1rem' }}>{card.icon}</span>
+                  <span>{card.title}</span>
+                </div>
+                <div className="compare-card-body">{card.desc}</div>
               </button>
             ))}
           </div>
