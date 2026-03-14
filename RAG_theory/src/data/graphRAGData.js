@@ -329,6 +329,13 @@ return answer`
         value: 'RAPTOR（斯坦福大学，arxiv:2401.18059，ICLR 2024）走了一条与图完全不同的路——**树状分层摘要**。它不构建知识图谱，而是对文本做递归聚类和摘要，形成一棵从细节到概括的多层树，检索时可以跨层取信息。'
       },
       {
+        type: 'image',
+        src: '/raptor-tree-structure.png',
+        title: 'RAPTOR 树状分层摘要结构',
+        alt: 'RAPTOR tree structure: Leafs → Embed+Cluster → Cluster Summaries → Root Summary, all stored in Vectorstore',
+        caption: 'RAPTOR 核心流程：原始文档（Leafs）→ Embed + 聚类 → Cluster Summary → 递归聚类摘要 → Root Summary。所有层级的节点（原始 chunks + 各层摘要）均存入 Vectorstore，检索时跨层匹配。'
+      },
+      {
         type: 'list',
         title: '核心设计',
         items: [
@@ -415,6 +422,56 @@ if delta > 0.05 and cost_ratio < 3:
     print("值得继续投入")
 else:
     print("先维持 baseline")`
+      }
+    ]
+  },
+  {
+    id: 'domain-applications',
+    icon: '🏥',
+    title: '领域应用',
+    content: [
+      {
+        type: 'text',
+        value: '知识增强 RAG 的真正价值在于落地到**具体垂直领域**。不同行业对"知识"的定义和组织方式不同，图/树结构在这些场景中的角色也不同。以下以医学领域为例，展示 GraphRAG 如何与领域知识深度融合。'
+      },
+      {
+        type: 'text',
+        value: '**Medical Graph RAG**（= Graph RAG + 医学可信度层）是一个典型案例：它不只是在医学文本上跑 GraphRAG，而是针对医学场景设计了两个核心创新——**三重图谱链接（Triple Linking）** 和 **U 型检索（U-Retrieval）**。'
+      },
+      {
+        type: 'image',
+        src: '/medical-graphrag.png',
+        title: 'Medical Graph RAG 架构',
+        alt: 'Medical Graph RAG: Triple Linking + U-Retrieval architecture',
+        caption: 'Medical Graph RAG 两大核心创新：Triple Linking（三重图谱链接，打通用户文档 × 医学论文 × 医学词汇表）和 U-Retrieval（Top-down 标签生成 → Bottom-up 精细检索的 U 型路径，兼顾精准度与全局上下文）。'
+      },
+      {
+        type: 'list',
+        title: 'Medical Graph RAG 核心设计',
+        items: [
+          '**三重图谱链接（Triple Linking）** — 构建三层链接结构：用户文档（如电子病历）↔ 医学文献（Med Books & Papers）↔ 医学词汇表（Med Vocabularies）。自动将实体映射到权威医学术语，确保检索和推理基于标准化知识',
+          '**U 型检索（U-Retrieval）** — 先 Top-down：从高层医学标签（Tags）出发，快速索引相关知识图谱子图，生成初步答案；再 Bottom-up：逐步回溯细化，融入更细粒度的原文证据。这种 U 型路径兼顾了检索精准度和全局上下文',
+          '**Graph Reasoning 纠错** — 当 GraphRAG 忽略了某些关键信息（如药物禁忌）时，MedGraphRAG 通过图推理链路显式追溯，纠正潜在的安全性错误',
+          '**可解释的 RAG 三元组** — 为用户生成的每条回答提供 [实体, 关系, 实体] 形式的证据链，确保医疗回答有据可查'
+        ]
+      },
+      {
+        type: 'highlight',
+        value: '领域启示：垂直领域的 GraphRAG 不是通用 GraphRAG 的简单套用。它需要：1) 领域本体/词汇表作为图的锚点；2) 领域特定的可信度校验机制；3) 面向专业用户的可解释性设计。医学、法律、金融等高风险领域尤其如此。'
+      },
+      {
+        type: 'list',
+        title: '其他领域的知识增强方向',
+        items: [
+          '**法律** — 法条图谱 + 案例引用链。法条之间有"引用/修订/废止"关系，天然适合图结构。检索时可以沿着引用链找到完整的法律依据',
+          '**金融** — 公司关系图 + 事件图谱。"A 公司收购 B 公司"→ "B 公司是 C 公司的供应商"→ 影响 C 公司股价。这类多跳推理是 HippoRAG / GraphRAG 的典型场景',
+          '**制造业** — 设备-故障-解决方案图谱。维修手册中的 troubleshooting 树天然有层级结构，适合 RAPTOR；设备间的关联故障适合图结构',
+          '**教育** — 知识点前驱/后继关系图。"学 B 之前必须先掌握 A"这类依赖关系可以用图来建模，辅助个性化学习路径推荐'
+        ]
+      },
+      {
+        type: 'warning',
+        value: '落地建议：领域 GraphRAG 的最大成本不是技术实现，而是**领域知识的结构化**。如果你的行业没有现成的本体或词汇表，先评估"人工构建本体"的 ROI。很多时候，一个精心设计的 metadata schema + Hybrid Retrieval 就能覆盖 80% 的需求。'
       }
     ]
   }

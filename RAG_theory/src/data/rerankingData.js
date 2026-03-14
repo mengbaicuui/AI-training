@@ -213,6 +213,18 @@ def llm_rerank(query: str, docs: list[str], top_k: int = 5) -> list[int]:
       '常见问题是：top-k 全来自同一篇文档的相邻段落，信息高度重复；或者多个 chunk 都对，但拼在一起后 token 太多、噪声太大；又或者同一问题同时命中了新旧版本文档，结果把冲突证据一起送给模型却没有做说明。',
       '所以这一步通常要同时做三件事：**去重/多样性控制、parent-child 扩展、token 预算管理**。它不只是 prompt 工程，更是检索工程的一部分。'
     ],
+    illustrations: [
+      {
+        title: 'MMR 公式解读',
+        description: 'MMR 每次迭代选一个文档，同时最大化与 Query 的相关性（Sim₁）、最小化与已选文档的相似度（Sim₂），λ 控制二者平衡。',
+        src: '/mmr-formula-explained.png',
+      },
+      {
+        title: 'MMR 检索流程',
+        description: '先从 Vector Store 做 Similarity Retrieval 取 fetch_k=5 个候选，再经 MMR 多样性筛选，最终输出 k=3 个不重复的上下文片段。',
+        src: '/mmr-retrieval-pipeline.png',
+      },
+    ],
     concepts: [
       { term: 'MMR', desc: '在相关性和多样性之间做平衡，避免 top-k 全是同一篇文档的相邻段落。' },
       { term: 'Parent-Child Expansion', desc: '小 chunk 用来检索，大 chunk 用来喂给 LLM。这样既保留检索精度，又补足生成所需上下文。' },

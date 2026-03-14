@@ -5,7 +5,7 @@ export const queryRewriteSections = [
     title: '为什么用户问的 ≠ 该搜的',
     content: [
       'Query 改写的本质不是“把用户问题润色得更好看”，而是把**用户表达**转换成**检索系统更容易处理的形式**。用户问的，往往并不是最适合直接检索的。',
-      '在真实 RAG 系统里，failure mode 往往来自四类问题：**结果太重复**、**query 里藏着 metadata 约束**、**一个 query 同时包含多个子意图**、以及**query 太短太模糊**。这四类问题，恰好对应 MMR、Self-Query、Multi-Query、HyDE 这几类经典技巧。',
+      '在真实 RAG 系统里，failure mode 往往来自三类 query 层面的问题：**query 里藏着 metadata 约束**、**一个 query 同时包含多个子意图**、以及**query 太短太模糊**。这三类问题，恰好对应 Self-Query、Multi-Query、HyDE 这几类经典技巧。（结果重复的问题属于上下文组装阶段，由 MMR 在 Rerank 后处理。）',
       '所以这里更好的视角不是“有哪些 query rewrite 技术”，而是：**遇到什么失败模式，应该优先用哪种技巧补救**。'
     ],
     concepts: [
@@ -16,18 +16,18 @@ export const queryRewriteSections = [
     keyPoints: [
       'Query 改写的目标是提升检索，不是美化用户问题',
       '同一个 query 问题，不一定该用同一种技巧解决',
-      '先判断 failure mode，再选 MMR / Self-Query / Multi-Query / HyDE',
+      '先判断 failure mode，再选 Self-Query / Multi-Query / HyDE',
       'Query Processing 最终应该是一条可路由、可回退、可观测的 pipeline',
     ],
     engineeringPractice: [
-      '先分析真实 query 日志，把失败样本按“重复结果 / 缺 metadata / 多子意图 / 模糊短问”分桶。',
+      '先分析真实 query 日志，把失败样本按“缺 metadata / 多子意图 / 模糊短问”分桶。（结果重复属于上下文组装阶段。）',
       '不要默认所有 query 都做改写；简单 query 直接检索常常更快也更稳。',
       '把每种技巧的触发条件写成明确规则或分类器，而不是依赖人工感觉。'
     ],
     codeExamples: [
       {
         title: '按 failure mode 选择 query processing 技巧',
-        description: '先分类，再决定是否需要 MMR / Self-Query / Multi-Query / HyDE。',
+        description: '先分类，再决定是否需要 Self-Query / Multi-Query / HyDE。',
         code: `def route_query_strategy(query: str, signals: dict) -> str:
     if signals["has_hidden_metadata"]:
         return "self_query"
@@ -35,8 +35,6 @@ export const queryRewriteSections = [
         return "multi_query"
     if signals["is_short_or_vague"]:
         return "hyde"
-    if signals["retrieval_results_are_redundant"]:
-        return "mmr"
     return "direct_retrieval"`,
       },
     ],
@@ -48,70 +46,6 @@ export const queryRewriteSections = [
       {
         question: 'Query rewrite 和 retrieval optimization 的边界在哪里？',
         approach: '边界并不绝对。像 Self-Query、MMR 更像“检索策略增强”，HyDE、Multi-Query 更像“query processing”。实际工程里通常把它们统一放进 query processing pipeline 来看。'
-      }
-    ],
-  },
-  {
-    id: 'mmr',
-    icon: '🎯',
-    title: 'MMR：结果太重复时',
-    content: [
-      'MMR（Maximal Marginal Relevance）不是传统意义上的“query 改写”，但在 failure-mode 视角下，它解决的是一个非常典型的问题：**相似度检索会把很多彼此相似的 chunk 一起拿回来**。',
-      '在 deck 里的例子里，用户问 “Tell me about the party that night.”，纯 similarity retrieval 会把大量“看起来都像派对”的片段塞满 context window，导致真正有区别的信息进不来。这类问题的本质不是 query 表达错了，而是**结果缺少多样性**。',
-      '这时候最适合的技巧不是继续改 query，而是用 MMR 在相关性和差异性之间做平衡：先多取一些候选（`fetch_k`），再从中挑出既相关、又不彼此重复的 top-k。'
-    ],
-    concepts: [
-      { term: 'Redundancy', desc: '最常见的 failure mode 之一：top-k 结果都高度相似，浪费上下文窗口。' },
-      { term: 'MMR', desc: '每次选一个结果时，同时考虑“和 query 有多相关”以及“和已选结果有多不相似”。' },
-      { term: 'fetch_k vs k', desc: 'MMR 通常先取更大的候选集 `fetch_k`，再从里面选出最终进入上下文的 `k` 条。' },
-    ],
-    illustrations: [
-      {
-        title: 'Failure mode：相似检索把上下文塞满重复片段',
-        description: '这页图展示了纯 similarity retrieval 的典型问题：window limit 固定时，top-k 很容易被风格相近、内容重复的片段占满。',
-        src: '/query-rewrite-mmr-failure.png',
-      },
-      {
-        title: 'MMR：在相关性之外，显式引入多样性',
-        description: 'MMR 的思路不是“换个问法”，而是对候选结果做二次选择：保留相关内容，同时避免 top-k 彼此过于相似。',
-        src: '/query-rewrite-mmr-solution.png',
-      },
-    ],
-    keyPoints: [
-      'failure mode：top-k 结果太像，浪费上下文窗口',
-      'MMR 解决的是“重复结果”，不是“用户问错了”',
-      '工程上常见配置是 `fetch_k > k`，先放大候选池，再做多样性选择',
-      'MMR 特别适合长文、多段落、故事型或高度重复语料',
-    ],
-    engineeringPractice: [
-      '当你发现 top-k 经常来自同一文档的相邻段落，优先考虑 MMR。',
-      'MMR 不是越强越好，多样性不能压过相关性；通常 `lambda=0.5~0.7` 是比较稳的起点。',
-      '对高冗余语料，先做 MMR 往往比继续加大 top-k 更有效。'
-    ],
-    codeExamples: [
-      {
-        title: 'MMR 检索示例',
-        description: '先拿到更大的候选池，再从中挑出相关但不重复的 top-k。',
-        code: `retriever = vectorstore.as_retriever(
-    search_type="mmr",
-    search_kwargs={
-        "k": 3,
-        "fetch_k": 8,
-        "lambda_mult": 0.6,
-    },
-)
-
-docs = retriever.invoke("Tell me about the party that night.")`,
-      },
-    ],
-    extensions: [
-      {
-        question: '什么时候不该优先用 MMR？',
-        approach: '如果问题本身就是极窄的精确查找，例如错误码、条款号、某个固定实体的唯一答案，过度强调多样性反而会把不必要的结果带进来。'
-      },
-      {
-        question: '为什么 MMR 明明不改 query，也适合放进 query processing pipeline？',
-        approach: '因为从系统行为上看，它是在响应某类 query failure mode。用户没变，输入没变，但为了修复“重复结果”这个失败模式，我们改变了 query 的处理方式。'
       }
     ],
   },
@@ -306,8 +240,8 @@ def hyde_retrieval(query: str, retriever, top_k=5):
     icon: '🛡️',
     title: 'Router、护栏与验收',
     content: [
-      '当你手里已经有 MMR、Self-Query、Multi-Query、HyDE 这些技巧后，真正的工程问题就变成：**谁该在什么情况下触发**。这就是 Query Router 的职责。',
-      'Query Router 的目标不是分类得多精细，而是尽快判断这个 query 最可能的 failure mode 是什么，从而把它送到合适的处理路径。简单 query 直接检索，隐藏 filter 走 Self-Query，多意图走 Multi-Query，模糊短问走 HyDE，结果冗余时再叠加 MMR。',
+      '当你手里已经有 Self-Query、Multi-Query、HyDE 这些技巧后，真正的工程问题就变成：**谁该在什么情况下触发**。这就是 Query Router 的职责。',
+      'Query Router 的目标不是分类得多精细，而是尽快判断这个 query 最可能的 failure mode 是什么，从而把它送到合适的处理路径。简单 query 直接检索，隐藏 filter 走 Self-Query，多意图走 Multi-Query，模糊短问走 HyDE。结果冗余问题由 Rerank 后的上下文组装阶段（MMR）处理。',
       '与此同时，query processing 也必须有护栏。改写和扩展如果导致意图漂移、实体丢失、时间约束消失，检索质量可能会比不改还差。'
     ],
     concepts: [
@@ -337,7 +271,7 @@ def hyde_retrieval(query: str, retriever, top_k=5):
         return {"strategy": "multi_query"}
     if signals["is_short_or_vague"]:
         return {"strategy": "hyde"}
-    return {"strategy": "direct_retrieval", "post_process": "mmr"}`,
+    return {"strategy": "direct_retrieval"}`,
       },
       {
         title: '改写质量校验',

@@ -6,6 +6,7 @@ import json
 import zipfile
 import requests
 from pathlib import Path
+from urllib.parse import urlparse, unquote
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,7 +22,19 @@ FILE_PARSE_URL = os.getenv(
 ).rstrip("/") + "/file_parse"
 
 INPUT_DIR = Path("data/pdfs")
-OUTPUT_DIR = Path("data/books")
+PARSED_DIR = Path("data/parsed")
+
+
+def get_mineru_dir(doc_name: str) -> Path:
+    return PARSED_DIR / doc_name / "mineru"
+
+
+def get_default_output(doc_name: str, model: str = "vlm") -> Path:
+    return get_mineru_dir(doc_name) / f"{doc_name}_{model}.md"
+
+
+def doc_name_from_url(url: str) -> str:
+    return Path(unquote(urlparse(url).path)).stem
 
 PARSE_MAX_RETRIES = 3
 PARSE_RETRY_BACKOFF = [5, 15, 45]
@@ -77,11 +90,27 @@ def wait_for_task_and_get_zip_url(task_id: str):
     return None
 
 
-def download_zip_and_extract_markdown(zip_url: str) -> str:
-    """下载结果 zip，解压并合并所有 .md 内容。"""
+def download_zip_and_extract_markdown(zip_url: str, save_dir: Path | None = None) -> str:
+    """下载结果 zip；若 save_dir 不为空，保存原始 zip 并解压全部文件（含图片）到该目录。返回合并的 .md 内容。"""
     res = requests.get(zip_url, timeout=(30, 300))
     res.raise_for_status()
-    z = zipfile.ZipFile(io.BytesIO(res.content), "r")
+    zip_bytes = res.content
+
+    if save_dir:
+        save_dir.mkdir(parents=True, exist_ok=True)
+        zip_path = save_dir / "result.zip"
+        zip_path.write_bytes(zip_bytes)
+        print(f"  Saved zip → {zip_path}")
+
+    z = zipfile.ZipFile(io.BytesIO(zip_bytes), "r")
+
+    if save_dir:
+        for name in z.namelist():
+            if name.startswith("__MACOSX"):
+                continue
+            z.extract(name, save_dir)
+        print(f"  Extracted {len(z.namelist())} files → {save_dir}/")
+
     md_parts = []
     for name in sorted(z.namelist()):
         if name.endswith(".md") and not name.startswith("__MACOSX"):
@@ -91,8 +120,10 @@ def download_zip_and_extract_markdown(zip_url: str) -> str:
     return "\n\n".join(md_parts) if md_parts else ""
 
 
-def parse_pdf_by_url(pdf_url: str, model_version: str = "vlm", extra_params: dict | None = None):
+def parse_pdf_by_url(pdf_url: str, model_version: str = "vlm", extra_params: dict | None = None, doc_name: str | None = None):
     """使用 mineru.net 官网 API：提交任务，轮询结果，返回最终用于保存的完整响应（含 data）。"""
+    if not doc_name:
+        doc_name = doc_name_from_url(pdf_url)
     data = {"url": pdf_url, "model_version": model_version}
     if extra_params:
         data.update(extra_params)
@@ -123,7 +154,8 @@ def parse_pdf_by_url(pdf_url: str, model_version: str = "vlm", extra_params: dic
             if not zip_url:
                 return None
             print("  Downloading result zip...")
-            md_content = download_zip_and_extract_markdown(zip_url)
+            save_dir = get_mineru_dir(doc_name) / task_id
+            md_content = download_zip_and_extract_markdown(zip_url, save_dir=save_dir)
             return {"data": {"markdown": md_content, "task_id": task_id}}
         except (requests.exceptions.RequestException, OSError) as e:
             last_error = e
@@ -183,17 +215,17 @@ def extract_markdown(result_json):
 def process_pdfs():
     """批量处理 data/pdfs 下 PDF（仅支持本地文件，走 file_parse）。"""
     INPUT_DIR.mkdir(parents=True, exist_ok=True)
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     pdf_files = list(INPUT_DIR.glob("*.pdf"))
     if not pdf_files:
         print(f"No PDF files found in {INPUT_DIR}")
         return
     print(f"Found {len(pdf_files)} PDFs to process.")
     for pdf_file in pdf_files:
-        output_path = OUTPUT_DIR / (pdf_file.stem + ".md")
+        output_path = get_default_output(pdf_file.stem)
         if output_path.exists():
             print(f"Skipping {pdf_file.name}, output exists.")
             continue
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         print(f"Processing {pdf_file.name}...")
         result_json = parse_pdf(pdf_file)
         if not result_json:
@@ -211,7 +243,12 @@ def main():
         default=None,
         help="PDF 文件路径或 PDF 的 URL（mineru.net 官网 API 需 URL）",
     )
-    parser.add_argument("-o", "--output", default=None, help="输出 .md 路径")
+    parser.add_argument("-o", "--output", default=None, help="输出 .md 路径（默认 data/parsed/{name}/mineru/{name}_{model}.md）")
+    parser.add_argument(
+        "-n", "--name",
+        default=None,
+        help="文档名称，用于输出目录 data/parsed/{name}/mineru/（默认从文件名或 URL 推导）",
+    )
     parser.add_argument(
         "--task-id",
         default=None,
@@ -258,14 +295,16 @@ def main():
     # 根据 task_id 轮询并下载结果到 .md
     if args.task_id:
         task_id = args.task_id.strip()
-        out_path = Path(args.output) if args.output else Path("data/books/result.md")
+        doc_name = args.name or "unknown"
+        out_path = Path(args.output) if args.output else get_default_output(doc_name, args.model)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         print(f"Querying task_id: {task_id}")
         zip_url = wait_for_task_and_get_zip_url(task_id)
         if not zip_url:
             exit(1)
         print("  Downloading result zip...")
-        md_content = download_zip_and_extract_markdown(zip_url)
+        save_dir = get_mineru_dir(doc_name) / task_id
+        md_content = download_zip_and_extract_markdown(zip_url, save_dir=save_dir)
         out_path.write_text(md_content, encoding="utf-8")
         print(f"  Saved to {out_path}")
         return
@@ -289,12 +328,13 @@ def main():
                 "language": "en",
             }
             print(f"Using profile hsbc_en -> model={model}, params={profile_params}")
-        print(f"Processing URL (mineru.net task API)...")
-        result_json = parse_pdf_by_url(raw, model_version=model, extra_params=profile_params)
+        doc_name = args.name or doc_name_from_url(raw)
+        print(f"Processing URL (mineru.net task API), doc_name={doc_name}...")
+        result_json = parse_pdf_by_url(raw, model_version=model, extra_params=profile_params, doc_name=doc_name)
         if not result_json:
             exit(1)
         content = extract_markdown(result_json)
-        out_path = Path(args.output) if args.output else Path("data/books/from_url.md")
+        out_path = Path(args.output) if args.output else get_default_output(doc_name, model)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(content, encoding="utf-8")
         print(f"  Saved to {out_path}")
@@ -304,9 +344,10 @@ def main():
         if not pdf_path.is_file():
             print(f"Error: file not found: {pdf_path}")
             exit(1)
-        out_path = Path(args.output) if args.output else pdf_path.with_suffix(".md")
+        doc_name = args.name or pdf_path.stem
+        out_path = Path(args.output) if args.output else get_default_output(doc_name, args.model)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        print(f"Processing {pdf_path.name} (file_parse)...")
+        print(f"Processing {pdf_path.name} (file_parse), doc_name={doc_name}...")
         result_json = parse_pdf(pdf_path)
         if not result_json:
             exit(1)
