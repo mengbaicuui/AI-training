@@ -22,8 +22,8 @@ const tabs = [
   { id: 'evolution', icon: '🔄', label: 'RAG 演进', phase: 1 },
   { id: 'data-eng', icon: '📄', label: '数据工程', phase: 1 },
   { id: 'hybrid', icon: '🔍', label: '检索工程', phase: 2 },
-  { id: 'rerank', icon: '🎯', label: 'Rerank', phase: 2 },
   { id: 'query', icon: '✍️', label: 'Query 优化', phase: 2 },
+  { id: 'rerank', icon: '🎯', label: 'Rerank', phase: 2 },
   { id: 'agentic', icon: '🤖', label: 'Agentic RAG', phase: 2 },
   { id: 'graph', icon: '🕸️', label: '知识增强', phase: 2 },
   { id: 'generation', icon: '🛡️', label: '生成质量', phase: 3 },
@@ -76,7 +76,7 @@ function App() {
   const phaseGroups = [
     { label: null, ids: ['home', 'autel-overview', 'tool-framework'] },
     { label: 'Phase 1', ids: ['evolution', 'data-eng'] },
-    { label: 'Phase 2', ids: ['hybrid', 'rerank', 'query', 'agentic', 'graph'] },
+    { label: 'Phase 2', ids: ['hybrid', 'query', 'rerank', 'agentic', 'graph'] },
     { label: 'Phase 3', ids: ['generation', 'eval', 'production'] },
     { label: null, ids: ['summary'] },
   ];
