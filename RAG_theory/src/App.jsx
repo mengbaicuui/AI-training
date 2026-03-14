@@ -35,6 +35,7 @@ const tabs = [
 function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [toolFrameworkSection, setToolFrameworkSection] = useState('langchain');
+  const [navCollapsed, setNavCollapsed] = useState(false);
 
   const renderTab = () => {
     switch (activeTab) {
@@ -72,20 +73,80 @@ function App() {
     }
   };
 
+  const phaseGroups = [
+    { label: null, ids: ['home', 'autel-overview', 'tool-framework'] },
+    { label: 'Phase 1', ids: ['evolution', 'data-eng'] },
+    { label: 'Phase 2', ids: ['hybrid', 'rerank', 'query', 'generation'] },
+    { label: 'Phase 3', ids: ['eval', 'agentic', 'graph', 'production'] },
+    { label: null, ids: ['summary'] },
+  ];
+
   return (
     <div className="app">
+      <header className={`app-header ${navCollapsed ? 'collapsed' : ''}`}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+            <div className="app-title" style={{ marginBottom: 0, whiteSpace: 'nowrap' }}>RAG 生产实践工作坊</div>
+            {navCollapsed && (() => {
+              const cur = tabs.find(t => t.id === activeTab);
+              return cur ? (
+                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                  / {cur.icon} {cur.label}
+                </span>
+              ) : null;
+            })()}
+          </div>
+          <button
+            className="nav-collapse-btn"
+            onClick={() => setNavCollapsed(v => !v)}
+            title={navCollapsed ? '展开导航' : '收起导航'}
+          >
+            {navCollapsed ? '▼' : '▲'}
+          </button>
+        </div>
+
+        {!navCollapsed && (
+          <>
+            <div className="app-subtitle">从 0 到生产级 RAG：构建 · 调优 · 评估 · 上线</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '12px' }}>
+              {phaseGroups.map((group, gi) => (
+                <div key={gi} style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+                  {group.label && (
+                    <span style={{
+                      fontSize: '0.72rem', fontWeight: 700, padding: '2px 8px',
+                      borderRadius: '999px', background: '#eef2ff', color: '#6366f1',
+                      whiteSpace: 'nowrap',
+                    }}>
+                      {group.label}
+                    </span>
+                  )}
+                  {group.ids.map(id => {
+                    const tab = tabs.find(t => t.id === id);
+                    if (!tab) return null;
+                    return (
+                      <button
+                        key={id}
+                        className={`tab-button ${activeTab === id ? 'active' : ''}`}
+                        onClick={() => setActiveTab(id)}
+                      >
+                        <span className="tab-icon">{tab.icon}</span>
+                        {tab.label}
+                      </button>
+                    );
+                  })}
+                  {gi < phaseGroups.length - 1 && (
+                    <span style={{ color: '#cbd5e1', fontSize: '0.85rem', margin: '0 2px' }}>|</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </header>
+
       <main className="main-content">
         {renderTab()}
       </main>
-
-      {activeTab !== 'home' && (
-        <button
-          className="floating-home-btn"
-          onClick={() => setActiveTab('home')}
-        >
-          返回首页
-        </button>
-      )}
     </div>
   );
 }

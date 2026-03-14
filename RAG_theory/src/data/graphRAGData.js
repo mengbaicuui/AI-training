@@ -274,13 +274,13 @@ return answer`
         value: 'LinearRAG（2025，ICLR 2026）代表的是另一条轻量知识增强路线：**尽量避免昂贵且不稳定的关系抽取**，改用更轻量的实体抽取 + 语义连接来构建层级图结构。它的目标不是做“最完整的知识图谱”，而是做一个能线性扩展、适合大规模语料的 graph retrieval 框架。'
       },
       {
-      {
         type: 'image',
         title: 'Naive RAG / GraphRAG / LinearRAG 流程对比',
         src: '/linearrag-architecture.png',
         alt: 'LinearRAG vs GraphRAG vs Naive RAG pipeline comparison',
         caption: 'a) Naive RAG：Chunk → Embedding → 向量检索；b) GraphRAG：NER → 关系抓取 → Knowledge Graph → 子图检索；c) LinearRAG：NER → Semantic Linking → Tri-Graph → Passage 检索。LinearRAG 跳过了 b) 中昂贵的关系抓取步骤，用语义连接构建轻量 Tri-Graph，检索结果仍为 Passage，与普通 RAG 兼容。',
       },
+      {
         type: 'list',
         title: '核心设计',
         items: [

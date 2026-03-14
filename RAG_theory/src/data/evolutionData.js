@@ -180,6 +180,7 @@ export const evolutionKnowledgePointDetails = {
     name: 'Self-reflection',
     summary: '模型在生成过程中反思自己当前证据是否足够、答案是否可靠。',
     whyItMatters: '这是 Agentic RAG 的核心控制能力之一，让系统不再只是单向流水线。',
+    image: { src: '/self-rag-algorithm.png', alt: 'Self-RAG Inference Algorithm', caption: 'Self-RAG 推理算法：通过 Retrieve / Generate / Critique 三阶段实现自反思' },
   },
   'Adaptive retrieval': {
     name: 'Adaptive retrieval',

@@ -78,7 +78,7 @@ const KnowledgePointModal = ({ point, onClose }) => {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          width: 'min(720px, 100%)',
+          width: 'min(800px, 100%)',
           background: 'var(--bg-secondary)',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-xl)',
@@ -125,6 +125,30 @@ const KnowledgePointModal = ({ point, onClose }) => {
               .replace(/`(.*?)`/g, '<code style="background:var(--bg-tertiary);padding:1px 5px;border-radius:4px;font-size:0.88em">$1</code>')
               .replace(/\n/g, '<br />')
             }} />
+          </div>
+        )}
+
+        {point.image && (
+          <div className="content-block" style={{ marginTop: 'var(--spacing-lg)', marginBottom: 0 }}>
+            <img
+              src={point.image.src}
+              alt={point.image.alt || ''}
+              style={{
+                width: '100%',
+                borderRadius: 'var(--radius-lg)',
+                border: '1px solid var(--border-color)',
+              }}
+            />
+            {point.image.caption && (
+              <p style={{
+                fontSize: '0.8rem',
+                color: 'var(--text-muted)',
+                textAlign: 'center',
+                marginTop: 'var(--spacing-sm)',
+              }}>
+                {point.image.caption}
+              </p>
+            )}
           </div>
         )}
       </div>
