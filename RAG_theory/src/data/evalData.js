@@ -133,6 +133,33 @@ export const evalSections = [
         ]
       },
       {
+        title: 'RAGAS 三指标',
+        content: `如果说 RAG Triad 是概念框架，那么 **RAGAS** 就是更工程化、可直接落地到代码里的指标集合。课堂里最常用的三项是：**Context Precision**（给到模型的上下文是否真的相关）、**Faithfulness**（回答是否有据可依）、**Answer Relevancy**（回答是否真正回答了问题）。它们和 Triad 一一对应，但更适合直接做离线评估和 CI 回归。`,
+        triad: [
+          {
+            name: 'Context Precision（上下文精度）',
+            question: 'retrieved contexts 里真正有用、对回答有贡献的内容占比高吗？',
+            failure: '召回里混进太多噪声 chunk，模型虽然有材料可用，但被无关上下文稀释，回答质量下降。',
+            measurement: '给定 query、reference 和 retrieved contexts，逐条判断上下文是否对最终回答有帮助。',
+            improveBy: '提升检索排序质量、加入 reranker、优化 chunking 与 metadata filter。'
+          },
+          {
+            name: 'Faithfulness（忠实度）',
+            question: '最终回答中的论断，是否都能被检索到的 context 支撑？',
+            failure: '模型看起来回答得很完整，但混入了 context 中没有的推断或编造内容。',
+            measurement: '拆解回答里的 claims，逐条验证是否能从 retrieved contexts 中直接推出。',
+            improveBy: '加强 grounding prompt、减少噪声上下文、选择更忠实的模型。'
+          },
+          {
+            name: 'Answer Relevancy（回答相关性）',
+            question: '最终回答是否真正对准了用户问题，而不是泛泛而谈？',
+            failure: '回答有依据，但答偏了重点，或者只覆盖了问题的一部分。',
+            measurement: '从回答反推潜在问题，与原始用户问题做语义相似度比较。',
+            improveBy: '改进 query 理解、优化 prompt 模板、确保 context 中确实含有目标答案。'
+          }
+        ]
+      },
+      {
         title: '失败模式矩阵',
         content: `不同的 triad 指标失败组合指向不同的根因：`,
         failureMatrix: [

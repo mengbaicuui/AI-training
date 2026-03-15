@@ -212,9 +212,9 @@ const EvalTab = () => {
     </div>
   );
 
-  const renderTriad = (triad) => (
+  const renderTriad = (title, triad) => (
     <div className="content-block">
-      <div className="block-title">RAG Triad 三角</div>
+      <div className="block-title">{title}</div>
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -625,8 +625,14 @@ const EvalTab = () => {
         return (
           <>
             <p className="content-text">{currentSection.subsections[0].content}</p>
-            {renderTriad(currentSection.subsections[0].triad)}
-            {currentSection.subsections[1] && renderFailureMatrix(currentSection.subsections[1].failureMatrix)}
+            {renderTriad(currentSection.subsections[0].title, currentSection.subsections[0].triad)}
+            {currentSection.subsections[1] && (
+              <>
+                <p className="content-text">{currentSection.subsections[1].content}</p>
+                {renderTriad(currentSection.subsections[1].title, currentSection.subsections[1].triad)}
+              </>
+            )}
+            {currentSection.subsections[2] && renderFailureMatrix(currentSection.subsections[2].failureMatrix)}
           </>
         );
 
