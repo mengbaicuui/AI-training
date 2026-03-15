@@ -159,6 +159,12 @@ export const productionContent = {
       '没有 trace 的评分几乎无法定位问题，只能看到“分低了”。',
       '线上监控不仅服务于报警，也服务于评估集回收和数据飞轮。'
     ],
+    observabilityImage: {
+      src: '/llm-observability-metrics.png',
+      alt: 'LLM 应用可观测指标体系图',
+      title: 'LLM 应用可观测指标体系',
+      caption: '从生产视角看，可观测不只是 trace 和日志，还应覆盖四类指标：系统与资源监控、服务质量与可靠性、模型效果与评估、用户体验与业务价值。这样才能把“模型表现差”进一步拆成延迟、失败率、幻觉、用户反馈、业务转化等可定位的问题。'
+    },
     codeExample: `trace = langfuse.trace(name="rag-request", input={"query": query})
 trace.span(name="retrieval", input={"query": query}, output={"doc_ids": top_doc_ids})
 trace.span(name="generation", input={"prompt": prompt}, output={"answer": answer})

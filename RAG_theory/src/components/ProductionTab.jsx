@@ -412,6 +412,36 @@ const ProductionTab = () => {
                 </tbody>
               </table>
             </div>
+            {content.observabilityImage && (
+              <div className="content-block">
+                <div className="block-title">{content.observabilityImage.title}</div>
+                <div style={{
+                  background: 'var(--bg-tertiary)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 'var(--spacing-md)',
+                }}>
+                  <img
+                    src={content.observabilityImage.src}
+                    alt={content.observabilityImage.alt}
+                    style={{
+                      width: '100%',
+                      borderRadius: 'var(--radius-md)',
+                      display: 'block',
+                    }}
+                  />
+                  <p style={{
+                    fontSize: '0.82rem',
+                    color: 'var(--text-muted)',
+                    marginTop: 'var(--spacing-sm)',
+                    textAlign: 'center',
+                    lineHeight: 1.6,
+                  }}>
+                    {content.observabilityImage.caption}
+                  </p>
+                </div>
+              </div>
+            )}
             <div className="content-block">
               <div className="block-title">告警触发</div>
               <ul style={{ paddingLeft: 'var(--spacing-lg)' }}>
